@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { HashRouter, Routes, Route } from 'react-router-dom'
 
 import OnboardingPage from '../pages/onboarding/OnboardingPage.jsx'
 import QuizPage from '../pages/quiz/QuizPage.jsx'
@@ -9,7 +9,7 @@ import NotFoundPage from '../pages/not-found/NotFoundPage.jsx'
 
 export default function AppRoutes() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route path='/' element={<OnboardingPage />} />
         <Route path='/quiz' element={<QuizPage />} />
@@ -18,6 +18,6 @@ export default function AppRoutes() {
         <Route path='/result' element={<ResultPage />} />
         <Route path='*' element={<NotFoundPage />} />
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
