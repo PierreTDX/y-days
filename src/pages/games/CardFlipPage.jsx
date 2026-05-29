@@ -1,0 +1,1 @@
+export default function CardFlipPage(){ return <div>Card Flip Game</div> }

@@ -1,0 +1,1 @@
+export default function PuzzlePage(){ return <div>Puzzle Game</div> }
