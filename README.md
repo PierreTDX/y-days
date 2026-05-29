@@ -1,16 +1,39 @@
-# React + Vite
+# Projet Y-Days
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Ce projet est développé avec **React** et **Vite**.
 
-Currently, two official plugins are available:
+## 🚀 Initialisation (Init)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Pour démarrer avec ce projet, commencez par cloner le dépôt sur votre machine :
 
-## React Compiler
+```bash
+git clone <URL_DU_DEPOT>
+cd y-days
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 💻 Installation & Lancement (Install)
 
-## Expanding the ESLint configuration
+Une fois dans le dossier du projet, installez les dépendances nécessaires et lancez le serveur de développement :
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+# Installation des dépendances
+npm install
+
+# Lancement du serveur de développement (accessible via http://localhost:5173)
+npm run dev
+```
+
+## 📦 Déploiement (Deploy)
+
+Ce projet est configuré pour être déployé sur **GitHub Pages**.
+
+Pour publier la dernière version de votre code, exécutez la commande suivante :
+
+```bash
+npm run deploy
+```
+
+Cette commande génère le code de production (`npm run build`) et pousse automatiquement le dossier `dist` sur la branche `gh-pages` de votre dépôt.
+
+Le site sera ensuite accessible à l'adresse suivante :
+https://pierretdx.github.io/y-days/
