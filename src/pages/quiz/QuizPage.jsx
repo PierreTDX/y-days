@@ -1,7 +1,8 @@
 
 import { useState } from 'react'
+import { Button } from "@/components/ui/button"
 
-export default function QuizPage(){
+export default function QuizPage() {
 
   const questions = [
     {
@@ -17,15 +18,15 @@ export default function QuizPage(){
   const [i, setI] = useState(0)
 
   return (
-    <div className="glass" style={{padding:24}}>
-      <h2>Question {i+1}/{questions.length}</h2>
-      <h3 style={{marginTop:10}}>{questions[i].q}</h3>
+    <div className="rounded-xl border bg-card text-card-foreground shadow p-6">
+      <h2 className="text-lg font-semibold">Question {i + 1}/{questions.length}</h2>
+      <h3 className="text-xl font-bold mt-2.5">{questions[i].q}</h3>
 
-      <div style={{display:'flex',gap:12,marginTop:20}}>
-        {questions[i].a.map((ans)=>(
-          <button className="btn" key={ans} onClick={()=>setI(i+1)}>
+      <div className="flex flex-wrap gap-3 mt-5">
+        {questions[i].a.map((ans) => (
+          <Button key={ans} onClick={() => setI(i + 1)}>
             {ans}
-          </button>
+          </Button>
         ))}
       </div>
     </div>

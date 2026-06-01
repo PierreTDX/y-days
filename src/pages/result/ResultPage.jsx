@@ -1,10 +1,12 @@
 
-export default function ResultPage(){
+import { Button } from "@/components/ui/button"
+
+export default function ResultPage() {
   return (
-    <div className="glass" style={{padding:24,textAlign:'center'}}>
-      <h1 className="title">Bravo 🎉</h1>
-      <p className="subtitle">Vous avez terminé la formation</p>
-      <button className="btn" style={{marginTop:20}}>Recommencer</button>
+    <div className="rounded-xl border bg-card text-card-foreground shadow p-6 text-center">
+      <h1 className="text-2xl font-semibold leading-none tracking-tight">Bravo 🎉</h1>
+      <p className="text-sm text-muted-foreground mt-2">Vous avez terminé la formation</p>
+      <Button className="mt-5">Recommencer</Button>
     </div>
   )
 }
