@@ -1,10 +1,21 @@
 import { useState } from 'react'
 import { Button } from "@/components/ui/button"
+import DragDropGame from "@/features/dragdrop/DragDropGame"
+
+const BUCKETS = ['Rôle', 'Objectif', 'Limites', 'Exemple']
 
 export default function Capsule2() {
     const [step, setStep] = useState(0)
 
-    return (
+    const gameCards = [
+        { id: 'c1', text: 'Tu es un professeur expérimenté du CE2.', answer: 'Rôle' },
+        { id: 'c2', text: 'Crée une séance de 45 minutes pour introduire les fractions.', answer: 'Objectif' },
+        { id: 'c3', text: 'Utilise du matériel manipulable, évite les écrans.', answer: 'Limites' },
+        { id: 'c4', text: 'Structure la réponse ainsi : 1. Intro... 4 fiches max.', answer: 'Exemple' },
+        { id: 'c5', text: 'Pas plus de 100 mots.', answer: 'Limites' }
+    ]
+
+    return (<>
         <div className="max-w-4xl mx-auto mt-10 p-6 rounded-xl border bg-card text-card-foreground shadow-sm">
             {step === 0 && (
                 <div className="space-y-6">
@@ -41,23 +52,9 @@ export default function Capsule2() {
             {step === 1 && (
                 <div className="space-y-6">
                     <h2 className="text-2xl font-bold tracking-tight">Mini-Jeu : Drag & Drop R.O.L.E</h2>
-                    <p className="text-sm text-muted-foreground">Glissez les éléments dans la bonne catégorie (Squelette à implémenter avec une librairie DnD).</p>
-
-                    <div className="flex gap-4 mb-8 p-4 bg-muted rounded-lg justify-center">
-                        {/* Mots à glisser (Mocks) */}
-                        <div className="px-4 py-2 bg-background border shadow-sm rounded cursor-move">"Tu es un expert..."</div>
-                        <div className="px-4 py-2 bg-background border shadow-sm rounded cursor-move">"Fais un résumé..."</div>
-                        <div className="px-4 py-2 bg-background border shadow-sm rounded cursor-move">"Pas plus de 100 mots"</div>
-                    </div>
-
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        {['Rôle', 'Objectif', 'Limites', 'Exemple'].map(letter => (
-                            <div key={letter} className="h-32 border-2 border-dashed rounded-xl flex flex-col items-center justify-center text-muted-foreground bg-muted/20">
-                                <span className="font-bold text-lg">{letter}</span>
-                                <span className="text-xs">Déposer ici</span>
-                            </div>
-                        ))}
-                    </div>
+                    <p className="block md:hidden text-sm text-muted-foreground">Tapez sur un élément pour le sélectionner depuis le panneau rétractable, puis tapez sur la bonne catégorie                             .</p>
+                    <p className="hidden md:hidden text-sm text-muted-foreground">Glissez les éléments dans la bonne catégorie.</p>
+                    <DragDropGame buckets={BUCKETS} initialCards={gameCards} />
                 </div>
             )}
 
@@ -74,5 +71,5 @@ export default function Capsule2() {
                 </Button>
             </div>
         </div>
-    )
+    </>)
 }
