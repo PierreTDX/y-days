@@ -1,0 +1,190 @@
+.onboarding {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  font-family: var(--font-sans);
+}
+
+/* ── Left panel ── */
+.onboarding-left {
+  width: 48%;
+  background:
+    linear-gradient(rgba(255,255,255,.92), rgba(255,255,255,.92)),
+    url('/y-days/efa249ca0a78f70482e9cb7dae14bc8d38859bc8.png') center / cover;
+  display: flex;
+  flex-direction: column;
+  padding: 48px 56px;
+  overflow-y: auto;
+}
+
+.onboarding-counter {
+  font-size: 13px;
+  font-weight: 600;
+  color: #9ca3af;
+  letter-spacing: .05em;
+  margin-bottom: 40px;
+}
+
+.onboarding-content { flex: 1; }
+
+.onboarding-title {
+  font-family: Comfortaa, sans-serif;
+  font-size: 36px;
+  font-weight: 600;
+  font-style: normal;
+  line-height: 40px;
+  letter-spacing: -0.9px;
+  color: #080614;
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+
+/* step body text */
+.step-body p {
+  line-height: 1.75;
+  color: #374151;
+  margin-top: 0;
+}
+
+.step-quote {
+  margin-top: 24px;
+  border-left: 4px solid #7c3aed;
+  background: #f5f3ff;
+  border-radius: 0 12px 12px 0;
+  padding: 16px 16px 16px 20px;
+}
+.step-quote p {
+  margin: 0;
+  color: #5b21b6;
+  font-style: italic;
+  line-height: 1.7;
+  font-size: 14px;
+}
+
+/* stats */
+.step-stats { display: flex; flex-direction: column; gap: 16px; margin-top: 8px; }
+
+.stat-card {
+  border-radius: 14px;
+  padding: 20px;
+}
+.stat-card--purple { background: #f5f3ff; }
+.stat-card--pink   { background: #fff0f6; }
+
+.stat-number { font-size: 48px; font-weight: 800; line-height: 1; }
+.stat-number--purple { color: #7c3aed; }
+.stat-number--pink   { color: #db2777; }
+
+.stat-label {
+  margin: 8px 0 0;
+  font-size: 13px;
+  color: #6b7280;
+  line-height: 1.5;
+}
+.stat-label small {
+  font-size: 11px;
+  color: #9ca3af;
+  display: block;
+  margin-top: 2px;
+}
+
+/* list */
+.step-list { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
+
+.step-list-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background: #f5f3ff;
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+.step-list-item span { font-size: 18px; flex-shrink: 0; }
+.step-list-item p   { margin: 0; font-size: 13px; color: #374151; line-height: 1.5; }
+
+.step-source { margin-top: 20px; font-size: 11px; color: #9ca3af; }
+.step-source a { color: #7c3aed; text-decoration: underline; }
+
+/* navigation */
+.onboarding-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.btn-back {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #6b7280;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 0;
+}
+
+.btn-next {
+  background: #7c3aed;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 24px;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.btn-cta {
+  background: #7c3aed;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 32px;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* ── Right panel ── */
+.onboarding-right {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(to right,
+    rgba(255,200,58, .85)  0%,
+    rgba(255,0,  138,.60) 20%,
+    transparent           40%,
+    transparent           60%,
+    rgba(97, 0,  255,.60) 80%,
+    rgba(0,  26, 255,.85) 100%);
+}
+
+/* Image de fond du panel droit — opacité réglable ici */
+.onboarding-right::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('/y-days/images/fond.png') center / cover;
+  opacity: 0.6;
+  z-index: -1;
+}
+
+/* progress bar */
+.onboarding-progress { display: flex; gap: 6px; padding: 20px 24px; }
+
+.progress-segment {
+  flex: 1;
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(255,255,255,.3);
+  transition: background .3s;
+}
+.progress-segment--active { background: white; }
+
+/* testimony wrappers */
+.onb-testimony { position: absolute; z-index: 2; }
+.onb-testimony--1 { top: 14%;  left: 4%;  transform: rotate(-4deg); }
+.onb-testimony--2 { bottom: 22%; left: 3%; transform: rotate(3deg);  }
+.onb-testimony--3 { top: 10%;  right: 3%; transform: rotate(4deg);  }
+.onb-testimony--4 { bottom: 18%; right: 2%; transform: rotate(-3deg); }
