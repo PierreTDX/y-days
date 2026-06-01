@@ -28,8 +28,8 @@ const SearchIcon = ({ className }) => (
 );
 
 // Remplacez par vos vraies images
-const marieImageUrl = 'public/images/prof1.png';
-const aurelieImageUrl = 'public/images/prof2.png';
+const marieImageUrl = './images/prof1.png';
+const aurelieImageUrl = './images/prof2.png';
 
 const demoSteps = [
     {
