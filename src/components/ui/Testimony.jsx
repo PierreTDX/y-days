@@ -24,32 +24,35 @@ export function Testimony({
         <div className={cn("relative flex items-start gap-3", className)}>
             {/* ── Avatar column ── */}
             <div className="relative flex-shrink-0">
-                {/* Green ring */}
-                <div className="relative w-[90px] h-[90px] rounded-full border-[3px] border-green-500 p-[3px] bg-white">
+                {/* Gradient ring */}
+                <div className="relative w-[90px] h-[90px] rounded-full p-[3px] bg-gradient-to-b from-[#E8FFF0] to-[#4ADE80]">
                     {/* Online dot */}
-                    <span className="absolute top-0.5 right-1.5 z-10 w-2.5 h-2.5 rounded-full bg-green-500 ring-2 ring-white" />
+                    <span className="absolute top-3 left-1.5 z-10 w-2.5 h-2.5 rounded-full bg-[#4ADE80] ring-2 ring-white" />
 
-                    {/* Photo or fallback */}
-                    <div className="w-full h-full rounded-full overflow-hidden bg-gray-200 flex items-center justify-center">
-                        {avatarSrc ? (
-                            <img
-                                src={avatarSrc}
-                                alt={avatarAlt}
-                                className="w-full h-full object-cover"
-                            />
-                        ) : (
-                            /* Neutral silhouette fallback */
-                            <svg
-                                viewBox="0 0 84 84"
-                                fill="none"
-                                className="w-full h-full"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <rect width="84" height="84" rx="42" fill="#e5e7eb" />
-                                <ellipse cx="42" cy="34" rx="14" ry="16" fill="#9ca3af" />
-                                <ellipse cx="42" cy="72" rx="26" ry="18" fill="#9ca3af" />
-                            </svg>
-                        )}
+                    {/* White gap */}
+                    <div className="w-full h-full rounded-full p-[3px] bg-white">
+                        {/* Photo or fallback */}
+                        <div className="w-full h-full rounded-full overflow-hidden bg-gray-200 flex items-center justify-center">
+                            {avatarSrc ? (
+                                <img
+                                    src={avatarSrc}
+                                    alt={avatarAlt}
+                                    className="w-full h-full object-cover"
+                                />
+                            ) : (
+                                /* Neutral silhouette fallback */
+                                <svg
+                                    viewBox="0 0 84 84"
+                                    fill="none"
+                                    className="w-full h-full"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <rect width="84" height="84" rx="42" fill="#e5e7eb" />
+                                    <ellipse cx="42" cy="34" rx="14" ry="16" fill="#9ca3af" />
+                                    <ellipse cx="42" cy="72" rx="26" ry="18" fill="#9ca3af" />
+                                </svg>
+                            )}
+                        </div>
                     </div>
                 </div>
 
