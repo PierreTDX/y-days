@@ -37,3 +37,7 @@ Cette commande génère le code de production (`npm run build`) et pousse automa
 
 Le site sera ensuite accessible à l'adresse suivante :
 https://pierretdx.github.io/y-days/
+
+## 📚 Ressources
+
+- [Documentation des composants Shadcn UI](https://ui.shadcn.com/docs/components)
