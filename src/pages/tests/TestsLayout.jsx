@@ -106,10 +106,23 @@ const TestsPage = () => {
             <div className="min-h-screen bg-neutral-50 p-12 flex flex-col items-center gap-24">
                 <h1 className="text-4xl font-bold">CourseStepper</h1>
 
-                {/* Exemple d'utilisation de CourseStepper */}
-                <CourseStepper
-                    initialSteps={demoSteps}
-                />
+                {/* Exemple d'utilisation de CourseStepper - Vue Verticale */}
+                {/* <div className="w-full max-w-4xl">
+                    <h2 className="text-2xl font-bold mb-2 text-center text-zinc-800">Version Verticale (Row)</h2>
+                    <CourseStepper
+                        initialSteps={demoSteps}
+                        variant="vertical"
+                    />
+                </div> */}
+
+                {/* Exemple d'utilisation de CourseStepper - Vue Horizontale */}
+                <div className="w-full max-w-4xl">
+                    <h2 className="text-2xl font-bold mb-2 text-center text-zinc-800">Version Horizontale</h2>
+                    <CourseStepper
+                        initialSteps={demoSteps}
+                        variant="horizontal"
+                    />
+                </div>
             </div>
 
         </>

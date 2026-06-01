@@ -199,7 +199,7 @@ function HorizontalStepper({ selectedIdx, steps, onStepClick }) {
     );
 }
 
-export default function CourseStepper({ initialSteps = [] }) {
+export default function CourseStepper({ initialSteps = [], variant = "both" }) {
     const [steps, setSteps] = useState(initialSteps);
     const activeIndex = steps.findIndex((s) => s.status === "active");
     const [selectedIdx, setSelectedIdx] = useState(activeIndex !== -1 ? activeIndex : (steps.length > 0 ? steps.length - 1 : 0));
@@ -226,31 +226,35 @@ export default function CourseStepper({ initialSteps = [] }) {
     };
 
     return (
-        <div className="p-6 flex flex-col gap-8 max-w-2xl mx-auto">
+        <div className="p-6 flex flex-col gap-8 max-w-2xl mx-auto w-full">
             {/* Vertical */}
-            <div>
-                <p className="text-xs uppercase tracking-widest text-zinc-400 mb-3">Vue verticale</p>
-                <div className="flex flex-col gap-2">
-                    {steps.map((step, i) => (
-                        <StepRow
-                            key={i}
-                            {...step}
-                            isSelected={i === selectedIdx}
-                            onClick={() => setSelectedIdx(i)}
-                        />
-                    ))}
+            {(variant === "vertical" || variant === "both") && (
+                <div>
+                    {variant === "both" && <p className="text-xs uppercase tracking-widest text-zinc-400 mb-3">Vue verticale</p>}
+                    <div className="flex flex-col gap-2">
+                        {steps.map((step, i) => (
+                            <StepRow
+                                key={i}
+                                {...step}
+                                isSelected={i === selectedIdx}
+                                onClick={() => setSelectedIdx(i)}
+                            />
+                        ))}
+                    </div>
                 </div>
-            </div>
+            )}
 
             {/* Horizontal */}
-            <div>
-                <p className="text-xs uppercase tracking-widest text-zinc-400 mb-3">Vue horizontale</p>
-                <HorizontalStepper
-                    selectedIdx={selectedIdx}
-                    steps={steps}
-                    onStepClick={setSelectedIdx}
-                />
-            </div>
+            {(variant === "horizontal" || variant === "both") && (
+                <div>
+                    {variant === "both" && <p className="text-xs uppercase tracking-widest text-zinc-400 mb-3">Vue horizontale</p>}
+                    <HorizontalStepper
+                        selectedIdx={selectedIdx}
+                        steps={steps}
+                        onStepClick={setSelectedIdx}
+                    />
+                </div>
+            )}
 
             {/* Contenu du module sélectionné */}
             <div className="mt-4 p-6 bg-white border border-zinc-200 rounded-xl shadow-sm text-left">
