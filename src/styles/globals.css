@@ -19,7 +19,7 @@ a { color: inherit; }
 .stepper-container {
   background-color: var(--base-primary, #A076E4);
   background-blend-mode: color;
-  background: url('./images/background.png') center/cover fixed;
+  background: url('/y-days/images/background.png') center/cover fixed;
 }
 
 .glass {
