@@ -137,7 +137,7 @@ export default function OnboardingPage() {
   const { title, Body } = STEPS[step]
 
   const handleNext = () => {
-    if (isLast) { playSound("start"); navigate("/capsules/1") }
+    if (isLast) { playSound("start"); navigate("/stepper") }
     else {
       playSound("next"); setDirection("right")
       const next = step + 1
@@ -148,42 +148,44 @@ export default function OnboardingPage() {
   const handleBack = () => { playSound("back"); setDirection("left"); setStep(s => s - 1) }
 
   return (
-    <div className="onboarding">
+    <div className="onboarding-container">
+      <div className="onboarding">
 
-      <div className="onboarding-left">
-        <p className="onboarding-counter">{step + 1} / {STEPS.length}</p>
+        <div className="onboarding-left">
+          <p className="onboarding-counter">{step + 1} / {STEPS.length}</p>
 
-        <div key={step} className={`onboarding-content ${direction === "right" ? "slide-in-right" : "slide-in-left"}`}>
-          <h1 className="onboarding-title">{title}</h1>
-          <Body />
+          <div key={step} className={`onboarding-content ${direction === "right" ? "slide-in-right" : "slide-in-left"}`}>
+            <h1 className="onboarding-title">{title}</h1>
+            <Body />
+          </div>
+
+          <nav className="onboarding-nav">
+            {step > 0
+              ? <button className="btn-back" onClick={handleBack}>← Précédent</button>
+              : <span />}
+            {(!isLast || unlockedCta) && (
+              <button className={isLast ? "btn-cta" : "btn-next"} onClick={handleNext}>
+                {isLast ? "C'est parti !" : "Suivant →"}
+              </button>
+            )}
+          </nav>
         </div>
 
-        <nav className="onboarding-nav">
-          {step > 0
-            ? <button className="btn-back" onClick={handleBack}>← Précédent</button>
-            : <span />}
-          {(!isLast || unlockedCta) && (
-            <button className={isLast ? "btn-cta" : "btn-next"} onClick={handleNext}>
-              {isLast ? "C'est parti !" : "Suivant →"}
-            </button>
-          )}
-        </nav>
-      </div>
-
-      <div className="onboarding-right">
-        <div className="onboarding-progress">
-          {[0, 1, 2].map(i => (
-            <div key={i} className={`progress-segment${i <= step ? " progress-segment--active" : ""}`} />
+        <div className="onboarding-right">
+          <div className="onboarding-progress">
+            {[0, 1, 2].map(i => (
+              <div key={i} className={`progress-segment${i <= step ? " progress-segment--active" : ""}`} />
+            ))}
+          </div>
+          <ConcentricCircles />
+          {TESTIMONIES.map((t, i) => (
+            <div key={i} className={`onb-testimony ${t.cls}`}>
+              <Testimony avatarSrc={t.avatar} quote={t.quote} name={t.name} role={t.role} />
+            </div>
           ))}
         </div>
-        <ConcentricCircles />
-        {TESTIMONIES.map((t, i) => (
-          <div key={i} className={`onb-testimony ${t.cls}`}>
-            <Testimony avatarSrc={t.avatar} quote={t.quote} name={t.name} role={t.role} />
-          </div>
-        ))}
-      </div>
 
+      </div>
     </div>
   )
 }

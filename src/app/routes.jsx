@@ -11,6 +11,7 @@ import TestsPage from '../pages/tests/TestsLayout.jsx'
 import Capsule1 from '../pages/capsules/Capsule1.jsx'
 import Capsule2 from '../pages/capsules/Capsule2.jsx'
 import Capsule3 from '../pages/capsules/Capsule3.jsx'
+import StepperContainer from '../components/layout/StepperContainer.jsx'
 
 export default function AppRoutes() {
   return (
@@ -21,6 +22,8 @@ export default function AppRoutes() {
         <Route path='/quiz' element={<QuizPage />} />
         <Route path='/games/puzzle' element={<PuzzlePage />} />
         <Route path='/games/card-flip' element={<CardFlipPage />} />
+        <Route path='/tests' element={<TestsPage />} />
+        <Route path='/stepper' element={<StepperContainer />} />
         <Route path='/capsules/1' element={<Capsule1 />} />
         <Route path='/capsules/2' element={<Capsule2 />} />
         <Route path='/capsules/3' element={<Capsule3 />} />

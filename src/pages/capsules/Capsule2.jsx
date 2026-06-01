@@ -16,7 +16,7 @@ export default function Capsule2() {
     ]
 
     return (<>
-        <div className="max-w-4xl mx-auto mt-10 p-6 rounded-xl border bg-card text-card-foreground shadow-sm">
+        <div className="w-full mx-auto p-6 rounded-xl border bg-card text-card-foreground shadow-sm">
             {step === 0 && (
                 <div className="space-y-6">
                     <h2 className="text-2xl font-bold tracking-tight">Rédiger le bon prompt : La Méthode R.O.L.E.</h2>

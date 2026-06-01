@@ -5,7 +5,7 @@ export default function Capsule1() {
     const [step, setStep] = useState(0)
 
     return (
-        <div className="max-w-4xl mx-auto mt-10 p-6 rounded-xl border bg-card text-card-foreground shadow-sm">
+        <div className="w-full mx-auto p-6 rounded-xl border bg-card text-card-foreground shadow-sm">
             {/* Step 0: Intro */}
             {step === 0 && (
                 <div className="space-y-4">

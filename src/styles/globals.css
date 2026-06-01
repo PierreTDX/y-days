@@ -2,8 +2,8 @@
 body {
   margin: 0;
   font-family: var(--font-sans);
-  background: url('/y-days/efa249ca0a78f70482e9cb7dae14bc8d38859bc8.png') center/cover fixed;
   color: #e5e7eb;
+  background-color: #FCFBFE;
 }
 
 a { color: inherit; }
@@ -12,6 +12,14 @@ a { color: inherit; }
   max-width: 1100px;
   margin: 0 auto;
   padding: 24px;
+}
+
+.onboarding-container, 
+.home-page,
+.stepper-container {
+  background-color: var(--base-primary, #A076E4);
+  background-blend-mode: color;
+  background: url('public/images/background.png') center/cover fixed;
 }
 
 .glass {

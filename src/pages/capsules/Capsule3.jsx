@@ -11,7 +11,7 @@ export default function Capsule3() {
     }
 
     return (
-        <div className="max-w-4xl mx-auto mt-10 p-6 rounded-xl border bg-card text-card-foreground shadow-sm">
+        <div className="w-full mx-auto p-6 rounded-xl border bg-card text-card-foreground shadow-sm">
 
             {step === 0 && (
                 <div className="space-y-6 text-center">
