@@ -24,10 +24,10 @@ function playTone(ctx, freq, delay, duration, volume = 0.12) {
 function playSound(type) {
   try {
     const ctx = getCtx()
-    if (type === "next")  { playTone(ctx,440,0,0.12); playTone(ctx,523,0.1,0.18) }
-    if (type === "back")  { playTone(ctx,523,0,0.12); playTone(ctx,440,0.1,0.18) }
-    if (type === "start") { playTone(ctx,440,0,0.1); playTone(ctx,523,0.09,0.1); playTone(ctx,659,0.18,0.22) }
-  } catch (_) {}
+    if (type === "next") { playTone(ctx, 440, 0, 0.12); playTone(ctx, 523, 0.1, 0.18) }
+    if (type === "back") { playTone(ctx, 523, 0, 0.12); playTone(ctx, 440, 0.1, 0.18) }
+    if (type === "start") { playTone(ctx, 440, 0, 0.1); playTone(ctx, 523, 0.09, 0.1); playTone(ctx, 659, 0.18, 0.22) }
+  } catch (_) { }
 }
 
 function useCountUp(target, duration = 1600, delay = 0) {
@@ -50,10 +50,10 @@ function useCountUp(target, duration = 1600, delay = 0) {
 }
 
 const TESTIMONIES = [
-  { cls: "onb-testimony--1", avatar: "/y-days/images/prof1.png", quote: "Génère une fiche de lecture CE2 sur Le Petit Prince", name: "Marie",  role: "Enseignante CE2" },
-  { cls: "onb-testimony--2", avatar: "/y-days/images/prof2.png", quote: "Crée une évaluation sur les fractions pour le CM1",  name: "Sophie", role: "Enseignante CM1" },
+  { cls: "onb-testimony--1", avatar: "/y-days/images/prof1.png", quote: "Génère une fiche de lecture CE2 sur Le Petit Prince", name: "Marie", role: "Enseignante CE2" },
+  { cls: "onb-testimony--2", avatar: "/y-days/images/prof2.png", quote: "Crée une évaluation sur les fractions pour le CM1", name: "Sophie", role: "Enseignante CM1" },
   { cls: "onb-testimony--3", avatar: "/y-days/images/prof3.png", quote: "Aide-moi à différencier pour les élèves en difficulté", name: "Claire", role: "Enseignante CE1" },
-  { cls: "onb-testimony--4", avatar: "/y-days/images/prof4.png", quote: "Rédige un compte-rendu de réunion parents-profs",     name: "Julie",  role: "Enseignante CP"  },
+  { cls: "onb-testimony--4", avatar: "/y-days/images/prof4.png", quote: "Rédige un compte-rendu de réunion parents-profs", name: "Julie", role: "Enseignante CP" },
 ]
 
 const LIST_ITEMS = [
@@ -122,9 +122,9 @@ function Step3Body() {
 }
 
 const STEPS = [
-  { title: "L'IA dans le monde professionnel",       Body: Step1Body },
+  { title: "L'IA dans le monde professionnel", Body: Step1Body },
   { title: "Le temps, votre ressource la plus précieuse", Body: Step2Body },
-  { title: "Ce que vous allez découvrir",             Body: Step3Body },
+  { title: "Ce que vous allez découvrir", Body: Step3Body },
 ]
 
 export default function OnboardingPage() {
@@ -137,7 +137,7 @@ export default function OnboardingPage() {
   const { title, Body } = STEPS[step]
 
   const handleNext = () => {
-    if (isLast) { playSound("start"); navigate("/quiz") }
+    if (isLast) { playSound("start"); navigate("/capsules/1") }
     else {
       playSound("next"); setDirection("right")
       const next = step + 1
