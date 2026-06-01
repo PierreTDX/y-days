@@ -1,6 +1,40 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
+let audioCtx = null
+function getCtx() {
+  if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)()
+  return audioCtx
+}
+function playTone(ctx, freq, delay, duration, volume = 0.12) {
+  const osc = ctx.createOscillator()
+  const gain = ctx.createGain()
+  osc.connect(gain)
+  gain.connect(ctx.destination)
+  osc.type = 'sine'
+  osc.frequency.value = freq
+  gain.gain.setValueAtTime(volume, ctx.currentTime + delay)
+  gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + delay + duration)
+  osc.start(ctx.currentTime + delay)
+  osc.stop(ctx.currentTime + delay + duration + 0.05)
+}
+function playSound(type) {
+  try {
+    const ctx = getCtx()
+    if (type === 'next') {
+      playTone(ctx, 440, 0, 0.12)
+      playTone(ctx, 523, 0.1, 0.18)
+    } else if (type === 'back') {
+      playTone(ctx, 523, 0, 0.12)
+      playTone(ctx, 440, 0.1, 0.18)
+    } else if (type === 'start') {
+      playTone(ctx, 440, 0,    0.1)
+      playTone(ctx, 523, 0.09, 0.1)
+      playTone(ctx, 659, 0.18, 0.22)
+    }
+  } catch (_) {}
+}
+
 function useCountUp(target, duration = 1600, delay = 0) {
   const [count, setCount] = useState(0)
 
@@ -134,8 +168,10 @@ export default function OnboardingPage() {
 
   const handleNext = () => {
     if (isLast) {
+      playSound('start')
       navigate('/quiz')
     } else {
+      playSound('next')
       setDirection('right')
       const nextStep = step + 1
       if (nextStep === STEPS.length - 1) setUnlockedCta(true)
@@ -144,6 +180,7 @@ export default function OnboardingPage() {
   }
 
   const handleBack = () => {
+    playSound('back')
     setDirection('left')
     setStep(s => s - 1)
   }
@@ -193,7 +230,7 @@ export default function OnboardingPage() {
         <div className="slide-in-right" style={{ marginTop: 24, display: 'flex', justifyContent: 'center' }}>
           <button
             className="btn"
-            onClick={() => navigate('/quiz')}
+            onClick={() => { playSound('start'); navigate('/quiz') }}
             style={{ padding: '14px 40px', fontSize: 18, borderRadius: 16 }}
           >
             C'est parti !
