@@ -24,7 +24,7 @@ const CheckIcon = ({ size = 10 }) => (
 );
 
 // status: "active" | "locked" | "completed" | "idle"
-function StepRow({ label = "Module 1", title, readTime, status = "idle", progress = 0, isSelected, onClick }) {
+function StepRow({ label = "Module 1", title, readTime, status = "idle", progress = 0, isSelected, onClick, icon: Icon = BookIcon }) {
     const isActive = status === "active";
     const isLocked = status === "locked";
     const isCompleted = status === "completed";
@@ -40,7 +40,7 @@ function StepRow({ label = "Module 1", title, readTime, status = "idle", progres
         >
             {/* Icon block */}
             <div className="relative w-[72px] min-w-[72px] flex flex-col items-center justify-center py-3 gap-1">
-                <BookIcon
+                <Icon
                     className={
                         isSelected || isActive ? "text-violet-500" : isCompleted ? "text-zinc-500" : isLocked ? "text-zinc-300" : "text-zinc-400"
                     }
@@ -110,6 +110,7 @@ function HorizontalStepper({ selectedIdx, steps, onStepClick }) {
             <div className="flex flex-1 items-center min-w-0">
                 {steps.map((step, i) => {
                     const isSelected = i === selectedIdx;
+                    const Icon = step.icon || BookIcon;
 
                     return (
                         <div
@@ -127,7 +128,7 @@ function HorizontalStepper({ selectedIdx, steps, onStepClick }) {
                             <div
                                 className="flex flex-col items-center gap-0.5 min-w-[48px] flex-shrink-0 transition-colors duration-300"
                             >
-                                <BookIcon
+                                <Icon
                                     className={
                                         isSelected || step.status === "active"
                                             ? "text-violet-500"
