@@ -2,7 +2,9 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Testimony } from '@/components/ui/Testimony'
 import ConcentricCircles from '@/components/ui/ConcentricCircles'
-import './OnboardingPage.css'
+import { Button } from '@/components/ui/Button'
+import { Memo } from '@/components/ui/Memo'
+import '@/styles/pages.css'
 
 let audioCtx = null
 function getCtx() {
@@ -56,11 +58,16 @@ const TESTIMONIES = [
   { cls: "onb-testimony--4", avatar: "/y-days/images/prof4.png", quote: "Rédige un compte-rendu de réunion parents-profs", name: "Julie", role: "Enseignante CP" },
 ]
 
+const STEP3_CARDS = [
+  { module: "Module 1", duration: "2 min", text: "L'Introduction aux outils d'IA : outils généraux et spécialisés." },
+  { module: "Module 2", duration: "2 min", text: "La méthode pour créer une instruction (prompt) efficace. " },
+  { module: "Module 3", duration: "2 min", text: "Délémer le vrai du faux : contenu à l’ère de l’IA" },
+]
+
 const LIST_ITEMS = [
-  { icon: "⚙️", text: "Introduction aux outils d'IA : outils généraux et pédagogiques." },
-  { icon: "✏️", text: "Méthode pour créer un prompt efficace pour générer un cours pertinent." },
-  { icon: "💡", text: "Cas concrets sur les différents usages des outils d'IA." },
-  { icon: "✅", text: "Comment s'assurer que le contenu généré est qualitatif et adapté." },
+  { icon: "️", text: "Introduction aux outils d'IA" },
+  { icon: "", text: "La méthode pour créer une instruction (prompt) " },
+  { icon: "", text: "S’assurer de la qualité du contenu généré" },
 ]
 
 function Step1Body() {
@@ -68,32 +75,47 @@ function Step1Body() {
     <div className="step-body">
       <p>A cette ère, l'utilisation des Intelligences Artificielles (IA) s'impose de plus en plus dans le monde professionnel.</p>
       <p>L'intégrer dans votre métier d'enseignement est devenu essentiel dans un contexte où il faut produire plus et plus vite.</p>
-      <div className="step-quote">
-        <p>C'est pour cette raison que l'IA peut s'avérer être un réel assistant pour la planification et la création de vos ressources pédagogiques.</p>
-      </div>
+      <Memo variant="bookmark" className="mt-7 w-full">
+        <div>
+          <p>C'est pour cette raison que l'IA peut s'avérer être un réel assistant pour la planification et la création de vos ressources pédagogiques.</p>
+        </div>
+      </Memo>
     </div>
   )
 }
 
-function Step2Body() {
-  const hours = useCountUp(9, 1800, 200)
+function Step2Body({ onNext, onPrev }) {
+  const [slide, setSlide] = useState(0)
+  const hours   = useCountUp(9, 1800, 200)
   const reforms = useCountUp(2, 1400, 700)
+
+  const SLIDES = [
+    {
+      number:    `0${hours}h`,
+      cardText:  "C’est le temps que vous passez en moyenne par semaine pour la création de vos supports de cours. (Selon étude du gouvernement)",
+    },
+    {
+      number:    `0${reforms}`,
+      cardText:  "C’est le nombre de réformes en 5 ans nécessitant de modifier vos supports de cours.",
+    },
+  ]
+
+  const handleLeft  = () => slide > 0 ? setSlide(s => s - 1) : onPrev?.()
+  const handleRight = () => slide < SLIDES.length - 1 ? setSlide(s => s + 1) : onNext?.()
+
+  const current = SLIDES[slide]
+
   return (
-    <div className="step-body">
-      <p>Savez-vous combien de temps vous passez chaque semaine à préparer vos ressources ?</p>
-      <div className="step-stats">
-        <div className="stat-card stat-card--purple">
-          <div className="stat-number stat-number--purple">0{hours} h 00</div>
-          <p className="stat-label">
-            passées en moyenne par semaine sur la création de supports
-            <small>(Selon étude du gouvernement)</small>
-          </p>
-        </div>
-        <div className="stat-card stat-card--pink">
-          <div className="stat-number stat-number--pink">0{reforms}</div>
-          <p className="stat-label">réformes en 5 ans nécessitant de modifier vos supports de cours</p>
+    <div className="step2-carousel">
+      <button className="carousel-arrow" onClick={handleLeft}  aria-label="Précédent">←</button>
+      <div className="carousel-content">
+        <div className="carousel-number" key={`n-${slide}`}>{current.number}</div>
+        <div className="carousel-card"   key={`c-${slide}`}>
+          <p className="carousel-card-text">{current.cardText}</p>
+          {current.source && <small className="carousel-card-source">{current.source}</small>}
         </div>
       </div>
+      <button className="carousel-arrow" onClick={handleRight} aria-label="Suivant">→</button>
     </div>
   )
 }
@@ -105,26 +127,55 @@ function Step3Body() {
       <ul className="step-list">
         {LIST_ITEMS.map((item, i) => (
           <li key={i} className="step-list-item">
-            <span>{item.icon}</span>
+            <span className="step-list-check" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <path d="M4 11.5l5 5 9-9" stroke="#7c3aed" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </span>
             <p>{item.text}</p>
           </li>
         ))}
       </ul>
-      <p className="step-source">
-        Source :{" "}
-        <a href="https://www.education.gouv.fr/depp/les-enseignants-du-premier-degre-public-declarent-travailler-44-heures-par-semaine-en-moyenne-6479"
-          target="_blank" rel="noopener noreferrer">
-          Ministère de l'Éducation nationale
-        </a>
-      </p>
+    </div>
+  )
+}
+
+const STEP4_ITEMS = [
+  "Après avoir lu, cliquez sur \"Suivant\".",
+  "Les modules incluent des quiz interactifs pour un apprentissage dynamique, avec des consignes claires à suivre avant de passer au suivant.",
+  "Cliquez sur un module terminé pour revoir son contenu.",
+]
+
+function Step4Body() {
+  return (
+    <div className="step-body">
+      <ul className="step-list">
+        {STEP4_ITEMS.map((text, i) => (
+          <li key={i} className="step-list-item">
+            <span className="step-list-check" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <path d="M4 11.5l5 5 9-9" stroke="#7c3aed" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </span>
+            <p>{text}</p>
+          </li>
+        ))}
+      </ul>
+      <Memo variant="bulb" className="mt-7 w-full">
+        <div>
+          <p className="step-quote-label">Remarque</p>
+          <p>Pas besoin de prendre de note, vous aurez un pdf récapitulatif téléchargeable une fois tous les modules complétés !</p>
+        </div>
+      </Memo>
     </div>
   )
 }
 
 const STEPS = [
-  { title: "L'IA dans le monde professionnel", Body: Step1Body },
-  { title: "Le temps, votre ressource la plus précieuse", Body: Step2Body },
-  { title: "Ce que vous allez découvrir", Body: Step3Body },
+  { title: "L'IA dans le monde professionnel",       Body: Step1Body, carousel: false },
+  { title: "Le temps, votre ressource la plus précieuse", Body: Step2Body, carousel: true  },
+  { title: "3 thématiques pour vous accompagner",             Body: Step3Body, carousel: false },
+  { title: "Comment ça fonctionne ?",                  Body: Step4Body, carousel: false },
 ]
 
 export default function OnboardingPage() {
@@ -133,8 +184,14 @@ export default function OnboardingPage() {
   const [unlockedCta, setUnlockedCta] = useState(false)
   const navigate = useNavigate()
 
-  const isLast = step === STEPS.length - 1
+  const isLast     = step === STEPS.length - 1
+  const isCarousel = STEPS[step].carousel
+  const isStep3 = step === 2
   const { title, Body } = STEPS[step]
+
+  const progressSteps    = STEPS.filter(s => !s.carousel).length
+  const progressDone     = STEPS.slice(0, step + 1).filter(s => !s.carousel).length
+  const progressWidth    = `${(progressDone / progressSteps) * 100}%`
 
   const handleNext = () => {
     if (isLast) { playSound("start"); navigate("/stepper") }
@@ -149,40 +206,93 @@ export default function OnboardingPage() {
 
   return (
     <div className="onboarding-container">
-      <div className="onboarding">
+      <div className={`onboarding${isCarousel ? ' onboarding--carousel' : ''}`}>
 
-        <div className="onboarding-left">
-          <p className="onboarding-counter">{step + 1} / {STEPS.length}</p>
 
-          <div key={step} className={`onboarding-content ${direction === "right" ? "slide-in-right" : "slide-in-left"}`}>
-            <h1 className="onboarding-title">{title}</h1>
-            <Body />
+        <div className={`onboarding-left${isCarousel ? ' onboarding-left--full' : ''}`}>
+          {!isCarousel && (
+          <div className="onboarding-progress">
+            <div className="progress-fill" style={{ width: progressWidth }} />
+          </div>
+          )}
+
+          {!isCarousel && (
+            <div className="onboarding-step mt-2 mb-15">
+              <span className="home-dot" />
+              <p className="onboarding-counter">{progressDone} / {progressSteps}</p>
+            </div>
+          )}
+
+          <div key={step} className={`flex flex-col justify-center align-middle onboarding-content ${direction === "right" ? "slide-in-right" : "slide-in-left"}`}>
+            {!isCarousel && <h1 className="onboarding-title">{title}</h1>}
+            <Body onNext={handleNext} onPrev={handleBack} />
           </div>
 
-          <nav className="onboarding-nav">
-            {step > 0
-              ? <button className="btn-back" onClick={handleBack}>← Précédent</button>
-              : <span />}
-            {(!isLast || unlockedCta) && (
-              <button className={isLast ? "btn-cta" : "btn-next"} onClick={handleNext}>
-                {isLast ? "C'est parti !" : "Suivant →"}
-              </button>
-            )}
-          </nav>
+          {!isCarousel && (
+            <nav className="onboarding-nav">
+              {step > 0
+                ? <Button variant="ghost" style={{ color: '#080614' }} onClick={handleBack}>← Précédent</Button>
+                : <span />}
+              {(!isLast || unlockedCta) && (
+                <Button
+                  size="lg"
+                  style={{
+                    background: 'linear-gradient(180deg, #B291E9 0%, #8260BA 100%)',
+                    border: 'none',
+                    ...(isLast && { fontSize: '18px', padding: '10px 28px', height: 'auto' })
+                  }}
+                  onClick={handleNext}
+                >
+                  {isLast ? "C'est parti !" : "Suivant →"}
+                </Button>
+              )}
+            </nav>
+          )}
         </div>
 
-        <div className="onboarding-right">
-          <div className="onboarding-progress">
-            {[0, 1, 2].map(i => (
-              <div key={i} className={`progress-segment${i <= step ? " progress-segment--active" : ""}`} />
-            ))}
-          </div>
-          <ConcentricCircles />
-          {TESTIMONIES.map((t, i) => (
-            <div key={i} className={`onb-testimony ${t.cls}`}>
-              <Testimony avatarSrc={t.avatar} quote={t.quote} name={t.name} role={t.role} />
-            </div>
-          ))}
+        <div key={isStep3 ? 'right-step3' : 'right-other'} className={`onboarding-right${isStep3 ? ' onboarding-right--step3' : ''}`}>
+          {!isCarousel && !isStep3 && !isLast && <ConcentricCircles />}
+          {!isCarousel ? (
+              isStep3 ? (
+                  <div className="step3-grid">
+                    {STEP3_CARDS.map((card, i) => (
+                      <div key={i} className="card-step-3">
+                        <img src="public/images/fond-card.png" alt="" className="image-theme"/>
+                        <div className="card-step-3-body">
+                          <div className="card-step-3-meta">
+                            <span>{card.module}</span>
+                            <span>•</span>
+                            <span>{card.duration}</span>
+                          </div>
+                          <p className="card-theme-text">{card.text}</p>
+                        </div>
+                      </div>
+                    ))}
+                    <div className="card-step-3-no-theme">
+                      <img src="public/svg/Group.svg" alt="" className="image-no-theme"/>
+                      <div>
+                        <p className="text-card-step-no-theme">Pour aller plus loin</p>
+                        <p className="text-bold-step-no-theme">Lorem ipsum Lorem ipsum Lorem ipsum</p>
+                      </div>
+                    </div>
+                  </div>
+              ) : isLast ? (
+                  <div className="right-illustration">
+                    <img src="/y-days/svg/Illustration.svg" alt="Illustration" className="illustration-img" />
+                  </div>
+              ) : (
+                  TESTIMONIES.slice(0, 2).map((t, i) => (
+                      <div key={i} className={`onb-testimony ${t.cls}`}>
+                        <Testimony
+                            avatarSrc={t.avatar}
+                            quote={t.quote}
+                            name={t.name}
+                            role={t.role}
+                        />
+                      </div>
+                  ))
+              )
+          ) : null}
         </div>
 
       </div>
