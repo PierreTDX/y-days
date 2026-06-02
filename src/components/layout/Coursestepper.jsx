@@ -103,14 +103,15 @@ function HorizontalStepper({ selectedIdx, steps, onStepClick }) {
     const isAllCompleted = steps.every(s => s.status === "completed");
 
     return (
-        <div className="flex items-center gap-6 w-full">
+        <div className="flex items-center gap-2 w-full">
             {/* Logo en dehors du stepper */}
-            <div className="font-bold text-lg text-zinc-800 whitespace-nowrap flex-shrink-0 pl-2">
-                LOGO
+            <div className="w-[230px] h-[60px] bg-[url('/y-days/LOGOAcadem.svg')] bg-no-repeat bg-center bg-contain flex-shrink-0 scale-350"
+                role="img"
+                aria-label="Logo AcademIA">
             </div>
 
             {/* Conteneur des étapes */}
-            <div className="flex flex-1 items-center rounded-xl border border-zinc-200 overflow-hidden bg-white shadow-sm">
+            <div className="flex flex-1 items-center rounded-xl border border-zinc-200 bg-white shadow-sm">
                 {/* Étapes (Steps) */}
                 <div className="flex flex-1 items-center min-w-0">
                     {steps.map((step, i) => {
@@ -123,15 +124,19 @@ function HorizontalStepper({ selectedIdx, steps, onStepClick }) {
                                 onClick={step.status !== "locked" ? () => onStepClick(i) : undefined}
                                 className={[
                                     "relative flex items-center h-[60px] gap-3 px-4",
-                                    "transition-all duration-500 ease-in-out overflow-hidden",
-                                    "border-l border-zinc-200",
+                                    "transition-all duration-500 ease-in-out group",
+                                    step.status === "locked" ? "overflow-visible" : "overflow-hidden",
+                                    "border-l border-zinc-200 first:border-l-0 first:rounded-l-xl last:rounded-r-xl",
                                     isSelected ? "flex-1 min-w-0" : "w-[72px] min-w-[72px] justify-center",
-                                    step.status !== "locked" ? "cursor-pointer hover:bg-zinc-50" : "cursor-not-allowed opacity-70",
+                                    step.status !== "locked" ? "cursor-pointer hover:bg-zinc-50" : "cursor-not-allowed",
                                 ].join(" ")}
                             >
                                 {/* Icon & Label part */}
                                 <div
-                                    className="flex flex-col items-center gap-0.5 min-w-[48px] flex-shrink-0 transition-colors duration-300"
+                                    className={[
+                                        "flex flex-col items-center gap-0.5 min-w-[48px] flex-shrink-0 transition-colors duration-300",
+                                        step.status === "locked" ? "opacity-70" : ""
+                                    ].join(" ")}
                                 >
                                     <Icon
                                         className={
@@ -186,7 +191,7 @@ function HorizontalStepper({ selectedIdx, steps, onStepClick }) {
                                 {!isSelected && (
                                     <>
                                         {step.status === "locked" && (
-                                            <span className="absolute top-1.5 right-2 w-4 h-4 flex items-center justify-center rounded-full bg-[#E5E7EB] text-muted-foreground">
+                                            <span className="absolute top-1.5 right-2 w-4 h-4 flex items-center justify-center rounded-full bg-[#E5E7EB] text-muted-foreground opacity-70">
                                                 <LockIcon size={10} />
                                             </span>
                                         )}
@@ -197,10 +202,16 @@ function HorizontalStepper({ selectedIdx, steps, onStepClick }) {
                                         )}
                                     </>
                                 )}
+                                {step.status === "locked" && (
+                                    <div className="absolute top-[110%] left-1/2 -translate-x-1/2 mb-2 hidden group-hover:flex flex-row justify-center items-center px-3 py-1.5 gap-2 isolate w-max max-w-[250px] bg-[#171717] rounded-lg text-white text-xs text-center z-50 pointer-events-none shadow-lg">
+                                        Ce module sera accessible une fois précédent terminé
+                                    </div>
+                                )}
                             </div>
                         );
                     })}
                 </div>
+
             </div>
         </div>
     );
