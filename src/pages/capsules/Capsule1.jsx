@@ -101,7 +101,7 @@ export default function Capsule1({ onComplete }) {
                                 icon: "/y-days/icons/accSearch.svg",
                                 label: "Recherche d'informations et sources",
                                 tools: [
-                                    { logo: "/y-days/logos/Logo6.png/y-days/logos/Logo6.png", name: "Perplexity", desc: "Recherche web sourcée, très utile pour vérifier des infos." },
+                                    { logo: "/y-days/logos/Logo6.png", name: "Perplexity", desc: "Recherche web sourcée, très utile pour vérifier des infos." },
                                     { logo: "/y-days/logos/Logo7.png", name: "NotebookLM", desc: "Analyse de vos propres documents, citations à l'appui." },
                                     { logo: "/y-days/logos/Logo8.png", name: "You.com", desc: "Recherche assistée par IA avec réponses synthétiques." },
                                 ]
