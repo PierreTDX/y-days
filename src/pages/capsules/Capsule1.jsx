@@ -82,29 +82,106 @@ export default function Capsule1({ onComplete }) {
             {step === 2 && (
                 <div className="space-y-6">
                     <h1 className="text-4xl font-semibold">Introduction et découverte des outils d'IA</h1>
-                    <p className="text-muted-foreground leading-relaxed font-bold">
-                        Pour aller plus loin :
-                    </p>
-                    <div className="border rounded-md divide-y">
+                    <p className="text-muted-foreground leading-relaxed font-bold">Pour aller plus loin :</p>
+
+                    <div className="border rounded-lg divide-y overflow-hidden">
                         {[
-                            { category: "Texte", items: ["ChatGPT : rédaction, résumé, idées, scripts.", "Claude : très bon pour les longs textes.", "Gemini : texte + multimodal.", "Mistral : rédaction en français.", "Copilot : résumés de documents."] },
-                            { category: "Recherche et sources", items: ["Perplexity : recherche web sourcée.", "NotebookLM : analyse de documents.", "You.com : recherche assistée."] },
-                            { category: "Images", items: ["Midjourney : génération artistique.", "DALL·E : génération via texte.", "Stable Diffusion : flexible et local.", "Canva Image IA : création rapide.", "Adobe Firefly : usage pro."] },
-                            { category: "Vidéo", items: ["Runway : montage assisté.", "Pika : vidéos courtes.", "InVideo AI : vidéo avec script et voix.", "Synthesia : avatars IA.", "Canva Video IA : rapide et simple."] },
-                            { category: "Musique", items: ["Suno : chansons complètes.", "Udio : morceaux avec paroles.", "Loudly : bandes-son.", "Easymusic.ai : création personnalisée.", "Stable Audio : audio général."] },
-                            { category: "Voix et audio", items: ["ElevenLabs : synthèse réaliste.", "Play.ht : narration.", "Descript : montage audio/vidéo."] },
-                            { category: "Automatisation", items: ["Zapier AI : automatisation IA.", "Make : workflows visuels.", "n8n : automatisation technique."] }
+                            {
+                                icon: "/y-days/icons/accDoc.svg",
+                                label: "Génération de texte",
+                                tools: [
+                                    { logo: "/y-days/logos/Logo1.png", name: "ChatGPT", desc: "Rédaction, résumé, idées, scripts." },
+                                    { logo: "/y-days/logos/Logo2.png", name: "Claude", desc: "Très bon pour les longs textes, l'analyse et les supports de cours." },
+                                    { logo: "/y-days/logos/Logo3.png", name: "Gemini", desc: "Texte + multimodal, pratique pour travailler avec des fichiers." },
+                                    { logo: "/y-days/logos/Logo4.png", name: "Mistral", desc: "Bon pour la rédaction en français et les usages pro." },
+                                    { logo: "/y-days/logos/Logo5.png", name: "Copilot", desc: "Résumés de documents." },
+                                ]
+                            },
+                            {
+                                icon: "/y-days/icons/accSearch.svg",
+                                label: "Recherche d'informations et sources",
+                                tools: [
+                                    { logo: "/y-days/logos/Logo6.png", name: "Perplexity", desc: "Recherche web sourcée, très utile pour vérifier des infos." },
+                                    { logo: "/y-days/logos/Logo7.png", name: "NotebookLM", desc: "Analyse de vos propres documents, citations à l'appui." },
+                                    { logo: "/y-days/logos/Logo8.png", name: "You.com", desc: "Recherche assistée par IA avec réponses synthétiques." },
+                                ]
+                            },
+                            {
+                                icon: "/y-days/icons/accImage.svg",
+                                label: "Génération d'images",
+                                tools: [
+                                    { logo: "/logos/midjourney.png", name: "Midjourney", desc: "Génération d'images très qualitative et artistique." },
+                                    { logo: "/logos/dalle.png", name: "DALL·E", desc: "Génération d'images à partir de texte." },
+                                    { logo: "/logos/canva.png", name: "Canva Image IA", desc: "Pratique pour créer vite des visuels intégrés à des designs." },
+                                    { logo: "/logos/stablediffusion.png", name: "Stable Diffusion", desc: "Très flexible, souvent utilisé en local ou via interfaces." },
+                                    { logo: "/logos/firefly.png", name: "Adobe Firefly", desc: "Orienté création graphique et usage pro." },
+                                ]
+                            },
+                            {
+                                icon: "/y-days/icons/accVideo.svg",
+                                label: "Génération de vidéos",
+                                tools: [
+                                    { logo: "/logos/runway.png", name: "Runway", desc: "Génération et montage vidéo assisté." },
+                                    { logo: "/logos/pika.png", name: "Pika Labs", desc: "Génération de vidéos courtes et créatives." },
+                                    { logo: "/logos/invideo.png", name: "InVideo AI", desc: "Vidéos avec script, voix et sous-titres." },
+                                    { logo: "/logos/synthesia.png", name: "Synthesia", desc: "Vidéos avec avatars IA, utile pour formation." },
+                                    { logo: "/logos/canvavideo.png", name: "Canva Video IA", desc: "Simple pour faire des vidéos rapides." },
+                                ]
+                            },
+                            {
+                                icon: "/y-days/icons/accMusic.svg",
+                                label: "Génération de musique",
+                                tools: [
+                                    { logo: "/logos/suno.png", name: "Suno", desc: "Chansons complètes à partir d'un texte." },
+                                    { logo: "/logos/udio.png", name: "Udio", desc: "Morceaux avec paroles et styles variés." },
+                                    { logo: "/logos/loudly.png", name: "Loudly", desc: "Bandes-son personnalisées." },
+                                    { logo: "/logos/easymusic.png", name: "Easymusic.ai", desc: "Création musicale personnalisée." },
+                                    { logo: "/logos/stableaudio.png", name: "Stable Audio", desc: "Audio général et ambiances sonores." },
+                                ]
+                            },
+                            {
+                                icon: "/y-days/icons/accAudio.svg",
+                                label: "Génération de voix et d'audio",
+                                tools: [
+                                    { logo: "/logos/elevenlabs.png", name: "ElevenLabs", desc: "Synthèse vocale très réaliste." },
+                                    { logo: "/logos/playht.png", name: "Play.ht", desc: "Narration audio de qualité." },
+                                    { logo: "/logos/descript.png", name: "Descript", desc: "Montage audio et vidéo assisté par IA." },
+                                ]
+                            },
+                            {
+                                icon: "/y-days/icons/accAutomation.svg",
+                                label: "Automatisation",
+                                tools: [
+                                    { logo: "/logos/zapier.png", name: "Zapier AI", desc: "Automatisation IA entre vos apps." },
+                                    { logo: "/logos/make.png", name: "Make", desc: "Workflows visuels sans code." },
+                                    { logo: "/logos/n8n.png", name: "n8n", desc: "Automatisation technique et open source." },
+                                ]
+                            },
                         ].map((section, i) => (
-                            <details key={i} className="group p-4 [&_summary::-webkit-details-marker]:hidden">
-                                <summary className="flex cursor-pointer items-center justify-between font-medium text-sm">
-                                    {section.category}
-                                    <span className="transition group-open:rotate-180">
-                                        <svg fill="none" height="24" shapeRendering="geometricPrecision" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                            <details key={i} className="group [&_summary::-webkit-details-marker]:hidden">
+                                <summary className="flex items-center gap-3 px-4 py-3.5 cursor-pointer text-sm font-medium bg-background">
+                                    <span className="w-8 h-8 rounded-lg bg-yellow-100 flex items-center justify-center flex-shrink-0">
+                                        <img src={section.icon} alt="" className="w-4 h-4 object-contain" />
                                     </span>
+                                    <span className="flex-1">{section.label}</span>
+                                    <svg className="transition-transform group-open:rotate-180 text-muted-foreground"
+                                        fill="none" height="20" viewBox="0 0 24 24" stroke="currentColor"
+                                        strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                                        <path d="M6 9l6 6 6-6" />
+                                    </svg>
                                 </summary>
-                                <ul className="text-sm text-muted-foreground mt-3 space-y-2 pl-4 list-disc">
-                                    {section.items.map((item, j) => <li key={j}>{item}</li>)}
-                                </ul>
+
+                                <div className="p-4 bg-muted/40 border-t">
+                                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+                                        {section.tools.map((tool, j) => (
+                                            <div key={j} className="bg-background border rounded-lg p-3 flex flex-col items-center gap-2 text-center">
+                                                <img src={tool.logo} alt={tool.name} className="w-10 h-10 rounded-xl object-contain" />
+                                                <span className="text-xs font-medium leading-tight">{tool.name}</span>
+                                                <span className="text-xs text-muted-foreground leading-snug">{tool.desc}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
                             </details>
                         ))}
                     </div>
