@@ -73,8 +73,12 @@ export default function HomePage() {
           Un kit d'apprentissage en 10 min
         </div>
       </div>
-        <Button className="home-cta" onClick={handleStart}>
-          Commencer
+        <Button
+          size="lg"
+          style={{ background: 'linear-gradient(180deg, #B291E9 0%, #8260BA 100%)', border: 'none', marginTop: '32px', fontSize: '17px', padding: '10px 28px', height: 'auto' }}
+          onClick={handleStart}
+        >
+          Démarrer l'apprentissage →
         </Button>
     </div>
   )

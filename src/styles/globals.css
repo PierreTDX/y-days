@@ -1,9 +1,13 @@
 
 body {
   margin: 0;
-  font-family: var(--font-sans);
+  font-family: 'Comfortaa', sans-serif;
   color: #e5e7eb;
   background-color: #FCFBFE;
+}
+
+button, input, select, textarea {
+  font-family: 'Comfortaa', sans-serif;
 }
 
 a { color: inherit; }
