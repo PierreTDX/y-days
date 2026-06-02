@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { useNavigate } from 'react-router-dom'
-import { ArrowLeft, ArrowRight, Check, X } from "lucide-react"
+import { ArrowLeft, ArrowRight, Check, X, Lightbulb } from "lucide-react"
 
 export default function Capsule3({ onComplete, canResume, onResume, onProgress }) {
     const [step, setStep] = useState(0)
@@ -32,12 +32,12 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
                         L'intelligence artificielle générative transforme notre manière de créer et d'interagir avec le contenu. Elle peut parfois rendre difficile la distinction entre les œuvres humaines et celles produites par des algorithmes.
                     </p>
                     <p className="text-muted-foreground leading-relaxed font-bold">
-                        D’après toi, cette peinture  a-t-elle été générée par IA?
+                        D’après toi, cette peinture  a-t-elle été générée par IA?
                     </p>
                     <Card className={`p-0 gap-0 border-2 ${gameResult !== null ? (gameResult ? 'border-green-500' : 'border-red-500') : 'border-border'}`}>
                         <div className="aspect-video bg-muted flex items-center justify-center text-muted-foreground overflow-hidden relative max-h-[320px]">
                             {/* Placeholder pour une image ou texte */}
-                            <p className="p-8 italic">"À Houston, jeudi 18 avril. 20 h. Questions-réponses, comédie, discussion..."</p>
+                            <img src="/y-days/images/Question_1.jpg" alt="Peinture à deviner" className="object-cover w-full" />
 
                             {gameResult !== null && (
                                 <div className="absolute top-3 right-3 flex items-center gap-2">
@@ -55,26 +55,38 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
                             )}
                         </div>
 
-                        <div className="flex gap-4 p-6 h-21">
-                            <Button
-                                onClick={() => handleGuess(false)}
-                                size="lg"
-                                variant="outline"
-                                className="flex-1 text-green-900 hover:text-green-950 hover:bg-green-200 border-none"
-                                style={{ background: '#DCFCE7', border: '1px solid rgba(34, 197, 94, 0.4)', borderRadius: '8px' }}
-                            >
-                                <Check className="w-4 h-4 mr-2" /> IA
-                            </Button>
-                            <Button
-                                onClick={() => handleGuess(true)}
-                                size="lg"
-                                variant="outline"
-                                className="flex-1 text-red-600 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-950/50 border-none"
-                                style={{ background: 'rgba(220, 38, 38, 0.1)', border: '1px solid rgba(220, 38, 38, 0.4)', borderRadius: '8px' }}
-                            >
-                                <X className="w-4 h-4 mr-2" /> Pas IA
-                            </Button>
-                        </div>
+                        {/* Remplacement conditionnel des boutons par l'explication */}
+                        {gameResult === null ? (
+                            <div className="flex gap-4 p-6 h-21 border-t rounded-b-xl bg-card">
+                                <Button
+                                    onClick={() => handleGuess(false)}
+                                    size="lg"
+                                    variant="outline"
+                                    className="flex-1 text-green-900 hover:text-green-950 hover:bg-green-200 border-none"
+                                    style={{ background: '#DCFCE7', border: '1px solid rgba(34, 197, 94, 0.4)', borderRadius: '8px' }}
+                                >
+                                    <Check className="w-4 h-4 mr-2" /> IA
+                                </Button>
+                                <Button
+                                    onClick={() => handleGuess(true)}
+                                    size="lg"
+                                    variant="outline"
+                                    className="flex-1 text-red-600 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-950/50 border-none"
+                                    style={{ background: 'rgba(220, 38, 38, 0.1)', border: '1px solid rgba(220, 38, 38, 0.4)', borderRadius: '8px' }}
+                                >
+                                    <X className="w-4 h-4 mr-2" /> Pas IA
+                                </Button>
+                            </div>
+                        ) : (
+                            <div className="flex flex-col gap-4 p-6 border-t rounded-b-xl bg-white">
+                                <div className="flex gap-3 items-center text-sm">
+                                    <Lightbulb className="w-5 h-5 text-primary flex-shrink-0" />
+                                    <p className="text-muted-foreground leading-relaxed">
+                                        <strong>Explication :</strong> En effet, cette peinture a été faite en 1872 par Pierre-Auguste Renoir. Elle montre des nuances et des détails complexes que l'IA a souvent du mal à reproduire avec autant de finesse.
+                                    </p>
+                                </div>
+                            </div>
+                        )}
                     </Card>
                 </div>
             )}
