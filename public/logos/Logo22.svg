@@ -1,0 +1,35 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g filter="url(#neonGlow)">
+    <!-- 主体线条 -->
+    <path d="M128 156h256M128 256h192M128 356h256" 
+      stroke="url(#primaryGradient)" 
+      stroke-width="32" 
+      stroke-linecap="round"
+    />
+    
+    <!-- 装饰圆点 -->
+    <circle cx="384" cy="156" r="16" fill="url(#primaryGradient)" />
+    <circle cx="320" cy="256" r="16" fill="url(#primaryGradient)" />
+    <circle cx="384" cy="356" r="16" fill="url(#primaryGradient)" />
+  </g>
+
+  <defs>
+    <!-- 主渐变 -->
+    <linearGradient id="primaryGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FF0080"/>
+      <stop offset="50%" stop-color="#FF00FF"/>
+      <stop offset="100%" stop-color="#00FFFF"/>
+    </linearGradient>
+    
+    <!-- 发光效果 -->
+    <filter id="neonGlow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feFlood flood-color="#FF00FF" flood-opacity="0.3" result="color"/>
+      <feComposite in="color" in2="blur" operator="in" result="glow"/>
+      <feMerge>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+</svg>

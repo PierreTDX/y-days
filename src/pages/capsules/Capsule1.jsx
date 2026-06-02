@@ -132,29 +132,29 @@ export default function Capsule1({ onComplete, canResume, onResume }) {
                                 icon: "/y-days/icons/accMusic.svg",
                                 label: "Génération de musique",
                                 tools: [
-                                    { logo: "/logos/suno.png", name: "Suno", desc: "Chansons complètes à partir d'un texte." },
-                                    { logo: "/logos/udio.png", name: "Udio", desc: "Morceaux avec paroles et styles variés." },
-                                    { logo: "/logos/loudly.png", name: "Loudly", desc: "Bandes-son personnalisées." },
-                                    { logo: "/logos/easymusic.png", name: "Easymusic.ai", desc: "Création musicale personnalisée." },
-                                    { logo: "/logos/stableaudio.png", name: "Stable Audio", desc: "Audio général et ambiances sonores." },
+                                    { logo: "/y-days/logos/Logo19.png", name: "Suno", desc: "Chansons complètes à partir d'un texte." },
+                                    { logo: "/y-days/logos/Logo20.png", name: "Udio", desc: "Morceaux avec paroles et styles variés." },
+                                    { logo: "/y-days/logos/Logo21.png", name: "Loudly", desc: "Bandes-son personnalisées." },
+                                    { logo: "/y-days/logos/Logo22.svg", name: "Easymusic.ai", desc: "Création musicale personnalisée." },
+                                    { logo: "/y-days/logos/Logo23.png", name: "Stable Audio", desc: "Audio général et ambiances sonores." },
                                 ]
                             },
                             {
                                 icon: "/y-days/icons/accAudio.svg",
                                 label: "Génération de voix et d'audio",
                                 tools: [
-                                    { logo: "/logos/elevenlabs.png", name: "ElevenLabs", desc: "Synthèse vocale très réaliste." },
-                                    { logo: "/logos/playht.png", name: "Play.ht", desc: "Narration audio de qualité." },
-                                    { logo: "/logos/descript.png", name: "Descript", desc: "Montage audio et vidéo assisté par IA." },
+                                    { logo: "/y-days/logos/Logo24.png", name: "ElevenLabs", desc: "Synthèse vocale très réaliste." },
+                                    { logo: "/y-days/logos/Logo25.png", name: "Play.ht", desc: "Narration audio de qualité." },
+                                    { logo: "/y-days/logos/Logo26.png", name: "Descript", desc: "Montage audio et vidéo assisté par IA." },
                                 ]
                             },
                             {
                                 icon: "/y-days/icons/accAutomation.svg",
                                 label: "Automatisation",
                                 tools: [
-                                    { logo: "/logos/zapier.png", name: "Zapier AI", desc: "Automatisation IA entre vos apps." },
-                                    { logo: "/logos/make.png", name: "Make", desc: "Workflows visuels sans code." },
-                                    { logo: "/logos/n8n.png", name: "n8n", desc: "Automatisation technique et open source." },
+                                    { logo: "/y-days/logos/Logo27.png", name: "Zapier AI", desc: "Automatisation IA entre vos apps." },
+                                    { logo: "/y-days/logos/Logo28.svg", name: "Make", desc: "Workflows visuels sans code." },
+                                    { logo: "/y-days/logos/Logo29.svg", name: "n8n", desc: "Automatisation technique et open source." },
                                 ]
                             },
                         ].map((section, i) => (
