@@ -216,27 +216,29 @@ export default function Capsule1({ onComplete, canResume, onResume }) {
                     <div />
                 )}
 
-                {canResume && (
-                    <Button variant="outline" onClick={onResume}>
-                        Reprendre où j'en étais
-                    </Button>
-                )}
-
-                <span
-                    className={`group relative ${isNextDisabled ? "cursor-not-allowed inline-block" : "inline-block"}`}
-                >
-                    {isNextDisabled && (
-                        <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:flex flex-row justify-center items-center px-[12px] py-[6px] gap-[8px] isolate w-[201px] max-w-[384px] h-[44px] bg-[#171717] rounded-[8px] text-white text-xs text-center z-50 pointer-events-none shadow-lg">
-                            Explorez cette étape pour continuer
-                        </div>
+                <div className="flex gap-4">
+                    {canResume && (
+                        <Button variant="outline" onClick={onResume}>
+                            Reprendre où j'en étais
+                        </Button>
                     )}
-                    <Button
-                        disabled={isNextDisabled}
-                        className={isNextDisabled ? "pointer-events-none" : ""}
-                        onClick={() => step < 2 ? setStep(step + 1) : onComplete?.()}>
-                        {step < 2 ? "Suivant ->" : "Terminer"}
-                    </Button>
-                </span>
+
+                    <span
+                        className={`group relative ${isNextDisabled ? "cursor-not-allowed inline-block" : "inline-block"}`}
+                    >
+                        {isNextDisabled && (
+                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:flex flex-row justify-center items-center px-[12px] py-[6px] gap-[8px] isolate w-[201px] max-w-[384px] h-[44px] bg-[#171717] rounded-[8px] text-white text-xs text-center z-50 pointer-events-none shadow-lg">
+                                Explorez cette étape pour continuer
+                            </div>
+                        )}
+                        <Button
+                            disabled={isNextDisabled}
+                            className={isNextDisabled ? "pointer-events-none" : ""}
+                            onClick={() => step < 2 ? setStep(step + 1) : onComplete?.()}>
+                            {step < 2 ? "Suivant ->" : "Terminer"}
+                        </Button>
+                    </span>
+                </div>
             </div>
         </div>
     )
