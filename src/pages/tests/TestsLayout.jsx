@@ -39,7 +39,7 @@ const demoSteps = [
         icon: BookIcon,
         readTime: "2min",
         status: "active",
-        progress: 55,
+        progress: 0,
         content: (
             <div className="space-y-4 text-zinc-600">
                 <p>Découvrez ce qu'est l'IA générative et comment elle transforme notre manière d'apprendre.</p>

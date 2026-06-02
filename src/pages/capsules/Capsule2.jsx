@@ -1,15 +1,22 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Button } from "@/components/ui/button"
 import DragDropGame from "@/features/dragdrop/DragDropGame"
 import AssignmentGame from '@/features/dragdrop/DragDropGame copy'
+import { ArrowLeft, ArrowRight } from "lucide-react"
 
 const BUCKETS = ['Rôle', 'Objectif', 'Limites', 'Exemple']
 
-export default function Capsule2({ onComplete }) {
+export default function Capsule2({ onComplete, canResume, onResume, onProgress }) {
     const [step, setStep] = useState(0)
     // const enableNext = true
 
     const maxSteps = 2
+
+    useEffect(() => {
+        if (onProgress) {
+            onProgress(Math.round((step / 1) * 100)); // 1 est le max steps
+        }
+    }, [step, onProgress]);
 
     const gameCards = [
         { id: 'c1', text: 'Tu es un professeur expérimenté du CE2.', answer: 'Rôle' },
@@ -72,17 +79,26 @@ export default function Capsule2({ onComplete }) {
             )}
 
             <div className="mt-8 flex justify-between">
-                <Button
-                    variant="outline"
-                    onClick={() => setStep(step - 1)}
-                    disabled={step === 0}>
-                    {"<- Précédent"}
-                </Button>
+                {step > 0 ? (
+                    <Button variant="outline" onClick={() => setStep(step - 1)}>
+                        <ArrowLeft className="w-4 h-4 mr-2" /> Précédent
+                    </Button>
+                ) : (
+                    <div />
+                )}
 
-                <Button onClick={handleNextStep()} 
-                    // disabled={!allCorrect}
-                >
-                    {step < maxSteps - 1 ? "Suivant ->" : "Terminer"}
+                {canResume && (
+                    <Button variant="outline" onClick={onResume}>
+                        Reprendre où j'en étais
+                    </Button>
+                )}
+
+                <Button onClick={() => step < 1 ? setStep(step + 1) : onComplete?.()}>
+                    {step < 1 ? (
+                        <>Suivant <ArrowRight className="w-4 h-4 ml-2" /></>
+                    ) : (
+                        "Terminer"
+                    )}
                 </Button>
             </div>
         </div>

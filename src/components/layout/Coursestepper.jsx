@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 
 const BookIcon = ({ className = "" }) => (
     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
@@ -49,17 +49,20 @@ function StepRow({ label = "Module 1", title, readTime, status = "idle", progres
 
                 {/* Progress bar (active only) */}
                 {isActive && (
-                    <div className="w-[80%] h-[3px] bg-zinc-100 rounded-full mt-1">
+                    <div className="w-[80%] h-[3px] bg-[#E5E7EB] rounded-full mt-1">
                         <div
-                            className="h-full rounded-full bg-violet-500 transition-all duration-500"
-                            style={{ width: `${progress}%` }}
+                            className="h-full rounded-full transition-all duration-500"
+                            style={{
+                                width: `${progress}%`,
+                                background: 'linear-gradient(270.05deg, #EAE0F9 0.04%, #A076E4 51.16%, #05036C 102.27%)'
+                            }}
                         />
                     </div>
                 )}
 
                 {/* Badge */}
                 {isLocked && (
-                    <span className="absolute top-2 right-2 w-4 h-4 flex items-center justify-center rounded-full bg-zinc-100">
+                    <span className="absolute top-2 right-2 w-4 h-4 flex items-center justify-center rounded-full bg-[#E5E7EB] text-muted-foreground">
                         <LockIcon size={10} />
                     </span>
                 )}
@@ -100,14 +103,15 @@ function HorizontalStepper({ selectedIdx, steps, onStepClick }) {
     const isAllCompleted = steps.every(s => s.status === "completed");
 
     return (
-        <div className="flex items-center gap-6 w-full">
+        <div className="flex items-center gap-2 w-full">
             {/* Logo en dehors du stepper */}
-            <div className="font-bold text-lg text-zinc-800 whitespace-nowrap flex-shrink-0 pl-2">
-                LOGO
+            <div className="w-[230px] h-[60px] bg-[url('/y-days/LOGOAcadem.svg')] bg-no-repeat bg-center bg-contain flex-shrink-0 scale-350"
+                role="img"
+                aria-label="Logo AcademIA">
             </div>
 
             {/* Conteneur des étapes */}
-            <div className="flex flex-1 items-center rounded-xl border border-zinc-200 overflow-hidden bg-white shadow-sm">
+            <div className="flex flex-1 items-center rounded-xl border border-zinc-200 bg-white shadow-sm">
                 {/* Étapes (Steps) */}
                 <div className="flex flex-1 items-center min-w-0">
                     {steps.map((step, i) => {
@@ -120,15 +124,19 @@ function HorizontalStepper({ selectedIdx, steps, onStepClick }) {
                                 onClick={step.status !== "locked" ? () => onStepClick(i) : undefined}
                                 className={[
                                     "relative flex items-center h-[60px] gap-3 px-4",
-                                    "transition-all duration-500 ease-in-out overflow-hidden",
-                                    "border-l border-zinc-200",
+                                    "transition-all duration-500 ease-in-out group",
+                                    step.status === "locked" ? "overflow-visible" : "overflow-hidden",
+                                    "border-l border-zinc-200 first:border-l-0 first:rounded-l-xl last:rounded-r-xl",
                                     isSelected ? "flex-1 min-w-0" : "w-[72px] min-w-[72px] justify-center",
-                                    step.status !== "locked" ? "cursor-pointer hover:bg-zinc-50" : "cursor-not-allowed opacity-70",
+                                    step.status !== "locked" ? "cursor-pointer hover:bg-zinc-50" : "cursor-not-allowed",
                                 ].join(" ")}
                             >
                                 {/* Icon & Label part */}
                                 <div
-                                    className="flex flex-col items-center gap-0.5 min-w-[48px] flex-shrink-0 transition-colors duration-300"
+                                    className={[
+                                        "flex flex-col items-center gap-0.5 min-w-[48px] flex-shrink-0 transition-colors duration-300",
+                                        step.status === "locked" ? "opacity-70" : ""
+                                    ].join(" ")}
                                 >
                                     <Icon
                                         className={
@@ -150,22 +158,23 @@ function HorizontalStepper({ selectedIdx, steps, onStepClick }) {
                                 {/* Active content part (title, progress, etc.) */}
                                 <div
                                     className={[
-                                        "flex-1 flex flex-col gap-1 min-w-0",
-                                        "transition-opacity duration-300 delay-200",
+                                        "flex-1 flex flex-col gap-2 min-w-0",
+                                        "transition-opacity duration-300 delay-200 mt-3",
                                         isSelected ? "opacity-100" : "opacity-0 w-0",
                                     ].join(" ")}
                                 >
-                                    <div className="h-[3px] bg-zinc-100 rounded-full">
+                                    <div className="h-[3px] bg-[#E5E7EB] rounded-full">
                                         <div
-                                            className="h-full rounded-full bg-violet-500 transition-all duration-500"
+                                            className="h-full rounded-full transition-all duration-500"
                                             style={{
                                                 width: isAllCompleted ? "100%" : `${step.progress || 0}%`,
+                                                background: 'linear-gradient(270.05deg, #EAE0F9 0.04%, #A076E4 51.16%, #05036C 102.27%)'
                                             }}
                                         />
                                     </div>
 
                                     <div className="flex items-center justify-between gap-3 overflow-hidden">
-                                        <span className="text-[13px] text-zinc-800 truncate">
+                                        <span className="text-[13px] truncate text-muted-foreground">
                                             {step.title}
                                         </span>
                                         <div className="flex items-center gap-3 flex-shrink-0">
@@ -182,7 +191,7 @@ function HorizontalStepper({ selectedIdx, steps, onStepClick }) {
                                 {!isSelected && (
                                     <>
                                         {step.status === "locked" && (
-                                            <span className="absolute top-1.5 right-2 w-4 h-4 flex items-center justify-center rounded-full bg-zinc-100">
+                                            <span className="absolute top-1.5 right-2 w-4 h-4 flex items-center justify-center rounded-full bg-[#E5E7EB] text-muted-foreground opacity-70">
                                                 <LockIcon size={10} />
                                             </span>
                                         )}
@@ -193,10 +202,16 @@ function HorizontalStepper({ selectedIdx, steps, onStepClick }) {
                                         )}
                                     </>
                                 )}
+                                {step.status === "locked" && (
+                                    <div className="absolute top-[110%] left-1/2 -translate-x-1/2 mb-2 hidden group-hover:flex flex-row justify-center items-center px-3 py-1.5 gap-2 isolate w-max max-w-[250px] bg-[#171717] rounded-lg text-white text-xs text-center z-50 pointer-events-none shadow-lg">
+                                        Ce module sera accessible une fois précédent terminé
+                                    </div>
+                                )}
                             </div>
                         );
                     })}
                 </div>
+
             </div>
         </div>
     );
@@ -206,6 +221,22 @@ export default function CourseStepper({ initialSteps = [], variant = "both" }) {
     const [steps, setSteps] = useState(initialSteps);
     const activeIndex = steps.findIndex((s) => s.status === "active");
     const [selectedIdx, setSelectedIdx] = useState(activeIndex !== -1 ? activeIndex : (steps.length > 0 ? steps.length - 1 : 0));
+
+    const handleProgress = useCallback((progress) => {
+        setSteps((prev) => {
+            if (!prev[selectedIdx]) return prev;
+            const newSteps = [...prev];
+            // Ne pas réduire la progression si le module est déjà terminé
+            if (newSteps[selectedIdx].status === "completed") {
+                return prev;
+            }
+            if (newSteps[selectedIdx].progress !== progress) {
+                newSteps[selectedIdx] = { ...newSteps[selectedIdx], progress };
+                return newSteps;
+            }
+            return prev;
+        });
+    }, [selectedIdx]);
 
     const handleCompleteStep = () => {
         setSteps((prev) => {
@@ -263,18 +294,14 @@ export default function CourseStepper({ initialSteps = [], variant = "both" }) {
             <div className=" border p-11 border-zinc-200 rounded-xl shadow-sm text-left stepper-container">
                 {/* <h3 className="text-lg font-bold mb-4 text-zinc-800">{steps[selectedIdx]?.title}</h3> */}
                 {steps[selectedIdx]?.content && React.isValidElement(steps[selectedIdx].content)
-                    ? React.cloneElement(steps[selectedIdx].content, { onComplete: handleCompleteStep })
+                    ? React.cloneElement(steps[selectedIdx].content, {
+                        onComplete: handleCompleteStep,
+                        canResume: activeIndex !== -1 && selectedIdx !== activeIndex,
+                        onResume: () => setSelectedIdx(activeIndex),
+                        onProgress: handleProgress
+                    })
                     : steps[selectedIdx]?.content}
             </div>
-
-            {/* Boutons d'action */}
-            {activeIndex !== -1 && selectedIdx !== activeIndex && (
-                <div className="flex justify-end mt-2 gap-3">
-                    <button onClick={() => setSelectedIdx(activeIndex)} className="px-5 py-2.5 text-sm font-medium border border-zinc-200 text-zinc-700 rounded-lg hover:bg-zinc-50 transition-colors shadow-sm">
-                        Reprendre où j'en étais
-                    </button>
-                </div>
-            )}
         </div>
     );
 }

@@ -40,7 +40,7 @@ const demoSteps = [
         icon: BookIcon,
         readTime: "2min",
         status: "active",
-        progress: 55,
+        progress: 0,
         content: (
             <Capsule1 />
         ),

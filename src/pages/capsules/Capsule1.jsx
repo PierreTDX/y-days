@@ -1,16 +1,25 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Memo } from "@/components/ui/Memo"
 import { FlipCard } from "@/components/ui/FlipCard"
+import { ArrowLeft, ArrowRight } from "lucide-react"
 
 const claude = '/y-days/images/Claude.png';
 const notebook = '/y-days/images/NotebookLM.png';
 const perplexity = '/y-days/images/Perplexity.png';
 
-export default function Capsule1({ onComplete }) {
+export default function Capsule1({ onComplete, canResume, onResume, onProgress }) {
     const [step, setStep] = useState(0)
     const [flippedCards, setFlippedCards] = useState({})
+    const [openAccordion, setOpenAccordion] = useState(null)
+    const [openedAccordions, setOpenedAccordions] = useState([])
+
+    useEffect(() => {
+        if (onProgress) {
+            onProgress(Math.round((step / 2) * 100)); // 2 est le max steps
+        }
+    }, [step, onProgress]);
 
     const toggleCard = (index) => {
         setFlippedCards(prev => ({
@@ -18,6 +27,8 @@ export default function Capsule1({ onComplete }) {
             [index]: !prev[index]
         }))
     }
+
+    const isNextDisabled = (step === 1 && Object.keys(flippedCards).length < 3) || (step === 2 && openedAccordions.length < 3);
 
     return (
         <div className="w-full mx-auto p-6 rounded-xl border bg-card text-card-foreground shadow-sm">
@@ -84,7 +95,7 @@ export default function Capsule1({ onComplete }) {
                     <h1 className="text-4xl font-semibold">Introduction et découverte des outils d'IA</h1>
                     <p className="text-muted-foreground leading-relaxed font-bold">Pour aller plus loin :</p>
 
-                    <div className="border rounded-lg divide-y overflow-hidden">
+                    <div className="rounded-lg divide-y overflow-hidden">
                         {[
                             {
                                 icon: "/y-days/icons/accDoc.svg",
@@ -132,75 +143,113 @@ export default function Capsule1({ onComplete }) {
                                 icon: "/y-days/icons/accMusic.svg",
                                 label: "Génération de musique",
                                 tools: [
-                                    { logo: "/logos/suno.png", name: "Suno", desc: "Chansons complètes à partir d'un texte." },
-                                    { logo: "/logos/udio.png", name: "Udio", desc: "Morceaux avec paroles et styles variés." },
-                                    { logo: "/logos/loudly.png", name: "Loudly", desc: "Bandes-son personnalisées." },
-                                    { logo: "/logos/easymusic.png", name: "Easymusic.ai", desc: "Création musicale personnalisée." },
-                                    { logo: "/logos/stableaudio.png", name: "Stable Audio", desc: "Audio général et ambiances sonores." },
+                                    { logo: "/y-days/logos/Logo19.png", name: "Suno", desc: "Chansons complètes à partir d'un texte." },
+                                    { logo: "/y-days/logos/Logo20.png", name: "Udio", desc: "Morceaux avec paroles et styles variés." },
+                                    { logo: "/y-days/logos/Logo21.png", name: "Loudly", desc: "Bandes-son personnalisées." },
+                                    { logo: "/y-days/logos/Logo22.svg", name: "Easymusic.ai", desc: "Création musicale personnalisée." },
+                                    { logo: "/y-days/logos/Logo23.png", name: "Stable Audio", desc: "Audio général et ambiances sonores." },
                                 ]
                             },
                             {
                                 icon: "/y-days/icons/accAudio.svg",
                                 label: "Génération de voix et d'audio",
                                 tools: [
-                                    { logo: "/logos/elevenlabs.png", name: "ElevenLabs", desc: "Synthèse vocale très réaliste." },
-                                    { logo: "/logos/playht.png", name: "Play.ht", desc: "Narration audio de qualité." },
-                                    { logo: "/logos/descript.png", name: "Descript", desc: "Montage audio et vidéo assisté par IA." },
+                                    { logo: "/y-days/logos/Logo24.png", name: "ElevenLabs", desc: "Synthèse vocale très réaliste." },
+                                    { logo: "/y-days/logos/Logo25.png", name: "Play.ht", desc: "Narration audio de qualité." },
+                                    { logo: "/y-days/logos/Logo26.png", name: "Descript", desc: "Montage audio et vidéo assisté par IA." },
                                 ]
                             },
                             {
                                 icon: "/y-days/icons/accAutomation.svg",
                                 label: "Automatisation",
                                 tools: [
-                                    { logo: "/logos/zapier.png", name: "Zapier AI", desc: "Automatisation IA entre vos apps." },
-                                    { logo: "/logos/make.png", name: "Make", desc: "Workflows visuels sans code." },
-                                    { logo: "/logos/n8n.png", name: "n8n", desc: "Automatisation technique et open source." },
+                                    { logo: "/y-days/logos/Logo27.png", name: "Zapier AI", desc: "Automatisation IA entre vos apps." },
+                                    { logo: "/y-days/logos/Logo28.svg", name: "Make", desc: "Workflows visuels sans code." },
+                                    { logo: "/y-days/logos/Logo29.svg", name: "n8n", desc: "Automatisation technique et open source." },
                                 ]
                             },
                         ].map((section, i) => (
-                            <details key={i} className="group [&_summary::-webkit-details-marker]:hidden">
-                                <summary className="flex items-center gap-3 px-4 py-3.5 cursor-pointer text-sm font-medium bg-background">
+                            <div
+                                key={i}
+                                className="border-b"
+                            >
+                                <button
+                                    className="w-full flex items-center gap-3 px-4 py-3.5 cursor-pointer text-sm font-medium bg-background text-left"
+                                    onClick={(e) => {
+                                        setOpenAccordion(openAccordion === i ? null : i);
+                                        if (openAccordion !== i) {
+                                            setOpenedAccordions(prev => prev.includes(i) ? prev : [...prev, i]);
+                                        }
+                                    }}
+                                >
                                     <span className="w-8 h-8 rounded-lg bg-yellow-100 flex items-center justify-center flex-shrink-0">
                                         <img src={section.icon} alt="" className="w-4 h-4 object-contain" />
                                     </span>
                                     <span className="flex-1">{section.label}</span>
-                                    <svg className="transition-transform group-open:rotate-180 text-muted-foreground"
+                                    <svg className={`transition-transform duration-300 text-muted-foreground ${openAccordion === i ? 'rotate-180' : ''}`}
                                         fill="none" height="20" viewBox="0 0 24 24" stroke="currentColor"
                                         strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                                         <path d="M6 9l6 6 6-6" />
                                     </svg>
-                                </summary>
+                                </button>
 
-                                <div className="p-4 bg-muted/40 border-t">
-                                    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
-                                        {section.tools.map((tool, j) => (
-                                            <div key={j} className="bg-background border rounded-lg p-3 flex flex-col items-center gap-2 text-center">
-                                                <img src={tool.logo} alt={tool.name} className="w-10 h-10 rounded-xl object-contain" />
-                                                <span className="text-xs font-medium leading-tight">{tool.name}</span>
-                                                <span className="text-xs text-muted-foreground leading-snug">{tool.desc}</span>
+                                <div className={`grid transition-all duration-300 ease-in-out ${openAccordion === i ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}>
+                                    <div className="overflow-hidden">
+                                        <div className="p-4">
+                                            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+                                                {section.tools.map((tool, j) => (
+                                                    <div key={j} className="bg-background border rounded-lg p-3 flex flex-col items-center gap-2 text-center transition-transform duration-300 hover:scale-105 hover:-rotate-2">
+                                                        <img src={tool.logo} alt={tool.name} className="w-10 h-10 rounded-xl object-contain" />
+                                                        <span className="text-xs font-medium leading-tight">{tool.name}</span>
+                                                        <span className="text-xs text-muted-foreground leading-snug">{tool.desc}</span>
+                                                    </div>
+                                                ))}
                                             </div>
-                                        ))}
+                                        </div>
                                     </div>
                                 </div>
-                            </details>
+                            </div>
                         ))}
                     </div>
                 </div>
             )}
 
             <div className="mt-15 flex justify-between">
-                <Button
-                    variant="outline"
-                    onClick={() => setStep(step - 1)}
-                    disabled={step === 0}>
-                    {"<- Précédent"}
-                </Button>
+                {step > 0 ? (
+                    <Button variant="outline" onClick={() => setStep(step - 1)}>
+                        <ArrowLeft className="w-4 h-4 mr-2" /> Précédent
+                    </Button>
+                ) : (
+                    <div />
+                )}
 
-                <Button
-                    disabled={step === 1 && Object.keys(flippedCards).length < 3}
-                    onClick={() => step < 2 ? setStep(step + 1) : onComplete?.()}>
-                    {step < 2 ? "Suivant ->" : "Terminer"}
-                </Button>
+                <div className="flex gap-4">
+                    {canResume && (
+                        <Button variant="outline" onClick={onResume}>
+                            Reprendre où j'en étais
+                        </Button>
+                    )}
+
+                    <span
+                        className={`group relative ${isNextDisabled ? "cursor-not-allowed inline-block" : "inline-block"}`}
+                    >
+                        {isNextDisabled && (
+                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:flex flex-row justify-center items-center px-[12px] py-[6px] gap-[8px] isolate w-[201px] max-w-[384px] h-[44px] bg-[#171717] rounded-[8px] text-white text-xs text-center z-50 pointer-events-none shadow-lg">
+                                Explorez cette étape pour continuer
+                            </div>
+                        )}
+                        <Button
+                            disabled={isNextDisabled}
+                            className={isNextDisabled ? "pointer-events-none" : ""}
+                            onClick={() => step < 2 ? setStep(step + 1) : onComplete?.()}>
+                            {step < 2 ? (
+                                <>Suivant <ArrowRight className="w-4 h-4 ml-2" /></>
+                            ) : (
+                                "Terminer"
+                            )}
+                        </Button>
+                    </span>
+                </div>
             </div>
         </div>
     )

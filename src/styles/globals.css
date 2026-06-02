@@ -1,9 +1,13 @@
 
 body {
   margin: 0;
-  font-family: var(--font-sans);
+  font-family: 'Comfortaa', sans-serif;
   color: #e5e7eb;
   background-color: #FCFBFE;
+}
+
+button, input, select, textarea {
+  font-family: 'Comfortaa', sans-serif;
 }
 
 a { color: inherit; }
@@ -14,12 +18,35 @@ a { color: inherit; }
   padding: 24px;
 }
 
-.onboarding-container, 
-.home-page,
 .stepper-container {
   background-color: var(--base-primary, #A076E4);
   background-blend-mode: color;
   background: url('/y-days/images/background.png') center/cover fixed;
+}
+
+.page-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('/y-days/images/fond.png') center / cover;
+  opacity: 0.60;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.page-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 35%;
+  background: linear-gradient(to right, #FFC83A, #FF008A, #6100FF, #001AFF);
+  opacity: .35;
+  -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .glass {
