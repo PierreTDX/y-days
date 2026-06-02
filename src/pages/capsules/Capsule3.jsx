@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Button } from "@/components/ui/button"
 import { useNavigate } from 'react-router-dom'
+import { ArrowLeft, ArrowRight } from "lucide-react"
 
 export default function Capsule3({ onComplete, canResume, onResume, onProgress }) {
     const [step, setStep] = useState(0)
@@ -18,14 +19,20 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
         // Ici vous pourrez jouer un son d'échec ou de succès
     }
 
+    const isNextDisabled = step === 0 && gameResult === null;
+
     return (
         <div className="w-full mx-auto p-6 rounded-xl border bg-card text-card-foreground shadow-sm">
-
+            {/* Step 0: Intro */}
             {step === 0 && (
-                <div className="space-y-6 text-center">
-                    <h1 className="text-4xl font-semibold">IA ou Humain ?</h1>
-                    <p className="text-muted-foreground">Saurez-vous démêler le vrai du faux à l'ère de l'IA ?</p>
-
+                <div className="space-y-4">
+                    <h1 className="text-4xl font-semibold">Démêler le vrai du faux contenu à l’ère de l’IA.</h1>
+                    <p className="text-muted-foreground leading-relaxed">
+                        L'intelligence artificielle générative transforme notre manière de créer et d'interagir avec le contenu. Elle peut parfois rendre difficile la distinction entre les œuvres humaines et celles produites par des algorithmes.
+                    </p>
+                    <p className="text-muted-foreground leading-relaxed font-bold">
+                        D’après toi, cette peinture  a-t-elle été générée par IA?
+                    </p>
                     <div className="aspect-video bg-muted rounded-lg flex items-center justify-center text-muted-foreground mb-6 overflow-hidden relative">
                         {/* Placeholder pour une image ou texte */}
                         <p className="p-8 italic">"À Houston, jeudi 18 avril. 20 h. Questions-réponses, comédie, discussion..."</p>
@@ -38,8 +45,8 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
                     </div>
 
                     <div className="flex gap-4 justify-center">
-                        <Button onClick={() => handleGuess(true)} size="lg" className="w-32">Humain</Button>
                         <Button onClick={() => handleGuess(false)} size="lg" variant="secondary" className="w-32">IA</Button>
+                        <Button onClick={() => handleGuess(true)} size="lg" className="w-32">Pas IA</Button>
                     </div>
                 </div>
             )}
@@ -89,28 +96,46 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
             <div className="mt-8 flex justify-between">
                 {step > 0 ? (
                     <Button variant="outline" onClick={() => setStep(step - 1)}>
-                        {"<- Précédent"}
+                        <ArrowLeft className="w-4 h-4 mr-2" /> Précédent
                     </Button>
                 ) : (
                     <div />
                 )}
 
-                {canResume && (
-                    <Button variant="outline" onClick={onResume}>
-                        Reprendre où j'en étais
-                    </Button>
-                )}
+                <div className="flex gap-4">
+                    {canResume && (
+                        <Button variant="outline" onClick={onResume}>
+                            Reprendre où j'en étais
+                        </Button>
+                    )}
 
-                <Button onClick={() => {
-                    if (step < 4) {
-                        setStep(step + 1)
-                    } else {
-                        onComplete?.()
-                        navigate('/result')
-                    }
-                }}>
-                    {step < 4 ? "Suivant ->" : "Terminer"}
-                </Button>
+                    <span
+                        className={`group relative ${isNextDisabled ? "cursor-not-allowed inline-block" : "inline-block"}`}
+                    >
+                        {isNextDisabled && (
+                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:flex flex-row justify-center items-center px-[12px] py-[6px] gap-[8px] isolate w-[201px] max-w-[384px] h-[44px] bg-[#171717] rounded-[8px] text-white text-xs text-center z-50 pointer-events-none shadow-lg">
+                                Explorez cette étape pour continuer
+                            </div>
+                        )}
+                        <Button
+                            disabled={isNextDisabled}
+                            className={isNextDisabled ? "pointer-events-none" : ""}
+                            onClick={() => {
+                                if (step < 4) {
+                                    setStep(step + 1)
+                                } else {
+                                    onComplete?.()
+                                    navigate('/result')
+                                }
+                            }}>
+                            {step < 4 ? (
+                                <>Suivant <ArrowRight className="w-4 h-4 ml-2" /></>
+                            ) : (
+                                "Terminer"
+                            )}
+                        </Button>
+                    </span>
+                </div>
             </div>
         </div>
     )

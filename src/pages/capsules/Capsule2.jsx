@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Button } from "@/components/ui/button"
 import DragDropGame from "@/features/dragdrop/DragDropGame"
+import { ArrowLeft, ArrowRight } from "lucide-react"
 
 const BUCKETS = ['Rôle', 'Objectif', 'Limites', 'Exemple']
 
@@ -67,7 +68,7 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
             <div className="mt-8 flex justify-between">
                 {step > 0 ? (
                     <Button variant="outline" onClick={() => setStep(step - 1)}>
-                        {"<- Précédent"}
+                        <ArrowLeft className="w-4 h-4 mr-2" /> Précédent
                     </Button>
                 ) : (
                     <div />
@@ -80,7 +81,11 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
                 )}
 
                 <Button onClick={() => step < 1 ? setStep(step + 1) : onComplete?.()}>
-                    {step < 1 ? "Suivant ->" : "Terminer"}
+                    {step < 1 ? (
+                        <>Suivant <ArrowRight className="w-4 h-4 ml-2" /></>
+                    ) : (
+                        "Terminer"
+                    )}
                 </Button>
             </div>
         </div>
