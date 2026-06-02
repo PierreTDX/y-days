@@ -8,7 +8,8 @@ export function QuizCard({
     gameResult,
     onGuess,
     explication,
-    customButtons
+    customButtons,
+    correctAnswer
 }) {
     return (
         <Card className={`p-0 gap-0 border-2 ${gameResult !== null ? (gameResult ? 'border-green-500' : 'border-red-500') : 'border-border'}`}>
@@ -32,10 +33,10 @@ export function QuizCard({
             </div>
 
             {gameResult === null ? (
-                customButtons ? customButtons(onGuess) : (
+                customButtons ? customButtons(onGuess, correctAnswer) : (
                     <div className="flex gap-4 p-6 h-21 border-t rounded-b-xl bg-card">
                         <Button
-                            onClick={() => onGuess(false)}
+                            onClick={() => onGuess('IA', correctAnswer)}
                             size="lg"
                             variant="outline"
                             className="flex-1 text-green-900 hover:text-green-950 hover:bg-green-200 border-none"
@@ -44,7 +45,7 @@ export function QuizCard({
                             <Check className="w-4 h-4 mr-2" /> IA
                         </Button>
                         <Button
-                            onClick={() => onGuess(true)}
+                            onClick={() => onGuess('PAS_IA', correctAnswer)}
                             size="lg"
                             variant="outline"
                             className="flex-1 text-red-600 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-950/50 border-none"

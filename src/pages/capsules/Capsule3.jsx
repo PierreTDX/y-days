@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Button } from "@/components/ui/button"
 import { useNavigate } from 'react-router-dom'
-import { ArrowLeft, ArrowRight } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import { QuizCard } from "@/components/ui/quiz-card"
 
 export default function Capsule3({ onComplete, canResume, onResume, onProgress }) {
@@ -15,26 +15,20 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
         }
     }, [step, onProgress]);
 
-    const handleGuess = (isCorrect) => {
-        setGameResult(isCorrect)
-        // Ici vous pourrez jouer un son d'échec ou de succès
-    }
-
-    // Disable "Suivant" on all steps until the user plays the quiz
-    const isNextDisabled = gameResult === null;
-
     const QUIZ_STEPS = [
         {
-            question: "D’après toi, cette peinture  a-t-elle été générée par IA?",
+            question: "D’après toi, cette peinture a-t-elle été générée par IA?",
             mediaClassName: "aspect-video bg-muted max-h-[320px]",
             media: <img src="/y-days/images/Question_1.jpg" alt="Peinture à deviner" className="object-cover w-full" />,
-            explication: <><strong>Explication :</strong> En effet, cette peinture XXX.</>
+            explication: <><strong>Explication :</strong> Cette peinture XXX.</>,
+            correctAnswer: 'PAS_IA'
         },
         {
-            question: "D’après toi, cette peinture  a-t-elle été générée par IA?",
+            question: "D’après toi, cette photo a-t-elle été générée par IA?",
             mediaClassName: "aspect-video bg-muted max-h-[320px]",
-            media: <img src="/y-days/images/Question_2.jpg" alt="Peinture à deviner" className="object-cover w-full" />,
-            explication: <><strong>Explication :</strong> En effet, XXX...</>
+            media: <img src="/y-days/images/Question_2.jpg" alt="Photo à deviner" className="object-cover w-full" />,
+            explication: <><strong>Explication :</strong> Cette photo XXX.</>,
+            correctAnswer: 'PAS_IA'
         },
         {
             question: "D’après toi, cette vidéo a-t-elle été générée par IA ?",
@@ -49,7 +43,8 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
                     allowFullScreen
                 ></iframe>
             ),
-            explication: <><strong>Explication :</strong> Cette vidéo a été générée par IA ! Impressionnant, non ?</>
+            explication: <><strong>Explication :</strong> Cette vidéo a été générée par IA ! Impressionnant, non ?</>,
+            correctAnswer: 'IA'
         },
         {
             question: "D’après toi, lequel de ces deux textes a été généré par IA ?",
@@ -76,11 +71,12 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
                     </div>
                 </div>
             ),
-            explication: <><strong>Effectivement, l'option B a été générée par IA !</strong> On peut reconnaitre des signes, comme les tirets cadratins, les superlatifs et les nombreuses majuscules dans le titre.</>,
-            customButtons: (onGuess) => (
+            explication: <><strong>L'option B a été générée par IA !</strong> On peut reconnaitre des signes, comme les tirets cadratins, les superlatifs et les nombreuses majuscules dans le titre.</>,
+            correctAnswer: 'B',
+            customButtons: (onGuess, correctAnswer) => (
                 <div className="flex flex-col sm:flex-row gap-4 p-6 h-21 border-t rounded-b-xl bg-white">
                     <Button
-                        onClick={() => onGuess(false)}
+                        onClick={() => onGuess('A', correctAnswer)}
                         size="lg"
                         variant="outline"
                         className="flex-1 hover:bg-muted font-normal"
@@ -88,7 +84,7 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
                         L'option A a été générée par IA
                     </Button>
                     <Button
-                        onClick={() => onGuess(true)}
+                        onClick={() => onGuess('B', correctAnswer)}
                         size="lg"
                         variant="outline"
                         className="flex-1 hover:bg-muted font-normal"
@@ -99,20 +95,31 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
             )
         },
         {
-            question: "D’après toi, cette peinture  a-t-elle été générée par IA?",
+            question: "D’après toi, cette photo a-t-elle été générée par IA?",
             mediaClassName: "aspect-video bg-muted max-h-[320px]",
-            media: <img src="/y-days/images/Question_5.jpg" alt="Peinture à deviner" className="object-cover w-full" />,
-            explication: <><strong>Explication :</strong> En effet, XXX...</>
+            media: <img src="/y-days/images/Question_5.jpg" alt="Photo à deviner" className="object-cover h-full" />,
+            explication: <><strong>Explication :</strong> Cette photo XXX.</>,
+            correctAnswer: 'IA'
         },
         {
-            question: "D’après toi, cette peinture  a-t-elle été générée par IA?",
+            question: "D’après toi, cette photo a-t-elle été générée par IA?",
             mediaClassName: "aspect-video bg-muted max-h-[320px]",
-            media: <img src="/y-days/images/Question_6.png" alt="Peinture à deviner" className="object-cover w-full" />,
-            explication: <><strong>Explication :</strong> En effet, XXX...</>
+            media: <img src="/y-days/images/Question_6.png" alt="Photo à deviner" className="object-cover w-full" />,
+            explication: <><strong>Explication :</strong> Cette photo XXX.</>,
+            correctAnswer: 'PAS_IA'
         }
     ];
 
     const currentStep = QUIZ_STEPS[step];
+
+    const handleGuess = (valeurBoutonClique) => {
+        const reponseAttendue = currentStep.correctAnswer
+
+        const estBonneReponse =
+            valeurBoutonClique.trim() === reponseAttendue.trim();
+
+        setGameResult(estBonneReponse);
+    }
 
     return (
         <div className="w-full mx-auto p-6 rounded-xl border bg-card text-card-foreground shadow-sm">
@@ -131,21 +138,11 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
                     onGuess={handleGuess}
                     explication={currentStep.explication}
                     customButtons={currentStep.customButtons}
+                    correctAnswer={currentStep.correctAnswer}
                 />
             </div>
 
-            <div className="mt-8 flex justify-between">
-                {step > 0 ? (
-                    <Button variant="outline" onClick={() => {
-                        setStep(step - 1)
-                        setGameResult(null)
-                    }}>
-                        <ArrowLeft className="w-4 h-4 mr-2" /> Précédent
-                    </Button>
-                ) : (
-                    <div />
-                )}
-
+            <div className="mt-8 flex justify-end">
                 <div className="flex gap-4">
                     {canResume && (
                         <Button variant="outline" onClick={onResume}>
@@ -153,17 +150,8 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
                         </Button>
                     )}
 
-                    <span
-                        className={`group relative ${isNextDisabled ? "cursor-not-allowed inline-block" : "inline-block"}`}
-                    >
-                        {isNextDisabled && (
-                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:flex flex-row justify-center items-center px-[12px] py-[6px] gap-[8px] isolate w-[201px] max-w-[384px] h-[44px] bg-[#171717] rounded-[8px] text-white text-xs text-center z-50 pointer-events-none shadow-lg">
-                                Explorez cette étape pour continuer
-                            </div>
-                        )}
+                    {gameResult !== null && (
                         <Button
-                            disabled={isNextDisabled}
-                            className={isNextDisabled ? "pointer-events-none" : ""}
                             onClick={() => {
                                 if (step < 5) {
                                     setStep(step + 1)
@@ -174,12 +162,12 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
                                 }
                             }}>
                             {step < 5 ? (
-                                <>Suivant <ArrowRight className="w-4 h-4 ml-2" /></>
+                                <>Question suivante <ArrowRight className="w-4 h-4 ml-2" /></>
                             ) : (
                                 "Terminer"
                             )}
                         </Button>
-                    </span>
+                    )}
                 </div>
             </div>
         </div>
