@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Memo } from "@/components/ui/Memo"
 import { FlipCard } from "@/components/ui/FlipCard"
+import { ArrowLeft, ArrowRight } from "lucide-react"
 
 const claude = '/y-days/images/Claude.png';
 const notebook = '/y-days/images/NotebookLM.png';
@@ -216,7 +217,7 @@ export default function Capsule1({ onComplete, canResume, onResume, onProgress }
             <div className="mt-15 flex justify-between">
                 {step > 0 ? (
                     <Button variant="outline" onClick={() => setStep(step - 1)}>
-                        {"<- Précédent"}
+                        <ArrowLeft className="w-4 h-4 mr-2" /> Précédent
                     </Button>
                 ) : (
                     <div />
@@ -241,7 +242,11 @@ export default function Capsule1({ onComplete, canResume, onResume, onProgress }
                             disabled={isNextDisabled}
                             className={isNextDisabled ? "pointer-events-none" : ""}
                             onClick={() => step < 2 ? setStep(step + 1) : onComplete?.()}>
-                            {step < 2 ? "Suivant ->" : "Terminer"}
+                            {step < 2 ? (
+                                <>Suivant <ArrowRight className="w-4 h-4 ml-2" /></>
+                            ) : (
+                                "Terminer"
+                            )}
                         </Button>
                     </span>
                 </div>
