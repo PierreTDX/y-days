@@ -63,8 +63,8 @@ export default function HomePage() {
       ))}
 
       <div className="home-content">
-        <div className="home-logo">LOGO</div>
-        <p className="home-label pt-15">Enseignants du primaire</p>
+        <img src="/y-days/LOGOAcadem.svg" alt="Logo" className="home-logo" />
+        <p className="home-label">Enseignants du primaire</p>
         <h1 className="home-title pb-5">
           Créez vos ressources pédagogiques<br />de qualité avec l'IA
         </h1>

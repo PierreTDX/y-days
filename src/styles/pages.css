@@ -40,16 +40,10 @@
 }
 
 .home-logo {
-  text-align: center;
-  font-family: var(--font-display);
-  font-size: 37.5px;
-  font-weight: 700;
-  line-height: 45px;
-  text-transform: uppercase;
-  background: linear-gradient(0deg, var(--color-violet-900) 0%, var(--color-violet-900) 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  width: 280px;
+  height: auto;
+  margin: 0 auto 0;
+  display: block;
 }
 
 .home-label {
@@ -325,23 +319,20 @@
 .carousel-arrow {
   animation: slideInUp 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.38s both;
   flex-shrink: 0;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  border: 2px solid rgba(255,255,255,0.55);
-  background: rgba(255,255,255,0.12);
-  color: white;
-  font-size: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  border: none;
+  background: rgba(255,255,255,0.85);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  backdrop-filter: blur(8px);
-  transition: background .2s, border-color .2s;
+  transition: background .2s;
+  opacity: .5;
 }
 .carousel-arrow:hover {
-  background: rgba(255,255,255,0.28);
-  border-color: white;
+  background: white;
 }
 
 /* List */

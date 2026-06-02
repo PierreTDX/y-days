@@ -107,7 +107,9 @@ function Step2Body({ onNext, onPrev }) {
 
   return (
     <div className="step2-carousel">
-      <button className="carousel-arrow" onClick={handleLeft}  aria-label="Précédent">←</button>
+      <button className="carousel-arrow" onClick={handleLeft} aria-label="Précédent">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12 4l-6 6 6 6" stroke="#080614" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+      </button>
       <div className="carousel-content">
         <div className="carousel-number" key={`n-${slide}`}>{current.number}</div>
         <div className="carousel-card"   key={`c-${slide}`}>
@@ -115,7 +117,9 @@ function Step2Body({ onNext, onPrev }) {
           {current.source && <small className="carousel-card-source">{current.source}</small>}
         </div>
       </div>
-      <button className="carousel-arrow" onClick={handleRight} aria-label="Suivant">→</button>
+      <button className="carousel-arrow" onClick={handleRight} aria-label="Suivant">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M8 4l6 6-6 6" stroke="#080614" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+      </button>
     </div>
   )
 }
@@ -231,15 +235,16 @@ export default function OnboardingPage() {
           {!isCarousel && (
             <nav className="onboarding-nav">
               {step > 0
-                ? <Button variant="ghost" style={{ color: '#080614' }} onClick={handleBack}>← Précédent</Button>
+                ? <Button variant="ghost" style={{ color: '#080614', fontSize: '18px', padding: '10px 28px', height: 'auto' }} onClick={handleBack}>← Précédent</Button>
                 : <span />}
               {(!isLast || unlockedCta) && (
                 <Button
-                  size="lg"
                   style={{
                     background: 'linear-gradient(180deg, #B291E9 0%, #8260BA 100%)',
                     border: 'none',
-                    ...(isLast && { fontSize: '18px', padding: '10px 28px', height: 'auto' })
+                    fontSize: '18px',
+                    padding: '10px 28px',
+                    height: 'auto',
                   }}
                   onClick={handleNext}
                 >
@@ -257,7 +262,7 @@ export default function OnboardingPage() {
                   <div className="step3-grid">
                     {STEP3_CARDS.map((card, i) => (
                       <div key={i} className="card-step-3">
-                        <img src="public/images/fond-card.png" alt="" className="image-theme"/>
+                        <img src="/y-days/images/fond-card.png" alt="" className="image-theme"/>
                         <div className="card-step-3-body">
                           <div className="card-step-3-meta">
                             <span>{card.module}</span>
@@ -269,7 +274,7 @@ export default function OnboardingPage() {
                       </div>
                     ))}
                     <div className="card-step-3-no-theme">
-                      <img src="public/svg/Group.svg" alt="" className="image-no-theme"/>
+                      <img src="/y-days/svg/Group.svg" alt="" className="image-no-theme"/>
                       <div>
                         <p className="text-card-step-no-theme">Pour aller plus loin</p>
                         <p className="text-bold-step-no-theme">Lorem ipsum Lorem ipsum Lorem ipsum</p>
