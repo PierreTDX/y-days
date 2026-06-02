@@ -159,14 +159,7 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
             )}
 
             {/* Button bar. */}
-            <div className="mt-15 flex justify-between">
-                {step > 0 ? (
-                    <Button variant="outline" onClick={() => setStep(step - 1)}>
-                        <ArrowLeft className="w-4 h-4 mr-2" /> Précédent
-                    </Button>
-                ) : (
-                    <div />
-                )}
+            <div className="mt-15 flex justify-end">
 
                 <div className="flex gap-4">
                     {canResume && (
