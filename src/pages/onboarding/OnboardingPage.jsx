@@ -200,13 +200,13 @@ export default function OnboardingPage() {
   const handleNext = () => {
     if (isLast) { playSound("start"); navigate("/stepper") }
     else {
-      playSound("next"); setDirection("right")
+      setDirection("right")
       const next = step + 1
       if (next === STEPS.length - 1) setUnlockedCta(true)
       setStep(next)
     }
   }
-  const handleBack = () => { playSound("back"); setDirection("left"); setStep(s => s - 1) }
+  const handleBack = () => { setDirection("left"); setStep(s => s - 1) }
 
   return (
     <div className="onboarding-container">

@@ -56,7 +56,7 @@ export default function HomePage() {
       <div className="home-avatar home-avatar--2" />
       <div className="home-avatar home-avatar--3" />
 
-      {TESTIMONIES.map((t, i) => (
+      {TESTIMONIES.slice(0, 2).map((t, i) => (
         <div key={i} className={`home-testimony ${t.cls}`}>
           <Testimony avatarSrc={t.avatar} quote={t.quote} name={t.name} role={t.role} />
         </div>
@@ -72,7 +72,6 @@ export default function HomePage() {
           <span className="home-dot" />
           Un kit d'apprentissage en 10 min
         </div>
-      </div>
         <Button
           size="lg"
           style={{ background: 'linear-gradient(180deg, #B291E9 0%, #8260BA 100%)', border: 'none', marginTop: '32px', fontSize: '17px', padding: '10px 28px', height: 'auto' }}
@@ -80,6 +79,7 @@ export default function HomePage() {
         >
           Démarrer l'apprentissage →
         </Button>
+      </div>
     </div>
   )
 }
