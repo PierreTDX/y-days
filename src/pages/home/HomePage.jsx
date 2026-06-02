@@ -20,6 +20,10 @@ export default function HomePage() {
 
       <ConcentricCircles />
 
+      <div className="home-avatar home-avatar--1" />
+      <div className="home-avatar home-avatar--2" />
+      <div className="home-avatar home-avatar--3" />
+
       {TESTIMONIES.map((t, i) => (
         <div key={i} className={`home-testimony ${t.cls}`}>
           <Testimony avatarSrc={t.avatar} quote={t.quote} name={t.name} role={t.role} />
@@ -34,7 +38,7 @@ export default function HomePage() {
         </h1>
         <div className="home-subtitle">
           <span className="home-dot" />
-          Un kit d'apprentissage en 15 min
+          Un kit d'apprentissage en 10 min
         </div>
       </div>
     </div>
