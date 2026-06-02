@@ -85,7 +85,7 @@ export default function Capsule3({ onComplete }) {
                     variant="outline"
                     onClick={() => setStep(step - 1)}
                     disabled={step === 0}>
-                    Précédent
+                    {"<- Précédent"}
                 </Button>
                 <Button onClick={() => {
                     if (step < 4) {

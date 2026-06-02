@@ -3,8 +3,20 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Memo } from "@/components/ui/Memo"
 
+const claude = '/y-days/images/Claude.png';
+const notebook = '/y-days/images/NotebookLM.png';
+const perplexity = '/y-days/images/Perplexity.png';
+
 export default function Capsule1({ onComplete }) {
     const [step, setStep] = useState(0)
+    const [flippedCards, setFlippedCards] = useState({})
+
+    const toggleCard = (index) => {
+        setFlippedCards(prev => ({
+            ...prev,
+            [index]: !prev[index]
+        }))
+    }
 
     return (
         <div className="w-full mx-auto p-6 rounded-xl border bg-card text-card-foreground shadow-sm">
@@ -42,33 +54,53 @@ export default function Capsule1({ onComplete }) {
             {/* Step 1: Cartes */}
             {step === 1 && (
                 <div className="space-y-6">
-                    <h1 className="text-4xl font-semibold">Introduction et découverte des outils d’IA</h1>
+                    <h1 className="text-4xl font-semibold">Introduction et découverte des outils d'IA</h1>
                     <p className="text-muted-foreground leading-relaxed font-bold">
-                        Voici nos recommandations d’IA importantes pour la création de vos ressources pédagogiques :
+                        Voici nos recommandations d'IA importantes pour la création de vos ressources pédagogiques :
                     </p>
                     <div className="grid md:grid-cols-3 gap-6">
                         {[
-                            { title: "Claude", desc: "Excellent en génération de texte et de vos supports de cours pédagogique (pdf, word, powerpoint)" },
-                            { title: "NotebookLM", desc: "Idéal pour la génération de ressources interactives à partir de vos sources habituelles (manuels scolaires, pdf, ...)" },
-                            { title: "Perplexity", desc: "Considérez-le comme un moteur de recherche sous stéroïdes. Il vous livre systématiquement ses sources." }
+                            { title: "Claude", img: claude, desc: "Excellent en génération de texte et de vos supports de cours pédagogique (pdf, word, powerpoint)" },
+                            { title: "NotebookLM", img: notebook, desc: "Idéal pour la génération de ressources intéractives  vidéo, podcast, présentations, images) à partir de vos sources habituelles (manuels scolaires, page internet, vidéo YouTube, …)" },
+                            { title: "Perplexity", img: perplexity, desc: "Considérez-le comme un moteur de recherche sous stéroïdes. Il vous livre systématiquement ses sources de recherches. Utilisez le pour agrémenter vos cours avec des données issues des sources fiables." }
                         ].map((ia, i) => (
-                            <div key={i} className="group relative h-48 w-full [perspective:1000px]">
-                                <div className="absolute duration-500 w-full h-full [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
-                                    {/* Front */}
-                                    <div className="absolute w-full h-full bg-secondary text-secondary-foreground rounded-xl border p-6 flex items-center justify-center [backface-visibility:hidden]">
-                                        <h3 className="text-xl font-bold">{ia.title}</h3>
-                                    </div>
+                            <div
+                                key={i}
+                                className="group relative h-64 w-full [perspective:1000px] cursor-pointer"
+                                onClick={() => toggleCard(i)}
+                            >
+                                <div className={`absolute duration-500 w-full h-full [transform-style:preserve-3d] ${flippedCards[i] ? '[transform:rotateY(180deg)]' : ''}`}>
+                                    {/* Front — image réelle sur fond dégradé */}
+                                    <Card className="absolute w-full h-full rounded-[10px] [backface-visibility:hidden] overflow-hidden p-0">
+                                        {/* Fond dégradé identique aux logos officiels */}
+                                        <div className="absolute inset-0 rounded-[10px]" style={{ background: 'linear-gradient(135deg, #f0c0f8 0%, #c8aaee 35%, #a8b8f8 70%, #c0b0f0 100%)' }} />
+                                        {/* Image centrée */}
+                                        <div className="absolute inset-0 flex flex-col">
+                                            <div className="flex-1 flex items-center justify-center overflow-hidden">
+                                                <img
+                                                    src={ia.img}
+                                                    alt={`Logo ${ia.title}`}
+                                                    className="w-full h-full object-cover"
+                                                />
+                                            </div>
+                                            <p className="flex items-center justify-start p-4 h-[76px] bg-white text-black m-0 text-base">{ia.title}</p>
+                                        </div>
+                                    </Card>
                                     {/* Back */}
-                                    <div className="absolute w-full h-full bg-primary text-primary-foreground rounded-xl border p-6 flex items-center text-center [backface-visibility:hidden] [transform:rotateY(180deg)]">
-                                        <p className="text-sm">{ia.desc}</p>
-                                    </div>
+                                    <Card
+                                        className="absolute w-full h-full rounded-[10px] p-6 flex flex-col items-center justify-center gap-3 text-center [backface-visibility:hidden] [transform:rotateY(180deg)]"
+                                        style={{ background: 'linear-gradient(135deg, #e0a8f4 0%, #b89ce0 40%, #9ab0f0 100%)' }}
+                                    >
+                                        <p className="text-lg font-bold text-white">{ia.title}</p>
+                                        <p className="text-lg text-white/90 leading-tight">{ia.desc}</p>
+                                    </Card>
                                 </div>
                             </div>
                         ))}
                     </div>
+                    <p className="text-xs text-muted-foreground text-center">Cliquez sur une carte pour la retourner</p>
                 </div>
             )}
-
             {/* Step 2: Accordéons */}
             {step === 2 && (
                 <div className="space-y-6">
@@ -104,10 +136,11 @@ export default function Capsule1({ onComplete }) {
                     variant="outline"
                     onClick={() => setStep(step - 1)}
                     disabled={step === 0}>
-                    Précédent
+                    {"<- Précédent"}
                 </Button>
 
                 <Button
+                    disabled={step === 1 && Object.keys(flippedCards).length < 3}
                     onClick={() => step < 2 ? setStep(step + 1) : onComplete?.()}>
                     {step < 2 ? "Suivant ->" : "Terminer"}
                 </Button>
