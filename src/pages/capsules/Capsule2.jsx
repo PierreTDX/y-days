@@ -4,7 +4,7 @@ import DragDropGame from "@/features/dragdrop/DragDropGame"
 
 const BUCKETS = ['Rôle', 'Objectif', 'Limites', 'Exemple']
 
-export default function Capsule2({ onComplete }) {
+export default function Capsule2({ onComplete, canResume, onResume }) {
     const [step, setStep] = useState(0)
 
     const gameCards = [
@@ -59,12 +59,19 @@ export default function Capsule2({ onComplete }) {
             )}
 
             <div className="mt-8 flex justify-between">
-                <Button
-                    variant="outline"
-                    onClick={() => setStep(step - 1)}
-                    disabled={step === 0}>
-                    {"<- Précédent"}
-                </Button>
+                {step > 0 ? (
+                    <Button variant="outline" onClick={() => setStep(step - 1)}>
+                        {"<- Précédent"}
+                    </Button>
+                ) : (
+                    <div />
+                )}
+
+                {canResume && (
+                    <Button variant="outline" onClick={onResume}>
+                        Reprendre où j'en étais
+                    </Button>
+                )}
 
                 <Button onClick={() => step < 1 ? setStep(step + 1) : onComplete?.()}>
                     {step < 1 ? "Suivant ->" : "Terminer"}

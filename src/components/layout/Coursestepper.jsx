@@ -263,18 +263,13 @@ export default function CourseStepper({ initialSteps = [], variant = "both" }) {
             <div className=" border p-11 border-zinc-200 rounded-xl shadow-sm text-left stepper-container">
                 {/* <h3 className="text-lg font-bold mb-4 text-zinc-800">{steps[selectedIdx]?.title}</h3> */}
                 {steps[selectedIdx]?.content && React.isValidElement(steps[selectedIdx].content)
-                    ? React.cloneElement(steps[selectedIdx].content, { onComplete: handleCompleteStep })
+                    ? React.cloneElement(steps[selectedIdx].content, {
+                        onComplete: handleCompleteStep,
+                        canResume: activeIndex !== -1 && selectedIdx !== activeIndex,
+                        onResume: () => setSelectedIdx(activeIndex)
+                    })
                     : steps[selectedIdx]?.content}
             </div>
-
-            {/* Boutons d'action */}
-            {activeIndex !== -1 && selectedIdx !== activeIndex && (
-                <div className="flex justify-end mt-2 gap-3">
-                    <button onClick={() => setSelectedIdx(activeIndex)} className="px-5 py-2.5 text-sm font-medium border border-zinc-200 text-zinc-700 rounded-lg hover:bg-zinc-50 transition-colors shadow-sm">
-                        Reprendre où j'en étais
-                    </button>
-                </div>
-            )}
         </div>
     );
 }

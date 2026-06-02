@@ -8,7 +8,7 @@ const claude = '/y-days/images/Claude.png';
 const notebook = '/y-days/images/NotebookLM.png';
 const perplexity = '/y-days/images/Perplexity.png';
 
-export default function Capsule1({ onComplete }) {
+export default function Capsule1({ onComplete, canResume, onResume }) {
     const [step, setStep] = useState(0)
     const [flippedCards, setFlippedCards] = useState({})
 
@@ -189,12 +189,19 @@ export default function Capsule1({ onComplete }) {
             )}
 
             <div className="mt-15 flex justify-between">
-                <Button
-                    variant="outline"
-                    onClick={() => setStep(step - 1)}
-                    disabled={step === 0}>
-                    {"<- Précédent"}
-                </Button>
+                {step > 0 ? (
+                    <Button variant="outline" onClick={() => setStep(step - 1)}>
+                        {"<- Précédent"}
+                    </Button>
+                ) : (
+                    <div />
+                )}
+
+                {canResume && (
+                    <Button variant="outline" onClick={onResume}>
+                        Reprendre où j'en étais
+                    </Button>
+                )}
 
                 <Button
                     disabled={step === 1 && Object.keys(flippedCards).length < 3}

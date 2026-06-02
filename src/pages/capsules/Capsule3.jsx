@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { useNavigate } from 'react-router-dom'
 
-export default function Capsule3({ onComplete }) {
+export default function Capsule3({ onComplete, canResume, onResume }) {
     const [step, setStep] = useState(0)
     const [gameResult, setGameResult] = useState(null)
     const navigate = useNavigate()
@@ -81,12 +81,20 @@ export default function Capsule3({ onComplete }) {
             )}
 
             <div className="mt-8 flex justify-between">
-                <Button
-                    variant="outline"
-                    onClick={() => setStep(step - 1)}
-                    disabled={step === 0}>
-                    {"<- Précédent"}
-                </Button>
+                {step > 0 ? (
+                    <Button variant="outline" onClick={() => setStep(step - 1)}>
+                        {"<- Précédent"}
+                    </Button>
+                ) : (
+                    <div />
+                )}
+
+                {canResume && (
+                    <Button variant="outline" onClick={onResume}>
+                        Reprendre où j'en étais
+                    </Button>
+                )}
+
                 <Button onClick={() => {
                     if (step < 4) {
                         setStep(step + 1)
