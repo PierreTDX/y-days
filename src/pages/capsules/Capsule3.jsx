@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
 import { useNavigate } from 'react-router-dom'
-import { ArrowLeft, ArrowRight } from "lucide-react"
+import { ArrowLeft, ArrowRight, Check, X } from "lucide-react"
 
 export default function Capsule3({ onComplete, canResume, onResume, onProgress }) {
     const [step, setStep] = useState(0)
@@ -33,21 +34,48 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
                     <p className="text-muted-foreground leading-relaxed font-bold">
                         D’après toi, cette peinture  a-t-elle été générée par IA?
                     </p>
-                    <div className="aspect-video bg-muted rounded-lg flex items-center justify-center text-muted-foreground mb-6 overflow-hidden relative">
-                        {/* Placeholder pour une image ou texte */}
-                        <p className="p-8 italic">"À Houston, jeudi 18 avril. 20 h. Questions-réponses, comédie, discussion..."</p>
+                    <Card className={`p-0 gap-0 border-2 ${gameResult !== null ? (gameResult ? 'border-green-500' : 'border-red-500') : 'border-border'}`}>
+                        <div className="aspect-video bg-muted flex items-center justify-center text-muted-foreground overflow-hidden relative max-h-[320px]">
+                            {/* Placeholder pour une image ou texte */}
+                            <p className="p-8 italic">"À Houston, jeudi 18 avril. 20 h. Questions-réponses, comédie, discussion..."</p>
 
-                        {gameResult !== null && (
-                            <div className={`absolute inset-0 flex items-center justify-center bg-background/80 backdrop-blur-sm ${gameResult ? 'text-green-500' : 'text-red-500'}`}>
-                                <span className="text-4xl font-bold">{gameResult ? '✅ Bonne réponse !' : '❌ Mauvaise réponse...'}</span>
-                            </div>
-                        )}
-                    </div>
+                            {gameResult !== null && (
+                                <div className="absolute top-3 right-3 flex items-center gap-2">
+                                    <span className={`text-sm font-medium ${gameResult ? 'text-green-500' : 'text-red-500'}`}>
+                                        {gameResult ? 'Bonne réponse !' : 'Mauvaise réponse !'}
+                                    </span>
+                                    <div className={`flex items-center justify-center w-5 h-5 rounded-full text-white ${gameResult ? 'bg-green-500' : 'bg-red-500'}`}>
+                                        {gameResult ? (
+                                            <Check className="w-3.5 h-3.5 stroke-[3]" />
+                                        ) : (
+                                            <X className="w-3.5 h-3.5 stroke-[3]" />
+                                        )}
+                                    </div>
+                                </div>
+                            )}
+                        </div>
 
-                    <div className="flex gap-4 justify-center">
-                        <Button onClick={() => handleGuess(false)} size="lg" variant="secondary" className="w-32">IA</Button>
-                        <Button onClick={() => handleGuess(true)} size="lg" className="w-32">Pas IA</Button>
-                    </div>
+                        <div className="flex gap-4 p-6 h-21">
+                            <Button
+                                onClick={() => handleGuess(false)}
+                                size="lg"
+                                variant="outline"
+                                className="flex-1 text-green-900 hover:text-green-950 hover:bg-green-200 border-none"
+                                style={{ background: '#DCFCE7', border: '1px solid rgba(34, 197, 94, 0.4)', borderRadius: '8px' }}
+                            >
+                                <Check className="w-4 h-4 mr-2" /> IA
+                            </Button>
+                            <Button
+                                onClick={() => handleGuess(true)}
+                                size="lg"
+                                variant="outline"
+                                className="flex-1 text-red-600 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-950/50 border-none"
+                                style={{ background: 'rgba(220, 38, 38, 0.1)', border: '1px solid rgba(220, 38, 38, 0.4)', borderRadius: '8px' }}
+                            >
+                                <X className="w-4 h-4 mr-2" /> Pas IA
+                            </Button>
+                        </div>
+                    </Card>
                 </div>
             )}
 
