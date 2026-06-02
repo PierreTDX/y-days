@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Memo } from "@/components/ui/Memo"
+import { FlipCard } from "@/components/ui/FlipCard"
 
 const claude = '/y-days/images/Claude.png';
 const notebook = '/y-days/images/NotebookLM.png';
@@ -64,38 +65,14 @@ export default function Capsule1({ onComplete }) {
                             { title: "NotebookLM", img: notebook, desc: "Idéal pour la génération de ressources intéractives  vidéo, podcast, présentations, images) à partir de vos sources habituelles (manuels scolaires, page internet, vidéo YouTube, …)" },
                             { title: "Perplexity", img: perplexity, desc: "Considérez-le comme un moteur de recherche sous stéroïdes. Il vous livre systématiquement ses sources de recherches. Utilisez le pour agrémenter vos cours avec des données issues des sources fiables." }
                         ].map((ia, i) => (
-                            <div
+                            <FlipCard
                                 key={i}
-                                className="group relative h-64 w-full [perspective:1000px] cursor-pointer"
+                                title={ia.title}
+                                img={ia.img}
+                                desc={ia.desc}
+                                isFlipped={flippedCards[i]}
                                 onClick={() => toggleCard(i)}
-                            >
-                                <div className={`absolute duration-500 w-full h-full [transform-style:preserve-3d] ${flippedCards[i] ? '[transform:rotateY(180deg)]' : ''}`}>
-                                    {/* Front — image réelle sur fond dégradé */}
-                                    <Card className="absolute w-full h-full rounded-[10px] [backface-visibility:hidden] overflow-hidden p-0">
-                                        {/* Fond dégradé identique aux logos officiels */}
-                                        <div className="absolute inset-0 rounded-[10px]" style={{ background: 'linear-gradient(135deg, #f0c0f8 0%, #c8aaee 35%, #a8b8f8 70%, #c0b0f0 100%)' }} />
-                                        {/* Image centrée */}
-                                        <div className="absolute inset-0 flex flex-col">
-                                            <div className="flex-1 flex items-center justify-center overflow-hidden">
-                                                <img
-                                                    src={ia.img}
-                                                    alt={`Logo ${ia.title}`}
-                                                    className="w-full h-full object-cover"
-                                                />
-                                            </div>
-                                            <p className="flex items-center justify-start p-4 h-[76px] bg-white text-black m-0 text-base">{ia.title}</p>
-                                        </div>
-                                    </Card>
-                                    {/* Back */}
-                                    <Card
-                                        className="absolute w-full h-full rounded-[10px] p-6 flex flex-col items-center justify-center gap-3 text-center [backface-visibility:hidden] [transform:rotateY(180deg)]"
-                                        style={{ background: 'linear-gradient(135deg, #e0a8f4 0%, #b89ce0 40%, #9ab0f0 100%)' }}
-                                    >
-                                        <p className="text-lg font-bold text-white">{ia.title}</p>
-                                        <p className="text-lg text-white/90 leading-tight">{ia.desc}</p>
-                                    </Card>
-                                </div>
-                            </div>
+                            />
                         ))}
                     </div>
                     <p className="text-xs text-muted-foreground text-center">Cliquez sur une carte pour la retourner</p>
