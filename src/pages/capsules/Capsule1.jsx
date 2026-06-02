@@ -101,7 +101,7 @@ export default function Capsule1({ onComplete }) {
                                 icon: "/y-days/icons/accSearch.svg",
                                 label: "Recherche d'informations et sources",
                                 tools: [
-                                    { logo: "/y-days/logos/Logo6.png", name: "Perplexity", desc: "Recherche web sourcée, très utile pour vérifier des infos." },
+                                    { logo: "/y-days/logos/Logo6.png/y-days/logos/Logo6.png", name: "Perplexity", desc: "Recherche web sourcée, très utile pour vérifier des infos." },
                                     { logo: "/y-days/logos/Logo7.png", name: "NotebookLM", desc: "Analyse de vos propres documents, citations à l'appui." },
                                     { logo: "/y-days/logos/Logo8.png", name: "You.com", desc: "Recherche assistée par IA avec réponses synthétiques." },
                                 ]
@@ -110,22 +110,22 @@ export default function Capsule1({ onComplete }) {
                                 icon: "/y-days/icons/accImage.svg",
                                 label: "Génération d'images",
                                 tools: [
-                                    { logo: "/logos/midjourney.png", name: "Midjourney", desc: "Génération d'images très qualitative et artistique." },
-                                    { logo: "/logos/dalle.png", name: "DALL·E", desc: "Génération d'images à partir de texte." },
-                                    { logo: "/logos/canva.png", name: "Canva Image IA", desc: "Pratique pour créer vite des visuels intégrés à des designs." },
-                                    { logo: "/logos/stablediffusion.png", name: "Stable Diffusion", desc: "Très flexible, souvent utilisé en local ou via interfaces." },
-                                    { logo: "/logos/firefly.png", name: "Adobe Firefly", desc: "Orienté création graphique et usage pro." },
+                                    { logo: "/y-days/logos/Logo9.png", name: "Midjourney", desc: "Génération d'images très qualitative et artistique." },
+                                    { logo: "/y-days/logos/Logo1.png", name: "DALL·E", desc: "Génération d'images à partir de texte." },
+                                    { logo: "/y-days/logos/Logo11.png", name: "Canva Image IA", desc: "Pratique pour créer vite des visuels intégrés à des designs." },
+                                    { logo: "/y-days/logos/Logo12.png", name: "Stable Diffusion", desc: "Très flexible, souvent utilisé en local ou via interfaces." },
+                                    { logo: "/y-days/logos/Logo13.png", name: "Adobe Firefly", desc: "Orienté création graphique et usage pro." },
                                 ]
                             },
                             {
                                 icon: "/y-days/icons/accVideo.svg",
                                 label: "Génération de vidéos",
                                 tools: [
-                                    { logo: "/logos/runway.png", name: "Runway", desc: "Génération et montage vidéo assisté." },
-                                    { logo: "/logos/pika.png", name: "Pika Labs", desc: "Génération de vidéos courtes et créatives." },
-                                    { logo: "/logos/invideo.png", name: "InVideo AI", desc: "Vidéos avec script, voix et sous-titres." },
-                                    { logo: "/logos/synthesia.png", name: "Synthesia", desc: "Vidéos avec avatars IA, utile pour formation." },
-                                    { logo: "/logos/canvavideo.png", name: "Canva Video IA", desc: "Simple pour faire des vidéos rapides." },
+                                    { logo: "/y-days/logos/Logo14.png", name: "Runway", desc: "Génération et montage vidéo assisté." },
+                                    { logo: "/y-days/logos/Logo15.png", name: "Pika Labs", desc: "Génération de vidéos courtes et créatives." },
+                                    { logo: "/y-days/logos/Logo16.png", name: "InVideo AI", desc: "Vidéos avec script, voix et sous-titres." },
+                                    { logo: "/y-days/logos/Logo17.png", name: "Synthesia", desc: "Vidéos avec avatars IA, utile pour formation." },
+                                    { logo: "/y-days/logos/Logo11.png", name: "Canva Video IA", desc: "Simple pour faire des vidéos rapides." },
                                 ]
                             },
                             {
