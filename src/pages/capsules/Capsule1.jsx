@@ -81,7 +81,10 @@ export default function Capsule1({ onComplete }) {
             {/* Step 2: Accordéons */}
             {step === 2 && (
                 <div className="space-y-6">
-                    <h2 className="text-2xl font-bold tracking-tight">Liste d'IA pour le quotidien</h2>
+                    <h1 className="text-4xl font-semibold">Introduction et découverte des outils d'IA</h1>
+                    <p className="text-muted-foreground leading-relaxed font-bold">
+                        Pour aller plus loin :
+                    </p>
                     <div className="border rounded-md divide-y">
                         {[
                             { category: "Texte", items: ["ChatGPT : rédaction, résumé, idées, scripts.", "Claude : très bon pour les longs textes.", "Gemini : texte + multimodal.", "Mistral : rédaction en français.", "Copilot : résumés de documents."] },
