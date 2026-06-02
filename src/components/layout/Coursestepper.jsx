@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 const BookIcon = ({ className = "" }) => (
     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
@@ -100,100 +100,103 @@ function HorizontalStepper({ selectedIdx, steps, onStepClick }) {
     const isAllCompleted = steps.every(s => s.status === "completed");
 
     return (
-        <div className="flex items-center rounded-xl border border-zinc-200 overflow-hidden bg-white">
-            {/* Logo */}
-            <div className="flex items-center justify-center px-5 border-r border-zinc-200 h-[60px] font-medium text-sm text-zinc-800 whitespace-nowrap flex-shrink-0">
+        <div className="flex items-center gap-6 w-full">
+            {/* Logo en dehors du stepper */}
+            <div className="font-bold text-lg text-zinc-800 whitespace-nowrap flex-shrink-0 pl-2">
                 LOGO
             </div>
 
-            {/* Étapes (Steps) */}
-            <div className="flex flex-1 items-center min-w-0">
-                {steps.map((step, i) => {
-                    const isSelected = i === selectedIdx;
-                    const Icon = step.icon || BookIcon;
+            {/* Conteneur des étapes */}
+            <div className="flex flex-1 items-center rounded-xl border border-zinc-200 overflow-hidden bg-white shadow-sm">
+                {/* Étapes (Steps) */}
+                <div className="flex flex-1 items-center min-w-0">
+                    {steps.map((step, i) => {
+                        const isSelected = i === selectedIdx;
+                        const Icon = step.icon || BookIcon;
 
-                    return (
-                        <div
-                            key={i}
-                            onClick={step.status !== "locked" ? () => onStepClick(i) : undefined}
-                            className={[
-                                "relative flex items-center h-[60px] gap-3 px-4",
-                                "transition-all duration-500 ease-in-out overflow-hidden",
-                                "border-l border-zinc-200",
-                                isSelected ? "flex-1 min-w-0" : "w-[72px] min-w-[72px] justify-center",
-                                step.status !== "locked" ? "cursor-pointer hover:bg-zinc-50" : "cursor-not-allowed opacity-70",
-                            ].join(" ")}
-                        >
-                            {/* Icon & Label part */}
+                        return (
                             <div
-                                className="flex flex-col items-center gap-0.5 min-w-[48px] flex-shrink-0 transition-colors duration-300"
-                            >
-                                <Icon
-                                    className={
-                                        isSelected || step.status === "active"
-                                            ? "text-violet-500"
-                                            : step.status === "completed"
-                                                ? "text-zinc-500"
-                                                : "text-zinc-300"
-                                    }
-                                />
-                                <span
-                                    className={`text-[11px] ${isSelected || step.status === "active" ? "text-violet-500" : "text-zinc-400"
-                                        }`}
-                                >
-                                    {step.label}
-                                </span>
-                            </div>
-
-                            {/* Active content part (title, progress, etc.) */}
-                            <div
+                                key={i}
+                                onClick={step.status !== "locked" ? () => onStepClick(i) : undefined}
                                 className={[
-                                    "flex-1 flex flex-col gap-1 min-w-0",
-                                    "transition-opacity duration-300 delay-200",
-                                    isSelected ? "opacity-100" : "opacity-0 w-0",
+                                    "relative flex items-center h-[60px] gap-3 px-4",
+                                    "transition-all duration-500 ease-in-out overflow-hidden",
+                                    "border-l border-zinc-200",
+                                    isSelected ? "flex-1 min-w-0" : "w-[72px] min-w-[72px] justify-center",
+                                    step.status !== "locked" ? "cursor-pointer hover:bg-zinc-50" : "cursor-not-allowed opacity-70",
                                 ].join(" ")}
                             >
-                                <div className="h-[3px] bg-zinc-100 rounded-full">
-                                    <div
-                                        className="h-full rounded-full bg-violet-500 transition-all duration-500"
-                                        style={{
-                                            width: isAllCompleted ? "100%" : `${step.progress || 0}%`,
-                                        }}
+                                {/* Icon & Label part */}
+                                <div
+                                    className="flex flex-col items-center gap-0.5 min-w-[48px] flex-shrink-0 transition-colors duration-300"
+                                >
+                                    <Icon
+                                        className={
+                                            isSelected || step.status === "active"
+                                                ? "text-violet-500"
+                                                : step.status === "completed"
+                                                    ? "text-zinc-500"
+                                                    : "text-zinc-300"
+                                        }
                                     />
+                                    <span
+                                        className={`text-[11px] ${isSelected || step.status === "active" ? "text-violet-500" : "text-zinc-400"
+                                            }`}
+                                    >
+                                        {step.label}
+                                    </span>
                                 </div>
 
-                                <div className="flex items-center justify-between gap-3 overflow-hidden">
-                                    <span className="text-[13px] text-zinc-800 truncate">
-                                        {step.title}
-                                    </span>
-                                    <div className="flex items-center gap-3 flex-shrink-0">
-                                        {step.readTime && (
-                                            <span className="text-xs text-zinc-400 whitespace-nowrap">
-                                                Temps de lecture : {step.readTime}
-                                            </span>
-                                        )}
+                                {/* Active content part (title, progress, etc.) */}
+                                <div
+                                    className={[
+                                        "flex-1 flex flex-col gap-1 min-w-0",
+                                        "transition-opacity duration-300 delay-200",
+                                        isSelected ? "opacity-100" : "opacity-0 w-0",
+                                    ].join(" ")}
+                                >
+                                    <div className="h-[3px] bg-zinc-100 rounded-full">
+                                        <div
+                                            className="h-full rounded-full bg-violet-500 transition-all duration-500"
+                                            style={{
+                                                width: isAllCompleted ? "100%" : `${step.progress || 0}%`,
+                                            }}
+                                        />
+                                    </div>
+
+                                    <div className="flex items-center justify-between gap-3 overflow-hidden">
+                                        <span className="text-[13px] text-zinc-800 truncate">
+                                            {step.title}
+                                        </span>
+                                        <div className="flex items-center gap-3 flex-shrink-0">
+                                            {step.readTime && (
+                                                <span className="text-xs text-zinc-400 whitespace-nowrap">
+                                                    Temps de lecture : {step.readTime}
+                                                </span>
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            {/* Inactive Badges */}
-                            {!isSelected && (
-                                <>
-                                    {step.status === "locked" && (
-                                        <span className="absolute top-1.5 right-2 w-4 h-4 flex items-center justify-center rounded-full bg-zinc-100">
-                                            <LockIcon size={10} />
-                                        </span>
-                                    )}
-                                    {step.status === "completed" && (
-                                        <span className="absolute top-1.5 right-2 w-4 h-4 flex items-center justify-center rounded-full bg-green-500 text-white">
-                                            <CheckIcon size={9} />
-                                        </span>
-                                    )}
-                                </>
-                            )}
-                        </div>
-                    );
-                })}
+                                {/* Inactive Badges */}
+                                {!isSelected && (
+                                    <>
+                                        {step.status === "locked" && (
+                                            <span className="absolute top-1.5 right-2 w-4 h-4 flex items-center justify-center rounded-full bg-zinc-100">
+                                                <LockIcon size={10} />
+                                            </span>
+                                        )}
+                                        {step.status === "completed" && (
+                                            <span className="absolute top-1.5 right-2 w-4 h-4 flex items-center justify-center rounded-full bg-green-500 text-white">
+                                                <CheckIcon size={9} />
+                                            </span>
+                                        )}
+                                    </>
+                                )}
+                            </div>
+                        );
+                    })}
+                </div>
             </div>
         </div>
     );
@@ -226,10 +229,10 @@ export default function CourseStepper({ initialSteps = [], variant = "both" }) {
     };
 
     return (
-        <div className="p-6 flex flex-col gap-8 max-w-2xl mx-auto w-full">
+        <div className="flex flex-col gap-8 mx-auto w-full">
             {/* Vertical */}
             {(variant === "vertical" || variant === "both") && (
-                <div>
+                <div className="sticky top-4 z-50 bg-white p-3 rounded-xl border border-zinc-200 shadow-sm">
                     {variant === "both" && <p className="text-xs uppercase tracking-widest text-zinc-400 mb-3">Vue verticale</p>}
                     <div className="flex flex-col gap-2">
                         {steps.map((step, i) => (
@@ -246,7 +249,7 @@ export default function CourseStepper({ initialSteps = [], variant = "both" }) {
 
             {/* Horizontal */}
             {(variant === "horizontal" || variant === "both") && (
-                <div>
+                <div className="sticky top-4 z-50">
                     {variant === "both" && <p className="text-xs uppercase tracking-widest text-zinc-400 mb-3">Vue horizontale</p>}
                     <HorizontalStepper
                         selectedIdx={selectedIdx}
@@ -257,24 +260,19 @@ export default function CourseStepper({ initialSteps = [], variant = "both" }) {
             )}
 
             {/* Contenu du module sélectionné */}
-            <div className="mt-4 p-6 bg-white border border-zinc-200 rounded-xl shadow-sm text-left">
-                <h3 className="text-lg font-bold mb-4 text-zinc-800">{steps[selectedIdx]?.title}</h3>
-                {steps[selectedIdx]?.content}
+            <div className=" border p-11 border-zinc-200 rounded-xl shadow-sm text-left stepper-container">
+                {/* <h3 className="text-lg font-bold mb-4 text-zinc-800">{steps[selectedIdx]?.title}</h3> */}
+                {steps[selectedIdx]?.content && React.isValidElement(steps[selectedIdx].content)
+                    ? React.cloneElement(steps[selectedIdx].content, { onComplete: handleCompleteStep })
+                    : steps[selectedIdx]?.content}
             </div>
 
             {/* Boutons d'action */}
-            {activeIndex !== -1 && (
+            {activeIndex !== -1 && selectedIdx !== activeIndex && (
                 <div className="flex justify-end mt-2 gap-3">
-                    {selectedIdx !== activeIndex && (
-                        <button onClick={() => setSelectedIdx(activeIndex)} className="px-5 py-2.5 text-sm font-medium border border-zinc-200 text-zinc-700 rounded-lg hover:bg-zinc-50 transition-colors shadow-sm">
-                            Reprendre où j'en étais
-                        </button>
-                    )}
-                    {selectedIdx === activeIndex && (
-                        <button onClick={handleCompleteStep} className="px-5 py-2.5 text-sm font-medium bg-violet-500 text-white rounded-lg hover:bg-violet-600 transition-colors shadow-sm">
-                            Terminé
-                        </button>
-                    )}
+                    <button onClick={() => setSelectedIdx(activeIndex)} className="px-5 py-2.5 text-sm font-medium border border-zinc-200 text-zinc-700 rounded-lg hover:bg-zinc-50 transition-colors shadow-sm">
+                        Reprendre où j'en étais
+                    </button>
                 </div>
             )}
         </div>

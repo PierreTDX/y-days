@@ -31,7 +31,7 @@
   right: 0;
   height: 45%;
   background: linear-gradient(to right, #FFC83A, #FF008A, #6100FF, #001AFF);
-  opacity: .40;
+  opacity: .60;
   -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
   mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
   pointer-events: none;

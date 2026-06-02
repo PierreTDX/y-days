@@ -1,6 +1,7 @@
 import React from 'react';
 import Testimony from '@/components/ui/Testimony';
 import CourseStepper from '@/components/layout/Coursestepper';
+import Memo from '@/components/ui/Memo';
 
 // Icônes SVG
 const BookIcon = ({ className }) => (
@@ -28,8 +29,8 @@ const SearchIcon = ({ className }) => (
 );
 
 // Remplacez par vos vraies images
-const marieImageUrl = 'public/images/prof1.png';
-const aurelieImageUrl = 'public/images/prof2.png';
+const marieImageUrl = '/y-days/images/prof1.png';
+const aurelieImageUrl = '/y-days/images/prof2.png';
 
 const demoSteps = [
     {
@@ -124,6 +125,22 @@ const TestsPage = () => {
                     />
                 </div>
             </div>
+            <div className="min-h-screen bg-neutral-50 p-12 flex flex-col items-center gap-24">
+                <h1 className="text-4xl font-bold">Memo</h1>
+                <div className=" max-w-sm gap-6 flex flex-col">
+                    <Memo variant="bookmark">
+                        <p>C’est pour cette raison que l’IA peut s’avérer être un réel assistant pour la planification et la création de vos ressources pédagogiques.</p>
+                    </Memo>
+                    <Memo variant="bulb">
+                        <p>C’est pour cette raison que l’IA peut s’avérer être un réel assistant pour la planification et la création de vos ressources pédagogiques.</p>
+                    </Memo>
+                    <Memo variant="search" className="mt-6">
+                        <h3 className="font-bold text-lg">Pourquoi un tel choc ?</h3>
+                        <p>Pour la première fois, ChatGPT ne répondait pas avec juste des mots clés, mais conversait comme un être humain. Il s’est révélé capable de vous comprendre implicitement, de traduire votre pensée, et même de s’adapter aux contraintes de niveau : le niveau d’un élève de CP par exemple.</p>
+                    </Memo>
+                </div>
+            </div>
+
 
         </>
 

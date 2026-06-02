@@ -11,7 +11,7 @@
   width: 48%;
   background:
     linear-gradient(rgba(255,255,255,.92), rgba(255,255,255,.92)),
-    url('/y-days/efa249ca0a78f70482e9cb7dae14bc8d38859bc8.png') center / cover;
+    url('/y-days/images/background.png') center / cover;
   display: flex;
   flex-direction: column;
   padding: 48px 56px;
