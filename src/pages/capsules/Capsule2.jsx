@@ -10,7 +10,7 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
     const [step, setStep] = useState(0)
     // const enableNext = true
 
-    const maxSteps = 2
+    const finalStep = 1
 
     useEffect(() => {
         if (onProgress) {
@@ -25,16 +25,20 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
         { id: 'c4', text: 'Structure la réponse ainsi : 1. Intro... 4 fiches max.', answer: 'Exemple' },
         // { id: 'c5', text: 'Pas plus de 100 mots.', answer: 'Limites' }
     ]
+    
+    const [isGragAndDropComplete, setIsGragAndDropComplete] = useState(false)
 
-    function handleNextStep() {
-        return () => step < maxSteps - 1 ? setStep(step + 1) : onComplete?.()
-    }
-    // if (step === 1) {
-    //     const allCorrect = gameCards.every((c) => c.assigned !== null && c.answer === c.assigned)
-    // }
+    const isNextDisabled = (
+        false
+        || (step === 1 && isGragAndDropComplete === false)
+        // || (step === 2 && openedAccordions.length < 3)
+    );
+
 
     return (<>
         <div className="w-full mx-auto p-6 rounded-xl border bg-card text-card-foreground shadow-sm">
+
+            {/* ROLE Introduction */}
             {step === 0 && (
                 <div className="space-y-6">
                     <h1 className="text-4xl font-semibold">Rédiger le bon prompt : La Méthode R.O.L.E.</h1>
@@ -66,7 +70,8 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
                     </div>
                 </div>
             )}
-
+            
+            {/* Drag n Drop Game */}
             {step === 1 && (
                 <div className="space-y-6">
                     {/* <h2 className="text-2xl font-bold tracking-tight">Mini-Jeu : Drag & Drop R.O.L.E</h2> */}
@@ -74,11 +79,12 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
                     <p className="hidden md:hidden text-sm text-muted-foreground">Glissez les éléments dans la bonne catégorie.</p>
                     {/* <DragDropGame buckets={BUCKETS} initialCards={gameCards} /> */}
                     {/* <AssignmentGame buckets={BUCKETS} initialCards={gameCards} onComplete={() => alert("Good job!")} /> */}
-                    <AssignmentGame buckets={BUCKETS} initialCards={gameCards} onComplete={() => alert("Good job!")} />
+                    <AssignmentGame buckets={BUCKETS} initialCards={gameCards} onComplete={() => alert("Good job!")} onProgress={setIsGragAndDropComplete} />
                 </div>
             )}
 
-            <div className="mt-8 flex justify-between">
+            {/* Button bar. */}
+            <div className="mt-15 flex justify-between">
                 {step > 0 ? (
                     <Button variant="outline" onClick={() => setStep(step - 1)}>
                         <ArrowLeft className="w-4 h-4 mr-2" /> Précédent
@@ -87,19 +93,33 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
                     <div />
                 )}
 
-                {canResume && (
-                    <Button variant="outline" onClick={onResume}>
-                        Reprendre où j'en étais
-                    </Button>
-                )}
-
-                <Button onClick={() => step < 1 ? setStep(step + 1) : onComplete?.()}>
-                    {step < 1 ? (
-                        <>Suivant <ArrowRight className="w-4 h-4 ml-2" /></>
-                    ) : (
-                        "Terminer"
+                <div className="flex gap-4">
+                    {canResume && (
+                        <Button variant="outline" onClick={onResume}>
+                            Reprendre où j'en étais
+                        </Button>
                     )}
-                </Button>
+
+                    <span
+                        className={`group relative ${isNextDisabled ? "cursor-not-allowed inline-block" : "inline-block"}`}
+                    >
+                        {isNextDisabled && (
+                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:flex flex-row justify-center items-center px-[12px] py-[6px] gap-[8px] isolate w-[201px] max-w-[384px] h-[44px] bg-[#171717] rounded-[8px] text-white text-xs text-center z-50 pointer-events-none shadow-lg">
+                                Explorez cette étape pour continuer
+                            </div>
+                        )}
+                        <Button
+                            disabled={isNextDisabled}
+                            className={isNextDisabled ? "pointer-events-none" : ""}
+                            onClick={() => step < finalStep ? setStep(step + 1) : onComplete?.()}>
+                            {step < finalStep ? (
+                                <>Suivant <ArrowRight className="w-4 h-4 ml-2" /></>
+                            ) : (
+                                "Terminer"
+                            )}
+                        </Button>
+                    </span>
+                </div>
             </div>
         </div>
     </>)

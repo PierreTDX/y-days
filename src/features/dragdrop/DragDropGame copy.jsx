@@ -10,7 +10,7 @@ function shuffle(array) {
     return arr
 }
 
-export default function DragDropGame({buckets, initialCards, onComplete}) {
+export default function DragDropGame({buckets, initialCards, onComplete, onProgress}) {
     const [cards, setCards] = useState(
         shuffle(initialCards).map((c) => ({
         ...c,
@@ -35,6 +35,12 @@ export default function DragDropGame({buckets, initialCards, onComplete}) {
     const allCorrect = cards.every(
         (c) => c.assigned !== null && c.correct === true
     )
+
+    useEffect(() => {
+        if (onProgress) {
+            onProgress(allCorrect)
+        }
+    }, [allCorrect, onProgress])
 
     function onDragStart(e, id) {
         e.dataTransfer.setData("text/plain", id)
