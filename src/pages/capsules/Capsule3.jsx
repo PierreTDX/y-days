@@ -1,11 +1,17 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Button } from "@/components/ui/button"
 import { useNavigate } from 'react-router-dom'
 
-export default function Capsule3({ onComplete, canResume, onResume }) {
+export default function Capsule3({ onComplete, canResume, onResume, onProgress }) {
     const [step, setStep] = useState(0)
     const [gameResult, setGameResult] = useState(null)
     const navigate = useNavigate()
+
+    useEffect(() => {
+        if (onProgress) {
+            onProgress(Math.round((step / 4) * 100)); // 4 est le max steps
+        }
+    }, [step, onProgress]);
 
     const handleGuess = (isCorrect) => {
         setGameResult(isCorrect)

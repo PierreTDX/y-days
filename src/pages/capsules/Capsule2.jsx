@@ -1,11 +1,17 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Button } from "@/components/ui/button"
 import DragDropGame from "@/features/dragdrop/DragDropGame"
 
 const BUCKETS = ['Rôle', 'Objectif', 'Limites', 'Exemple']
 
-export default function Capsule2({ onComplete, canResume, onResume }) {
+export default function Capsule2({ onComplete, canResume, onResume, onProgress }) {
     const [step, setStep] = useState(0)
+
+    useEffect(() => {
+        if (onProgress) {
+            onProgress(Math.round((step / 1) * 100)); // 1 est le max steps
+        }
+    }, [step, onProgress]);
 
     const gameCards = [
         { id: 'c1', text: 'Tu es un professeur expérimenté du CE2.', answer: 'Rôle' },

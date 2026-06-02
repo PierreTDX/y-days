@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Memo } from "@/components/ui/Memo"
@@ -8,11 +8,17 @@ const claude = '/y-days/images/Claude.png';
 const notebook = '/y-days/images/NotebookLM.png';
 const perplexity = '/y-days/images/Perplexity.png';
 
-export default function Capsule1({ onComplete, canResume, onResume }) {
+export default function Capsule1({ onComplete, canResume, onResume, onProgress }) {
     const [step, setStep] = useState(0)
     const [flippedCards, setFlippedCards] = useState({})
     const [openAccordion, setOpenAccordion] = useState(null)
     const [openedAccordions, setOpenedAccordions] = useState([])
+
+    useEffect(() => {
+        if (onProgress) {
+            onProgress(Math.round((step / 2) * 100)); // 2 est le max steps
+        }
+    }, [step, onProgress]);
 
     const toggleCard = (index) => {
         setFlippedCards(prev => ({

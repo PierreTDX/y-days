@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 
 const BookIcon = ({ className = "" }) => (
     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
@@ -49,17 +49,20 @@ function StepRow({ label = "Module 1", title, readTime, status = "idle", progres
 
                 {/* Progress bar (active only) */}
                 {isActive && (
-                    <div className="w-[80%] h-[3px] bg-zinc-100 rounded-full mt-1">
+                    <div className="w-[80%] h-[3px] bg-[#E5E7EB] rounded-full mt-1">
                         <div
-                            className="h-full rounded-full bg-violet-500 transition-all duration-500"
-                            style={{ width: `${progress}%` }}
+                            className="h-full rounded-full transition-all duration-500"
+                            style={{
+                                width: `${progress}%`,
+                                background: 'linear-gradient(270.05deg, #EAE0F9 0.04%, #A076E4 51.16%, #05036C 102.27%)'
+                            }}
                         />
                     </div>
                 )}
 
                 {/* Badge */}
                 {isLocked && (
-                    <span className="absolute top-2 right-2 w-4 h-4 flex items-center justify-center rounded-full bg-zinc-100">
+                    <span className="absolute top-2 right-2 w-4 h-4 flex items-center justify-center rounded-full bg-[#E5E7EB] text-muted-foreground">
                         <LockIcon size={10} />
                     </span>
                 )}
@@ -150,22 +153,23 @@ function HorizontalStepper({ selectedIdx, steps, onStepClick }) {
                                 {/* Active content part (title, progress, etc.) */}
                                 <div
                                     className={[
-                                        "flex-1 flex flex-col gap-1 min-w-0",
-                                        "transition-opacity duration-300 delay-200",
+                                        "flex-1 flex flex-col gap-2 min-w-0",
+                                        "transition-opacity duration-300 delay-200 mt-3",
                                         isSelected ? "opacity-100" : "opacity-0 w-0",
                                     ].join(" ")}
                                 >
-                                    <div className="h-[3px] bg-zinc-100 rounded-full">
+                                    <div className="h-[3px] bg-[#E5E7EB] rounded-full">
                                         <div
-                                            className="h-full rounded-full bg-violet-500 transition-all duration-500"
+                                            className="h-full rounded-full transition-all duration-500"
                                             style={{
                                                 width: isAllCompleted ? "100%" : `${step.progress || 0}%`,
+                                                background: 'linear-gradient(270.05deg, #EAE0F9 0.04%, #A076E4 51.16%, #05036C 102.27%)'
                                             }}
                                         />
                                     </div>
 
                                     <div className="flex items-center justify-between gap-3 overflow-hidden">
-                                        <span className="text-[13px] text-zinc-800 truncate">
+                                        <span className="text-[13px] truncate text-muted-foreground">
                                             {step.title}
                                         </span>
                                         <div className="flex items-center gap-3 flex-shrink-0">
@@ -182,7 +186,7 @@ function HorizontalStepper({ selectedIdx, steps, onStepClick }) {
                                 {!isSelected && (
                                     <>
                                         {step.status === "locked" && (
-                                            <span className="absolute top-1.5 right-2 w-4 h-4 flex items-center justify-center rounded-full bg-zinc-100">
+                                            <span className="absolute top-1.5 right-2 w-4 h-4 flex items-center justify-center rounded-full bg-[#E5E7EB] text-muted-foreground">
                                                 <LockIcon size={10} />
                                             </span>
                                         )}
@@ -206,6 +210,22 @@ export default function CourseStepper({ initialSteps = [], variant = "both" }) {
     const [steps, setSteps] = useState(initialSteps);
     const activeIndex = steps.findIndex((s) => s.status === "active");
     const [selectedIdx, setSelectedIdx] = useState(activeIndex !== -1 ? activeIndex : (steps.length > 0 ? steps.length - 1 : 0));
+
+    const handleProgress = useCallback((progress) => {
+        setSteps((prev) => {
+            if (!prev[selectedIdx]) return prev;
+            const newSteps = [...prev];
+            // Ne pas réduire la progression si le module est déjà terminé
+            if (newSteps[selectedIdx].status === "completed") {
+                return prev;
+            }
+            if (newSteps[selectedIdx].progress !== progress) {
+                newSteps[selectedIdx] = { ...newSteps[selectedIdx], progress };
+                return newSteps;
+            }
+            return prev;
+        });
+    }, [selectedIdx]);
 
     const handleCompleteStep = () => {
         setSteps((prev) => {
@@ -266,7 +286,8 @@ export default function CourseStepper({ initialSteps = [], variant = "both" }) {
                     ? React.cloneElement(steps[selectedIdx].content, {
                         onComplete: handleCompleteStep,
                         canResume: activeIndex !== -1 && selectedIdx !== activeIndex,
-                        onResume: () => setSelectedIdx(activeIndex)
+                        onResume: () => setSelectedIdx(activeIndex),
+                        onProgress: handleProgress
                     })
                     : steps[selectedIdx]?.content}
             </div>
