@@ -34,7 +34,7 @@ export function FlipCard({
                     style={{ background: backGradient }}
                 >
                     <p className="text-lg font-bold text-white">{title}</p>
-                    <p className="text-lg text-white/90 leading-tight">{desc}</p>
+                    <p className="text-md text-white/90 leading-tight">{desc}</p>
                 </Card>
             </div>
         </div>

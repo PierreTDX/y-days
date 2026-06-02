@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Button } from "@/components/ui/button"
 // import DragDropGame from "@/features/dragdrop/DragDropGame"
 import AssignmentGame from '@/features/dragdrop/DragDropGame copy'
-import { ArrowLeft, ArrowRight } from "lucide-react"
+import { ArrowLeft, Check } from "lucide-react"
 import FillInTheGaps from '@/features/dragdrop/DragDropGame copy 2'
 
 const BUCKETS = ['Rôle', 'Objectif', 'Limites', 'Exemple']
@@ -51,23 +51,23 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
                 **Example:**    Le texte doit {{EXAMPLE}} sur {{SIZE}}.
             `,
             initialCards: [
-                {id: "1", text: "cuisinier", answer: "ROLE"},
-                {id: "2", text: "primaire", answer: "LEVEL"},
-                {id: "3", text: "CE1", answer: "CLASS"},
-                {id: "4", text: "12 années", answer: "DURATION"},
-                {id: "5", text: "écris", answer: "ACTION"},
-                {id: "6", text: "recette de salade de fruits", answer: "RESOURCE"},
-                {id: "7", text: "vocabulaire simple", answer: "OBJECT"},
-                {id: "8", text: "vocabulaire précis adapté aux élèves de 10 ans", answer: "CONSTRAINT"},
-                {id: "9", text: "6 ans", answer: "AGE"},
-                {id: "10", text: "tenir", answer: "EXAMPLE"},
-                {id: "11", text: "une fiche", answer: "SIZE"}
+                { id: "1", text: "cuisinier", answer: "ROLE" },
+                { id: "2", text: "primaire", answer: "LEVEL" },
+                { id: "3", text: "CE1", answer: "CLASS" },
+                { id: "4", text: "12 années", answer: "DURATION" },
+                { id: "5", text: "écris", answer: "ACTION" },
+                { id: "6", text: "recette de salade de fruits", answer: "RESOURCE" },
+                { id: "7", text: "vocabulaire simple", answer: "OBJECT" },
+                { id: "8", text: "vocabulaire précis adapté aux élèves de 10 ans", answer: "CONSTRAINT" },
+                { id: "9", text: "6 ans", answer: "AGE" },
+                { id: "10", text: "tenir", answer: "EXAMPLE" },
+                { id: "11", text: "une fiche", answer: "SIZE" }
             ]
         }
-}
+    }
 
 
-    
+
     const [isGragAndDropComplete, setIsGragAndDropComplete] = useState(false)
 
     const isNextDisabled = (
@@ -84,13 +84,13 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
             {step === 0 && (
                 <div className="space-y-6">
                     <h1 className="text-4xl font-semibold">Rédiger le bon prompt : La Méthode R.O.L.E.</h1>
-                    <p className="text-muted-foreground">
+                    <p className="text-muted-foreground leading-relaxed">
                         Dans ce module, vous apprendrez à  formuler un prompt professionnel pour générer des ressources pédagogiques pour l'enseignement primaire.
                     </p>
-                    <p className="text-muted-foreground">
-                        <span style={{ fontWeight: 'bold' }}>Contenu théorique (Lecture légère):</span> 
-                        Pour obtenir une fiche de préparation ou une séquence de qualité, un bon prompt doit contenir nécessairement 4 éléments clés: 
-                        <span style={{ fontWeight: 'bold', fontSize: '1.25rem' }}>R.O.L.E</span> 
+                    <p className="text-muted-foreground leading-relaxed">
+                        <span style={{ fontWeight: 'bold' }}>Contenu théorique (Lecture légère):</span>
+                        Pour obtenir une fiche de préparation ou une séquence de qualité, un bon prompt doit contenir nécessairement 4 éléments clés:
+                        <span style={{ fontWeight: 'bold', fontSize: '1.25rem' }}>R.O.L.E</span>
                     </p>
 
                     <div className="grid gap-4">
@@ -117,26 +117,26 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
                     </div>
                 </div>
             )}
-            
+
             {/* Drag n Drop Game */}
-            {step  === 1 && (
+            {step === 1 && (
                 <div className="space-y-6">
                     {/* <h2 className="text-2xl font-bold tracking-tight">Mini-Jeu : Drag & Drop R.O.L.E</h2> */}
                     {/* <p className="block md:hidden text-sm text-muted-foreground">Tapez sur un élément pour le sélectionner depuis le panneau rétractable, puis tapez sur la bonne catégorie                             .</p>
                     <p className="hidden md:hidden text-sm text-muted-foreground">Glissez les éléments dans la bonne catégorie.</p> */}
                     {/* <AssignmentGame buckets={BUCKETS} initialCards={gameCards["Game0"]} onComplete={() => alert("Good job!")} onProgress={setIsGragAndDropComplete} /> */}
                     <AssignmentGame buckets={BUCKETS} initialCards={gameCards[`Game1`]} onProgress={setIsGragAndDropComplete} />
-                    
+
                 </div>
             )}
-            {step  === 2 && (
+            {step === 2 && (
                 <div className="space-y-6">
                     {/* <h2 className="text-2xl font-bold tracking-tight">Mini-Jeu : Drag & Drop R.O.L.E</h2> */}
                     <p className="block md:hidden text-sm text-muted-foreground">Tapez sur un élément pour le sélectionner depuis le panneau rétractable, puis tapez sur la bonne catégorie                             .</p>
                     <p className="hidden md:hidden text-sm text-muted-foreground">Glissez les éléments dans la bonne catégorie.</p>
                     {/* <AssignmentGame buckets={BUCKETS} initialCards={gameCards["Game0"]} onComplete={() => alert("Good job!")} onProgress={setIsGragAndDropComplete} /> */}
                     <AssignmentGame buckets={BUCKETS} initialCards={gameCards[`Game2`]} onProgress={setIsGragAndDropComplete} />
-                    
+
                 </div>
             )}
             {/* {step  === 3 && (
@@ -147,14 +147,14 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
                     
                 </div>
             )} */}
-            {step  === 3 && (
+            {step === 3 && (
                 <div className="space-y-6">
                     {/* <h2 className="text-2xl font-bold tracking-tight">Mini-Jeu : Drag & Drop R.O.L.E</h2> */}
                     <p className="block md:hidden text-sm text-muted-foreground">Tapez sur un élément pour le sélectionner depuis le panneau rétractable, puis tapez sur la bonne catégorie                             .</p>
                     <p className="hidden md:hidden text-sm text-muted-foreground">Glissez les éléments dans la bonne catégorie.</p>
                     {/* <AssignmentGame buckets={BUCKETS} initialCards={gameCards["Game0"]} onComplete={() => alert("Good job!")} onProgress={setIsGragAndDropComplete} /> */}
                     <FillInTheGaps promptText={gameCards["Game3FillInTheGaps"].promptText} initialCards={gameCards["Game3FillInTheGaps"].initialCards} onProgress={setIsGragAndDropComplete} />
-                    
+
                 </div>
             )}
 
@@ -188,7 +188,7 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
                             className={isNextDisabled ? "pointer-events-none" : ""}
                             onClick={() => step < finalStep ? setStep(step + 1) : onComplete?.()}>
                             {step < finalStep ? (
-                                <>Suivant <ArrowRight className="w-4 h-4 ml-2" /></>
+                                <>Valider <Check className="w-4 h-4 ml-2" /></>
                             ) : (
                                 "Terminer"
                             )}
