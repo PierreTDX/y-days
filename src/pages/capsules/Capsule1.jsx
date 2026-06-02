@@ -40,7 +40,7 @@ export default function Capsule1({ onComplete }) {
                                 2022
                             </h2>
                             <Card className="p-4">
-                                C’est année d’explosion de l’IA générative aux yeux du grand public avec la sortie de l’incontournable ChatGPT (par l’entreprise OpenAI). Un Choc positif.
+                                <p className="text-muted-foreground leading-relaxed">C’est l'année d'explosion de l'IA générative aux yeux du grand public avec la sortie de l'incontournable ChatGPT (par l'entreprise OpenAI). Un Choc positif.</p>
                             </Card>
                         </div>
                     </div>
