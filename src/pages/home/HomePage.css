@@ -17,7 +17,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: url('/y-days/images/fond.png') center / cover;
+  background: url('/y-days/images/background.png') center / cover;
   opacity: 0.6;
   z-index: -1;
 }

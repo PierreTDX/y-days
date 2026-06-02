@@ -4,7 +4,7 @@ import DragDropGame from "@/features/dragdrop/DragDropGame"
 
 const BUCKETS = ['Rôle', 'Objectif', 'Limites', 'Exemple']
 
-export default function Capsule2() {
+export default function Capsule2({ onComplete }) {
     const [step, setStep] = useState(0)
 
     const gameCards = [
@@ -19,7 +19,7 @@ export default function Capsule2() {
         <div className="w-full mx-auto p-6 rounded-xl border bg-card text-card-foreground shadow-sm">
             {step === 0 && (
                 <div className="space-y-6">
-                    <h2 className="text-2xl font-bold tracking-tight">Rédiger le bon prompt : La Méthode R.O.L.E.</h2>
+                    <h1 className="text-4xl font-semibold">Rédiger le bon prompt : La Méthode R.O.L.E.</h1>
                     <p className="text-muted-foreground">
                         Pour obtenir une fiche de préparation ou une séquence de qualité, un bon prompt doit contenir 4 éléments clés.
                     </p>
@@ -66,7 +66,7 @@ export default function Capsule2() {
                     Précédent
                 </Button>
 
-                <Button onClick={() => step < 1 ? setStep(step + 1) : alert("Fin de la capsule 2 !")}>
+                <Button onClick={() => step < 1 ? setStep(step + 1) : onComplete?.()}>
                     {step < 1 ? "Suivant ->" : "Terminer"}
                 </Button>
             </div>

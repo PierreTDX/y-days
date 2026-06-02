@@ -19,10 +19,6 @@ export default function AppRoutes() {
       <Routes>
         <Route path='/' element={<HomePage />} />
         <Route path='/onboarding' element={<OnboardingPage />} />
-        <Route path='/quiz' element={<QuizPage />} />
-        <Route path='/games/puzzle' element={<PuzzlePage />} />
-        <Route path='/games/card-flip' element={<CardFlipPage />} />
-        <Route path='/tests' element={<TestsPage />} />
         <Route path='/stepper' element={<StepperContainer />} />
         <Route path='/capsules/1' element={<Capsule1 />} />
         <Route path='/capsules/2' element={<Capsule2 />} />

@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { Button } from "@/components/ui/button"
+import { useNavigate } from 'react-router-dom'
 
-export default function Capsule3() {
+export default function Capsule3({ onComplete }) {
     const [step, setStep] = useState(0)
     const [gameResult, setGameResult] = useState(null)
+    const navigate = useNavigate()
 
     const handleGuess = (isCorrect) => {
         setGameResult(isCorrect)
@@ -15,7 +17,7 @@ export default function Capsule3() {
 
             {step === 0 && (
                 <div className="space-y-6 text-center">
-                    <h2 className="text-2xl font-bold tracking-tight">IA ou Humain ?</h2>
+                    <h1 className="text-4xl font-semibold">IA ou Humain ?</h1>
                     <p className="text-muted-foreground">Saurez-vous démêler le vrai du faux à l'ère de l'IA ?</p>
 
                     <div className="aspect-video bg-muted rounded-lg flex items-center justify-center text-muted-foreground mb-6 overflow-hidden relative">
@@ -38,7 +40,7 @@ export default function Capsule3() {
 
             {step === 1 && (
                 <div className="space-y-4">
-                    <h2 className="text-2xl font-bold tracking-tight">Remise en question</h2>
+                    <h1 className="text-4xl font-semibold">Remise en question</h1>
                     <p className="text-muted-foreground leading-relaxed">
                         Comme on l’a vu dans le jeu précédent, l’IA est en capacité de produire du contenu bluffant et réaliste. Il est donc important de toujours remettre en question le contenu que l’on voit et que l'on produit.
                     </p>
@@ -47,7 +49,7 @@ export default function Capsule3() {
 
             {step === 2 && (
                 <div className="space-y-4">
-                    <h2 className="text-2xl font-bold tracking-tight">Vérifier ses sources avec Perplexity</h2>
+                    <h1 className="text-4xl font-semibold">Vérifier ses sources avec Perplexity</h1>
                     <p className="text-muted-foreground leading-relaxed">
                         Il est possible d’utiliser Perplexity pour vérifier des sources et comparer entre plusieurs sites internet lorsqu’il s’agit de données chiffrées.
                     </p>
@@ -59,7 +61,7 @@ export default function Capsule3() {
 
             {step === 3 && (
                 <div className="space-y-4">
-                    <h2 className="text-2xl font-bold tracking-tight">Repérer les détails générés par l'IA</h2>
+                    <h1 className="text-4xl font-semibold">Repérer les détails générés par l'IA</h1>
                     <p className="text-muted-foreground leading-relaxed">Concernant les contenus multimédias, il faut regarder les petits détails souvent situés en arrière-plan :</p>
                     <ul className="list-disc pl-5 space-y-2 text-muted-foreground text-sm">
                         <li>Le bras d'un personnage semble "fondu" dans un objet.</li>
@@ -71,7 +73,7 @@ export default function Capsule3() {
 
             {step === 4 && (
                 <div className="space-y-4">
-                    <h2 className="text-2xl font-bold tracking-tight">Et pour le son ?</h2>
+                    <h1 className="text-4xl font-semibold">Et pour le son ?</h1>
                     <p className="text-muted-foreground leading-relaxed">
                         Pour les sons et les voix, écoutez attentivement la tonalité. Il y a presque toujours des moments où l’IA aura une inflexion ou un rythme de voix qui ne semble pas naturel (respirations absentes ou étranges).
                     </p>
@@ -85,7 +87,14 @@ export default function Capsule3() {
                     disabled={step === 0}>
                     Précédent
                 </Button>
-                <Button onClick={() => step < 4 ? setStep(step + 1) : alert("Fin du module !")}>
+                <Button onClick={() => {
+                    if (step < 4) {
+                        setStep(step + 1)
+                    } else {
+                        onComplete?.()
+                        navigate('/result')
+                    }
+                }}>
                     {step < 4 ? "Suivant ->" : "Terminer"}
                 </Button>
             </div>

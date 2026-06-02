@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 const BookIcon = ({ className = "" }) => (
     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
@@ -260,24 +260,19 @@ export default function CourseStepper({ initialSteps = [], variant = "both" }) {
             )}
 
             {/* Contenu du module sélectionné */}
-            <div className=" border p-6 border-zinc-200 rounded-xl shadow-sm text-left stepper-container min-h-screen">
+            <div className=" border p-11 border-zinc-200 rounded-xl shadow-sm text-left stepper-container">
                 {/* <h3 className="text-lg font-bold mb-4 text-zinc-800">{steps[selectedIdx]?.title}</h3> */}
-                {steps[selectedIdx]?.content}
+                {steps[selectedIdx]?.content && React.isValidElement(steps[selectedIdx].content)
+                    ? React.cloneElement(steps[selectedIdx].content, { onComplete: handleCompleteStep })
+                    : steps[selectedIdx]?.content}
             </div>
 
             {/* Boutons d'action */}
-            {activeIndex !== -1 && (
+            {activeIndex !== -1 && selectedIdx !== activeIndex && (
                 <div className="flex justify-end mt-2 gap-3">
-                    {selectedIdx !== activeIndex && (
-                        <button onClick={() => setSelectedIdx(activeIndex)} className="px-5 py-2.5 text-sm font-medium border border-zinc-200 text-zinc-700 rounded-lg hover:bg-zinc-50 transition-colors shadow-sm">
-                            Reprendre où j'en étais
-                        </button>
-                    )}
-                    {selectedIdx === activeIndex && (
-                        <button onClick={handleCompleteStep} className="px-5 py-2.5 text-sm font-medium bg-violet-500 text-white rounded-lg hover:bg-violet-600 transition-colors shadow-sm">
-                            Terminé
-                        </button>
-                    )}
+                    <button onClick={() => setSelectedIdx(activeIndex)} className="px-5 py-2.5 text-sm font-medium border border-zinc-200 text-zinc-700 rounded-lg hover:bg-zinc-50 transition-colors shadow-sm">
+                        Reprendre où j'en étais
+                    </button>
                 </div>
             )}
         </div>

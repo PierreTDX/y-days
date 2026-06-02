@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
+import { Memo } from "@/components/ui/Memo"
 
-export default function Capsule1() {
+export default function Capsule1({ onComplete }) {
     const [step, setStep] = useState(0)
 
     return (
@@ -9,36 +11,41 @@ export default function Capsule1() {
             {/* Step 0: Intro */}
             {step === 0 && (
                 <div className="space-y-4">
-                    <h2 className="text-2xl font-bold tracking-tight">Introduction et découverte des outils d’IA</h2>
+                    <h1 className="text-4xl font-semibold">Introduction et découverte des outils d’IA</h1>
                     <p className="text-muted-foreground leading-relaxed">
                         Jusqu'à récemment, l'informatique classique servait à analyser des données ou automatiser des tâches répétitives. L'IA générative change totalement la donne, et même pour vous.
                     </p>
-                    <p className="text-muted-foreground leading-relaxed">
-                        L’IA générative est un type d’intelligence artificielle capable de générer du contenu inédit (texte, images, schémas, musiques, code informatique, et bien plus) à partir d’une simple consigne écrite en langage naturel. Cette consigne donnée à l’IA s’appelle un <strong>prompt</strong>.
-                    </p>
-                </div>
-            )}
-
-            {/* Step 1: Le Choc */}
-            {step === 1 && (
-                <div className="space-y-4">
-                    <h2 className="text-2xl font-bold tracking-tight">2022 : L'année d’explosion</h2>
-                    <p className="text-muted-foreground leading-relaxed">
-                        L'IA générative a explosé aux yeux du grand public avec la sortie de l’incontournable ChatGPT (par l’entreprise OpenAI). Un choc positif !
-                    </p>
-                    <div className="p-4 bg-muted rounded-lg border">
-                        <h3 className="font-semibold mb-2">Pourquoi un tel choc ?</h3>
-                        <p className="text-sm text-muted-foreground">
-                            Pour la première fois, ChatGPT ne répondait pas avec juste des mots clés, mais conversait comme un être humain. Il s’est révélé capable de vous comprendre implicitement, de traduire votre pensée, et même de s’adapter aux contraintes de niveau : le niveau d’un élève de CP par exemple.
+                    <div className="flex flex-col md:flex-row gap-6 items-center">
+                        <p className="w-full md:w-3/5 text-muted-foreground leading-relaxed">
+                            L’IA générative est un type d’intelligence artificielle capable de générer du contenu inédit (texte, images, schémas, musiques, code informatique, et bien plus) à partir d’une simple consigne écrite en langage naturel. Cette consigne donnée à l’IA s’appelle un prompt.
                         </p>
+                        <div className="w-full md:flex-1">
+                            <h2
+                                className="text-center font-bold text-[48px] leading-[48px] tracking-[-1.2px] bg-clip-text text-transparent"
+                                style={{ backgroundImage: 'linear-gradient(1.13deg, #A076E4 27.25%, #05036C 99.44%)' }}
+                            >
+                                2022
+                            </h2>
+                            <Card className="p-4">
+                                C’est année d’explosion de l’IA générative aux yeux du grand public avec la sortie de l’incontournable ChatGPT (par l’entreprise OpenAI). Un Choc positif.
+                            </Card>
+                        </div>
                     </div>
+                    <Memo variant="search" className="mt-6">
+                        <h3 className="font-bold text-lg">Pourquoi un tel choc ?</h3>
+                        <p>Pour la première fois, ChatGPT ne répondait pas avec juste des mots clés, mais conversait comme un être humain. Il s’est révélé capable de vous comprendre implicitement, de traduire votre pensée, et même de s’adapter aux contraintes de niveau : le niveau d’un élève de CP par exemple.</p>
+                    </Memo>
+
                 </div>
             )}
 
-            {/* Step 2: Cartes */}
-            {step === 2 && (
+            {/* Step 1: Cartes */}
+            {step === 1 && (
                 <div className="space-y-6">
-                    <h2 className="text-2xl font-bold tracking-tight">Nos recommandations d'IA</h2>
+                    <h1 className="text-4xl font-semibold">Introduction et découverte des outils d’IA</h1>
+                    <p className="text-muted-foreground leading-relaxed font-bold">
+                        Voici nos recommandations d’IA importantes pour la création de vos ressources pédagogiques :
+                    </p>
                     <div className="grid md:grid-cols-3 gap-6">
                         {[
                             { title: "Claude", desc: "Excellent en génération de texte et de vos supports de cours pédagogique (pdf, word, powerpoint)" },
@@ -62,8 +69,8 @@ export default function Capsule1() {
                 </div>
             )}
 
-            {/* Step 3: Accordéons */}
-            {step === 3 && (
+            {/* Step 2: Accordéons */}
+            {step === 2 && (
                 <div className="space-y-6">
                     <h2 className="text-2xl font-bold tracking-tight">Liste d'IA pour le quotidien</h2>
                     <div className="border rounded-md divide-y">
@@ -92,7 +99,7 @@ export default function Capsule1() {
                 </div>
             )}
 
-            <div className="mt-8 flex justify-between">
+            <div className="mt-15 flex justify-between">
                 <Button
                     variant="outline"
                     onClick={() => setStep(step - 1)}
@@ -101,8 +108,8 @@ export default function Capsule1() {
                 </Button>
 
                 <Button
-                    onClick={() => step < 3 ? setStep(step + 1) : alert("Fin de la capsule 1 !")}>
-                    {step < 3 ? "Suivant ->" : "Terminer"}
+                    onClick={() => step < 2 ? setStep(step + 1) : onComplete?.()}>
+                    {step < 2 ? "Suivant ->" : "Terminer"}
                 </Button>
             </div>
         </div>
