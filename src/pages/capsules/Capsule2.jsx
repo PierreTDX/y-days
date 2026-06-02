@@ -1,12 +1,16 @@
 import { useState, useEffect } from 'react'
 import { Button } from "@/components/ui/button"
 import DragDropGame from "@/features/dragdrop/DragDropGame"
+import AssignmentGame from '@/features/dragdrop/DragDropGame copy'
 import { ArrowLeft, ArrowRight } from "lucide-react"
 
 const BUCKETS = ['Rôle', 'Objectif', 'Limites', 'Exemple']
 
 export default function Capsule2({ onComplete, canResume, onResume, onProgress }) {
     const [step, setStep] = useState(0)
+    // const enableNext = true
+
+    const maxSteps = 2
 
     useEffect(() => {
         if (onProgress) {
@@ -19,8 +23,15 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
         { id: 'c2', text: 'Crée une séance de 45 minutes pour introduire les fractions.', answer: 'Objectif' },
         { id: 'c3', text: 'Utilise du matériel manipulable, évite les écrans.', answer: 'Limites' },
         { id: 'c4', text: 'Structure la réponse ainsi : 1. Intro... 4 fiches max.', answer: 'Exemple' },
-        { id: 'c5', text: 'Pas plus de 100 mots.', answer: 'Limites' }
+        // { id: 'c5', text: 'Pas plus de 100 mots.', answer: 'Limites' }
     ]
+
+    function handleNextStep() {
+        return () => step < maxSteps - 1 ? setStep(step + 1) : onComplete?.()
+    }
+    // if (step === 1) {
+    //     const allCorrect = gameCards.every((c) => c.assigned !== null && c.answer === c.assigned)
+    // }
 
     return (<>
         <div className="w-full mx-auto p-6 rounded-xl border bg-card text-card-foreground shadow-sm">
@@ -58,10 +69,12 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
 
             {step === 1 && (
                 <div className="space-y-6">
-                    <h2 className="text-2xl font-bold tracking-tight">Mini-Jeu : Drag & Drop R.O.L.E</h2>
+                    {/* <h2 className="text-2xl font-bold tracking-tight">Mini-Jeu : Drag & Drop R.O.L.E</h2> */}
                     <p className="block md:hidden text-sm text-muted-foreground">Tapez sur un élément pour le sélectionner depuis le panneau rétractable, puis tapez sur la bonne catégorie                             .</p>
                     <p className="hidden md:hidden text-sm text-muted-foreground">Glissez les éléments dans la bonne catégorie.</p>
-                    <DragDropGame buckets={BUCKETS} initialCards={gameCards} />
+                    {/* <DragDropGame buckets={BUCKETS} initialCards={gameCards} /> */}
+                    {/* <AssignmentGame buckets={BUCKETS} initialCards={gameCards} onComplete={() => alert("Good job!")} /> */}
+                    <AssignmentGame buckets={BUCKETS} initialCards={gameCards} onComplete={() => alert("Good job!")} />
                 </div>
             )}
 
