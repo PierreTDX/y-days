@@ -18,6 +18,12 @@ a { color: inherit; }
   padding: 24px;
 }
 
+.stepper-container {
+  background-color: var(--base-primary, #A076E4);
+  background-blend-mode: color;
+  background: url('/y-days/images/background.png') center/cover fixed;
+}
+
 .page-bg::after {
   content: '';
   position: absolute;
