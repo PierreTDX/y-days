@@ -1,7 +1,8 @@
 import { useNavigate } from 'react-router-dom'
 import { Testimony } from '@/components/ui/Testimony'
 import ConcentricCircles from '@/components/ui/ConcentricCircles'
-import './HomePage.css'
+import { Button } from '@/components/ui/Button'
+import '@/styles/pages.css'
 
 let audioCtx = null
 function getCtx() {
@@ -45,7 +46,7 @@ export default function HomePage() {
   }
 
   return (
-    <div className="home-page">
+    <div className="home-page page-bg">
       <div className="home-blob home-blob--1" />
       <div className="home-blob home-blob--2" />
 
@@ -72,9 +73,9 @@ export default function HomePage() {
           Un kit d'apprentissage en 10 min
         </div>
       </div>
-        <button className="home-cta" onClick={handleStart}>
-            Commencer
-        </button>
+        <Button className="home-cta" onClick={handleStart}>
+          Commencer
+        </Button>
     </div>
   )
 }

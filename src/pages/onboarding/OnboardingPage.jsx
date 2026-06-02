@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Testimony } from '@/components/ui/Testimony'
 import ConcentricCircles from '@/components/ui/ConcentricCircles'
-import './OnboardingPage.css'
+import { Button } from '@/components/ui/Button'
+import '@/styles/pages.css'
 
 let audioCtx = null
 function getCtx() {
@@ -69,6 +70,7 @@ function Step1Body() {
       <p>A cette ère, l'utilisation des Intelligences Artificielles (IA) s'impose de plus en plus dans le monde professionnel.</p>
       <p>L'intégrer dans votre métier d'enseignement est devenu essentiel dans un contexte où il faut produire plus et plus vite.</p>
       <div className="step-quote">
+        <p className="step-quote-label">À retenir</p>
         <p>C'est pour cette raison que l'IA peut s'avérer être un réel assistant pour la planification et la création de vos ressources pédagogiques.</p>
       </div>
     </div>
@@ -149,9 +151,17 @@ export default function OnboardingPage() {
 
   return (
     <div className="onboarding-container">
-      <div className="onboarding">
+      <div className="onboarding page-bg">
+
+        <ConcentricCircles />
 
         <div className="onboarding-left">
+          <div className="onboarding-progress">
+            <div
+              className="progress-fill"
+              style={{ width: `${((step + 1) / STEPS.length) * 100}%` }}
+            />
+          </div>
           <p className="onboarding-counter">{step + 1} / {STEPS.length}</p>
 
           <div key={step} className={`onboarding-content ${direction === "right" ? "slide-in-right" : "slide-in-left"}`}>
@@ -161,23 +171,17 @@ export default function OnboardingPage() {
 
           <nav className="onboarding-nav">
             {step > 0
-              ? <button className="btn-back" onClick={handleBack}>← Précédent</button>
+              ? <Button variant="ghost" onClick={handleBack}>← Précédent</Button>
               : <span />}
             {(!isLast || unlockedCta) && (
-              <button className={isLast ? "btn-cta" : "btn-next"} onClick={handleNext}>
+              <Button className="rounded-full" size={isLast ? "lg" : "default"} onClick={handleNext}>
                 {isLast ? "C'est parti !" : "Suivant →"}
-              </button>
+              </Button>
             )}
           </nav>
         </div>
 
         <div className="onboarding-right">
-          <div className="onboarding-progress">
-            {[0, 1, 2].map(i => (
-              <div key={i} className={`progress-segment${i <= step ? " progress-segment--active" : ""}`} />
-            ))}
-          </div>
-          <ConcentricCircles />
           {TESTIMONIES.map((t, i) => (
             <div key={i} className={`onb-testimony ${t.cls}`}>
               <Testimony avatarSrc={t.avatar} quote={t.quote} name={t.name} role={t.role} />
