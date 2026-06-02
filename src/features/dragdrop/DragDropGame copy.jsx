@@ -120,7 +120,7 @@ export default function DragDropGame({buckets, initialCards, onComplete}) {
     ]
 
     return (
-        <div className="min-h-screen bg-slate-50">
+        <div className="bg-slate-50">
             <div className="max-w-5xl mx-auto p-6">
                 <div className="mb-8">
                 <h1 className="text-4xl font-bold tracking-tight mb-2">

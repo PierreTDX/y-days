@@ -62,7 +62,7 @@ export default function Capsule2({ onComplete }) {
 
             {step === 1 && (
                 <div className="space-y-6">
-                    <h2 className="text-2xl font-bold tracking-tight">Mini-Jeu : Drag & Drop R.O.L.E</h2>
+                    {/* <h2 className="text-2xl font-bold tracking-tight">Mini-Jeu : Drag & Drop R.O.L.E</h2> */}
                     <p className="block md:hidden text-sm text-muted-foreground">Tapez sur un élément pour le sélectionner depuis le panneau rétractable, puis tapez sur la bonne catégorie                             .</p>
                     <p className="hidden md:hidden text-sm text-muted-foreground">Glissez les éléments dans la bonne catégorie.</p>
                     {/* <DragDropGame buckets={BUCKETS} initialCards={gameCards} /> */}
