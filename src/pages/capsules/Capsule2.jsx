@@ -4,6 +4,11 @@ import { Button } from "@/components/ui/button"
 import AssignmentGame from '@/features/dragdrop/DragDropGame copy'
 import { ArrowLeft, Check } from "lucide-react"
 import FillInTheGaps from '@/features/dragdrop/DragDropGame copy 2'
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
+import ReactMarkdown from 'react-markdown'
+import remarkBreaks from 'remark-breaks';
+import fileContent from "./prompt-result-exemple.md?raw"
+import remarkGfm from 'remark-gfm'
 
 const BUCKETS = ['Rôle', 'Objectif', 'Limites', 'Exemple']
 
@@ -67,7 +72,6 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
     }
 
 
-
     const [isGragAndDropComplete, setIsGragAndDropComplete] = useState(false)
 
     const isNextDisabled = (
@@ -82,38 +86,74 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
 
             {/* ROLE Introduction */}
             {step === 0 && (
-                <div className="space-y-6">
-                    <h1 className="text-4xl font-semibold">Rédiger le bon prompt : La Méthode R.O.L.E.</h1>
-                    <p className="text-muted-foreground leading-relaxed">
-                        Dans ce module, vous apprendrez à  formuler un prompt professionnel pour générer des ressources pédagogiques pour l'enseignement primaire.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed">
-                        <span style={{ fontWeight: 'bold' }}>Contenu théorique (Lecture légère):</span>
-                        Pour obtenir une fiche de préparation ou une séquence de qualité, un bon prompt doit contenir nécessairement 4 éléments clés:
-                        <span style={{ fontWeight: 'bold', fontSize: '1.25rem' }}>R.O.L.E</span>
-                    </p>
+                <div className="grid lg:grid-cols-[1fr_320px] gap-8 items-start">
+                    {/* LEFT SIDE */}
+                    <div className="space-y-6">
+                        <h1 className="text-4xl font-semibold">Rédiger le bon prompt : La Méthode R.O.L.E.</h1>
+                        <p className="text-muted-foreground">
+                            Dans ce module, vous apprendrez à  formuler un prompt professionnel pour générer des ressources pédagogiques pour l'enseignement primaire.
+                        </p>
+                        <p className="text-muted-foreground leading-relaxed">
+                            <span style={{ fontWeight: 'bold' }}>Contenu théorique (Lecture légère):</span> 
+                            Pour obtenir une fiche de préparation ou une séquence de qualité, un bon prompt doit contenir nécessairement 4 éléments clés: 
+                            <span style={{ fontWeight: 'bold', fontSize: '1.25rem' }}>R.O.L.E</span> 
+                        </p>
 
-                    <div className="grid gap-4">
-                        <div className="p-4 border rounded-lg border-l-4 border-l-primary bg-muted/50">
-                            <h3 className="font-bold text-lg mb-1">R - Rôle</h3>
-                            <p className="text-sm text-muted-foreground mb-2">Vous devez assigner un rôle à l’IA. Elle doit savoir dans quelle posture elle doit adopter.</p>
-                            <p className="text-sm italic">Exemple : « Tu es un professeur expérimenté du CE2. »</p>
+                        <div className="grid gap-4">
+                            <div className="p-4 border rounded-lg border-l-4 border-l-primary bg-muted/50">
+                                <h3 className="font-bold text-lg mb-1">R - Rôle</h3>
+                                <p className="text-sm text-muted-foreground mb-2">Vous devez assigner un rôle à l’IA. Elle doit savoir dans quelle posture elle doit adopter.</p>
+                                <p className="text-sm italic">Exemple : « Tu es un professeur expérimenté du CE2. »</p>
+                            </div>
+                            <div className="p-4 border rounded-lg border-l-4 border-l-primary bg-muted/50">
+                                <h3 className="font-bold text-lg mb-1">O - Objectif</h3>
+                                <p className="text-sm text-muted-foreground mb-2">Vous devez lui dire ce qu’elle doit faire de façon précise et explicite mais avec simplicité.</p>
+                                <p className="text-sm italic">Exemple : « Crée une séance de 45 minutes pour introduire les fractions. »</p>
+                            </div>
+                            <div className="p-4 border rounded-lg border-l-4 border-l-primary bg-muted/50">
+                                <h3 className="font-bold text-lg mb-1">L - Limites</h3>
+                                <p className="text-sm text-muted-foreground mb-2">Vous devrez lui donner un cadre précis pour générer une réponse exacte et professionnelle.  </p>
+                                <p className="text-sm italic">Exemple : « Utilise du matériel manipulable (jetons, bandes de papier) uniquement, évite les écrans. »</p>
+                            </div>
+                            <div className="p-4 border rounded-lg border-l-4 border-l-primary bg-muted/50">
+                                <h3 className="font-bold text-lg mb-1">E - Exemple</h3>
+                                <p className="text-sm text-muted-foreground mb-2">Vous devrez donner un exemple concret à l’IA pour l’aider à se situer et la guider au mieux.  </p>
+                                <p className="text-sm italic">Exemple : « Structure la réponse ainsi : 1. Introduction (2 min), 2. Règles de flaction (15 min), 3. Exemples (10 min), 4. Exercices d’application (15 min). L’enssemble doit tenir sur 5 fiches de cours maximum »</p>
+                            </div>
                         </div>
-                        <div className="p-4 border rounded-lg border-l-4 border-l-primary bg-muted/50">
-                            <h3 className="font-bold text-lg mb-1">O - Objectif</h3>
-                            <p className="text-sm text-muted-foreground mb-2">Vous devez lui dire ce qu’elle doit faire de façon précise et explicite mais avec simplicité.</p>
-                            <p className="text-sm italic">Exemple : « Crée une séance de 45 minutes pour introduire les fractions. »</p>
-                        </div>
-                        <div className="p-4 border rounded-lg border-l-4 border-l-primary bg-muted/50">
-                            <h3 className="font-bold text-lg mb-1">L - Limites</h3>
-                            <p className="text-sm text-muted-foreground mb-2">Vous devrez lui donner un cadre précis pour générer une réponse exacte et professionnelle.  </p>
-                            <p className="text-sm italic">Exemple : « Utilise du matériel manipulable (jetons, bandes de papier) uniquement, évite les écrans. »</p>
-                        </div>
-                        <div className="p-4 border rounded-lg border-l-4 border-l-primary bg-muted/50">
-                            <h3 className="font-bold text-lg mb-1">E - Exemple</h3>
-                            <p className="text-sm text-muted-foreground mb-2">Vous devrez donner un exemple concret à l’IA pour l’aider à se situer et la guider au mieux.  </p>
-                            <p className="text-sm italic">Exemple : « Structure la réponse ainsi : 1. Introduction (2 min), 2. Règles de flaction (15 min), 3. Exemples (10 min), 4. Exercices d’application (15 min). L’enssemble doit tenir sur 5 fiches de cours maximum »</p>
-                        </div>
+                    </div>
+                     {/* RIGHT SIDE */}
+                    <div>
+                        <Dialog>
+                            <div className="border rounded-xl p-4 bg-background shadow-sm">
+                                <h3 className="font-semibold text-lg">Résultat</h3>
+
+                                <p className="text-sm text-muted-foreground mb-4">
+                                    Voici ce que l’IA a généré avec ce prompt :
+                                </p>
+
+                                <DialogTrigger asChild>
+                                    <button className="w-full text-left">
+                                    <div className="overflow-hidden border rounded-lg max-h-[70vh] bg-white cursor-pointer hover:ring-2 hover:ring-primary transition">
+                                        <div
+                                        className="origin-top-left pointer-events-none h-full"
+                                        style={{
+                                            transform: "scale(0.75)",
+                                            width: `${100 / 0.75}%`,
+                                        }}
+                                        >
+                                            <PromptDemo />
+                                        </div>
+                                    </div>
+                                    </button>
+                                </DialogTrigger>
+                            </div>
+
+                            <DialogContent  className="!max-w-[90vw] w-fit h-[90vh] overflow-auto">
+                                <PromptDemo />
+                            </DialogContent>
+                        </Dialog>
+
                     </div>
                 </div>
             )}
@@ -139,24 +179,21 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
 
                 </div>
             )}
-            {/* {step  === 3 && (
+            {step  === 3 && (
                 <div className="space-y-6">
                     <p className="block md:hidden text-sm text-muted-foreground">Tapez sur un élément pour le sélectionner depuis le panneau rétractable, puis tapez sur la bonne catégorie                             .</p>
                     <p className="hidden md:hidden text-sm text-muted-foreground">Glissez les éléments dans la bonne catégorie.</p>
                     <AssignmentGame buckets={BUCKETS} initialCards={gameCards[`Game3`]} onProgress={setIsGragAndDropComplete} />
                     
                 </div>
-            )} */}
-            {step === 3 && (
+            )}
+            {/* {step  === 3 && (
                 <div className="space-y-6">
-                    {/* <h2 className="text-2xl font-bold tracking-tight">Mini-Jeu : Drag & Drop R.O.L.E</h2> */}
                     <p className="block md:hidden text-sm text-muted-foreground">Tapez sur un élément pour le sélectionner depuis le panneau rétractable, puis tapez sur la bonne catégorie                             .</p>
                     <p className="hidden md:hidden text-sm text-muted-foreground">Glissez les éléments dans la bonne catégorie.</p>
-                    {/* <AssignmentGame buckets={BUCKETS} initialCards={gameCards["Game0"]} onComplete={() => alert("Good job!")} onProgress={setIsGragAndDropComplete} /> */}
                     <FillInTheGaps promptText={gameCards["Game3FillInTheGaps"].promptText} initialCards={gameCards["Game3FillInTheGaps"].initialCards} onProgress={setIsGragAndDropComplete} />
-
                 </div>
-            )}
+            )} */}
 
             {/* Button bar. */}
             <div className="mt-15 flex justify-end">
@@ -191,4 +228,81 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
             </div>
         </div>
     </>)
+}
+
+function PromptDemo() {
+    return (
+        <ReactMarkdown 
+            // className="bg-white p-8"
+            components={{
+                h1: ({ children }) => (
+                    <h1 className="text-4xl font-bold mb-3">
+                    {children}
+                    </h1>
+                ),
+
+                h2: ({ children }) => (
+                    <div className="border-b-4 border-blue-500 mb-3 pb-1 font-semibold text-blue-600 text-xl">
+                    {children}
+                    </div>
+                ),
+
+                h3: ({ children }) => (
+                    <h3 className="font-bold text-lg mb-1 mt-3">
+                    {children}
+                    </h3>
+                ),
+
+                p: ({ children }) => (
+                    <p className="leading-6 mb-2">
+                    {children}
+                    </p>
+                ),
+
+                ul: ({ children }) => (
+                    <ul className="list-disc ml-6 space-y-0.5">
+                    {children}
+                    </ul>
+                ),
+
+                li: ({ children }) => (
+                    <li>{children}</li>
+                ),
+
+                table: ({ children }) => (
+                    <div className="my-6 border">
+                    <table className="border-collapse">
+                        {children}
+                    </table>
+                    </div>
+                ),
+
+                thead: ({ children }) => (
+                    <thead className="bg-muted">
+                    {children}
+                    </thead>
+                ),
+
+                tr: ({ children }) => (
+                    <tr>
+                    {children}
+                    </tr>
+                ),
+
+                th: ({ children }) => (
+                    <th className="p-4 border-r text-left font-bold last:border-r-0">
+                    {children}
+                    </th>
+                ),
+
+                td: ({ children }) => (
+                    <td className="p-2 border-r last:border-r-0 align-top">
+                    {children}
+                    </td>
+                ),
+            }}
+            remarkPlugins={[remarkGfm, remarkBreaks]}>
+            {fileContent}
+        </ReactMarkdown>
+    )
 }
