@@ -6,12 +6,12 @@ function shuffle(array) {
     const arr = [...array]
     for (let i = arr.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1))
-        ;[arr[i], arr[j]] = [arr[j], arr[i]]
+            ;[arr[i], arr[j]] = [arr[j], arr[i]]
     }
     return arr
 
 }
-export default function FillInTheGaps({promptText, initialCards, onProgress}) {
+export default function FillInTheGaps({ promptText, initialCards, onProgress }) {
     const [cards, setCards] = useState(() =>
         (shuffle(initialCards) ?? []).map((c) => ({
             ...c,
@@ -63,15 +63,15 @@ export default function FillInTheGaps({promptText, initialCards, onProgress}) {
         e.dataTransfer.effectAllowed = "move"
 
         setCards((prev) =>
-        prev.map((c) =>
-            c.id === id ? { ...c, dragging: true } : c
-        )
+            prev.map((c) =>
+                c.id === id ? { ...c, dragging: true } : c
+            )
         )
     }
 
     function onDragEnd() {
         setCards((prev) =>
-        prev.map((c) => ({ ...c, dragging: false }))
+            prev.map((c) => ({ ...c, dragging: false }))
         )
     }
 
@@ -86,15 +86,15 @@ export default function FillInTheGaps({promptText, initialCards, onProgress}) {
         e.dataTransfer.effectAllowed = "move"
 
         setCards((prev) =>
-        prev.map((c) =>
-            c.id === id ? { ...c, dragging: true } : c
-        )
+            prev.map((c) =>
+                c.id === id ? { ...c, dragging: true } : c
+            )
         )
     }
 
     function onDragEnd() {
         setCards((prev) =>
-        prev.map((c) => ({ ...c, dragging: false }))
+            prev.map((c) => ({ ...c, dragging: false }))
         )
     }
 
@@ -104,7 +104,7 @@ export default function FillInTheGaps({promptText, initialCards, onProgress}) {
         if (!card) return
 
         const occupied = cards.some(
-        (c) => c.assigned === bucket && c.id !== cardId
+            (c) => c.assigned === bucket && c.id !== cardId
         )
 
         if (occupied) return
@@ -112,48 +112,48 @@ export default function FillInTheGaps({promptText, initialCards, onProgress}) {
         const isCorrect = card.answer === bucket
 
         setCards((prev) =>
-        prev.map((c) =>
-            c.id === cardId
-            ? {
-                ...c,
-                assigned: bucket,
-                correct: isCorrect,
-                dragging: false,
-                }
-            : c
-        )
+            prev.map((c) =>
+                c.id === cardId
+                    ? {
+                        ...c,
+                        assigned: bucket,
+                        correct: isCorrect,
+                        dragging: false,
+                    }
+                    : c
+            )
         )
 
         setSelectedCardId(null)
         setHoverBucket(null)
 
         if (!isCorrect) {
-        setErrorMessage(
-            "Ce n'est pas le bon mot ici — il retourne dans la boîte !"
-        )
-
-        if (errorTimeout) {
-            clearTimeout(errorTimeout)
-        }
-
-        const timeoutId = setTimeout(() => {
-            setCards((prev) =>
-            prev.map((c) =>
-                c.id === cardId && c.correct === false
-                ? {
-                    ...c,
-                    assigned: null,
-                    correct: null,
-                    }
-                : c
-            )
+            setErrorMessage(
+                "Ce n'est pas le bon mot ici — il retourne dans la boîte !"
             )
 
-            setErrorMessage(null)
-            setErrorTimeout(null)
-        }, 3000)
+            if (errorTimeout) {
+                clearTimeout(errorTimeout)
+            }
 
-        setErrorTimeout(timeoutId)
+            const timeoutId = setTimeout(() => {
+                setCards((prev) =>
+                    prev.map((c) =>
+                        c.id === cardId && c.correct === false
+                            ? {
+                                ...c,
+                                assigned: null,
+                                correct: null,
+                            }
+                            : c
+                    )
+                )
+
+                setErrorMessage(null)
+                setErrorTimeout(null)
+            }, 3000)
+
+            setErrorTimeout(timeoutId)
         }
     }
 
@@ -167,7 +167,7 @@ export default function FillInTheGaps({promptText, initialCards, onProgress}) {
                     {parsedPrompt.map((part) => {
                         if (part.type === "text") {
                             return (
-                                <ReactMarkdown 
+                                <ReactMarkdown
                                     key={part.key}
                                     remarkPlugins={[remarkBreaks]}
                                     components={{
@@ -218,13 +218,12 @@ export default function FillInTheGaps({promptText, initialCards, onProgress}) {
                                     border-violet-300
                                     items-center
                                     justify-center
-                                    ${
-                                    hoverBucket === part
+                                    ${hoverBucket === part
                                         ? "border-violet-400 bg-violet-50"
                                         : "border-violet-200 bg-white"
                                     }
                                 `}
-                                >
+                            >
                                 {card ? (
                                     <span
                                         className={

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Button } from "@/components/ui/button"
 // import DragDropGame from "@/features/dragdrop/DragDropGame"
 import AssignmentGame from '@/features/dragdrop/DragDropGame copy'
-import { ArrowLeft, ArrowRight } from "lucide-react"
+import { ArrowLeft, Check } from "lucide-react"
 import FillInTheGaps from '@/features/dragdrop/DragDropGame copy 2'
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
 import ReactMarkdown from 'react-markdown'
@@ -20,9 +20,9 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
 
     useEffect(() => {
         if (onProgress) {
-            onProgress(Math.round((step / 1) * 100)); // 1 est le max steps
+            onProgress(Math.round((step / finalStep) * 100));
         }
-    }, [step, onProgress]);
+    }, [step, finalStep, onProgress]);
 
     const gameCards = {
         "Game0": [
@@ -56,20 +56,21 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
                 **Example:**    Le texte doit {{EXAMPLE}} sur {{SIZE}}.
             `,
             initialCards: [
-                {id: "1", text: "cuisinier", answer: "ROLE"},
-                {id: "2", text: "primaire", answer: "LEVEL"},
-                {id: "3", text: "CE1", answer: "CLASS"},
-                {id: "4", text: "12 années", answer: "DURATION"},
-                {id: "5", text: "écris", answer: "ACTION"},
-                {id: "6", text: "recette de salade de fruits", answer: "RESOURCE"},
-                {id: "7", text: "vocabulaire simple", answer: "OBJECT"},
-                {id: "8", text: "vocabulaire précis adapté aux élèves de 10 ans", answer: "CONSTRAINT"},
-                {id: "9", text: "6 ans", answer: "AGE"},
-                {id: "10", text: "tenir", answer: "EXAMPLE"},
-                {id: "11", text: "une fiche", answer: "SIZE"}
+                { id: "1", text: "cuisinier", answer: "ROLE" },
+                { id: "2", text: "primaire", answer: "LEVEL" },
+                { id: "3", text: "CE1", answer: "CLASS" },
+                { id: "4", text: "12 années", answer: "DURATION" },
+                { id: "5", text: "écris", answer: "ACTION" },
+                { id: "6", text: "recette de salade de fruits", answer: "RESOURCE" },
+                { id: "7", text: "vocabulaire simple", answer: "OBJECT" },
+                { id: "8", text: "vocabulaire précis adapté aux élèves de 10 ans", answer: "CONSTRAINT" },
+                { id: "9", text: "6 ans", answer: "AGE" },
+                { id: "10", text: "tenir", answer: "EXAMPLE" },
+                { id: "11", text: "une fiche", answer: "SIZE" }
             ]
         }
-}
+    }
+
 
     const [isGragAndDropComplete, setIsGragAndDropComplete] = useState(false)
 
@@ -92,7 +93,7 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
                         <p className="text-muted-foreground">
                             Dans ce module, vous apprendrez à  formuler un prompt professionnel pour générer des ressources pédagogiques pour l'enseignement primaire.
                         </p>
-                        <p className="text-muted-foreground">
+                        <p className="text-muted-foreground leading-relaxed">
                             <span style={{ fontWeight: 'bold' }}>Contenu théorique (Lecture légère):</span> 
                             Pour obtenir une fiche de préparation ou une séquence de qualité, un bon prompt doit contenir nécessairement 4 éléments clés: 
                             <span style={{ fontWeight: 'bold', fontSize: '1.25rem' }}>R.O.L.E</span> 
@@ -156,26 +157,26 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
                     </div>
                 </div>
             )}
-            
+
             {/* Drag n Drop Game */}
-            {step  === 1 && (
+            {step === 1 && (
                 <div className="space-y-6">
                     {/* <h2 className="text-2xl font-bold tracking-tight">Mini-Jeu : Drag & Drop R.O.L.E</h2> */}
                     {/* <p className="block md:hidden text-sm text-muted-foreground">Tapez sur un élément pour le sélectionner depuis le panneau rétractable, puis tapez sur la bonne catégorie                             .</p>
                     <p className="hidden md:hidden text-sm text-muted-foreground">Glissez les éléments dans la bonne catégorie.</p> */}
                     {/* <AssignmentGame buckets={BUCKETS} initialCards={gameCards["Game0"]} onComplete={() => alert("Good job!")} onProgress={setIsGragAndDropComplete} /> */}
                     <AssignmentGame buckets={BUCKETS} initialCards={gameCards[`Game1`]} onProgress={setIsGragAndDropComplete} />
-                    
+
                 </div>
             )}
-            {step  === 2 && (
+            {step === 2 && (
                 <div className="space-y-6">
                     {/* <h2 className="text-2xl font-bold tracking-tight">Mini-Jeu : Drag & Drop R.O.L.E</h2> */}
                     <p className="block md:hidden text-sm text-muted-foreground">Tapez sur un élément pour le sélectionner depuis le panneau rétractable, puis tapez sur la bonne catégorie                             .</p>
                     <p className="hidden md:hidden text-sm text-muted-foreground">Glissez les éléments dans la bonne catégorie.</p>
                     {/* <AssignmentGame buckets={BUCKETS} initialCards={gameCards["Game0"]} onComplete={() => alert("Good job!")} onProgress={setIsGragAndDropComplete} /> */}
                     <AssignmentGame buckets={BUCKETS} initialCards={gameCards[`Game2`]} onProgress={setIsGragAndDropComplete} />
-                    
+
                 </div>
             )}
             {step  === 3 && (
@@ -195,14 +196,7 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
             )} */}
 
             {/* Button bar. */}
-            <div className="mt-15 flex justify-between">
-                {step > 0 ? (
-                    <Button variant="outline" onClick={() => setStep(step - 1)}>
-                        <ArrowLeft className="w-4 h-4 mr-2" /> Précédent
-                    </Button>
-                ) : (
-                    <div />
-                )}
+            <div className="mt-15 flex justify-end">
 
                 <div className="flex gap-4">
                     {canResume && (
@@ -224,7 +218,7 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
                             className={isNextDisabled ? "pointer-events-none" : ""}
                             onClick={() => step < finalStep ? setStep(step + 1) : onComplete?.()}>
                             {step < finalStep ? (
-                                <>Suivant <ArrowRight className="w-4 h-4 ml-2" /></>
+                                <>Valider <Check className="w-4 h-4 ml-2" /></>
                             ) : (
                                 "Terminer"
                             )}
