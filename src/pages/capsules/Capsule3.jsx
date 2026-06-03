@@ -122,13 +122,13 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
     }
 
     return (
-        <div className="w-full mx-auto p-6 rounded-xl border bg-card text-card-foreground shadow-sm flex flex-1 flex-col h-full overflow-y-auto">
+        <div className="w-full mx-auto p-3 sm:p-6 rounded-xl border bg-card text-card-foreground shadow-sm flex flex-1 flex-col h-full overflow-y-auto">
             <div className="space-y-4">
-                <h1 className="text-4xl font-semibold">Démêler le vrai du faux contenu à l’ère de l’IA.</h1>
-                <p className="text-muted-foreground leading-relaxed">
+                <h1 className="text-xl sm:text-4xl font-semibold">Démêler le vrai du faux contenu à l’ère de l’IA.</h1>
+                <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
                     L'intelligence artificielle générative transforme notre manière de créer et d'interagir avec le contenu. Elle peut parfois rendre difficile la distinction entre les œuvres humaines et celles produites par des algorithmes.
                 </p>
-                <p className="text-muted-foreground leading-relaxed font-bold">
+                <p className="text-muted-foreground leading-relaxed font-bold text-sm sm:text-base">
                     {currentStep.question}
                 </p>
                 <QuizCard

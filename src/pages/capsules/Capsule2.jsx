@@ -82,18 +82,18 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
 
 
     return (<>
-        <div className="w-full mx-auto p-6 rounded-xl border bg-card text-card-foreground shadow-sm flex flex-1 flex-col h-full overflow-y-auto">
+        <div className="w-full mx-auto p-3 sm:p-6 rounded-xl border bg-card text-card-foreground shadow-sm flex flex-1 flex-col h-full overflow-y-auto">
 
             {/* ROLE Introduction */}
             {step === 0 && (
                 <div className="grid lg:grid-cols-[1fr_320px] gap-8 items-start">
                     {/* LEFT SIDE */}
                     <div className="space-y-6">
-                        <h1 className="text-4xl font-semibold">Rédiger le bon prompt : La Méthode R.O.L.E.</h1>
-                        <p className="text-muted-foreground">
+                        <h1 className="text-xl sm:text-4xl font-semibold">Rédiger le bon prompt : La Méthode R.O.L.E.</h1>
+                        <p className="text-muted-foreground text-sm sm:text-base">
                             Dans ce module, vous apprendrez à  formuler un prompt professionnel pour générer des ressources pédagogiques pour l'enseignement primaire.
                         </p>
-                        <p className="text-muted-foreground leading-relaxed">
+                        <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
                             <span style={{ fontWeight: 'bold' }}>Contenu théorique (Lecture légère):</span>
                             Pour obtenir une fiche de préparation ou une séquence de qualité, un bon prompt doit contenir nécessairement 4 éléments clés:
                             <span style={{ fontWeight: 'bold', fontSize: '1.25rem' }}>R.O.L.E</span>
@@ -237,7 +237,7 @@ function PromptDemo() {
             // className="bg-white p-8"
             components={{
                 h1: ({ children }) => (
-                    <h1 className="text-4xl font-bold mb-3">
+                    <h1 className="text-xl sm:text-4xl font-bold mb-3">
                         {children}
                     </h1>
                 ),
