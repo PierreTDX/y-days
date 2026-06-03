@@ -5,9 +5,9 @@
 
 ---
 
-# FICHE 1 – Introduction (2 min)
+## FICHE 1 – Introduction (2 min)
 
-## Situation de départ
+### Situation de départ
 
 Montrer une bande de papier entière.
 
@@ -21,9 +21,9 @@ Aujourd’hui, nous allons apprendre à représenter et nommer des parts d’un 
 
 ---
 
-# FICHE 2 – Règles de fraction (15 min)
+## FICHE 2 – Règles de fraction (15 min)
 
-## Manipulation 1 : Les moitiés
+### Manipulation 1 : Les moitiés
 
 Distribuer une bande de papier par élève.
 
@@ -32,7 +32,7 @@ Consigne :
 
 Faire découper ou marquer le pli.
 
-### À retenir
+#### À retenir
 
 Quand un objet est partagé en **2 parties égales**, chaque partie est une **moitié**.
 
@@ -43,14 +43,14 @@ On écrit : **1/2**
 
 ---
 
-## Manipulation 2 : Les quarts
+### Manipulation 2 : Les quarts
 
 Nouvelle bande.
 
 Consigne :
 « Pliez la bande en 4 parties égales. »
 
-### À retenir
+#### À retenir
 
 Quand un objet est partagé en **4 parties égales**, chaque partie est un **quart**.
 
@@ -58,13 +58,13 @@ On écrit : **1/4**
 
 ---
 
-## Manipulation 3 : Les tiers
+### Manipulation 3 : Les tiers
 
 Nouvelle bande.
 
 L’enseignant prépare ou montre une bande partagée en 3 parties égales.
 
-### À retenir
+#### À retenir
 
 Quand un objet est partagé en **3 parties égales**, chaque partie est un **tiers**.
 
@@ -72,7 +72,7 @@ On écrit : **1/3**
 
 ---
 
-## Règle importante
+### Règle importante
 
 Une fraction représente toujours une ou plusieurs parties d’un tout partagé en parts égales.
 
@@ -80,9 +80,9 @@ Si les parts ne sont pas égales, ce n’est pas une fraction correcte.
 
 ---
 
-# FICHE 3 – Exemples (10 min)
+## FICHE 3 – Exemples (10 min)
 
-## Exemple 1 : Les jetons
+### Exemple 1 : Les jetons
 
 Prendre 8 jetons.
 
@@ -96,7 +96,7 @@ Réponse :
 
 ---
 
-## Exemple 2 : Bande en quatre parties
+### Exemple 2 : Bande en quatre parties
 
 Montrer une bande découpée en 4 parties égales.
 
@@ -110,7 +110,7 @@ Réponse :
 
 ---
 
-## Exemple 3 : Bande en quatre parties
+### Exemple 3 : Bande en quatre parties
 
 Colorier deux parties.
 
@@ -124,7 +124,7 @@ Faire remarquer que deux quarts représentent la moitié de la bande.
 
 ---
 
-## Exemple 4 : Bande en trois parties
+### Exemple 4 : Bande en trois parties
 
 Colorier une partie sur trois.
 
@@ -136,9 +136,9 @@ Réponse :
 
 ---
 
-# FICHE 4 – Exercices d’application (15 min)
+## FICHE 4 – Exercices d’application (15 min)
 
-## Exercice 1
+### Exercice 1
 
 Dessine une bande puis partage-la en 2 parties égales.
 
@@ -150,7 +150,7 @@ Réponse attendue : **1/2**
 
 ---
 
-## Exercice 2
+### Exercice 2
 
 Dessine une bande puis partage-la en 4 parties égales.
 
@@ -162,7 +162,7 @@ Réponse attendue : **1/4**
 
 ---
 
-## Exercice 3
+### Exercice 3
 
 Dessine une bande puis partage-la en 4 parties égales.
 
@@ -174,7 +174,7 @@ Réponse attendue : **3/4**
 
 ---
 
-## Exercice 4
+### Exercice 4
 
 Entoure les partages corrects.
 
@@ -187,9 +187,9 @@ Les élèves doivent identifier celle qui peut représenter une fraction.
 
 ---
 
-# FICHE 5 – Bilan et trace écrite
+## FICHE 5 – Bilan et trace écrite
 
-## Ce que j’ai appris
+### Ce que j’ai appris
 
 * Une fraction représente une partie d’un tout.
 * Le tout doit être partagé en parts égales.
@@ -199,7 +199,7 @@ Les élèves doivent identifier celle qui peut représenter une fraction.
 * Le nombre du bas indique le nombre de parts égales du tout.
 * Le nombre du haut indique combien de parts sont prises.
 
-### Mémo
+#### Mémo
 
 | Fraction | Lecture     |
 | -------- | ----------- |
