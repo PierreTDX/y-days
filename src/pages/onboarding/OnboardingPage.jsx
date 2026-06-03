@@ -52,16 +52,16 @@ function useCountUp(target, duration = 1600, delay = 0) {
 }
 
 const TESTIMONIES = [
-  { cls: "onb-testimony--1", avatar: "/y-days/images/prof1.png", quote: "Génère une fiche de lecture CE2 sur Le Petit Prince", name: "Marie", role: "Enseignante CE2" },
-  { cls: "onb-testimony--2", avatar: "/y-days/images/prof2.png", quote: "Crée une évaluation sur les fractions pour le CM1", name: "Sophie", role: "Enseignante CM1" },
-  { cls: "onb-testimony--3", avatar: "/y-days/images/prof3.png", quote: "Aide-moi à différencier pour les élèves en difficulté", name: "Claire", role: "Enseignante CE1" },
-  { cls: "onb-testimony--4", avatar: "/y-days/images/prof4.png", quote: "Rédige un compte-rendu de réunion parents-profs", name: "Julie", role: "Enseignante CP" },
+  { cls: "home-testimony--1", avatar: "/y-days/images/prof1.png", quote: "J'ai mon master MEEF en poche, mais face à 26 élèves, je ne sais par où commencer.", name: "Julie",  role: "Enseignante CM2" },
+  { cls: "home-testimony--2", avatar: "/y-days/images/prof2.png", quote: "Affectation reçue : CE2 dans 15 jours. Je ne connais ni les programmes, ni comment les créer",  name: "Marie", role: "Enseignante CE2" },
+  { cls: "home-testimony--3", avatar: "/y-days/images/prof3.png", quote: "Je ne me sens pas prêt à gérer une classe sans supports de cours prêts à l'emploi.", name: "Pierre", role: "Enseignant CP" },
+  { cls: "home-testimony--4", avatar: "/y-days/images/prof4.png", quote: "Je pars de zéro et je ne sais pas ce que je suis censée produire pour le premier jour.",     name: "Maxime",  role: "Enseignant CE1"  },
 ]
 
 const STEP3_CARDS = [
-  { module: "Module 1", duration: "2 min", text: "L'Introduction aux outils d'IA : outils généraux et spécialisés." },
-  { module: "Module 2", duration: "2 min", text: "La méthode pour créer une instruction (prompt) efficace. " },
-  { module: "Module 3", duration: "2 min", text: "Délémer le vrai du faux : contenu à l’ère de l’IA" },
+  { module: "Module 1", duration: "2 min", text: "L'Introduction aux outils d'IA : outils généraux et spécialisés.", image: "/y-days/images/introduction-au-outil-IA-minia.png" },
+  { module: "Module 2", duration: "2 min", text: "La méthode pour créer une instruction (prompt) efficace. ", image: "/y-days/images/methode-pour-cree-inscription-minia.png" },
+  { module: "Module 3", duration: "2 min", text: "Délémer le vrai du faux : contenu à l’ère de l’IA", image: "/y-days/images/demeler-vrai-faux-minia.png" },
 ]
 
 const LIST_ITEMS = [
@@ -186,6 +186,7 @@ export default function OnboardingPage() {
   const [step, setStep] = useState(0)
   const [direction, setDirection] = useState("right")
   const [unlockedCta, setUnlockedCta] = useState(false)
+  const [lightboxSrc, setLightboxSrc] = useState(null)
   const navigate = useNavigate()
 
   const isLast     = step === STEPS.length - 1
@@ -210,6 +211,7 @@ export default function OnboardingPage() {
   const handleBack = () => { setDirection("left"); setStep(s => s - 1) }
 
   return (
+    <>
     <div className="onboarding-container">
       <div className={`onboarding${isCarousel ? ' onboarding--carousel' : ''}`}>
 
@@ -263,7 +265,7 @@ export default function OnboardingPage() {
                 <div className="step3-grid">
                   {STEP3_CARDS.map((card, i) => (
                     <div key={i} className="card-step-3">
-                      <img src="/y-days/images/fond-card.png" alt="" className="image-theme"/>
+                      <img src={card.image} alt="" className="image-theme"/>
                       <div className="card-step-3-body">
                         <div className="card-step-3-meta">
                           <span>{card.module}</span>
@@ -284,7 +286,12 @@ export default function OnboardingPage() {
                 </div>
             ) : isLast ? (
                 <div className="right-illustration">
-                  <img src="/y-days/svg/Illustration.svg" alt="Illustration" className="illustration-img" />
+                  <div className="illustration-wrapper">
+                    <img src="/y-days/svg/Illustration.svg" alt="Illustration" className="illustration-img" onClick={() => setLightboxSrc('/y-days/svg/Illustration.svg')} />
+                    <button className="image-zoom-btn" onClick={() => setLightboxSrc('/y-days/svg/Illustration.svg')} aria-label="Agrandir l'image">
+                      <img src="/y-days/icons/Searchicon.svg" alt="" />
+                    </button>
+                  </div>
                 </div>
             ) : (
                 TESTIMONIES.slice(0, 2).map((t, i) => (
@@ -303,5 +310,13 @@ export default function OnboardingPage() {
 
       </div>
     </div>
+
+    {lightboxSrc && (
+      <div className="lightbox-overlay" onClick={() => setLightboxSrc(null)}>
+        <button className="lightbox-close" onClick={() => setLightboxSrc(null)} aria-label="Fermer">✕</button>
+        <img src={lightboxSrc} alt="" className="lightbox-img" onClick={e => e.stopPropagation()} />
+      </div>
+    )}
+    </>
   )
 }
