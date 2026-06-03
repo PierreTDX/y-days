@@ -8,6 +8,7 @@ import { QuizCard } from "@/components/ui/quiz-card"
 export default function Capsule3({ onComplete, canResume, onResume, onProgress }) {
     const [step, setStep] = useState(0)
     const [gameResult, setGameResult] = useState(null)
+    const [active, setActive] = useState(null)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -124,6 +125,12 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
         setGameResult(estBonneReponse);
     }
 
+    const points = [
+        { id: 1, x: 41, y: 20, content: "Explication 1" },
+        { id: 2, x: 73, y: 7, content: "Explication 2" },
+        { id: 3, x: 72.3, y: 63.5, content: "Explication 3" },
+    ];
+
     return (
         <div className="w-full mx-auto p-3 sm:p-6 rounded-xl border bg-card text-card-foreground shadow-sm flex flex-1 flex-col h-full overflow-y-auto">
             <div className="space-y-4">
@@ -157,8 +164,8 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
                         <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
                             Les détecteurs d’IA sont une solution pour vérifier si un texte est généré par IA, mais il faut garder en tête qu’il ne sont pas précis et qu’ils peuvent avoir une marge d’erreur importante.
                         </p>
-                        <Card>
-                            <div className="flex flex-col md:flex-row gap-4 p-3 md:p-6">
+                        <Card className="p-0">
+                            <div className="flex flex-col md:flex-row gap-4 p-3 md:p-5">
                                 <div className="flex-1 flex gap-3 items-start pr-3">
                                     <div className="flex-shrink-0">
                                         <div className="relative w-[60px] h-[60px] rounded overflow-hidden">
@@ -166,7 +173,7 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
                                             <div className="absolute inset-0 bg-[#A076E4] mix-blend-color opacity-60 pointer-events-none"></div>
                                         </div>
                                     </div>
-                                    <div className="gap-2 flex flex-col">
+                                    <div className="space-y-4">
                                         <h2 className="text-lg font-semibold">Comment verifier les sources ?</h2>
                                         <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
                                             Nous en avons parlé dans le module 1, il est possible d’utiliser Perplexity pour vérifier des sources et comparer entre plusieurs sites internet lorsqu’il s’agit de données chiffrées.
@@ -189,9 +196,69 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
 
                 {step === 7 && (
                     <div className="space-y-4">
-                        <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
-                            Contenu de votre nouvelle étape 7 ici...
-                        </p>
+                        <div className="flex flex-col gap-6">
+                            <Card className="p-3 md:p-5">
+                                <div className="flex-1 flex gap-3 items-start pr-3">
+                                    <div className="flex-shrink-0">
+                                        <div className="relative w-[60px] h-[60px] rounded overflow-hidden">
+                                            <img src="/y-days/icons/icon2.svg" alt="Détecteurs d'IA" className="w-full h-full object-cover" />
+                                            <div className="absolute inset-0 bg-[#A076E4] mix-blend-color opacity-60 pointer-events-none"></div>
+                                        </div>
+                                    </div>
+                                    <div className="space-y-4">
+                                        <h2 className="text-lg font-semibold">Comment détecter l’IA via les sons et les voix</h2>
+                                        <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
+                                            Il est possible de détecter l’utilisation d’une IA en écoutant la tonalité de la voix. En efffet, il y a toujours des moments où l’IA aura une tonalité de voix qui ne semble pas naturelle, avec une sonorité métallique ou de l’écho.                                        </p>
+                                    </div>
+                                </div>
+                            </Card>
+                            <Card className="p-3 md:p-5">
+                                <div className="flex-1 flex gap-3 items-start pr-3">
+                                    <div className="flex-shrink-0">
+                                        <div className="relative w-[60px] h-[60px] rounded overflow-hidden">
+                                            <img src="/y-days/icons/icon3.svg" alt="Détecteurs d'IA" className="w-full h-full object-cover" />
+                                            <div className="absolute inset-0 bg-[#A076E4] mix-blend-color opacity-60 pointer-events-none"></div>
+                                        </div>
+                                    </div>
+                                    <div className="space-y-4">
+                                        <h2 className="text-lg font-semibold">Et concernant les contenus mutimédias (images, vidéos, sons)?</h2>
+                                        <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
+                                            il faut regarder les petits détails qui se cachent dans l’image. Reprenons par exemple l’image de notre jeu :                                        </p>
+                                    </div>
+                                </div>
+                                <div className="flex-1 relative">
+                                    <img src="/y-days/images/illustrationModule3-2.png" alt="Capture d'écran" className="w-full h-full object-cover object-left rounded" />
+                                    {points.map((point) => (
+                                        <div
+                                            key={point.id}
+                                            className="absolute group"
+                                            style={{
+                                                left: `${point.x}%`,
+                                                top: `${point.y}%`,
+                                                transform: "translate(-50%, -50%)",
+                                            }}
+                                        >
+                                            {/* bouton + */}
+                                            <button
+                                                onClick={() =>
+                                                    setActive(active === point.id ? null : point.id)
+                                                }
+                                                className="bg-transparent rounded-full w-14 h-14 flex items-center justify-center cursor-pointer"
+                                            >
+                                            </button>
+
+                                            {/* tooltip */}
+                                            <div className={`absolute mt-2 left-1/2 -translate-x-1/2 bg-black text-white text-sm p-2 rounded shadow-lg whitespace-nowrap pointer-events-none transition-all duration-200 ${active === point.id ? "opacity-100 visible" : "opacity-0 invisible md:group-hover:opacity-100 md:group-hover:visible"}`}>
+                                                {point.content}
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                                <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
+                                    C’est souvent dans le fond de l’image qu’on remarque les éléments générés par IA.                                </p>
+                            </Card>
+
+                        </div>
                     </div>
                 )}
             </div>
@@ -213,7 +280,7 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
                             {step < QUIZ_STEPS.length - 1 ? (
                                 <>Question suivante <ArrowRight className="w-4 h-4 ml-2" /></>
                             ) : (
-                                <>Étape suivante <ArrowRight className="w-4 h-4 ml-2" /></>
+                                <>Suivant <ArrowRight className="w-4 h-4 ml-2" /></>
                             )}
                         </Button>
                     )}
@@ -229,9 +296,9 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
                                 }
                             }}>
                             {step < 7 ? (
-                                <>Étape suivante <ArrowRight className="w-4 h-4 ml-2" /></>
+                                <>Suivant <ArrowRight className="w-4 h-4 ml-2" /></>
                             ) : (
-                                "Terminer"
+                                "J'ai compris"
                             )}
                         </Button>
                     )}
