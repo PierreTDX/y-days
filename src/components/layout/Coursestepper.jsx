@@ -98,17 +98,19 @@ function StepRow({ label = "Module 1", title, readTime, status = "idle", progres
     );
 }
 
-function HorizontalStepper({ selectedIdx, steps, onStepClick }) {
+export function HorizontalStepper({ selectedIdx, steps, onStepClick, showLogo = true }) {
     // Si tout est terminé
     const isAllCompleted = steps.every(s => s.status === "completed");
 
     return (
         <div className="flex items-center gap-2 w-full">
             {/* Logo en dehors du stepper */}
-            <div className="w-[230px] max-[600px]:w-[80px] h-[60px] bg-[url('/y-days/LOGOAcadem.svg')] max-[600px]:bg-[url('/y-days/LOGOAcademcarre.svg')] bg-no-repeat bg-center bg-contain flex-shrink-0 scale-330 max-[600px]:scale-230 origin-center  max-[600px]:-translate-x-3"
-                role="img"
-                aria-label="Logo AcademIA">
-            </div>
+            {showLogo && (
+                <div className="w-[230px] max-[600px]:w-[80px] h-[60px] bg-[url('/y-days/LOGOAcadem.svg')] max-[600px]:bg-[url('/y-days/LOGOAcademcarre.svg')] bg-no-repeat bg-center bg-contain flex-shrink-0 scale-330 max-[600px]:scale-230 origin-center  max-[600px]:-translate-x-3"
+                    role="img"
+                    aria-label="Logo AcademIA">
+                </div>
+            )}
 
             {/* Conteneur des étapes */}
             <div className="flex flex-1 items-center ">
@@ -121,7 +123,7 @@ function HorizontalStepper({ selectedIdx, steps, onStepClick }) {
                         return (
                             <div
                                 key={i}
-                                onClick={step.status !== "locked" ? () => onStepClick(i) : undefined}
+                                onClick={step.status !== "locked" ? () => onStepClick?.(i) : undefined}
                                 tabIndex={step.status === "locked" ? 0 : undefined}
                                 className={[
                                     "relative flex items-center h-[60px] px-4 min-w-0 border border-zinc-200 bg-white shadow-sm rounded-xl",
@@ -227,6 +229,7 @@ export default function CourseStepper({ initialSteps = [], variant = "both", fin
     const isAllCompleted = steps.length > 0 && steps.every(s => s.status === "completed");
     const activeIndex = steps.findIndex((s) => s.status === "active");
     const [selectedIdx, setSelectedIdx] = useState(activeIndex !== -1 ? activeIndex : (isAllCompleted ? -1 : (steps.length > 0 ? steps.length - 1 : 0)));
+    // const [selectedIdx, setSelectedIdx] = useState(-1); // TEMPORAIRE POUR LE DEV
 
     const handleProgress = useCallback((progress) => {
         setSteps((prev) => {
