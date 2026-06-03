@@ -115,7 +115,7 @@ export function HorizontalStepper({ selectedIdx, steps, onStepClick, showLogo = 
             {/* Conteneur des étapes */}
             <div className="flex flex-1 items-center ">
                 {/* Étapes (Steps) */}
-                <div className="flex flex-1 items-center min-w-0 gap-2">
+                <div className="flex flex-1 items-center min-w-0 gap-2 justify-end">
                     {steps.map((step, i) => {
                         const isSelected = i === selectedIdx;
                         const Icon = step.icon || BookIcon;
