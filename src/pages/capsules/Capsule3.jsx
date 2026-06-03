@@ -156,12 +156,14 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
 
                 {step === 6 && (
                     <div className="space-y-4">
+                        <br />
                         <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
                             Comme on l’a vu dans le jeu précédent, l’IA est en capacité de produire du contenu bluffant et réaliste. Il est donc important de toujours remettre en question le contenu que l’on voit et que l'on produit.
                         </p>
                         <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
                             Les détecteurs d’IA sont une solution pour vérifier si un texte est généré par IA, mais il faut garder en tête qu’il ne sont pas précis et qu’ils peuvent avoir une marge d’erreur importante.
                         </p>
+                        <br />
                         <Card className="p-0">
                             <div className="flex flex-col md:flex-row gap-4 p-3 md:p-5">
                                 <div className="flex-1 flex gap-3 items-start pr-3">

@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/card";
 const bookmar = '/y-days/icons/Bookmarkicon.svg';
 const bulb = '/y-days/icons/Bulbicon.svg';
 const search = '/y-days/icons/Searchicon.svg';
+const rocket = '/y-days/icons/rocket.svg';
 
 
 const variants = {
@@ -19,6 +20,10 @@ const variants = {
         bg: "bg-[#E75A3D10]",
         Icon: search,
     },
+    rocket: {
+        bg: "bg-[#A076E420]",
+        Icon: rocket,
+    }
 };
 
 export function Memo({ variant = "bookmark", className = "", children }) {

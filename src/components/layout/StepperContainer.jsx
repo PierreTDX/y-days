@@ -1,8 +1,13 @@
 import React from 'react';
-import CourseStepper from './Coursestepper';
+import CourseStepper, { HorizontalStepper } from './Coursestepper';
 import Capsule1 from '../../pages/capsules/Capsule1.jsx'
 import Capsule2 from '../../pages/capsules/Capsule2.jsx'
 import Capsule3 from '../../pages/capsules/Capsule3.jsx'
+import { Card } from "@/components/ui/card"
+import { Memo } from "@/components/ui/Memo"
+import { Download } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { useNavigate } from "react-router-dom"
 
 // Icônes SVG
 const BookIcon = ({ className }) => (
@@ -28,10 +33,6 @@ const SearchIcon = ({ className }) => (
         <path d="m21 21-4.3-4.3" />
     </svg>
 );
-
-// Remplacez par vos vraies images
-const marieImageUrl = 'public/images/prof1.png';
-const aurelieImageUrl = 'public/images/prof2.png';
 
 const demoSteps = [
     {
@@ -73,6 +74,8 @@ const demoSteps = [
 export default function StepperContainer({
 
 }) {
+    const navigate = useNavigate();
+
     return (
         <>
             {/* Conteneur principal du Stepper */}
@@ -80,10 +83,47 @@ export default function StepperContainer({
                 initialSteps={demoSteps}
                 variant="horizontal"
                 finalContent={
-                    <div className="flex flex-col items-center justify-center h-full w-full space-y-6 text-center animate-in fade-in zoom-in duration-500">
-                        <h1 className="text-3xl font-bold">Félicitations ! 🎉</h1>
-                        <p className="text-muted-foreground text-lg">Vous avez complété l'ensemble de la formation avec succès.</p>
-                        {/* Vous pouvez aussi y importer un composant <ResultPage /> directement ici ! */}
+                    <div className="w-full mx-auto p-3 sm:p-6 rounded-xl border bg-card text-card-foreground shadow-sm flex flex-1 flex-col h-full overflow-y-auto items-center justify-center">
+
+                        <div className="space-y-4 text-center flex flex-col items-center">
+                            <img src="/y-days/icons/checkok.svg" alt="Bravo" className="w-24 h-24 rounded-full object-cover" />
+                            <h1 className="text-xl sm:text-4xl font-semibold">Merci d'avoir suivi ce kit de formation !</h1>
+                            <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
+                                Vous avez maintenant les clés pour intégrer l'IA dans votre pratique pédagogique et créer vos ressources plus rapidement :
+                            </p>
+                            <div>
+                                <HorizontalStepper
+                                    steps={demoSteps}
+                                    selectedIdx={-1}
+                                    showLogo={false}
+                                />
+                            </div>
+                        </div>
+                        <Memo variant="rocket" className="mt-6">
+                            <h3 className="font-bold text-lg">Pour aller plus loin</h3>
+                            <Card>
+                                <div className="flex gap-4">
+                                    <span className="w-8 h-8 rounded-lg bg-yellow-100 flex items-center justify-center flex-shrink-0">
+                                        <img src="/y-days/icons/accDoc.svg" alt="" className="w-4 h-4 object-contain" />
+                                    </span>
+                                    <div>
+                                        <h4 className="font-semibold">L'IA générative en 5 points clés</h4>
+                                        <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
+                                            Un article de synthèse pour comprendre les bases de l'IA générative et son impact.
+                                        </p>
+                                    </div>
+                                    <div className="ml-auto flex items-center justify-center pl-2">
+                                        <Download className="w-6 h-6 text-muted-foreground hover:text-primary transition-colors cursor-pointer" />
+                                    </div>
+
+                                </div>
+                            </Card>
+                        </Memo>
+                        <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
+                            Pour revoir un module cliquez directement dessus en haut de l'écran.
+                        </p>
+                        <Button variant="outline" className="mt-4" onClick={() => navigate('/')}>Recommencer le parcours</Button>
+
                     </div>
                 }
             />
