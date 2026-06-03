@@ -142,7 +142,7 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
                 />
             </div>
 
-            <div className="sticky -bottom-0 mt-auto pt-4 pb-3 sm:pb-6 bg-card flex justify-end z-10">
+            <div className="sticky -bottom-0 mt-auto pt-2 flex justify-end z-10">
                 <div className="flex gap-4">
                     {canResume && (
                         <Button variant="outline" onClick={onResume}>

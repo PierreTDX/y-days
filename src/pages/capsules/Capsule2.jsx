@@ -196,7 +196,7 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
             )} */}
 
             {/* Button bar. */}
-            <div className="sticky -bottom-0 mt-auto pt-15 flex justify-end">
+            <div className="sticky -bottom-0 mt-auto flex justify-end">
 
                 <div className="flex gap-4">
                     {canResume && (
