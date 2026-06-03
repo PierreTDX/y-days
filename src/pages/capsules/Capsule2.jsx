@@ -15,9 +15,9 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
 
     useEffect(() => {
         if (onProgress) {
-            onProgress(Math.round((step / 1) * 100)); // 1 est le max steps
+            onProgress(Math.round((step / finalStep) * 100));
         }
-    }, [step, onProgress]);
+    }, [step, finalStep, onProgress]);
 
     const gameCards = {
         "Game0": [
