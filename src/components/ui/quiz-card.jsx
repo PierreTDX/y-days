@@ -37,7 +37,7 @@ export function QuizCard({
 
             {gameResult === null ? (
                 customButtons ? customButtons(onGuess, correctAnswer) : (
-                    <div className="flex gap-4 p-6 h-21 border-t rounded-b-xl bg-card">
+                    <div className="flex gap-4 p-3 sm:p-6 h-auto border-t rounded-b-xl bg-card">
                         <Button
                             onClick={() => onGuess('IA', correctAnswer)}
                             size="lg"

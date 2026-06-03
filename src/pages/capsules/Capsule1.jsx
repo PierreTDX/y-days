@@ -214,7 +214,7 @@ export default function Capsule1({ onComplete, canResume, onResume, onProgress }
                 </div>
             )}
 
-            <div className="mt-auto pt-15 flex justify-between">
+            <div className="sticky -bottom-0 mt-auto pt-15 flex justify-between">
                 {step > 0 ? (
                     <Button variant="outline" onClick={() => setStep(step - 1)}>
                         <ArrowLeft className="w-4 h-4 mr-2" /> Précédent
