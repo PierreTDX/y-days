@@ -103,10 +103,10 @@
 
 /* Testimony wrappers */
 .home-testimony { position: absolute; z-index: 2; }
-.home-testimony--1 { top: 10%;    right: 5%; transform: rotate(4deg);  }
-.home-testimony--2 { bottom: 12%; left: 5%;  transform: rotate(-4deg); }
-.home-testimony--3 { top: 8%;    right: 5%; transform: rotate(5deg);  }
-.home-testimony--4 { bottom: 14%; right: 4%; transform: rotate(-4deg); }
+.home-testimony--1 { top: 8%;     right: 4%; transform: rotate(4deg);  }
+.home-testimony--2 { bottom: 10%; left: 4%;  transform: rotate(-4deg); }
+.home-testimony--3 { top: 8%;     left: 4%;  transform: rotate(-3deg); }
+.home-testimony--4 { bottom: 10%; right: 4%; transform: rotate(3deg);  }
 
 
 /* ═══════════════════════════════════════
@@ -578,6 +578,8 @@
 
 /* ── Tablette (≤ 1024px) ── */
 @media (max-width: 1024px) {
+  .home-testimony--3, .home-testimony--4 { display: none; }
+  .onboarding-right--step1 { display: none; }
   .onboarding-left { padding: 28px 32px; }
   .onboarding-title { font-size: 34px; line-height: 40px; }
   .step3-grid {
@@ -626,12 +628,47 @@
   .onboarding-left {
     width: 100%;
     padding: 24px 20px;
-    flex: 1;
+    overflow-y: visible; /* pas de scroll interne */
+    flex: 0 0 auto;      /* hauteur naturelle, pas d'étirement */
   }
 
   .onboarding-right {
-    display: none; /* panneau visuel masqué sur mobile */
+    width: 100%;
+    border-radius: 16px;
+    margin: 0 0 12px 0;
+    height: 260px;
+    flex-shrink: 0;
   }
+
+  /* Cards step 3 : scroll horizontal */
+  .step3-grid {
+    display: flex;
+    flex-direction: row;
+    grid-template-columns: unset;
+    grid-template-rows: unset;
+    overflow-x: auto;
+    overflow-y: hidden;
+    gap: 10px;
+    padding: 12px;
+    height: 100%;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    align-items: stretch;
+  }
+  .step3-grid > * {
+    min-width: 180px;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    height: 100%;
+    box-sizing: border-box;
+  }
+  .image-theme { height: 80px; }
+  .card-step-3-body { padding: 8px 10px 10px; gap: 4px; }
+  .card-theme-text { font-size: 11px; }
+  .card-step-3-meta { font-size: 10px; }
+
+  /* Illustration step 4 mobile */
+  .illustration-img { object-fit: contain; }
 
   /* — Titres — */
   .onboarding-title { font-size: 26px; line-height: 32px; letter-spacing: -.5px; }

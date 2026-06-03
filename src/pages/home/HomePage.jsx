@@ -31,10 +31,10 @@ function playStart() {
 }
 
 const TESTIMONIES = [
-  { cls: "home-testimony--1", avatar: "/y-days/images/prof1.png", quote: "Génère une fiche de lecture CE2 sur Le Petit Prince", name: "Marie",  role: "Enseignante CE2" },
-  { cls: "home-testimony--2", avatar: "/y-days/images/prof2.png", quote: "Crée une évaluation sur les fractions pour le CM1",  name: "Sophie", role: "Enseignante CM1" },
-  { cls: "home-testimony--3", avatar: "/y-days/images/prof3.png", quote: "Aide-moi à différencier pour les élèves en difficulté", name: "Claire", role: "Enseignante CE1" },
-  { cls: "home-testimony--4", avatar: "/y-days/images/prof4.png", quote: "Rédige un compte-rendu de réunion parents-profs",     name: "Julie",  role: "Enseignante CP"  },
+  { cls: "home-testimony--1", avatar: "/y-days/images/prof1.png", quote: "J'ai mon master MEEF en poche, mais face à 26 élèves, je ne sais par où commencer.", name: "Julie",  role: "Enseignante CM2" },
+  { cls: "home-testimony--2", avatar: "/y-days/images/prof2.png", quote: "Affectation reçue : CE2 dans 15 jours. Je ne connais ni les programmes, ni comment les créer",  name: "Marie", role: "Enseignante CE2" },
+  { cls: "home-testimony--3", avatar: "/y-days/images/prof3.png", quote: "Je ne me sens pas prêt à gérer une classe sans supports de cours prêts à l'emploi.", name: "Pierre", role: "Enseignant CP" },
+  { cls: "home-testimony--4", avatar: "/y-days/images/prof4.png", quote: "Je pars de zéro et je ne sais pas ce que je suis censée produire pour le premier jour.",     name: "Maxime",  role: "Enseignant CE1"  },
 ]
 
 export default function HomePage() {
@@ -56,7 +56,7 @@ export default function HomePage() {
       <div className="home-avatar home-avatar--2" />
       <div className="home-avatar home-avatar--3" />
 
-      {TESTIMONIES.slice(0, 2).map((t, i) => (
+      {TESTIMONIES.map((t, i) => (
         <div key={i} className={`home-testimony ${t.cls}`}>
           <Testimony avatarSrc={t.avatar} quote={t.quote} name={t.name} role={t.role} />
         </div>
@@ -72,13 +72,15 @@ export default function HomePage() {
           <span className="home-dot" />
           Un kit d'apprentissage en 10 min
         </div>
-        <Button
+      </div>
+      <div className="home-content">
+      <Button
           size="lg"
           style={{ background: 'linear-gradient(180deg, #B291E9 0%, #8260BA 100%)', border: 'none', marginTop: '32px', fontSize: '17px', padding: '10px 28px', height: 'auto' }}
           onClick={handleStart}
-        >
-          Démarrer l'apprentissage →
-        </Button>
+      >
+        Démarrer l'apprentissage →
+      </Button>
       </div>
     </div>
   )

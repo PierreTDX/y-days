@@ -190,7 +190,8 @@ export default function OnboardingPage() {
 
   const isLast     = step === STEPS.length - 1
   const isCarousel = STEPS[step].carousel
-  const isStep3 = step === 2
+  const isStep1    = step === 0
+  const isStep3    = step === 2
   const { title, Body } = STEPS[step]
 
   const progressSteps    = STEPS.filter(s => !s.carousel).length
@@ -255,50 +256,50 @@ export default function OnboardingPage() {
           )}
         </div>
 
-        <div key={isStep3 ? 'right-step3' : 'right-other'} className={`onboarding-right${isStep3 ? ' onboarding-right--step3' : ''}`}>
-          {!isCarousel && !isStep3 && !isLast && <ConcentricCircles />}
-          {!isCarousel ? (
-              isStep3 ? (
-                  <div className="step3-grid">
-                    {STEP3_CARDS.map((card, i) => (
-                      <div key={i} className="card-step-3">
-                        <img src="/y-days/images/fond-card.png" alt="" className="image-theme"/>
-                        <div className="card-step-3-body">
-                          <div className="card-step-3-meta">
-                            <span>{card.module}</span>
-                            <span>•</span>
-                            <span>{card.duration}</span>
-                          </div>
-                          <p className="card-theme-text">{card.text}</p>
+        {!isCarousel && (
+          <div key={isStep3 ? 'right-step3' : 'right-other'} className={`onboarding-right${isStep3 ? ' onboarding-right--step3' : ''}${isStep1 ? ' onboarding-right--step1' : ''}`}>
+            {!isStep3 && !isLast && <ConcentricCircles />}
+            {isStep3 ? (
+                <div className="step3-grid">
+                  {STEP3_CARDS.map((card, i) => (
+                    <div key={i} className="card-step-3">
+                      <img src="/y-days/images/fond-card.png" alt="" className="image-theme"/>
+                      <div className="card-step-3-body">
+                        <div className="card-step-3-meta">
+                          <span>{card.module}</span>
+                          <span>•</span>
+                          <span>{card.duration}</span>
                         </div>
-                      </div>
-                    ))}
-                    <div className="card-step-3-no-theme">
-                      <img src="/y-days/svg/Group.svg" alt="" className="image-no-theme"/>
-                      <div>
-                        <p className="text-card-step-no-theme">Pour aller plus loin</p>
-                        <p className="text-bold-step-no-theme">Lorem ipsum Lorem ipsum Lorem ipsum</p>
+                        <p className="card-theme-text">{card.text}</p>
                       </div>
                     </div>
+                  ))}
+                  <div className="card-step-3-no-theme">
+                    <img src="/y-days/svg/Group.svg" alt="" className="image-no-theme"/>
+                    <div>
+                      <p className="text-card-step-no-theme">Pour aller plus loin</p>
+                      <p className="text-bold-step-no-theme">Lorem ipsum Lorem ipsum Lorem ipsum</p>
+                    </div>
                   </div>
-              ) : isLast ? (
-                  <div className="right-illustration">
-                    <img src="/y-days/svg/Illustration.svg" alt="Illustration" className="illustration-img" />
-                  </div>
-              ) : (
-                  TESTIMONIES.slice(0, 2).map((t, i) => (
-                      <div key={i} className={`onb-testimony ${t.cls}`}>
-                        <Testimony
-                            avatarSrc={t.avatar}
-                            quote={t.quote}
-                            name={t.name}
-                            role={t.role}
-                        />
-                      </div>
-                  ))
-              )
-          ) : null}
-        </div>
+                </div>
+            ) : isLast ? (
+                <div className="right-illustration">
+                  <img src="/y-days/svg/Illustration.svg" alt="Illustration" className="illustration-img" />
+                </div>
+            ) : (
+                TESTIMONIES.slice(0, 2).map((t, i) => (
+                    <div key={i} className={`onb-testimony ${t.cls}`}>
+                      <Testimony
+                          avatarSrc={t.avatar}
+                          quote={t.quote}
+                          name={t.name}
+                          role={t.role}
+                      />
+                    </div>
+                ))
+            )}
+          </div>
+        )}
 
       </div>
     </div>
