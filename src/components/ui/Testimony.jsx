@@ -72,7 +72,7 @@ export function Testimony({
             </div>
 
             {/* ── Speech bubble ── */}
-            <div className="relative -bottom-7 right-10 z-20 -ml-4 -rotate-[1.5deg] mt-1 bg-white rounded-2xl px-4 py-3 shadow-md font-sans text-xs leading-none tracking-normal text-gray-800 max-w-[180px]">
+            <div className="relative -bottom-7 right-10 z-20 -ml-4 -rotate-[1.5deg] mt-1 bg-white rounded-2xl px-4 py-3 shadow-md font-sans text-xs leading-snug tracking-normal text-gray-800 max-w-[180px]">
                 {/* Left-pointing tail */}
                 <span
                     className="absolute -left-2 top-4 w-0 h-0"
@@ -82,7 +82,7 @@ export function Testimony({
                         borderRight: "8px solid white",
                     }}
                 />
-                <div className="line-clamp-4">"{quote}"</div>
+                <div>"{quote}"</div>
             </div>
         </div>
     );

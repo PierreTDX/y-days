@@ -649,7 +649,6 @@
 /* ── Tablette (≤ 1024px) ── */
 @media (max-width: 1024px) {
   .home-testimony--3, .home-testimony--4 { display: none; }
-  .onboarding-right--step1 { display: none; }
   .onboarding-left { padding: 28px 32px; }
   .onboarding-title { font-size: 34px; line-height: 40px; }
   .step3-grid {
