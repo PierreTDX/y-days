@@ -11,7 +11,7 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
 
     useEffect(() => {
         if (onProgress) {
-            onProgress(Math.round((step / 5) * 100)); // 5 est le max steps
+            onProgress(Math.round((step / 7) * 100)); // 7 est le max steps
         }
     }, [step, onProgress]);
 
@@ -110,9 +110,11 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
         }
     ];
 
-    const currentStep = QUIZ_STEPS[step];
+    const isQuizStep = step < QUIZ_STEPS.length;
+    const currentStep = isQuizStep ? QUIZ_STEPS[step] : null;
 
     const handleGuess = (valeurBoutonClique) => {
+        if (!currentStep) return;
         const reponseAttendue = currentStep.correctAnswer
 
         const estBonneReponse =
@@ -125,21 +127,42 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
         <div className="w-full mx-auto p-3 sm:p-6 rounded-xl border bg-card text-card-foreground shadow-sm flex flex-1 flex-col h-full overflow-y-auto">
             <div className="space-y-4">
                 <h1 className="text-xl sm:text-4xl font-semibold">Démêler le vrai du faux contenu à l’ère de l’IA.</h1>
-                <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
-                    L'intelligence artificielle générative transforme notre manière de créer et d'interagir avec le contenu. Elle peut parfois rendre difficile la distinction entre les œuvres humaines et celles produites par des algorithmes.
-                </p>
-                <p className="text-muted-foreground leading-relaxed font-bold text-sm sm:text-base">
-                    {currentStep.question}
-                </p>
-                <QuizCard
-                    media={currentStep.media}
-                    mediaClassName={currentStep.mediaClassName}
-                    gameResult={gameResult}
-                    onGuess={handleGuess}
-                    explication={currentStep.explication}
-                    customButtons={currentStep.customButtons}
-                    correctAnswer={currentStep.correctAnswer}
-                />
+
+                {isQuizStep && (
+                    <>
+                        <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
+                            L'intelligence artificielle générative transforme notre manière de créer et d'interagir avec le contenu. Elle peut parfois rendre difficile la distinction entre les œuvres humaines et celles produites par des algorithmes.
+                        </p>
+                        <p className="text-muted-foreground leading-relaxed font-bold text-sm sm:text-base">
+                            {currentStep.question}
+                        </p>
+                        <QuizCard
+                            media={currentStep.media}
+                            mediaClassName={currentStep.mediaClassName}
+                            gameResult={gameResult}
+                            onGuess={handleGuess}
+                            explication={currentStep.explication}
+                            customButtons={currentStep.customButtons}
+                            correctAnswer={currentStep.correctAnswer}
+                        />
+                    </>
+                )}
+
+                {step === 6 && (
+                    <div className="space-y-4">
+                        <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
+                            Contenu de votre nouvelle étape 6 ici...
+                        </p>
+                    </div>
+                )}
+
+                {step === 7 && (
+                    <div className="space-y-4">
+                        <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
+                            Contenu de votre nouvelle étape 7 ici...
+                        </p>
+                    </div>
+                )}
             </div>
 
             <div className="sticky -bottom-0 mt-auto pt-2 flex justify-end z-10">
@@ -150,19 +173,32 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
                         </Button>
                     )}
 
-                    {gameResult !== null && (
+                    {isQuizStep && gameResult !== null && (
                         <Button
                             onClick={() => {
-                                if (step < 5) {
+                                setStep(step + 1)
+                                setGameResult(null)
+                            }}>
+                            {step < QUIZ_STEPS.length - 1 ? (
+                                <>Question suivante <ArrowRight className="w-4 h-4 ml-2" /></>
+                            ) : (
+                                <>Étape suivante <ArrowRight className="w-4 h-4 ml-2" /></>
+                            )}
+                        </Button>
+                    )}
+
+                    {!isQuizStep && (
+                        <Button
+                            onClick={() => {
+                                if (step < 7) {
                                     setStep(step + 1)
-                                    setGameResult(null)
                                 } else {
                                     onComplete?.()
                                     navigate('/result')
                                 }
                             }}>
-                            {step < 5 ? (
-                                <>Question suivante <ArrowRight className="w-4 h-4 ml-2" /></>
+                            {step < 7 ? (
+                                <>Étape suivante <ArrowRight className="w-4 h-4 ml-2" /></>
                             ) : (
                                 "Terminer"
                             )}
