@@ -126,9 +126,9 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
     }
 
     const points = [
-        { id: 1, x: 41, y: 20, content: "Explication 1" },
-        { id: 2, x: 73, y: 7, content: "Explication 2" },
-        { id: 3, x: 72.3, y: 63.5, content: "Explication 3" },
+        { id: 1, x: 41, y: 20, content: "Sur la statue du cheval on remarque que le bras du cavalier semble “fondu” dans l’objet qu’il tient." },
+        { id: 2, x: 73, y: 7, content: "Le haut de la flèche du bâtiment est de travers et les fenêtres ne sont pas régulières." },
+        { id: 3, x: 72.3, y: 63.5, content: "La femme au second plan semble avoir les traits du visages floutés et déformés." },
     ];
 
     return (
@@ -196,6 +196,7 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
 
                 {step === 7 && (
                     <div className="space-y-4">
+                        <br />
                         <div className="flex flex-col gap-6">
                             <Card className="p-3 md:p-5">
                                 <div className="flex-1 flex gap-3 items-start pr-3">
@@ -247,10 +248,21 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
                                             >
                                             </button>
 
-                                            {/* tooltip */}
-                                            <div className={`absolute mt-2 left-1/2 -translate-x-1/2 bg-black text-white text-sm p-2 rounded shadow-lg whitespace-nowrap pointer-events-none transition-all duration-200 ${active === point.id ? "opacity-100 visible" : "opacity-0 invisible md:group-hover:opacity-100 md:group-hover:visible"}`}>
+                                            {/* Tooltip Desktop (centré sur le bouton) */}
+                                            <div className={`hidden md:block w-64 h-auto absolute mt-2 left-1/2 -translate-x-1/2 bg-black text-white text-sm text-center p-3 rounded-[10px] shadow-lg pointer-events-none transition-all duration-200 z-50 ${active === point.id ? "opacity-100 visible" : "opacity-0 invisible group-hover:opacity-100 group-hover:visible"}`}>
                                                 {point.content}
                                             </div>
+                                        </div>
+                                    ))}
+
+                                    {/* Tooltip Mobile (centré en X par rapport à l'image) */}
+                                    {points.map((point) => (
+                                        <div
+                                            key={`mobile-${point.id}`}
+                                            className={`md:hidden absolute w-[90%] max-w-[256px] left-1/2 -translate-x-1/2 bg-black text-white text-sm text-center p-3 rounded-[10px] shadow-lg pointer-events-none transition-all duration-200 z-50 ${active === point.id ? "opacity-100 visible mt-6" : "opacity-0 invisible mt-4"}`}
+                                            style={{ top: `${point.y}%` }}
+                                        >
+                                            {point.content}
                                         </div>
                                     ))}
                                 </div>
