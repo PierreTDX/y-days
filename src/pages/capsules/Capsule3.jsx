@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
 import { useNavigate } from 'react-router-dom'
 import { ArrowRight } from "lucide-react"
 import { QuizCard } from "@/components/ui/quiz-card"
@@ -151,8 +152,38 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
                 {step === 6 && (
                     <div className="space-y-4">
                         <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
-                            Contenu de votre nouvelle étape 6 ici...
+                            Comme on l’a vu dans le jeu précédent, l’IA est en capacité de produire du contenu bluffant et réaliste. Il est donc important de toujours remettre en question le contenu que l’on voit et que l'on produit.
                         </p>
+                        <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
+                            Les détecteurs d’IA sont une solution pour vérifier si un texte est généré par IA, mais il faut garder en tête qu’il ne sont pas précis et qu’ils peuvent avoir une marge d’erreur importante.
+                        </p>
+                        <Card>
+                            <div className="flex flex-col md:flex-row gap-4 p-3 md:p-6">
+                                <div className="flex-1 flex gap-3 items-start pr-3">
+                                    <div className="flex-shrink-0">
+                                        <div className="relative w-[60px] h-[60px] rounded overflow-hidden">
+                                            <img src="/y-days/icons/icon1.svg" alt="Détecteurs d'IA" className="w-full h-full object-cover" />
+                                            <div className="absolute inset-0 bg-[#A076E4] mix-blend-color opacity-60 pointer-events-none"></div>
+                                        </div>
+                                    </div>
+                                    <div className="gap-2 flex flex-col">
+                                        <h2 className="text-lg font-semibold">Comment verifier les sources ?</h2>
+                                        <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
+                                            Nous en avons parlé dans le module 1, il est possible d’utiliser Perplexity pour vérifier des sources et comparer entre plusieurs sites internet lorsqu’il s’agit de données chiffrées.
+                                        </p>
+                                        <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
+                                            Perplexity appuiera naturellement toujours ses réponses avec le lien vers la source.
+                                        </p>
+                                        <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
+                                            Vous trouverez ci-contre une capture d’écran d’une conversation avec Perplexity.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="flex-1">
+                                    <img src="/y-days/images/illustrationModule3.png" alt="Capture d'écran" className="w-full h-full object-cover object-left rounded" />
+                                </div>
+                            </div>
+                        </Card>
                     </div>
                 )}
 
