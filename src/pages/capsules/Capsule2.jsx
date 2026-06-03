@@ -206,10 +206,11 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
                     )}
 
                     <span
-                        className={`group relative ${isNextDisabled ? "cursor-not-allowed inline-block" : "inline-block"}`}
+                        tabIndex={isNextDisabled ? 0 : undefined}
+                        className={`group relative ${isNextDisabled ? "cursor-not-allowed inline-block focus:outline-none" : "inline-block"}`}
                     >
                         {isNextDisabled && (
-                            <div className="absolute bottom-full left-0 -translate-x-1/2 mb-2 hidden group-hover:flex flex-row justify-center items-center px-[12px] py-[6px] gap-[8px] isolate w-[201px] max-w-[384px] h-[44px] bg-[#171717] rounded-[8px] text-white text-xs text-center z-50 pointer-events-none shadow-lg">
+                            <div className="absolute bottom-full left-0 -translate-x-1/2 mb-2 hidden group-hover:flex group-focus:flex group-active:flex flex-row justify-center items-center px-[12px] py-[6px] gap-[8px] isolate w-[201px] max-w-[384px] h-[44px] bg-[#171717] rounded-[8px] text-white text-xs text-center z-50 pointer-events-none shadow-lg">
                                 Explorez cette étape pour continuer
                             </div>
                         )}

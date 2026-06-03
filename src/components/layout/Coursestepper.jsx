@@ -122,8 +122,9 @@ function HorizontalStepper({ selectedIdx, steps, onStepClick }) {
                             <div
                                 key={i}
                                 onClick={step.status !== "locked" ? () => onStepClick(i) : undefined}
+                                tabIndex={step.status === "locked" ? 0 : undefined}
                                 className={[
-                                    "relative flex items-center h-[60px] px-4 min-w-0 overflow-hidden border border-zinc-200 bg-white shadow-sm rounded-xl",
+                                    "relative flex items-center h-[60px] px-4 min-w-0 border border-zinc-200 bg-white shadow-sm rounded-xl",
                                     "transition-all duration-500 ease-in-out group",
 
                                     isSelected
@@ -132,7 +133,7 @@ function HorizontalStepper({ selectedIdx, steps, onStepClick }) {
 
                                     step.status !== "locked"
                                         ? "cursor-pointer hover:bg-zinc-50"
-                                        : "cursor-not-allowed",
+                                        : "cursor-not-allowed focus:outline-none",
                                 ].join(" ")}
                             >
                                 {/* Icon & Label part */}
@@ -207,7 +208,7 @@ function HorizontalStepper({ selectedIdx, steps, onStepClick }) {
                                     </>
                                 )}
                                 {step.status === "locked" && (
-                                    <div className="absolute top-[110%] left-1/2 -translate-x-1/2 mb-2 hidden group-hover:flex flex-row justify-center items-center px-3 py-1.5 gap-2 isolate w-max max-w-[250px] bg-[#171717] rounded-lg text-white text-xs text-center z-50 pointer-events-none shadow-lg">
+                                    <div className="absolute top-[110%] right-0 mb-2 hidden group-hover:flex group-focus:flex group-active:flex flex-row justify-center items-center px-3 py-1.5 gap-2 isolate w-max max-w-[250px] bg-[#171717] rounded-lg text-white text-xs text-center z-50 pointer-events-none shadow-lg">
                                         Ce module sera accessible une fois précédent terminé
                                     </div>
                                 )}
