@@ -31,16 +31,16 @@ export default function Capsule1({ onComplete, canResume, onResume, onProgress }
     const isNextDisabled = (step === 1 && Object.keys(flippedCards).length < 3) || (step === 2 && openedAccordions.length < 3);
 
     return (
-        <div className="w-full mx-auto p-6 rounded-xl border bg-card text-card-foreground shadow-sm">
+        <div className="w-full mx-auto p-3 sm:p-6 rounded-xl border bg-card text-card-foreground shadow-sm flex flex-1 flex-col h-full overflow-y-auto">
             {/* Step 0: Intro */}
             {step === 0 && (
                 <div className="space-y-4">
-                    <h1 className="text-4xl font-semibold">Introduction et découverte des outils d’IA</h1>
-                    <p className="text-muted-foreground leading-relaxed">
+                    <h1 className="text-xl sm:text-4xl font-semibold">Introduction et découverte des outils d’IA</h1>
+                    <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
                         Jusqu'à récemment, l'informatique classique servait à analyser des données ou automatiser des tâches répétitives. L'IA générative change totalement la donne, et même pour vous.
                     </p>
                     <div className="flex flex-col md:flex-row gap-6 items-center">
-                        <p className="w-full md:w-3/5 text-muted-foreground leading-relaxed">
+                        <p className="w-full md:w-3/5 text-muted-foreground leading-relaxed text-sm sm:text-base">
                             L’IA générative est un type d’intelligence artificielle capable de générer du contenu inédit (texte, images, schémas, musiques, code informatique, et bien plus) à partir d’une simple consigne écrite en langage naturel. Cette consigne donnée à l’IA s’appelle un prompt.
                         </p>
                         <div className="w-full md:flex-1">
@@ -51,7 +51,7 @@ export default function Capsule1({ onComplete, canResume, onResume, onProgress }
                                 2022
                             </h2>
                             <Card className="p-4">
-                                <p className="text-muted-foreground leading-relaxed">C’est l'année d'explosion de l'IA générative aux yeux du grand public avec la sortie de l'incontournable ChatGPT (par l'entreprise OpenAI). Un Choc positif.</p>
+                                <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">C’est l'année d'explosion de l'IA générative aux yeux du grand public avec la sortie de l'incontournable ChatGPT (par l'entreprise OpenAI). Un Choc positif.</p>
                             </Card>
                         </div>
                     </div>
@@ -66,8 +66,8 @@ export default function Capsule1({ onComplete, canResume, onResume, onProgress }
             {/* Step 1: Cartes */}
             {step === 1 && (
                 <div className="space-y-6">
-                    <h1 className="text-4xl font-semibold">Introduction et découverte des outils d'IA</h1>
-                    <p className="text-muted-foreground leading-relaxed font-bold">
+                    <h1 className="text-xl sm:text-4xl font-semibold">Introduction et découverte des outils d'IA</h1>
+                    <p className="text-muted-foreground leading-relaxed font-bold text-sm sm:text-base">
                         Voici nos recommandations d'IA importantes pour la création de vos ressources pédagogiques :
                     </p>
                     <div className="grid md:grid-cols-3 gap-6">
@@ -92,8 +92,8 @@ export default function Capsule1({ onComplete, canResume, onResume, onProgress }
             {/* Step 2: Accordéons */}
             {step === 2 && (
                 <div className="space-y-6">
-                    <h1 className="text-4xl font-semibold">Introduction et découverte des outils d'IA</h1>
-                    <p className="text-muted-foreground leading-relaxed font-bold">Pour aller plus loin :</p>
+                    <h1 className="text-xl sm:text-4xl font-semibold">Introduction et découverte des outils d'IA</h1>
+                    <p className="text-muted-foreground leading-relaxed font-bold text-sm sm:text-base">Pour aller plus loin :</p>
 
                     <div className="rounded-lg divide-y overflow-hidden">
                         {[
@@ -214,7 +214,7 @@ export default function Capsule1({ onComplete, canResume, onResume, onProgress }
                 </div>
             )}
 
-            <div className="mt-15 flex justify-between">
+            <div className="sticky -bottom-0 mt-auto flex justify-between">
                 {step > 0 ? (
                     <Button variant="outline" onClick={() => setStep(step - 1)}>
                         <ArrowLeft className="w-4 h-4 mr-2" /> Précédent
@@ -231,10 +231,11 @@ export default function Capsule1({ onComplete, canResume, onResume, onProgress }
                     )}
 
                     <span
-                        className={`group relative ${isNextDisabled ? "cursor-not-allowed inline-block" : "inline-block"}`}
+                        tabIndex={isNextDisabled ? 0 : undefined}
+                        className={`group relative ${isNextDisabled ? "cursor-not-allowed inline-block focus:outline-none" : "inline-block"}`}
                     >
                         {isNextDisabled && (
-                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:flex flex-row justify-center items-center px-[12px] py-[6px] gap-[8px] isolate w-[201px] max-w-[384px] h-[44px] bg-[#171717] rounded-[8px] text-white text-xs text-center z-50 pointer-events-none shadow-lg">
+                            <div className="absolute bottom-full left-0 -translate-x-1/2 mb-2 hidden group-hover:flex group-focus:flex group-active:flex flex-row justify-center items-center px-[12px] py-[6px] gap-[8px] isolate w-[201px] max-w-[384px] h-[44px] bg-[#171717] rounded-[8px] text-white text-xs text-center z-50 pointer-events-none shadow-lg">
                                 Explorez cette étape pour continuer
                             </div>
                         )}

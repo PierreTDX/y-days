@@ -52,16 +52,16 @@ function useCountUp(target, duration = 1600, delay = 0) {
 }
 
 const TESTIMONIES = [
-  { cls: "onb-testimony--1", avatar: "/y-days/images/prof1.png", quote: "Génère une fiche de lecture CE2 sur Le Petit Prince", name: "Marie", role: "Enseignante CE2" },
-  { cls: "onb-testimony--2", avatar: "/y-days/images/prof2.png", quote: "Crée une évaluation sur les fractions pour le CM1", name: "Sophie", role: "Enseignante CM1" },
-  { cls: "onb-testimony--3", avatar: "/y-days/images/prof3.png", quote: "Aide-moi à différencier pour les élèves en difficulté", name: "Claire", role: "Enseignante CE1" },
-  { cls: "onb-testimony--4", avatar: "/y-days/images/prof4.png", quote: "Rédige un compte-rendu de réunion parents-profs", name: "Julie", role: "Enseignante CP" },
+  { cls: "home-testimony--1", avatar: "/y-days/images/prof1.png", quote: "J'ai mon master MEEF en poche, mais face à 26 élèves, je ne sais par où commencer.", name: "Julie",  role: "Enseignante CM2" },
+  { cls: "home-testimony--2", avatar: "/y-days/images/prof2.png", quote: "Affectation reçue : CE2 dans 15 jours. Je ne connais ni les programmes, ni comment les créer",  name: "Marie", role: "Enseignante CE2" },
+  { cls: "home-testimony--3", avatar: "/y-days/images/prof3.png", quote: "Je ne me sens pas prêt à gérer une classe sans supports de cours prêts à l'emploi.", name: "Pierre", role: "Enseignant CP" },
+  { cls: "home-testimony--4", avatar: "/y-days/images/prof4.png", quote: "Je pars de zéro et je ne sais pas ce que je suis censée produire pour le premier jour.",     name: "Maxime",  role: "Enseignant CE1"  },
 ]
 
 const STEP3_CARDS = [
-  { module: "Module 1", duration: "2 min", text: "L'Introduction aux outils d'IA : outils généraux et spécialisés." },
-  { module: "Module 2", duration: "2 min", text: "La méthode pour créer une instruction (prompt) efficace. " },
-  { module: "Module 3", duration: "2 min", text: "Délémer le vrai du faux : contenu à l’ère de l’IA" },
+  { module: "Module 1", duration: "2 min", text: "L'Introduction aux outils d'IA : outils généraux et spécialisés.", image: "/y-days/images/introduction-au-outil-IA-minia.png" },
+  { module: "Module 2", duration: "2 min", text: "La méthode pour créer une instruction (prompt) efficace. ", image: "/y-days/images/methode-pour-cree-inscription-minia.png" },
+  { module: "Module 3", duration: "2 min", text: "Délémer le vrai du faux : contenu à l’ère de l’IA", image: "/y-days/images/demeler-vrai-faux-minia.png" },
 ]
 
 const LIST_ITEMS = [
@@ -186,11 +186,13 @@ export default function OnboardingPage() {
   const [step, setStep] = useState(0)
   const [direction, setDirection] = useState("right")
   const [unlockedCta, setUnlockedCta] = useState(false)
+  const [lightboxSrc, setLightboxSrc] = useState(null)
   const navigate = useNavigate()
 
   const isLast     = step === STEPS.length - 1
   const isCarousel = STEPS[step].carousel
-  const isStep3 = step === 2
+  const isStep1    = step === 0
+  const isStep3    = step === 2
   const { title, Body } = STEPS[step]
 
   const progressSteps    = STEPS.filter(s => !s.carousel).length
@@ -200,15 +202,16 @@ export default function OnboardingPage() {
   const handleNext = () => {
     if (isLast) { playSound("start"); navigate("/stepper") }
     else {
-      playSound("next"); setDirection("right")
+      setDirection("right")
       const next = step + 1
       if (next === STEPS.length - 1) setUnlockedCta(true)
       setStep(next)
     }
   }
-  const handleBack = () => { playSound("back"); setDirection("left"); setStep(s => s - 1) }
+  const handleBack = () => { setDirection("left"); setStep(s => s - 1) }
 
   return (
+    <>
     <div className="onboarding-container">
       <div className={`onboarding${isCarousel ? ' onboarding--carousel' : ''}`}>
 
@@ -255,52 +258,65 @@ export default function OnboardingPage() {
           )}
         </div>
 
-        <div key={isStep3 ? 'right-step3' : 'right-other'} className={`onboarding-right${isStep3 ? ' onboarding-right--step3' : ''}`}>
-          {!isCarousel && !isStep3 && !isLast && <ConcentricCircles />}
-          {!isCarousel ? (
-              isStep3 ? (
-                  <div className="step3-grid">
-                    {STEP3_CARDS.map((card, i) => (
-                      <div key={i} className="card-step-3">
-                        <img src="/y-days/images/fond-card.png" alt="" className="image-theme"/>
-                        <div className="card-step-3-body">
-                          <div className="card-step-3-meta">
-                            <span>{card.module}</span>
-                            <span>•</span>
-                            <span>{card.duration}</span>
-                          </div>
-                          <p className="card-theme-text">{card.text}</p>
+        {!isCarousel && (
+          <div key={isStep3 ? 'right-step3' : 'right-other'} className={`onboarding-right${isStep3 ? ' onboarding-right--step3' : ''}${isStep1 ? ' onboarding-right--step1' : ''}`}>
+            {!isStep3 && !isLast && <ConcentricCircles />}
+            {isStep3 ? (
+                <div className="step3-grid">
+                  {STEP3_CARDS.map((card, i) => (
+                    <div key={i} className="card-step-3">
+                      <img src={card.image} alt="" className="image-theme"/>
+                      <div className="card-step-3-body">
+                        <div className="card-step-3-meta">
+                          <span>{card.module}</span>
+                          <span>•</span>
+                          <span>{card.duration}</span>
                         </div>
-                      </div>
-                    ))}
-                    <div className="card-step-3-no-theme">
-                      <img src="/y-days/svg/Group.svg" alt="" className="image-no-theme"/>
-                      <div>
-                        <p className="text-card-step-no-theme">Pour aller plus loin</p>
-                        <p className="text-bold-step-no-theme">Lorem ipsum Lorem ipsum Lorem ipsum</p>
+                        <p className="card-theme-text">{card.text}</p>
                       </div>
                     </div>
+                  ))}
+                  <div className="card-step-3-no-theme">
+                    <img src="/y-days/svg/Group.svg" alt="" className="image-no-theme"/>
+                    <div>
+                      <p className="text-card-step-no-theme">Pour aller plus loin</p>
+                      <p className="text-bold-step-no-theme">Lorem ipsum Lorem ipsum Lorem ipsum</p>
+                    </div>
                   </div>
-              ) : isLast ? (
-                  <div className="right-illustration">
-                    <img src="/y-days/svg/Illustration.svg" alt="Illustration" className="illustration-img" />
+                </div>
+            ) : isLast ? (
+                <div className="right-illustration">
+                  <div className="illustration-wrapper">
+                    <img src="/y-days/svg/Illustration.svg" alt="Illustration" className="illustration-img" onClick={() => setLightboxSrc('/y-days/svg/Illustration.svg')} />
+                    <button className="image-zoom-btn" onClick={() => setLightboxSrc('/y-days/svg/Illustration.svg')} aria-label="Agrandir l'image">
+                      <img src="/y-days/icons/Searchicon.svg" alt="" />
+                    </button>
                   </div>
-              ) : (
-                  TESTIMONIES.slice(0, 2).map((t, i) => (
-                      <div key={i} className={`onb-testimony ${t.cls}`}>
-                        <Testimony
-                            avatarSrc={t.avatar}
-                            quote={t.quote}
-                            name={t.name}
-                            role={t.role}
-                        />
-                      </div>
-                  ))
-              )
-          ) : null}
-        </div>
+                </div>
+            ) : (
+                TESTIMONIES.slice(0, 2).map((t, i) => (
+                    <div key={i} className={`onb-testimony ${t.cls}`}>
+                      <Testimony
+                          avatarSrc={t.avatar}
+                          quote={t.quote}
+                          name={t.name}
+                          role={t.role}
+                      />
+                    </div>
+                ))
+            )}
+          </div>
+        )}
 
       </div>
     </div>
+
+    {lightboxSrc && (
+      <div className="lightbox-overlay" onClick={() => setLightboxSrc(null)}>
+        <button className="lightbox-close" onClick={() => setLightboxSrc(null)} aria-label="Fermer">✕</button>
+        <img src={lightboxSrc} alt="" className="lightbox-img" onClick={e => e.stopPropagation()} />
+      </div>
+    )}
+    </>
   )
 }

@@ -86,7 +86,7 @@ const TestsPage = () => {
     return (
         <>
             <div className="min-h-screen bg-neutral-50 p-12 flex flex-col items-center gap-24">
-                <h1 className="text-4xl font-bold">Testimony</h1>
+                <h1 className="text-xl sm:text-4xl font-bold">Testimony</h1>
 
                 {/* Exemple 1 : Marie */}
                 <Testimony
@@ -105,7 +105,7 @@ const TestsPage = () => {
                 />
             </div>
             <div className="min-h-screen bg-neutral-50 p-12 flex flex-col items-center gap-24">
-                <h1 className="text-4xl font-bold">CourseStepper</h1>
+                <h1 className="text-xl sm:text-4xl font-bold">CourseStepper</h1>
 
                 {/* Exemple d'utilisation de CourseStepper - Vue Verticale */}
                 {/* <div className="w-full max-w-4xl">
@@ -126,7 +126,7 @@ const TestsPage = () => {
                 </div>
             </div>
             <div className="min-h-screen bg-neutral-50 p-12 flex flex-col items-center gap-24">
-                <h1 className="text-4xl font-bold">Memo</h1>
+                <h1 className="text-xl sm:text-4xl font-bold">Memo</h1>
                 <div className=" max-w-sm gap-6 flex flex-col">
                     <Memo variant="bookmark">
                         <p>C’est pour cette raison que l’IA peut s’avérer être un réel assistant pour la planification et la création de vos ressources pédagogiques.</p>

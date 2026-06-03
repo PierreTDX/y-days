@@ -5,17 +5,12 @@ function shuffle(array) {
     const arr = [...array]
     for (let i = arr.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1))
-        ;[arr[i], arr[j]] = [arr[j], arr[i]]
+            ;[arr[i], arr[j]] = [arr[j], arr[i]]
     }
     return arr
 }
 
-export default function DragDropGame({
-    buckets,
-    initialCards,
-    onComplete,
-    onProgress
-}) {
+export default function DragDropGame({ buckets, initialCards, onComplete, onProgress }) {
     const [cards, setCards] = useState(
         shuffle(initialCards).map((c) => ({
             ...c,
@@ -82,11 +77,11 @@ export default function DragDropGame({
             prev.map((c) =>
                 c.id === cardId
                     ? {
-                          ...c,
-                          assigned: bucket,
-                          correct: isCorrect,
-                          dragging: false,
-                      }
+                        ...c,
+                        assigned: bucket,
+                        correct: isCorrect,
+                        dragging: false,
+                    }
                     : c
             )
         )
@@ -99,20 +94,23 @@ export default function DragDropGame({
                 "Ce n'est pas le bon mot ici — il retourne dans la boîte !"
             )
 
-            if (errorTimeout) clearTimeout(errorTimeout)
+            if (errorTimeout) {
+                clearTimeout(errorTimeout)
+            }
 
             const timeoutId = setTimeout(() => {
                 setCards((prev) =>
                     prev.map((c) =>
                         c.id === cardId && c.correct === false
                             ? {
-                                  ...c,
-                                  assigned: null,
-                                  correct: null,
-                              }
+                                ...c,
+                                assigned: null,
+                                correct: null,
+                            }
                             : c
                     )
                 )
+
                 setErrorMessage(null)
                 setErrorTimeout(null)
             }, 3000)
@@ -134,16 +132,20 @@ export default function DragDropGame({
 
                 {/* TITLE */}
                 <div className="mb-8">
-                    <h1 className="text-4xl font-bold tracking-tight mb-2">
+                    <h1 className="text-xl sm:text-4xl font-bold tracking-tight mb-2">
                         Reconstitue le prompt
                     </h1>
+
                     <p className="text-sm text-slate-500">
-                        Réorganise le prompt en plaçant chaque carte dans la bonne zone.
+                        Réorganise le prompt. Pour ce faire,
+                        sélectionne une carte dans la boîte à mots
+                        et dépose-la dans la zone que tu juges
+                        appropriée.
                     </p>
                 </div>
 
-                {/* ================= SLOTS ================= */}
-                <div className="space-y-3 mb-6">
+                {/* ROLE SLOTS */}
+                <div className="space-y-3 mb-8">
                     {buckets.map((bucket, index) => {
                         const bucketCard = cards.find(
                             (c) => c.assigned === bucket
@@ -157,9 +159,13 @@ export default function DragDropGame({
                                 {/* LETTER */}
                                 <div
                                     className={`
-                                        w-10 h-10 rounded-md flex items-center justify-center font-semibold text-sm
-                                        ${badgeColors[index]}
-                                    `}
+                            w-10 h-10
+                            rounded-md
+                            flex items-center justify-center
+                            font-semibold
+                            text-sm
+                            ${badgeColors[index]}
+                        `}
                                 >
                                     {bucket.charAt(0)}
                                 </div>
@@ -175,23 +181,36 @@ export default function DragDropGame({
                                     }
                                     onDrop={(e) => {
                                         e.preventDefault()
+
                                         const id =
-                                            e.dataTransfer.getData("text/plain")
+                                            e.dataTransfer.getData(
+                                                "text/plain"
+                                            )
+
                                         assignCardToBucket(id, bucket)
                                     }}
-                                    onClick={() => {
-                                        if (selectedCardId) {
-                                            assignCardToBucket(selectedCardId, bucket)
-                                        }
-                                    }}
+                                    onClick={() =>
+                                        selectedCardId &&
+                                        assignCardToBucket(
+                                            selectedCardId,
+                                            bucket
+                                        )
+                                    }
                                     className={`
-                                        flex-1 min-h-[52px] rounded-lg border border-dashed px-3 flex items-center cursor-pointer
-                                        ${
-                                            hoverBucket === bucket
-                                                ? "border-violet-400 bg-violet-50"
-                                                : "border-violet-200 bg-white"
+                            flex-1
+                            min-h-[52px]
+                            rounded-lg
+                            border
+                            border-dashed
+                            px-3
+                            flex items-center
+                            transition-all
+                            cursor-pointer
+                            ${hoverBucket === bucket
+                                            ? "border-violet-400 bg-violet-50"
+                                            : "border-violet-200 bg-white"
                                         }
-                                    `}
+                        `}
                                 >
                                     {bucketCard ? (
                                         <div
@@ -208,13 +227,16 @@ export default function DragDropGame({
                                             }}
                                             onDragEnd={onDragEnd}
                                             className={`
-                                                px-3 py-2 rounded-lg border text-sm bg-white
-                                                ${
-                                                    bucketCard.correct
-                                                        ? "border-green-400"
-                                                        : "border-red-400 bg-red-50"
+                                px-3 py-2
+                                rounded-lg
+                                border
+                                text-sm
+                                bg-white
+                                ${bucketCard.correct
+                                                    ? "border-green-400"
+                                                    : "border-red-400 bg-red-50"
                                                 }
-                                            `}
+                            `}
                                         >
                                             {bucketCard.text}
                                         </div>

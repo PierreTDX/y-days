@@ -82,21 +82,21 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
 
 
     return (<>
-        <div className="w-full mx-auto p-6 rounded-xl border bg-card text-card-foreground shadow-sm">
+        <div className="w-full mx-auto p-3 sm:p-6 rounded-xl border bg-card text-card-foreground shadow-sm flex flex-1 flex-col h-full overflow-y-auto">
 
             {/* ROLE Introduction */}
             {step === 0 && (
                 <div className="grid lg:grid-cols-[1fr_320px] gap-8 items-start">
                     {/* LEFT SIDE */}
                     <div className="space-y-6">
-                        <h1 className="text-4xl font-semibold">Rédiger le bon prompt : La Méthode R.O.L.E.</h1>
-                        <p className="text-muted-foreground">
+                        <h1 className="text-xl sm:text-4xl font-semibold">Rédiger le bon prompt : La Méthode R.O.L.E.</h1>
+                        <p className="text-muted-foreground text-sm sm:text-base">
                             Dans ce module, vous apprendrez à  formuler un prompt professionnel pour générer des ressources pédagogiques pour l'enseignement primaire.
                         </p>
-                        <p className="text-muted-foreground leading-relaxed">
-                            <span style={{ fontWeight: 'bold' }}>Contenu théorique (Lecture légère):</span> 
-                            Pour obtenir une fiche de préparation ou une séquence de qualité, un bon prompt doit contenir nécessairement 4 éléments clés: 
-                            <span style={{ fontWeight: 'bold', fontSize: '1.25rem' }}>R.O.L.E</span> 
+                        <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
+                            <span style={{ fontWeight: 'bold' }}>Contenu théorique (Lecture légère):</span>
+                            Pour obtenir une fiche de préparation ou une séquence de qualité, un bon prompt doit contenir nécessairement 4 éléments clés:
+                            <span style={{ fontWeight: 'bold', fontSize: '1.25rem' }}>R.O.L.E</span>
                         </p>
 
                         <div className="grid gap-4">
@@ -122,7 +122,7 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
                             </div>
                         </div>
                     </div>
-                     {/* RIGHT SIDE */}
+                    {/* RIGHT SIDE */}
                     <div>
                         <Dialog>
                             <div className="border rounded-xl p-4 bg-background shadow-sm">
@@ -134,22 +134,22 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
 
                                 <DialogTrigger asChild>
                                     <button className="w-full text-left">
-                                    <div className="overflow-hidden border rounded-lg max-h-[70vh] bg-white cursor-pointer hover:ring-2 hover:ring-primary transition">
-                                        <div
-                                        className="origin-top-left pointer-events-none h-full"
-                                        style={{
-                                            transform: "scale(0.75)",
-                                            width: `${100 / 0.75}%`,
-                                        }}
-                                        >
-                                            <PromptDemo />
+                                        <div className="overflow-hidden border rounded-lg max-h-[70dvh] bg-white cursor-pointer hover:ring-2 hover:ring-primary transition">
+                                            <div
+                                                className="origin-top-left pointer-events-none h-full"
+                                                style={{
+                                                    transform: "scale(0.75)",
+                                                    width: `${100 / 0.75}%`,
+                                                }}
+                                            >
+                                                <PromptDemo />
+                                            </div>
                                         </div>
-                                    </div>
                                     </button>
                                 </DialogTrigger>
                             </div>
 
-                            <DialogContent  className="!max-w-[90vw] w-fit h-[90vh] overflow-auto">
+                            <DialogContent className="!max-w-[90vw] w-fit h-[90dvh] overflow-auto">
                                 <PromptDemo />
                             </DialogContent>
                         </Dialog>
@@ -179,12 +179,12 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
 
                 </div>
             )}
-            {step  === 3 && (
+            {step === 3 && (
                 <div className="space-y-6">
                     <p className="block md:hidden text-sm text-muted-foreground">Tapez sur un élément pour le sélectionner depuis le panneau rétractable, puis tapez sur la bonne catégorie                             .</p>
                     <p className="hidden md:hidden text-sm text-muted-foreground">Glissez les éléments dans la bonne catégorie.</p>
                     <AssignmentGame buckets={BUCKETS} initialCards={gameCards[`Game3`]} onProgress={setIsGragAndDropComplete} />
-                    
+
                 </div>
             )}
             {/* {step  === 3 && (
@@ -196,7 +196,7 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
             )} */}
 
             {/* Button bar. */}
-            <div className="mt-15 flex justify-end">
+            <div className="sticky -bottom-0 mt-auto flex justify-end">
 
                 <div className="flex gap-4">
                     {canResume && (
@@ -206,10 +206,11 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
                     )}
 
                     <span
-                        className={`group relative ${isNextDisabled ? "cursor-not-allowed inline-block" : "inline-block"}`}
+                        tabIndex={isNextDisabled ? 0 : undefined}
+                        className={`group relative ${isNextDisabled ? "cursor-not-allowed inline-block focus:outline-none" : "inline-block"}`}
                     >
                         {isNextDisabled && (
-                            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:flex flex-row justify-center items-center px-[12px] py-[6px] gap-[8px] isolate w-[201px] max-w-[384px] h-[44px] bg-[#171717] rounded-[8px] text-white text-xs text-center z-50 pointer-events-none shadow-lg">
+                            <div className="absolute bottom-full left-0 -translate-x-1/2 mb-2 hidden group-hover:flex group-focus:flex group-active:flex flex-row justify-center items-center px-[12px] py-[6px] gap-[8px] isolate w-[201px] max-w-[384px] h-[44px] bg-[#171717] rounded-[8px] text-white text-xs text-center z-50 pointer-events-none shadow-lg">
                                 Explorez cette étape pour continuer
                             </div>
                         )}
@@ -232,36 +233,36 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
 
 function PromptDemo() {
     return (
-        <ReactMarkdown 
+        <ReactMarkdown
             // className="bg-white p-8"
             components={{
                 h1: ({ children }) => (
-                    <h1 className="text-4xl font-bold mb-3">
-                    {children}
+                    <h1 className="text-xl sm:text-4xl font-bold mb-3">
+                        {children}
                     </h1>
                 ),
 
                 h2: ({ children }) => (
                     <div className="border-b-4 border-blue-500 mb-3 pb-1 font-semibold text-blue-600 text-xl">
-                    {children}
+                        {children}
                     </div>
                 ),
 
                 h3: ({ children }) => (
                     <h3 className="font-bold text-lg mb-1 mt-3">
-                    {children}
+                        {children}
                     </h3>
                 ),
 
                 p: ({ children }) => (
                     <p className="leading-6 mb-2">
-                    {children}
+                        {children}
                     </p>
                 ),
 
                 ul: ({ children }) => (
                     <ul className="list-disc ml-6 space-y-0.5">
-                    {children}
+                        {children}
                     </ul>
                 ),
 
@@ -271,33 +272,33 @@ function PromptDemo() {
 
                 table: ({ children }) => (
                     <div className="my-6 border">
-                    <table className="border-collapse">
-                        {children}
-                    </table>
+                        <table className="border-collapse">
+                            {children}
+                        </table>
                     </div>
                 ),
 
                 thead: ({ children }) => (
                     <thead className="bg-muted">
-                    {children}
+                        {children}
                     </thead>
                 ),
 
                 tr: ({ children }) => (
                     <tr>
-                    {children}
+                        {children}
                     </tr>
                 ),
 
                 th: ({ children }) => (
                     <th className="p-4 border-r text-left font-bold last:border-r-0">
-                    {children}
+                        {children}
                     </th>
                 ),
 
                 td: ({ children }) => (
                     <td className="p-2 border-r last:border-r-0 align-top">
-                    {children}
+                        {children}
                     </td>
                 ),
             }}

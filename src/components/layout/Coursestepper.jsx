@@ -105,15 +105,15 @@ function HorizontalStepper({ selectedIdx, steps, onStepClick }) {
     return (
         <div className="flex items-center gap-2 w-full">
             {/* Logo en dehors du stepper */}
-            <div className="w-[230px] h-[60px] bg-[url('/y-days/LOGOAcadem.svg')] bg-no-repeat bg-center bg-contain flex-shrink-0 scale-350"
+            <div className="w-[230px] max-[600px]:w-[80px] h-[60px] bg-[url('/y-days/LOGOAcadem.svg')] max-[600px]:bg-[url('/y-days/LOGOAcademcarre.svg')] bg-no-repeat bg-center bg-contain flex-shrink-0 scale-330 max-[600px]:scale-230 origin-center  max-[600px]:-translate-x-3"
                 role="img"
                 aria-label="Logo AcademIA">
             </div>
 
             {/* Conteneur des étapes */}
-            <div className="flex flex-1 items-center rounded-xl border border-zinc-200 bg-white shadow-sm">
+            <div className="flex flex-1 items-center ">
                 {/* Étapes (Steps) */}
-                <div className="flex flex-1 items-center min-w-0">
+                <div className="flex flex-1 items-center min-w-0 gap-2">
                     {steps.map((step, i) => {
                         const isSelected = i === selectedIdx;
                         const Icon = step.icon || BookIcon;
@@ -122,13 +122,18 @@ function HorizontalStepper({ selectedIdx, steps, onStepClick }) {
                             <div
                                 key={i}
                                 onClick={step.status !== "locked" ? () => onStepClick(i) : undefined}
+                                tabIndex={step.status === "locked" ? 0 : undefined}
                                 className={[
-                                    "relative flex items-center h-[60px] gap-3 px-4",
+                                    "relative flex items-center h-[60px] px-4 min-w-0 border border-zinc-200 bg-white shadow-sm rounded-xl",
                                     "transition-all duration-500 ease-in-out group",
-                                    step.status === "locked" ? "overflow-visible" : "overflow-hidden",
-                                    "border-l border-zinc-200 first:border-l-0 first:rounded-l-xl last:rounded-r-xl",
-                                    isSelected ? "flex-1 min-w-0" : "w-[72px] min-w-[72px] justify-center",
-                                    step.status !== "locked" ? "cursor-pointer hover:bg-zinc-50" : "cursor-not-allowed",
+
+                                    isSelected
+                                        ? "flex-1 min-w-[82px]"
+                                        : "w-[82px] min-w-0",
+
+                                    step.status !== "locked"
+                                        ? "cursor-pointer hover:bg-zinc-50"
+                                        : "cursor-not-allowed focus:outline-none",
                                 ].join(" ")}
                             >
                                 {/* Icon & Label part */}
@@ -158,12 +163,12 @@ function HorizontalStepper({ selectedIdx, steps, onStepClick }) {
                                 {/* Active content part (title, progress, etc.) */}
                                 <div
                                     className={[
-                                        "flex-1 flex flex-col gap-2 min-w-0",
-                                        "transition-opacity duration-300 delay-200 mt-3",
-                                        isSelected ? "opacity-100" : "opacity-0 w-0",
+                                        "flex-1 flex flex-col gap-2 min-w-0 w-full overflow-hidden [container-type:inline-size]",
+                                        "transition-all duration-300 ease-in-out pt-3",
+                                        isSelected ? "flex opacity-100" : "hidden",
                                     ].join(" ")}
                                 >
-                                    <div className="h-[3px] bg-[#E5E7EB] rounded-full">
+                                    <div className="ml-3 h-[3px] bg-[#E5E7EB] rounded-full w-full overflow-hidden transition-all duration-300 ">
                                         <div
                                             className="h-full rounded-full transition-all duration-500"
                                             style={{
@@ -173,13 +178,13 @@ function HorizontalStepper({ selectedIdx, steps, onStepClick }) {
                                         />
                                     </div>
 
-                                    <div className="flex items-center justify-between gap-3 overflow-hidden">
-                                        <span className="text-[13px] truncate text-muted-foreground">
+                                    <div className="ml-3 flex items-center gap-3 overflow-hidden w-full transition-all duration-300 [@container_(max-width:150px)]:w-0 [@container_(max-width:150px)]:opacity-0">
+                                        <span className="text-[13px] truncate text-muted-foreground min-w-0 flex-1">
                                             {step.title}
                                         </span>
                                         <div className="flex items-center gap-3 flex-shrink-0">
                                             {step.readTime && (
-                                                <span className="text-xs text-zinc-400 whitespace-nowrap">
+                                                <span className="text-xs text-zinc-400 whitespace-nowrap mr-3">
                                                     Temps de lecture : {step.readTime}
                                                 </span>
                                             )}
@@ -203,7 +208,7 @@ function HorizontalStepper({ selectedIdx, steps, onStepClick }) {
                                     </>
                                 )}
                                 {step.status === "locked" && (
-                                    <div className="absolute top-[110%] left-1/2 -translate-x-1/2 mb-2 hidden group-hover:flex flex-row justify-center items-center px-3 py-1.5 gap-2 isolate w-max max-w-[250px] bg-[#171717] rounded-lg text-white text-xs text-center z-50 pointer-events-none shadow-lg">
+                                    <div className="absolute top-[110%] right-0 mb-2 hidden group-hover:flex group-focus:flex group-active:flex flex-row justify-center items-center px-3 py-1.5 gap-2 isolate w-max max-w-[250px] bg-[#171717] rounded-lg text-white text-xs text-center z-50 pointer-events-none shadow-lg">
                                         Ce module sera accessible une fois précédent terminé
                                     </div>
                                 )}
@@ -260,7 +265,7 @@ export default function CourseStepper({ initialSteps = [], variant = "both" }) {
     };
 
     return (
-        <div className="flex flex-col gap-8 mx-auto w-full">
+        <div className="flex flex-col gap-4 mx-auto w-full">
             {/* Vertical */}
             {(variant === "vertical" || variant === "both") && (
                 <div className="sticky top-4 z-50 bg-white p-3 rounded-xl border border-zinc-200 shadow-sm">
@@ -291,7 +296,7 @@ export default function CourseStepper({ initialSteps = [], variant = "both" }) {
             )}
 
             {/* Contenu du module sélectionné */}
-            <div className=" border p-11 border-zinc-200 rounded-xl shadow-sm text-left stepper-container">
+            <div className=" border p-3 md:p-11 border-zinc-200 rounded-xl shadow-sm text-left stepper-container flex flex-col h-[calc(100dvh-102px)]">
                 {/* <h3 className="text-lg font-bold mb-4 text-zinc-800">{steps[selectedIdx]?.title}</h3> */}
                 {steps[selectedIdx]?.content && React.isValidElement(steps[selectedIdx].content)
                     ? React.cloneElement(steps[selectedIdx].content, {
