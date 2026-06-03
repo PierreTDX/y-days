@@ -136,10 +136,16 @@ export default function DragDropGame({ buckets, initialCards, onComplete, onProg
                         Reconstitue le prompt
                     </h1>
 
-                    <p className="text-sm text-slate-500">
+                    <p className="hidden md:hidden text-sm text-slate-500">
                         Réorganise le prompt. Pour ce faire,
-                        sélectionne une carte dans la boîte à mots
+                        faites glisser une carte depuis la boîte à mots
                         et dépose-la dans la zone que tu juges
+                        appropriée.
+                    </p>
+                    <p className="block md:hidden text-sm text-slate-500">
+                        Réorganise le prompt. Pour ce faire,
+                        faites clique sur une carte dans la boîte à mots
+                        puis clique sue la zone que tu juges
                         appropriée.
                     </p>
                 </div>

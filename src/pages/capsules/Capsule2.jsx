@@ -172,8 +172,8 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
             {step === 2 && (
                 <div className="space-y-6">
                     {/* <h2 className="text-2xl font-bold tracking-tight">Mini-Jeu : Drag & Drop R.O.L.E</h2> */}
-                    <p className="block md:hidden text-sm text-muted-foreground">Tapez sur un élément pour le sélectionner depuis le panneau rétractable, puis tapez sur la bonne catégorie                             .</p>
-                    <p className="hidden md:hidden text-sm text-muted-foreground">Glissez les éléments dans la bonne catégorie.</p>
+                    {/* <p className="block md:hidden text-sm text-muted-foreground">Tapez sur un élément pour le sélectionner depuis le panneau rétractable, puis tapez sur la bonne catégorie                             .</p>
+                    <p className="hidden md:hidden text-sm text-muted-foreground">Glissez les éléments dans la bonne catégorie.</p> */}
                     {/* <AssignmentGame buckets={BUCKETS} initialCards={gameCards["Game0"]} onComplete={() => alert("Good job!")} onProgress={setIsGragAndDropComplete} /> */}
                     <AssignmentGame buckets={BUCKETS} initialCards={gameCards[`Game2`]} onProgress={setIsGragAndDropComplete} />
 
@@ -181,8 +181,8 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
             )}
             {step === 3 && (
                 <div className="space-y-6">
-                    <p className="block md:hidden text-sm text-muted-foreground">Tapez sur un élément pour le sélectionner depuis le panneau rétractable, puis tapez sur la bonne catégorie                             .</p>
-                    <p className="hidden md:hidden text-sm text-muted-foreground">Glissez les éléments dans la bonne catégorie.</p>
+                    {/* <p className="block md:hidden text-sm text-muted-foreground">Tapez sur un élément pour le sélectionner depuis le panneau rétractable, puis tapez sur la bonne catégorie                             .</p>
+                    <p className="hidden md:hidden text-sm text-muted-foreground">Glissez les éléments dans la bonne catégorie.</p> */}
                     <AssignmentGame buckets={BUCKETS} initialCards={gameCards[`Game3`]} onProgress={setIsGragAndDropComplete} />
 
                 </div>
