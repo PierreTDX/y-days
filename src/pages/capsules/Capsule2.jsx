@@ -134,7 +134,7 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
 
                                 <DialogTrigger asChild>
                                     <button className="w-full text-left">
-                                        <div className="overflow-hidden border rounded-lg max-h-[70vh] bg-white cursor-pointer hover:ring-2 hover:ring-primary transition">
+                                        <div className="overflow-hidden border rounded-lg max-h-[70dvh] bg-white cursor-pointer hover:ring-2 hover:ring-primary transition">
                                             <div
                                                 className="origin-top-left pointer-events-none h-full"
                                                 style={{
@@ -149,7 +149,7 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
                                 </DialogTrigger>
                             </div>
 
-                            <DialogContent className="!max-w-[90vw] w-fit h-[90vh] overflow-auto">
+                            <DialogContent className="!max-w-[90vw] w-fit h-[90dvh] overflow-auto">
                                 <PromptDemo />
                             </DialogContent>
                         </Dialog>

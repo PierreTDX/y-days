@@ -296,7 +296,7 @@ export default function CourseStepper({ initialSteps = [], variant = "both" }) {
             )}
 
             {/* Contenu du module sélectionné */}
-            <div className=" border p-3 md:p-11 border-zinc-200 rounded-xl shadow-sm text-left stepper-container flex flex-col h-[calc(100vh-102px)]">
+            <div className=" border p-3 md:p-11 border-zinc-200 rounded-xl shadow-sm text-left stepper-container flex flex-col h-[calc(100dvh-102px)]">
                 {/* <h3 className="text-lg font-bold mb-4 text-zinc-800">{steps[selectedIdx]?.title}</h3> */}
                 {steps[selectedIdx]?.content && React.isValidElement(steps[selectedIdx].content)
                     ? React.cloneElement(steps[selectedIdx].content, {
