@@ -122,7 +122,7 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
     }
 
     return (
-        <div className="w-full mx-auto p-6 rounded-xl border bg-card text-card-foreground shadow-sm">
+        <div className="w-full mx-auto p-6 rounded-xl border bg-card text-card-foreground shadow-sm flex flex-1 flex-col h-full overflow-y-auto">
             <div className="space-y-4">
                 <h1 className="text-4xl font-semibold">Démêler le vrai du faux contenu à l’ère de l’IA.</h1>
                 <p className="text-muted-foreground leading-relaxed">
@@ -142,7 +142,7 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
                 />
             </div>
 
-            <div className="mt-8 flex justify-end">
+            <div className="mt-auto pt-15 flex justify-end">
                 <div className="flex gap-4">
                     {canResume && (
                         <Button variant="outline" onClick={onResume}>
