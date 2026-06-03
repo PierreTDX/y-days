@@ -76,7 +76,17 @@ export default function StepperContainer({
     return (
         <>
             {/* Conteneur principal du Stepper */}
-            <CourseStepper initialSteps={demoSteps} variant="horizontal" />
+            <CourseStepper
+                initialSteps={demoSteps}
+                variant="horizontal"
+                finalContent={
+                    <div className="flex flex-col items-center justify-center h-full w-full space-y-6 text-center animate-in fade-in zoom-in duration-500">
+                        <h1 className="text-3xl font-bold">Félicitations ! 🎉</h1>
+                        <p className="text-muted-foreground text-lg">Vous avez complété l'ensemble de la formation avec succès.</p>
+                        {/* Vous pouvez aussi y importer un composant <ResultPage /> directement ici ! */}
+                    </div>
+                }
+            />
         </>
     );
 }

@@ -222,10 +222,11 @@ function HorizontalStepper({ selectedIdx, steps, onStepClick }) {
     );
 }
 
-export default function CourseStepper({ initialSteps = [], variant = "both" }) {
+export default function CourseStepper({ initialSteps = [], variant = "both", finalContent }) {
     const [steps, setSteps] = useState(initialSteps);
+    const isAllCompleted = steps.length > 0 && steps.every(s => s.status === "completed");
     const activeIndex = steps.findIndex((s) => s.status === "active");
-    const [selectedIdx, setSelectedIdx] = useState(activeIndex !== -1 ? activeIndex : (steps.length > 0 ? steps.length - 1 : 0));
+    const [selectedIdx, setSelectedIdx] = useState(activeIndex !== -1 ? activeIndex : (isAllCompleted ? -1 : (steps.length > 0 ? steps.length - 1 : 0)));
 
     const handleProgress = useCallback((progress) => {
         setSteps((prev) => {
@@ -257,8 +258,11 @@ export default function CourseStepper({ initialSteps = [], variant = "both" }) {
                     newSteps[currentIdx + 1] = { ...newSteps[currentIdx + 1], status: "active", progress: 0 };
                     setSelectedIdx(currentIdx + 1);
                 } else {
-                    setSelectedIdx(currentIdx);
+                    setSelectedIdx(-1); // Tous les modules sont terminés
                 }
+            } else {
+                // Si l'utilisateur re-valide un module déjà fini, on le renvoie vers la vue finale
+                setSelectedIdx(-1);
             }
             return newSteps;
         });
@@ -298,14 +302,16 @@ export default function CourseStepper({ initialSteps = [], variant = "both" }) {
             {/* Contenu du module sélectionné */}
             <div className=" border p-3 md:p-11 border-zinc-200 rounded-xl shadow-sm text-left stepper-container flex flex-col h-[calc(100dvh-102px)]">
                 {/* <h3 className="text-lg font-bold mb-4 text-zinc-800">{steps[selectedIdx]?.title}</h3> */}
-                {steps[selectedIdx]?.content && React.isValidElement(steps[selectedIdx].content)
-                    ? React.cloneElement(steps[selectedIdx].content, {
-                        onComplete: handleCompleteStep,
-                        canResume: activeIndex !== -1 && selectedIdx !== activeIndex,
-                        onResume: () => setSelectedIdx(activeIndex),
-                        onProgress: handleProgress
-                    })
-                    : steps[selectedIdx]?.content}
+                {selectedIdx === -1 && finalContent
+                    ? finalContent
+                    : steps[selectedIdx]?.content && React.isValidElement(steps[selectedIdx].content)
+                        ? React.cloneElement(steps[selectedIdx].content, {
+                            onComplete: handleCompleteStep,
+                            canResume: activeIndex !== -1 && selectedIdx !== activeIndex,
+                            onResume: () => setSelectedIdx(activeIndex),
+                            onProgress: handleProgress
+                        })
+                        : steps[selectedIdx]?.content}
             </div>
         </div>
     );
