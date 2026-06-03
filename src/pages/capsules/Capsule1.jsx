@@ -31,7 +31,7 @@ export default function Capsule1({ onComplete, canResume, onResume, onProgress }
     const isNextDisabled = (step === 1 && Object.keys(flippedCards).length < 3) || (step === 2 && openedAccordions.length < 3);
 
     return (
-        <div className="w-full mx-auto p-6 rounded-xl border bg-card text-card-foreground shadow-sm">
+        <div className="w-full mx-auto p-6 rounded-xl border bg-card text-card-foreground shadow-sm flex flex-1 flex-col h-full overflow-y-auto">
             {/* Step 0: Intro */}
             {step === 0 && (
                 <div className="space-y-4">
@@ -214,7 +214,7 @@ export default function Capsule1({ onComplete, canResume, onResume, onProgress }
                 </div>
             )}
 
-            <div className="mt-15 flex justify-between">
+            <div className="mt-auto pt-15 flex justify-between">
                 {step > 0 ? (
                     <Button variant="outline" onClick={() => setStep(step - 1)}>
                         <ArrowLeft className="w-4 h-4 mr-2" /> Précédent
