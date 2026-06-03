@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { useNavigate } from 'react-router-dom'
 import { ArrowRight } from "lucide-react"
 import { QuizCard } from "@/components/ui/quiz-card"
 
@@ -9,7 +8,6 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
     const [step, setStep] = useState(0)
     const [gameResult, setGameResult] = useState(null)
     const [active, setActive] = useState(null)
-    const navigate = useNavigate()
 
     useEffect(() => {
         if (onProgress) {
@@ -304,7 +302,6 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
                                     setStep(step + 1)
                                 } else {
                                     onComplete?.()
-                                    navigate('/result')
                                 }
                             }}>
                             {step < 7 ? (
