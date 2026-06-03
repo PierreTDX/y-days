@@ -1,11 +1,9 @@
 import './ConcentricCircles.css'
 
 const CIRCLES = [
-  { size: '45vmax',  border: 1,   opacity: 0.2 },
-  { size: '60vmax',  border: 1.3, opacity: 0.4 },
-  { size: '75vmax',  border: 1.6, opacity: 0.6 },
-  { size: '90vmax',  border: 1.9, opacity: 0.8 },
-  { size: '105vmax', border: 2.2, opacity: 1.0 },
+  { size: '40vmax',  border: 1,   opacity: 0.2 },
+  { size: '70vmax',  border: 1.6, opacity: 0.5 },
+  { size: '105vmax', border: 2.2, opacity: 0.9 },
 ]
 
 export default function ConcentricCircles() {
