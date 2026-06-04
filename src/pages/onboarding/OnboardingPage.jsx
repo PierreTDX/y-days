@@ -96,7 +96,7 @@ function Step2Body({ onNext, onPrev }) {
     },
     {
       number:    `${reforms}`,
-      cardText:  "Après cette même étude gouvernementale, c’est le nombre de réformes en 5 ans vous obligeants de modifier vos supports de cours.",
+      cardText:  "D'après cette même étude gouvernementale, c’est le nombre de réformes en 5 ans vous obligeants à modifier vos supports de cours.",
     },
   ]
 

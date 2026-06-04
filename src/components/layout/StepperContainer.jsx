@@ -131,9 +131,9 @@ export default function StepperContainer({
                                         <img src="/y-days/icons/accDoc.svg" alt="" className="w-4 h-4 object-contain" />
                                     </span>
                                     <div>
-                                        <h4 className="font-semibold">L'IA générative en 5 points clés</h4>
+                                        <h4 className="font-semibold">Fiche mémo de cette formation</h4>
                                         <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
-                                            Un article de synthèse pour comprendre les bases de l'IA générative et son impact.
+                                            Quelles IA?, Méthode R.O.L.E, checklist pour reconnaitre du contenu généré par IA
                                         </p>
                                     </div>
                                     <a href="/y-days/docs/Fiche-mémo_VF.pdf" download="Fiche-mémo_VF.pdf" className="ml-auto flex items-center justify-center pl-2 rounded-md outline-none focus-visible:ring-2 focus-visible:ring-primary">
@@ -149,7 +149,7 @@ export default function StepperContainer({
                                 <span tabIndex={0} className="group relative inline-block cursor-pointer focus:outline-none">
                                     <span className='underline hover:text-primary transition-colors'>en savoir plus</span>
                                     <Info className="w-4 h-4 inline-block ml-1 -mt-0.5" />
-                                    <div className="absolute bottom-full left-0 -translate-x-1/2 mb-2 hidden group-hover:flex group-focus:flex group-active:flex flex-col justify-center items-center px-3 py-1.5 gap-2 isolate w-max max-w-[250px] bg-[#171717] rounded-lg text-white text-xs text-center z-50 pointer-events-none shadow-lg">
+                                    <div className="absolute max-[600px]:fixed max-[600px]:top-1/2 max-[600px]:bottom-auto max-[600px]:-translate-y-1/2 bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:flex group-focus:flex group-active:flex flex-col justify-center items-center px-3 py-1.5 gap-2 isolate w-max max-w-[250px] bg-[#171717] rounded-lg text-white text-xs text-center z-50 pointer-events-none shadow-lg">
                                         Pour revoir un module spécifique, cliquez simplement sur son icône dans la barre de navigation.
                                         <img src="/y-days/images/boutonsNav.png" alt="navigation" className="object-contain" />
 
@@ -159,8 +159,6 @@ export default function StepperContainer({
 
                         </div>
                         <Button className="absolute sticky bottom-0" variant="outline" onClick={() => {
-                            // On vide le localStorage pour permettre un vrai recommencement
-                            localStorage.removeItem('y-days-stepper-progress');
                             navigate('/');
                         }}>Recommencer le parcours</Button>
 
