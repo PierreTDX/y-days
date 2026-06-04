@@ -133,7 +133,11 @@ export default function StepperContainer({
                                 </span>
                             </p>
 
-                            <Button variant="outline" className="mt-4" onClick={() => navigate('/')}>Recommencer le parcours</Button>
+                            <Button variant="outline" className="mt-4" onClick={() => {
+                                // On vide le localStorage pour permettre un vrai recommencement
+                                localStorage.removeItem('y-days-stepper-progress');
+                                navigate('/');
+                            }}>Recommencer le parcours</Button>
                         </div>
                     </div>
                 }
