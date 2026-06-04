@@ -41,7 +41,7 @@ export default function Capsule1({ onComplete, canResume, onResume, onProgress }
                     </p>
                     <div className="flex flex-col md:flex-row gap-6 items-center">
                         <p className="w-full md:w-3/5 text-muted-foreground leading-relaxed text-sm sm:text-base">
-                            L’IA générative est un type d’intelligence artificielle capable de générer du contenu inédit (texte, images, schémas, musiques, code informatique, et bien plus) à partir d’une simple consigne écrite en langage naturel. Cette consigne donnée à l’IA s’appelle un prompt.
+                            L’IA générative est un type d’intelligence artificielle capable de générer du contenu inédit (texte, images, schémas, musiques, code informatique, et bien plus) à partir d’une simple consigne écrite en <strong>un prompt.</strong>
                         </p>
                         <div className="w-full md:flex-1">
                             <h2
@@ -51,13 +51,13 @@ export default function Capsule1({ onComplete, canResume, onResume, onProgress }
                                 2022
                             </h2>
                             <Card className="p-4">
-                                <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">C’est l'année d'explosion de l'IA générative aux yeux du grand public avec la sortie de l'incontournable ChatGPT (par l'entreprise OpenAI). Un Choc positif.</p>
+                                <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">C’est l'année d'explosion de l'IA générative aux yeux du grand public avec la sortie de l'incontournable ChatGPT (par l'entreprise OpenAI). Une avancée révolutionnaire.</p>
                             </Card>
                         </div>
                     </div>
                     <Memo variant="search" className="mt-6">
-                        <h3 className="font-bold text-lg">Pourquoi un tel choc ?</h3>
-                        <p>Pour la première fois, ChatGPT ne répondait pas avec juste des mots clés, mais conversait comme un être humain. Il s’est révélé capable de vous comprendre implicitement, de traduire votre pensée, et même de s’adapter aux contraintes de niveau : le niveau d’un élève de CP par exemple.</p>
+                        <h3 className="font-bold text-lg">En quoi est-elle révolutionnaire ?</h3>
+                        <p>Pour la première fois, ChatGPT ne répondait plus qu'avec des mots, mais pouvait tenir une conversation comme un être humain. Il s'est révélé capable de vous comprendre ... et même de s'adapter à des contraintes. Par exemple, en se mettant dans la peau d'un élève de CP.</p>
                     </Memo>
 
                 </div>
@@ -68,13 +68,13 @@ export default function Capsule1({ onComplete, canResume, onResume, onProgress }
                 <div className="space-y-6">
                     <h1 className="text-xl sm:text-4xl font-semibold">Introduction et découverte des outils d'IA</h1>
                     <p className="text-muted-foreground leading-relaxed font-bold text-sm sm:text-base">
-                        Voici nos recommandations d'IA importantes pour la création de vos ressources pédagogiques :
+                        Voici nos recommandations d'IA utiles pour la création de vos ressources pédagogiques :
                     </p>
                     <div className="grid md:grid-cols-3 gap-6">
                         {[
-                            { title: "Claude", img: claude, desc: "Excellent en génération de texte et de vos supports de cours pédagogique (pdf, word, powerpoint)" },
-                            { title: "NotebookLM", img: notebook, desc: "Idéal pour la génération de ressources intéractives  vidéo, podcast, présentations, images) à partir de vos sources habituelles (manuels scolaires, page internet, vidéo YouTube, …)" },
-                            { title: "Perplexity", img: perplexity, desc: "Considérez-le comme un moteur de recherche sous stéroïdes. Il vous livre systématiquement ses sources de recherches. Utilisez le pour agrémenter vos cours avec des données issues des sources fiables." }
+                            { title: "Claude", img: claude, desc: "Excellent en génération de texte et de supports de cours pédagogiques (pdf, word, powerpoint)" },
+                            { title: "NotebookLM", img: notebook, desc: "Idéal pour la génération de ressources intéractives (vidéo, podcast, présentations, images) à partir de vos sources habituelles (manuels scolaires, page internet, vidéo YouTube, …)" },
+                            { title: "Perplexity", img: perplexity, desc: "Considérez-le comme un moteur de recherche sous stéroïdes. Il vous livre systématiquement ses sources de livres. Utilisez le pour agrémenter vos cours avec des données issues de sources fiables." }
                         ].map((ia, i) => (
                             <FlipCard
                                 key={i}
