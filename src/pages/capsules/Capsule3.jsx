@@ -277,7 +277,7 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
                 )}
             </div>
 
-            <div className="p-3 sm:p-6 border-t sm:border-none bg-card shrink-0 flex gap-3 sm:justify-end z-10">
+            <div className="p-3 sm:p-6 border-t sm:border-none sm:border-none bg-card shrink-0 flex gap-3 sm:justify-end z-10">
                 <div className="flex gap-3 sm:gap-4 flex-1 sm:flex-none w-full sm:w-auto">
                     {canResume && (
                         <Button className="flex-1 sm:flex-none" variant="outline" onClick={onResume}>

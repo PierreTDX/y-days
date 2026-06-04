@@ -232,7 +232,7 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
 
             </div>
             {/* Button bar. */}
-            <div className="p-3 sm:p-6 border-t sm:border-none bg-card shrink-0 flex gap-3 sm:justify-end">
+            <div className="p-3 sm:p-6 border-t sm:border-none sm:border-none bg-card shrink-0 flex gap-3 sm:justify-end">
 
                 <div className="flex gap-3 sm:gap-4 flex-1 sm:flex-none w-full sm:w-auto">
                     {canResume && (
