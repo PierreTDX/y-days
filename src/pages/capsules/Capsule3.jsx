@@ -20,7 +20,7 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
             question: "D’après toi, cette peinture a-t-elle été générée par IA?",
             mediaClassName: "aspect-video bg-muted max-h-[320px]",
             media: <img src="/y-days/images/Question_1.jpg" alt="Peinture à deviner" className="object-cover w-full" />,
-            explication: <><strong>Explication :</strong> Cette peinture n'a pas été générée par IA. En effet, il s'agit d'une peinture de l'artiste Balthasar van der Ast.</>,
+            explication: <><strong>Explication :</strong> Cette peinture n'a pas été générée par IA. En effet, il s'agit d'une peinture de l'artiste, du 17ème siècle, <strong>Balthasar van der Ast.</strong></>,
             correctAnswer: 'PAS_IA'
         },
         {
