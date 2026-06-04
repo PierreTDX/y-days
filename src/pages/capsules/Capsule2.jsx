@@ -26,28 +26,28 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
 
     const gameCards = {
         "Game0": [
-            { id: 'c1', text: 'Tu es un professeur expérimenté du CE2.', answer: 'Rôle' },
-            { id: 'c2', text: 'Crée une séance de 45 minutes pour introduire les fractions.', answer: 'Objectif' },
-            { id: 'c3', text: 'Utilise du matériel manipulable, évite les écrans.', answer: 'Limites' },
-            { id: 'c4', text: 'Structure la réponse ainsi : 1. Intro... 4 fiches max.', answer: 'Exemple' },
+            { id: 'c1', text: "Tu es un professeur expérimenté du CE2.", answer: 'Rôle' },
+            { id: 'c2', text: "Crée une séance de 45 minutes pour introduire les fractions.", answer: 'Objectif' },
+            { id: 'c3', text: "Utilise du matériel manipulable, évite les écrans.", answer: 'Limites' },
+            { id: 'c4', text: "Structure la réponse ainsi : 1. Intro... 4 fiches max.", answer: 'Exemple' },
         ],
         "Game1": [
-            { id: 'c1', text: 'Tu es une maîtresse de primaire en classe de CI depuis 4 ans.', answer: 'Rôle' },
-            { id: 'c2', text: 'Rédige un conte sur les canards.', answer: 'Objectif' },
-            { id: 'c3', text: 'Utilise un vocabulaire adapté aux élèves de 5 ans', answer: 'Limites' },
-            { id: 'c4', text: 'Le tout doit tenir sur une demi fiche.', answer: 'Exemple' },
+            { id: 'c1', text: "Tu es un enseignant d'école primaire en classe de CM2 depuis 12 ans.", answer: 'Rôle' },
+            { id: 'c2', text: "Rédige un conte sur les canards.", answer: 'Objectif' },
+            { id: 'c3', text: "Utilise un vocabulaire adapté aux élèves de 5 ans.", answer: 'Limites' },
+            { id: 'c4', text: "Le tout doit tenir sur une demi fiche.", answer: 'Exemple' },
         ],
         "Game2": [
-            { id: 'c1', text: 'Tu es un enseignant d’hisoire certifié d’école primaire en classe de CM2 depuis 12 années.', answer: 'Rôle' },
-            { id: 'c2', text: 'Écris un récit historique sur l’Égypte ancienne.', answer: 'Objectif' },
-            { id: 'c3', text: 'Utilise un vocabulaire précis adapté aux élèves de 10 ans.', answer: 'Limites' },
-            { id: 'c4', text: 'Le texte doit tenir sur une page et demie.', answer: 'Exemple' },
+            { id: 'c1', text: "Tu es un enseignant de primaire en classe de CE1 depuis 3 ans.", answer: 'Rôle' },
+            { id: 'c2', text: "Écris un récit historique sur l'Égypte ancienne.", answer: 'Objectif' },
+            { id: 'c3', text: "Utilise un vocabulaire précis adapté aux élèves de 10 ans.", answer: 'Limites' },
+            { id: 'c4', text: "Le texte doit tenir sur une page et demie.", answer: 'Exemple' },
         ],
         "Game3": [
-            { id: 'c1', text: 'Tu es un cuisinier de primaire en classe de CE1 depuis 3 ans.', answer: 'Rôle' },
-            { id: 'c2', text: 'Rédige une recette de salade de fruits.', answer: 'Objectif' },
-            { id: 'c3', text: 'Utilise un vocabulaire simple adapté aux élèves de 6 ans.', answer: 'Limites' },
-            { id: 'c4', text: 'Le texte doit tenir sur une fiche.', answer: 'Exemple' },
+            { id: 'c1', text: "Tu es un cuisinier de primaire en classe de CE1 depuis 3 ans.", answer: 'Rôle' },
+            { id: 'c2', text: "Rédige une recette de salade de fruits.", answer: 'Objectif' },
+            { id: 'c3', text: "Utilise un vocabulaire simple adapté aux élèves de 6 ans.", answer: 'Limites' },
+            { id: 'c4', text: "Le texte doit tenir sur une fiche.", answer: 'Exemple' },
         ],
         "Game3FillInTheGaps": {
             promptText: `**Role:**       Tu est un {{ROLE}} de {{LEVEL}} en classe de {{CLASS}} depuis {{DURATION}}.  
@@ -86,50 +86,15 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
 
             {/* ROLE Introduction */}
             {step === 0 && (
-                <div className="grid lg:grid-cols-[1fr_320px] gap-8 items-start">
-                    {/* LEFT SIDE */}
-                    <div className="space-y-6">
-                        <h1 className="text-xl sm:text-4xl font-semibold">Rédiger le bon prompt : La Méthode R.O.L.E.</h1>
-                        <p className="text-muted-foreground text-sm sm:text-base">
-                            Dans ce module, vous apprendrez à  formuler un prompt professionnel pour générer des ressources pédagogiques pour l'enseignement primaire.
-                        </p>
-                        <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
-                            <span style={{ fontWeight: 'bold' }}>Contenu théorique (Lecture légère):</span>
-                            Pour obtenir une fiche de préparation ou une séquence de qualité, un bon prompt doit contenir nécessairement 4 éléments clés:
-                            <span style={{ fontWeight: 'bold', fontSize: '1.25rem' }}>R.O.L.E</span>
-                        </p>
-
-                        <div className="grid gap-4">
-                            <div className="p-4 border rounded-lg border-l-4 border-l-primary bg-muted/50">
-                                <h3 className="font-bold text-lg mb-1">R - Rôle</h3>
-                                <p className="text-sm text-muted-foreground mb-2">Vous devez assigner un rôle à l’IA. Elle doit savoir dans quelle posture elle doit adopter.</p>
-                                <p className="text-sm italic">Exemple : « Tu es un professeur expérimenté du CE2. »</p>
-                            </div>
-                            <div className="p-4 border rounded-lg border-l-4 border-l-primary bg-muted/50">
-                                <h3 className="font-bold text-lg mb-1">O - Objectif</h3>
-                                <p className="text-sm text-muted-foreground mb-2">Vous devez lui dire ce qu’elle doit faire de façon précise et explicite mais avec simplicité.</p>
-                                <p className="text-sm italic">Exemple : « Crée une séance de 45 minutes pour introduire les fractions. »</p>
-                            </div>
-                            <div className="p-4 border rounded-lg border-l-4 border-l-primary bg-muted/50">
-                                <h3 className="font-bold text-lg mb-1">L - Limites</h3>
-                                <p className="text-sm text-muted-foreground mb-2">Vous devrez lui donner un cadre précis pour générer une réponse exacte et professionnelle.  </p>
-                                <p className="text-sm italic">Exemple : « Utilise du matériel manipulable (jetons, bandes de papier) uniquement, évite les écrans. »</p>
-                            </div>
-                            <div className="p-4 border rounded-lg border-l-4 border-l-primary bg-muted/50">
-                                <h3 className="font-bold text-lg mb-1">E - Exemple</h3>
-                                <p className="text-sm text-muted-foreground mb-2">Vous devrez donner un exemple concret à l’IA pour l’aider à se situer et la guider au mieux.  </p>
-                                <p className="text-sm italic">Exemple : « Structure la réponse ainsi : 1. Introduction (2 min), 2. Règles de flaction (15 min), 3. Exemples (10 min), 4. Exercices d’application (15 min). L’enssemble doit tenir sur 5 fiches de cours maximum »</p>
-                            </div>
-                        </div>
-                    </div>
+                <div className="grid lg:grid-cols-[320px_1fr] gap-8 items-start">
                     {/* RIGHT SIDE */}
-                    <div>
+                    <div className="space-y-6">
                         <Dialog>
                             <div className="border rounded-xl p-4 bg-background shadow-sm">
                                 <h3 className="font-semibold text-lg">Résultat</h3>
 
                                 <p className="text-sm text-muted-foreground mb-4">
-                                    Voici ce que l’IA a généré avec ce prompt :
+                                    Voici ce que l'IA a généré avec ce prompt :
                                 </p>
 
                                 <DialogTrigger asChild>
@@ -154,6 +119,41 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
                             </DialogContent>
                         </Dialog>
 
+                    </div>
+                    {/* LEFT SIDE */}
+                    <div className="space-y-6">
+                        <h1 className="text-xl sm:text-4xl font-semibold">Rédiger le bon prompt : La Méthode R.O.L.E.</h1>
+                        <p className="text-muted-foreground text-sm sm:text-base">
+                            Dans ce module, vous apprendrez à  formuler un prompt professionnel pour générer des ressources pédagogiques pour l'enseignement primaire.
+                        </p>
+                        <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
+                            <span style={{ fontWeight: 'bold' }}>Contenu théorique (lecture légère):</span>
+                            Pour obtenir une fiche de préparation ou une séquence de qualité, un bon prompt doit contenir nécessairement 4 éléments clés :
+                            <span style={{ fontWeight: 'bold', fontSize: '1.25rem' }}>R.O.L.E</span>
+                        </p>
+
+                        <div className="grid gap-4">
+                            <div className="p-4 border rounded-lg border-l-4 border-l-primary bg-muted/50">
+                                <h3 className="font-bold text-lg mb-1">R - Rôle</h3>
+                                <p className="text-sm text-muted-foreground mb-2">Assignez un rôle à l'IA, elle doit savoir quelle posture adopter.</p>
+                                <p className="text-sm italic">Exemple : « Tu es un professeur expérimenté du CE2. »</p>
+                            </div>
+                            <div className="p-4 border rounded-lg border-l-4 border-l-primary bg-muted/50">
+                                <h3 className="font-bold text-lg mb-1">O - Objectif</h3>
+                                <p className="text-sm text-muted-foreground mb-2">Dites-lui de façon précise et explicite ce qu'elle doit faire.</p>
+                                <p className="text-sm italic">Exemple : « Crée une séance de 45 minutes pour introduire les fractions. »</p>
+                            </div>
+                            <div className="p-4 border rounded-lg border-l-4 border-l-primary bg-muted/50">
+                                <h3 className="font-bold text-lg mb-1">L - Limites</h3>
+                                <p className="text-sm text-muted-foreground mb-2">Déterminez un cadre précis pour qu'elle génère une réponse exacte et professionnelle.</p>
+                                <p className="text-sm italic">Exemple : « Utilise du matériel manipulable (jetons, bandes de papier) uniquement, évite les écrans. »</p>
+                            </div>
+                            <div className="p-4 border rounded-lg border-l-4 border-l-primary bg-muted/50">
+                                <h3 className="font-bold text-lg mb-1">E - Exemple</h3>
+                                <p className="text-sm text-muted-foreground mb-2">Donnez-lui un exemple concret pour l'aider à se situer et guidez-là au mieux. </p>
+                                <p className="text-sm italic">Exemple : « Structure la réponse ainsi : 1. Introduction (2 min), 2. Règles de flaction (15 min), 3. Exemples (10 min), 4. Exercices d'application (15 min). L'enssemble doit tenir sur 5 fiches de cours maximum »</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             )}
