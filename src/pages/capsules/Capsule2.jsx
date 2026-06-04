@@ -184,7 +184,7 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
                                     </DialogTrigger>
                                 </div>
 
-                                <DialogContent className="!max-w-[95vw] max-h-[95vh] overflow-auto">
+                                <DialogContent className="!max-w-[85vw] max-h-[95vh] overflow-auto">
                                     <img src={`/y-days/images/promptDemo.png`} alt="Preview" className="max-w-full h-auto" />
                                 </DialogContent>
                             </Dialog>
