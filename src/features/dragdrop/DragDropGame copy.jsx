@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
+import { CircleAlert, GripVertical } from "lucide-react";
 
 function shuffle(array) {
     const arr = [...array]
@@ -235,13 +236,14 @@ export default function DragDropGame({ buckets, initialCards, onComplete, onProg
                                 border
                                 text-sm
                                 bg-white
+                                flex items-center gap-2
                                 ${bucketCard.correct
                                     ? ""
                                     : "bg-[#fef2f2] text-[#991b1b]"
                                 }
                             `}
                                         >
-                                            <span className="mr-2 select-none cursor-grab">⋮⋮</span>
+                                            {!bucketCard.correct && (<GripVertical className="mr-2 select-none cursor-grab shrink-0"/>)}
                                             <span>{bucketCard.text}</span>
                                         </div>
                                     ) : (
@@ -292,7 +294,7 @@ export default function DragDropGame({ buckets, initialCards, onComplete, onProg
                                         )
                                     }
                                     className={`
-                                        px-4 py-2 bg-white border rounded-lg text-sm cursor-grab
+                                        px-4 py-2 bg-white border rounded-lg text-sm cursor-grab flex items-center gap-2
                                         ${
                                             selectedCardId === card.id
                                                 ? "border-violet-400 bg-violet-50"
@@ -300,8 +302,7 @@ export default function DragDropGame({ buckets, initialCards, onComplete, onProg
                                         }
                                     `}
                                 >
-                                    
-                                    <span className="text-slate-400 mr-2 select-none cursor-grab">⋮⋮</span>
+                                    <GripVertical className="text-slate-400 select-none shrink-0" />
                                     <span>{card.text}</span>
                                 </div>
                             ))}
@@ -332,13 +333,13 @@ export default function DragDropGame({ buckets, initialCards, onComplete, onProg
                                     .map((card) => (
                                         <div
                                             key={card.id}
-                                            className="px-3 py-2 border rounded-lg text-sm bg-white"
+                                            className="px-3 py-2 border rounded-lg text-sm bg-white flex items-start gap-2"
                                             onClick={() => {
                                                 setSelectedCardId(card.id)
                                                 setBurgerOpen(false)
                                             }}
                                         >
-                                            <span className="text-slate-400 mr-2 select-none cursor-grab">⋮⋮</span>
+                                            <GripVertical className="text-slate-400 mt-0.5 shrink-0" />
                                             <span>{card.text}</span>
                                         </div>
                                     ))}
@@ -349,8 +350,8 @@ export default function DragDropGame({ buckets, initialCards, onComplete, onProg
 
                 {/* pinned selected card */}
                 {selectedCardId  && (
-                    <div className="fixed bottom-4 left-4 right-4 bg-white border shadow-lg rounded-xl p-3 md:hidden z-40 flex justify-between items-center">
-                        <span className="text-slate-400 mr-2 select-none cursor-grab">⋮⋮</span>
+                    <div className="fixed bottom-4 left-4 right-4 bg-white border shadow-lg rounded-xl p-3 md:hidden z-40 flex items-center gap-2">
+                        <GripVertical className="text-slate-400 shrink-0"/>
                         <span className="text-sm">
                             {cards.find(c => c.id === selectedCardId )?.text}
                         </span>
@@ -365,8 +366,9 @@ export default function DragDropGame({ buckets, initialCards, onComplete, onProg
 
                 {/* ERROR */}
                 {errorMessage && (
-                    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-red-600 text-white px-6 py-3 rounded-xl shadow-xl z-50">
-                        ⚠️ {errorMessage}
+                    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 bg-red-600 text-white px-6 py-3 rounded-xl shadow-xl z-50 flex items-center gap-2">
+                        <CircleAlert className="w-5 h-5 shrink-0" />
+                        <span>{errorMessage}</span>
                     </div>
                 )}
             </div>
