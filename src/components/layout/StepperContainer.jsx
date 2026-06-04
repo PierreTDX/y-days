@@ -83,9 +83,9 @@ export default function StepperContainer({
                 initialSteps={demoSteps}
                 variant="horizontal"
                 finalContent={(currentSteps, onStepClick) => (
-                    <div className="w-full mx-auto rounded-xl border bg-card text-card-foreground shadow-sm flex flex-1 flex-col h-full overflow-hidden">
+                    <div className="w-full mx-auto rounded-xl border bg-card text-card-foreground shadow-sm flex flex-1 flex-col h-full overflow-hidden relative">
                         <br />
-                        <div className="flex-1 overflow-y-auto p-3 sm:p-6 flex flex-col gap-6 items-center">
+                        <div className="flex-1 overflow-y-auto p-3 sm:p-6 pb-24 sm:pb-28 flex flex-col gap-6 items-center">
                             <img src="/y-days/icons/checkok.svg" alt="Bravo" className="w-24 h-24 rounded-full object-cover mt-3" />
 
                             <div className="space-y-2 text-center flex flex-col items-center">
@@ -164,8 +164,8 @@ export default function StepperContainer({
                             </div>
                         </div>
 
-                        <div className="p-3 sm:p-6 border-t sm:border-none bg-card shrink-0 flex gap-3 sm:justify-end z-10">
-                            <div className="flex gap-3 sm:gap-4 flex-1 sm:flex-none w-full sm:w-auto">
+                        <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-6 pt-12 sm:pt-16 bg-gradient-to-t from-card via-card to-transparent shrink-0 flex gap-3 sm:justify-end z-10 pointer-events-none">
+                            <div className="flex gap-3 sm:gap-4 flex-1 sm:flex-none w-full sm:w-auto pointer-events-auto">
                                 <Button className="w-full sm:w-auto" variant="outline" onClick={() => {
                                     navigate('/');
                                 }}>Recommencer le parcours</Button>
