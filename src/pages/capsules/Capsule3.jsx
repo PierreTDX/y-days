@@ -189,7 +189,7 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
                                     </div>
                                 </div>
                                 <div className="flex-1">
-                                    <img src="/y-days/images/illustrationModule3.png" alt="Capture d'écran" className="w-full h-full object-cover object-left rounded" />
+                                    <img src="/y-days/images/illustrationModule3.jpg" alt="Capture d'écran" className="w-full h-full object-cover object-left rounded" />
                                 </div>
                             </div>
                         </Card>

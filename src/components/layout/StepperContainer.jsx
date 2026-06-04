@@ -149,7 +149,7 @@ export default function StepperContainer({
                                 <span tabIndex={0} className="group relative inline-block cursor-pointer focus:outline-none">
                                     <span className='underline hover:text-primary transition-colors'>en savoir plus</span>
                                     <Info className="w-4 h-4 inline-block ml-1 -mt-0.5" />
-                                    <div className="absolute max-[600px]:fixed max-[600px]:top-1/2 max-[600px]:bottom-auto max-[600px]:-translate-y-1/2 bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:flex group-focus:flex group-active:flex flex-col justify-center items-center px-3 py-1.5 gap-2 isolate w-max max-w-[250px] bg-[#171717] rounded-lg text-white text-xs text-center z-50 pointer-events-none shadow-lg">
+                                    <div className="absolute max-[600px]:fixed max-[600px]:top-2/3 max-[600px]:bottom-auto max-[600px]:-translate-y-1/2 bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:flex group-focus:flex group-active:flex flex-col justify-center items-center px-3 py-1.5 gap-2 isolate w-max max-w-[250px] bg-[#171717] rounded-lg text-white text-xs text-center z-50 pointer-events-none shadow-lg">
                                         Pour revoir un module spécifique, cliquez simplement sur son icône dans la barre de navigation.
                                         <img src="/y-days/images/boutonsNav.png" alt="navigation" className="object-contain" />
 

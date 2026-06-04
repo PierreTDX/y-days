@@ -28,7 +28,7 @@ export default function Capsule1({ onComplete, canResume, onResume, onProgress }
         }))
     }
 
-    const isNextDisabled = (step === 1 && Object.keys(flippedCards).length < 3) || (step === 2 && openedAccordions.length < 3);
+    const isNextDisabled = (step === 1 && Object.keys(flippedCards).length < 3);
 
     return (
         <div className="w-full mx-auto rounded-xl border bg-card text-card-foreground shadow-sm flex flex-1 flex-col h-full overflow-hidden">
