@@ -53,7 +53,7 @@ function useCountUp(target, duration = 1600, delay = 0) {
 
 const TESTIMONIES = [
   { cls: "home-testimony--1", avatar: "/y-days/images/prof1.png", quote: "J'ai mon master MEEF en poche, mais face à 26 élèves, je ne sais par où commencer.", name: "Julie",  role: "Enseignante CM2" },
-  { cls: "home-testimony--2", avatar: "/y-days/images/prof2.png", quote: "Affectation reçue : CE2 dans 15 jours. Je ne connais ni les programmes, ni comment les créer",  name: "Marie", role: "Enseignante CE2" },
+  { cls: "home-testimony--2", avatar: "/y-days/images/prof2.png", quote: "Je ne connais pas les programmes et je ne sais pas comment les créer",  name: "Marie", role: "Enseignante CE2" },
   { cls: "home-testimony--3", avatar: "/y-days/images/prof3.png", quote: "Je ne me sens pas prêt à gérer une classe sans supports de cours prêts à l'emploi.", name: "Pierre", role: "Enseignant CP" },
   { cls: "home-testimony--4", avatar: "/y-days/images/prof4.png", quote: "Je pars de zéro et je ne sais pas ce que je suis censée produire pour le premier jour.",     name: "Maxime",  role: "Enseignant CE1"  },
 ]
@@ -61,7 +61,7 @@ const TESTIMONIES = [
 const STEP3_CARDS = [
   { module: "Module 1", duration: "2 min", text: "L'Introduction aux outils d'IA : outils généraux et spécialisés.", image: "/y-days/images/introduction-au-outil-IA-minia.png" },
   { module: "Module 2", duration: "2 min", text: "La méthode pour créer une instruction (prompt) efficace. ", image: "/y-days/images/methode-pour-cree-inscription-minia.png" },
-  { module: "Module 3", duration: "2 min", text: "Délémer le vrai du faux : contenu à l’ère de l’IA", image: "/y-days/images/demeler-vrai-faux-minia.png" },
+  { module: "Module 3", duration: "2 min", text: "Démêler le vrai du faux : IA ou pas IA ?", image: "/y-days/images/demeler-vrai-faux-minia.png" },
 ]
 
 const LIST_ITEMS = [
@@ -73,8 +73,8 @@ const LIST_ITEMS = [
 function Step1Body() {
   return (
     <div className="step-body">
-      <p>A cette ère, l'utilisation des Intelligences Artificielles (IA) s'impose de plus en plus dans le monde professionnel.</p>
-      <p>L'intégrer dans votre métier d'enseignement est devenu essentiel dans un contexte où il faut produire plus et plus vite.</p>
+      <p>De nos jours, l'utilisation des Intelligences Artificielles (IA) s'impose de plus en plus dans le monde professionnel.</p>
+      <p>Dans un contexte où il faut produire davantage et rapidement, l'intégrer dans votre métier d'enseignant est devenu essentiel.</p>
       <Memo variant="bookmark" className="mt-7 w-full">
         <div>
           <p>C'est pour cette raison que l'IA peut s'avérer être un réel assistant pour la planification et la création de vos ressources pédagogiques.</p>
@@ -91,12 +91,12 @@ function Step2Body({ onNext, onPrev }) {
 
   const SLIDES = [
     {
-      number:    `0${hours}h`,
-      cardText:  "C’est le temps que vous passez en moyenne par semaine pour la création de vos supports de cours. (Selon étude du gouvernement)",
+      number:    `${hours}h`,
+      cardText:  "C'est le temps que vous passez en moyenne par semaine à la préparation de vos cours",
     },
     {
-      number:    `0${reforms}`,
-      cardText:  "C’est le nombre de réformes en 5 ans nécessitant de modifier vos supports de cours.",
+      number:    `${reforms}`,
+      cardText:  "Après cette même étude gouvernementale, c’est le nombre de réformes en 5 ans vous obligeants de modifier vos supports de cours.",
     },
   ]
 
@@ -145,9 +145,10 @@ function Step3Body() {
 }
 
 const STEP4_ITEMS = [
-  "Après avoir lu, cliquez sur \"Suivant\".",
-  "Les modules incluent des quiz interactifs pour un apprentissage dynamique, avec des consignes claires à suivre avant de passer au suivant.",
-  "Cliquez sur un module terminé pour revoir son contenu.",
+  "Pour chaque module, après avoir lu, cliquez sur \"Suivant\".",
+  "Les modules incluent des quiz interactifs pour un apprentissage dynamique, avec des consignes claires.",
+  "Terminer un exercice avant de passer au suivant",
+  "Vous pouvez à tout moment cliquez sur n'importe quel module terminé pour revoir son contenu"
 ]
 
 function Step4Body() {
@@ -280,7 +281,7 @@ export default function OnboardingPage() {
                     <img src="/y-days/svg/Group.svg" alt="" className="image-no-theme"/>
                     <div>
                       <p className="text-card-step-no-theme">Pour aller plus loin</p>
-                      <p className="text-bold-step-no-theme">Lorem ipsum Lorem ipsum Lorem ipsum</p>
+                      <p className="text-bold-step-no-theme">Téléchargez votre fiche mémo et votre checklist prêts à l'emploi !</p>
                     </div>
                   </div>
                 </div>

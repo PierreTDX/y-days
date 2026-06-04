@@ -32,7 +32,7 @@ function playStart() {
 
 const TESTIMONIES = [
   { cls: "home-testimony--1", avatar: "/y-days/images/prof1.png", quote: "J'ai mon master MEEF en poche, mais face à 26 élèves, je ne sais par où commencer.", name: "Julie",  role: "Enseignante CM2" },
-  { cls: "home-testimony--2", avatar: "/y-days/images/prof2.png", quote: "Affectation reçue : CE2 dans 15 jours. Je ne connais ni les programmes, ni comment les créer",  name: "Marie", role: "Enseignante CE2" },
+  { cls: "home-testimony--2", avatar: "/y-days/images/prof2.png", quote: "Je ne connais pas les programmes et je ne sais pas comment les créer",  name: "Marie", role: "Enseignante CE2" },
   { cls: "home-testimony--3", avatar: "/y-days/images/prof3.png", quote: "Je ne me sens pas prêt à gérer une classe sans supports de cours prêts à l'emploi.", name: "Pierre", role: "Enseignant CP" },
   { cls: "home-testimony--4", avatar: "/y-days/images/prof4.png", quote: "Je pars de zéro et je ne sais pas ce que je suis censée produire pour le premier jour.",     name: "Maxime",  role: "Enseignant CE1"  },
 ]
@@ -66,7 +66,7 @@ export default function HomePage() {
         <img src="/y-days/LOGOAcadem.svg" alt="Logo" className="home-logo" />
         <p className="home-label">Enseignants du primaire</p>
         <h1 className="home-title pb-5">
-          Créez vos ressources pédagogiques<br />de qualité avec l'IA
+          Créez des ressources pédagogiques<br />de qualité avec l'IA
         </h1>
         <div className="home-subtitle">
           <span className="home-dot" />
@@ -79,7 +79,7 @@ export default function HomePage() {
           style={{ background: 'linear-gradient(180deg, #B291E9 0%, #8260BA 100%)', border: 'none', marginTop: '32px', fontSize: '17px', padding: '10px 28px', height: 'auto' }}
           onClick={handleStart}
       >
-        Démarrer l'apprentissage →
+        Démarrez l'apprentissage →
       </Button>
       </div>
     </div>

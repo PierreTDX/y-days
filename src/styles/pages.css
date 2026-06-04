@@ -51,7 +51,6 @@
   font-size: 36px;
   font-weight: 600;
   line-height: 44px;
-  letter-spacing: .18em;
   text-transform: uppercase;
   margin: 0 0 16px;
   background: linear-gradient(90deg, var(--color-violet-900) 0%, var(--color-violet-400) 100%);
@@ -365,7 +364,7 @@
   font-size: 100px;
   font-weight: 900;
   line-height: .76;
-  background: linear-gradient(90deg, var(--color-violet-900) 0%, var(--color-violet-400) 100%);
+  background: var(--color-violet-900);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
