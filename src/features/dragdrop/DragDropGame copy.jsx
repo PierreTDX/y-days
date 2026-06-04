@@ -157,35 +157,18 @@ export default function DragDropGame({ buckets, initialCards, onComplete, onProg
                                 key={bucketName}
                                 className="flex items-center gap-3 p-2 rounded-xl bg-[#f8f7fb] border border-[#e5e5e5e]"
                                     onClick={() =>{
+                                        if (window.innerWidth >= 768 || bucketCard?.correct) return
                                         selectedCardId &&
                                         assignCardToBucket(
                                             selectedCardId,
                                             bucketName
                                         )
-                                        if (window.innerWidth >= 768 || bucketCard?.correct) return
                                         if (bucketCard.id !== selectedCardId) {
                                             setSelectedCardId(bucketCard.id)
                                             setErrorMessage(null)
                                             setErrorTimeout(null)
                                         }
                                     }}
-                            >
-                                {/* LETTER */}
-                                <div
-                                    className={`
-                                        w-10 h-10
-                                        rounded-md
-                                        flex items-center justify-center
-                                        font-semibold
-                                        text-sm
-                                        ${bucket.css.background} ${bucket.css.text} ${bucket.css.border}
-                                    `}
-                                >
-                                    {bucketName.charAt(0)}
-                                </div>
-
-                                {/* SLOT */}
-                                <div
                                     onDragOver={(e) => {
                                         if (bucketCard) return
                                         e.preventDefault()
@@ -204,6 +187,23 @@ export default function DragDropGame({ buckets, initialCards, onComplete, onProg
 
                                         assignCardToBucket(id, bucketName)
                                     }}
+                            >
+                                {/* LETTER */}
+                                <div
+                                    className={`
+                                        w-10 h-10
+                                        rounded-md
+                                        flex items-center justify-center
+                                        font-semibold
+                                        text-sm
+                                        ${bucket.css.background} ${bucket.css.text} ${bucket.css.border}
+                                    `}
+                                >
+                                    {bucketName.charAt(0)}
+                                </div>
+
+                                {/* SLOT */}
+                                <div
                                     className={`
                                         flex-1
                                         min-h-[52px]
