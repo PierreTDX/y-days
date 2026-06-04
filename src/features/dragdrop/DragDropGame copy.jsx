@@ -119,13 +119,6 @@ export default function DragDropGame({ buckets, initialCards, onComplete, onProg
         }
     }
 
-    const badgeColors = [
-        "bg-violet-100 text-violet-600",
-        "bg-yellow-100 text-yellow-700",
-        "bg-rose-100 text-rose-600",
-        "bg-slate-100 text-slate-600",
-    ]
-
     return (
         <div className="bg-slate-50">
             <div className="max-w-5xl mx-auto p-6">
@@ -136,7 +129,7 @@ export default function DragDropGame({ buckets, initialCards, onComplete, onProg
                         Reconstitue le prompt
                     </h1>
 
-                    <p className="hidden md:hidden text-sm text-slate-500">
+                    <p className="hidden md:block text-sm text-slate-500">
                         Réorganise le prompt. Pour ce faire,
                         faites glisser une carte depuis la boîte à mots
                         et dépose-la dans la zone que tu juges
@@ -153,14 +146,15 @@ export default function DragDropGame({ buckets, initialCards, onComplete, onProg
                 {/* ROLE SLOTS */}
                 <div className="space-y-3 mb-8">
                     {buckets.map((bucket, index) => {
+                        const bucketName = bucket.title
                         const bucketCard = cards.find(
-                            (c) => c.assigned === bucket
+                            (c) => c.assigned === bucketName
                         )
 
                         return (
                             <div
-                                key={bucket}
-                                className="flex items-center gap-3"
+                                key={bucketName}
+                                className="flex items-center gap-3 p-2 rounded-xl bg-[#f8f7fb] border border-[#e5e5e5e"
                             >
                                 {/* LETTER */}
                                 <div
@@ -170,17 +164,18 @@ export default function DragDropGame({ buckets, initialCards, onComplete, onProg
                                         flex items-center justify-center
                                         font-semibold
                                         text-sm
-                                        ${badgeColors[index]}
+                                        ${bucket.css.background} ${bucket.css.text} ${bucket.css.border}
                                     `}
                                 >
-                                    {bucket.charAt(0)}
+                                    {bucketName.charAt(0)}
                                 </div>
 
                                 {/* SLOT */}
                                 <div
                                     onDragOver={(e) => {
+                                        if (bucketCard) return
                                         e.preventDefault()
-                                        setHoverBucket(bucket)
+                                        setHoverBucket(bucketName)
                                     }}
                                     onDragLeave={() =>
                                         setHoverBucket(null)
@@ -193,13 +188,13 @@ export default function DragDropGame({ buckets, initialCards, onComplete, onProg
                                                 "text/plain"
                                             )
 
-                                        assignCardToBucket(id, bucket)
+                                        assignCardToBucket(id, bucketName)
                                     }}
                                     onClick={() =>
                                         selectedCardId &&
                                         assignCardToBucket(
                                             selectedCardId,
-                                            bucket
+                                            bucketName
                                         )
                                     }
                                     className={`
@@ -212,9 +207,11 @@ export default function DragDropGame({ buckets, initialCards, onComplete, onProg
                                         flex items-center
                                         transition-all
                                         cursor-pointer
-                                        ${hoverBucket === bucket
-                                            ? "border-violet-400 bg-violet-50"
-                                            : "border-violet-200 bg-white"
+                                        ${hoverBucket === bucketName
+                                            ? "border-[#b291e9] bg-[#eae0f9]"
+                                            : bucketCard
+                                                ? (bucketCard.correct ? "bg-[#f0fdf4] border-[#22c55e]": "bg-[#fef2f2] border-[#e75a3d]") 
+                                            : "border-[#a486d7]"
                                         }
                                     `}
                                 >
@@ -239,15 +236,16 @@ export default function DragDropGame({ buckets, initialCards, onComplete, onProg
                                 text-sm
                                 bg-white
                                 ${bucketCard.correct
-                                    ? "border-green-400"
-                                    : "border-red-400 bg-red-50"
+                                    ? ""
+                                    : "bg-[#fef2f2] text-[#991b1b]"
                                 }
                             `}
                                         >
-                                            {bucketCard.text}
+                                            <span className="mr-2 select-none cursor-grab">⋮⋮</span>
+                                            <span>{bucketCard.text}</span>
                                         </div>
                                     ) : (
-                                        <div className="w-full text-center text-violet-300">
+                                        <div className="w-full text-center text-violet-400" style={{fontWeight:"bold"}}>
                                             ...
                                         </div>
                                     )}
@@ -275,7 +273,7 @@ export default function DragDropGame({ buckets, initialCards, onComplete, onProg
                 <div className="hidden md:block">
                     <div className="font-medium mb-3">Boîte à phrase</div>
 
-                    <div className="flex flex-wrap gap-3 p-4 bg-slate-100 rounded-xl border min-h-[120px] content-start">
+                    <div className="flex flex-wrap gap-3 p-4 bg-[#f8f7fb] rounded-xl border min-h-[120px] content-start">
                         {cards
                             .filter((c) => c.assigned === null)
                             .map((card) => (
@@ -340,7 +338,8 @@ export default function DragDropGame({ buckets, initialCards, onComplete, onProg
                                                 setBurgerOpen(false)
                                             }}
                                         >
-                                            {card.text}
+                                            <span className="text-slate-400 mr-2 select-none cursor-grab">⋮⋮</span>
+                                            <span>{card.text}</span>
                                         </div>
                                     ))}
                             </div>
@@ -351,6 +350,7 @@ export default function DragDropGame({ buckets, initialCards, onComplete, onProg
                 {/* pinned selected card */}
                 {selectedCardId  && (
                     <div className="fixed bottom-4 left-4 right-4 bg-white border shadow-lg rounded-xl p-3 md:hidden z-40 flex justify-between items-center">
+                        <span className="text-slate-400 mr-2 select-none cursor-grab">⋮⋮</span>
                         <span className="text-sm">
                             {cards.find(c => c.id === selectedCardId )?.text}
                         </span>
