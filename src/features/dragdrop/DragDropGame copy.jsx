@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { CircleAlert, GripVertical, MousePointerClick } from "lucide-react";
+import { Circle, CircleAlert, GripVertical, MousePointerClick } from "lucide-react";
 
 function shuffle(array) {
     const arr = [...array]
@@ -343,7 +343,7 @@ export default function DragDropGame({ buckets, initialCards, onComplete, onProg
                                             }}
                                         >
                                             {/* <GripVertical className="text-slate-400 mt-0.5 shrink-0" /> */}
-                                            {/* <MousePointerClick className="text-slate-400 shrink-0"/> */}
+                                            <Circle color="#6b7280" size={15} className="shrink-0 self-center"/>
                                             <span>{card.text}</span>
                                         </div>
                                     ))}
