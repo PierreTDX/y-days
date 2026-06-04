@@ -114,6 +114,7 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
 
     const isQuizStep = step < QUIZ_STEPS.length;
     const currentStep = isQuizStep ? QUIZ_STEPS[step] : null;
+    const hasButtons = canResume || (isQuizStep && gameResult !== null) || !isQuizStep;
 
     const handleGuess = (valeurBoutonClique) => {
         if (!currentStep) return;
@@ -126,9 +127,9 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
     }
 
     const points = [
-        { id: 1, x: 41, y: 20, content: "Sur la statue du cheval on remarque que le bras du cavalier semble “fondu” dans l’objet qu’il tient." },
-        { id: 2, x: 73, y: 7, content: "Le haut de la flèche du bâtiment est de travers et les fenêtres ne sont pas régulières." },
-        { id: 3, x: 72.3, y: 63.5, content: "La femme au second plan semble avoir les traits du visages floutés et déformés." },
+        { id: 1, x: 18, y: 25, content: "Sur la statue du cheval on remarque que le bras du cavalier semble “fondu” dans l’objet qu’il tient." },
+        { id: 2, x: 86.5, y: 8, content: "Le haut de la flèche du bâtiment est de travers et les fenêtres ne sont pas régulières." },
+        { id: 3, x: 85.5, y: 81.5, content: "La femme au second plan semble avoir les traits du visages floutés et déformés." },
     ];
 
     return (
@@ -246,7 +247,7 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
                                                 onClick={() =>
                                                     setActive(active === point.id ? null : point.id)
                                                 }
-                                                className="bg-transparent rounded-full w-14 h-14 flex items-center justify-center cursor-pointer"
+                                                className="bg-transparent rounded-full w-22 h-22 flex items-center justify-center cursor-pointer"
                                             >
                                             </button>
 
@@ -277,48 +278,50 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
                 )}
             </div>
 
-            <div className="p-3 sm:p-6 border-t sm:border-none sm:border-none bg-card shrink-0 flex gap-3 sm:justify-end z-10">
-                <div className="flex gap-3 sm:gap-4 flex-1 sm:flex-none w-full sm:w-auto">
-                    {canResume && (
-                        <Button className="flex-1 sm:flex-none" variant="outline" onClick={onResume}>
-                            Reprendre où j'en étais
-                        </Button>
-                    )}
+            {hasButtons && (
+                <div className="p-3 sm:p-6 border-t sm:border-none bg-card shrink-0 flex gap-3 sm:justify-end z-10">
+                    <div className="flex gap-3 sm:gap-4 flex-1 sm:flex-none w-full sm:w-auto">
+                        {canResume && (
+                            <Button className="flex-1 sm:flex-none" variant="outline" onClick={onResume}>
+                                Reprendre où j'en étais
+                            </Button>
+                        )}
 
-                    {isQuizStep && gameResult !== null && (
-                        <Button
-                            className="flex-1 sm:flex-none w-full sm:w-auto"
-                            onClick={() => {
-                                setStep(step + 1)
-                                setGameResult(null)
-                            }}>
-                            {step < QUIZ_STEPS.length - 1 ? (
-                                <>Question suivante <ArrowRight className="w-4 h-4 ml-2" /></>
-                            ) : (
-                                <>Suivant <ArrowRight className="w-4 h-4 ml-2" /></>
-                            )}
-                        </Button>
-                    )}
-
-                    {!isQuizStep && (
-                        <Button
-                            className="flex-1 sm:flex-none w-full sm:w-auto"
-                            onClick={() => {
-                                if (step < 7) {
+                        {isQuizStep && gameResult !== null && (
+                            <Button
+                                className="flex-1 sm:flex-none w-full sm:w-auto"
+                                onClick={() => {
                                     setStep(step + 1)
-                                } else {
-                                    onComplete?.()
-                                }
-                            }}>
-                            {step < 7 ? (
-                                <>Suivant <ArrowRight className="w-4 h-4 ml-2" /></>
-                            ) : (
-                                "J'ai compris"
-                            )}
-                        </Button>
-                    )}
+                                    setGameResult(null)
+                                }}>
+                                {step < QUIZ_STEPS.length - 1 ? (
+                                    <>Question suivante <ArrowRight className="w-4 h-4 ml-2" /></>
+                                ) : (
+                                    <>Suivant <ArrowRight className="w-4 h-4 ml-2" /></>
+                                )}
+                            </Button>
+                        )}
+
+                        {!isQuizStep && (
+                            <Button
+                                className="flex-1 sm:flex-none w-full sm:w-auto"
+                                onClick={() => {
+                                    if (step < 7) {
+                                        setStep(step + 1)
+                                    } else {
+                                        onComplete?.()
+                                    }
+                                }}>
+                                {step < 7 ? (
+                                    <>Suivant <ArrowRight className="w-4 h-4 ml-2" /></>
+                                ) : (
+                                    "J'ai compris"
+                                )}
+                            </Button>
+                        )}
+                    </div>
                 </div>
-            </div>
+            )}
         </div>
     )
 }
