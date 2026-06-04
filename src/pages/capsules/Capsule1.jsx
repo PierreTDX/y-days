@@ -218,14 +218,14 @@ export default function Capsule1({ onComplete, canResume, onResume, onProgress }
 
             <div className="p-3 sm:p-6 border-t sm:border-none bg-card shrink-0 flex gap-3 sm:justify-between">
                 {step > 0 ? (
-                    <Button className="flex-1 sm:flex-none" variant="outline" onClick={() => setStep(step - 1)}>
+                    <Button className="flex-1 sm:flex-none sm:w-[170px]" variant="outline" onClick={() => setStep(step - 1)}>
                         <ArrowLeft className="w-4 h-4 mr-2" /> Précédent
                     </Button>
                 ) : (
-                    <div className="hidden sm:block" />
+                    <div className="hidden sm:block sm:w-[170px]" />
                 )}
 
-                <div className="flex gap-3 sm:gap-4 flex-1 sm:flex-none w-full sm:w-auto">
+                <div className="flex gap-3 sm:gap-4 flex-1 sm:flex-none sm:w-auto">
                     {canResume && (
                         <Button className="flex-1 sm:flex-none" variant="outline" onClick={onResume}>
                             Reprendre où j'en étais
@@ -243,7 +243,7 @@ export default function Capsule1({ onComplete, canResume, onResume, onProgress }
                         )}
                         <Button
                             disabled={isNextDisabled}
-                            className={`w-full sm:w-auto ${isNextDisabled ? "pointer-events-none" : ""}`}
+                            className={`w-full sm:w-[170px] ${isNextDisabled ? "pointer-events-none" : ""}`}
                             onClick={() => step < 2 ? setStep(step + 1) : onComplete?.()}>
                             {step < 2 ? (
                                 <>Suivant <ArrowRight className="w-4 h-4 ml-2" /></>
