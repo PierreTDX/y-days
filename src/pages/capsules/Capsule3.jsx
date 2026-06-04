@@ -27,7 +27,7 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
             question: "D’après toi, cette photo a-t-elle été générée par IA?",
             mediaClassName: "aspect-video bg-muted max-h-[320px]",
             media: <img src="/y-days/images/Question_2.jpg" alt="Photo à deviner" className="object-cover w-full" />,
-            explication: <><strong>Explication :</strong> Cette photo XXX.</>,
+            explication: <><strong>Explication :</strong> Cette photo n'a pas été générée par IA, il s'agit d'une vraie forêt !</>,
             correctAnswer: 'PAS_IA'
         },
         {
@@ -43,7 +43,7 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
                     allowFullScreen
                 ></iframe>
             ),
-            explication: <><strong>Explication :</strong> Cette vidéo a été générée par IA ! Impressionnant, non ?</>,
+            explication: <><strong>Explication :</strong> Cette vidéo a été générée par IA, impressionnant non ?</>,
             correctAnswer: 'IA'
         },
         {
@@ -100,14 +100,14 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
             question: "D’après toi, cette photo a-t-elle été générée par IA?",
             mediaClassName: "aspect-video bg-muted max-h-[320px]",
             media: <img src="/y-days/images/Question_5.jpg" alt="Photo à deviner" className="object-cover h-full" />,
-            explication: <><strong>Explication :</strong> Cette photo XXX.</>,
+            explication: <><strong>Explication :</strong> Cette photo a été générée par IA. On vous explique tout dans la suite du module.</>,
             correctAnswer: 'IA'
         },
         {
             question: "D’après toi, cette photo a-t-elle été générée par IA?",
             mediaClassName: "aspect-video bg-muted max-h-[320px]",
             media: <img src="/y-days/images/Question_6.png" alt="Photo à deviner" className="object-cover w-full" />,
-            explication: <><strong>Explication :</strong> Cette photo XXX.</>,
+            explication: <><strong>Explication :</strong> Cette photo n'a pas été générée par IA.</>,
             correctAnswer: 'PAS_IA'
         }
     ];
@@ -134,7 +134,7 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
     return (
         <div className="w-full mx-auto p-3 sm:p-6 rounded-xl border bg-card text-card-foreground shadow-sm flex flex-1 flex-col h-full overflow-y-auto">
             <div className="space-y-4">
-                <h1 className="text-xl sm:text-4xl font-semibold">Démêler le vrai du faux contenu à l’ère de l’IA.</h1>
+                <h1 className="text-xl sm:text-4xl font-semibold">Démêler le vrai du faux : IA ou pas IA ?</h1>
 
                 {isQuizStep && (
                     <>

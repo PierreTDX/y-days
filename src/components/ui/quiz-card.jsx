@@ -20,7 +20,7 @@ export function QuizCard({
                     <>
                         <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-black/70 to-transparent z-10 pointer-events-none"></div>
                         <div className="absolute top-3 right-3 flex items-center gap-2 z-20">
-                            <span className={`text-sm drop-shadow-sm ${gameResult ? 'text-green-500' : 'text-red-500'}`}>
+                            <span className={`text-sm drop-shadow-sm ${gameResult ? 'text-green-200' : 'text-red-200'}`}>
                                 {gameResult ? 'Bonne réponse !' : 'Mauvaise réponse !'}
                             </span>
                             <div className={`flex items-center justify-center w-5 h-5 rounded-full text-white ${gameResult ? 'bg-green-500' : 'bg-red-500'}`}>
