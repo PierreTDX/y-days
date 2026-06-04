@@ -132,8 +132,8 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
     ];
 
     return (
-        <div className="w-full mx-auto p-3 sm:p-6 rounded-xl border bg-card text-card-foreground shadow-sm flex flex-1 flex-col h-full overflow-y-auto">
-            <div className="space-y-4">
+        <div className="w-full mx-auto rounded-xl border bg-card text-card-foreground shadow-sm flex flex-1 flex-col h-full overflow-hidden">
+            <div className="flex-1 overflow-y-auto p-3 sm:p-6 space-y-4">
                 <h1 className="text-xl sm:text-4xl font-semibold">Démêler le vrai du faux : IA ou pas IA ?</h1>
 
                 {isQuizStep && (
@@ -277,7 +277,7 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
                 )}
             </div>
 
-            <div className="sticky -bottom-0 mt-auto pt-2 flex sm:justify-end z-10">
+            <div className="p-3 sm:p-6 border-t sm:border-none bg-card shrink-0 flex gap-3 sm:justify-end z-10">
                 <div className="flex gap-3 sm:gap-4 flex-1 sm:flex-none w-full sm:w-auto">
                     {canResume && (
                         <Button className="flex-1 sm:flex-none" variant="outline" onClick={onResume}>

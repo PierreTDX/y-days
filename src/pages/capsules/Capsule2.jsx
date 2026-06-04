@@ -127,101 +127,102 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
 
 
     return (<>
-        <div className="w-full mx-auto p-3 sm:p-6 rounded-xl border bg-card text-card-foreground shadow-sm flex flex-1 flex-col h-full overflow-y-auto">
+        <div className="w-full mx-auto rounded-xl border bg-card text-card-foreground shadow-sm flex flex-1 flex-col h-full overflow-hidden">
+            <div className="flex-1 overflow-y-auto p-3 sm:p-6">
 
-            {/* ROLE Introduction */}
-            {step === 0 && (
-                <div className="grid lg:grid-cols-[1fr_320px] gap-8 items-start">
-                    {/* LEFT SIDE */}
-                    <div className="space-y-6 order-1 lg:order-2">
-                        <h1 className="text-xl sm:text-4xl font-semibold">Rédiger le bon prompt : La Méthode R.O.L.E.</h1>
-                        <p className="text-muted-foreground text-sm sm:text-base">
-                            Dans ce module, vous apprendrez à  formuler un prompt professionnel pour générer des ressources pédagogiques pour l'enseignement primaire.
-                        </p>
-                        <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
-                            <span style={{ fontWeight: 'bold' }}>Contenu théorique (lecture légère) : </span>
-                            Pour obtenir une fiche de préparation ou une séquence de qualité, un bon prompt doit contenir nécessairement 4 éléments clés :
-                            <span style={{ fontWeight: 'bold', fontSize: '1.25rem' }}> R.O.L.E</span>
-                        </p>
+                {/* ROLE Introduction */}
+                {step === 0 && (
+                    <div className="grid lg:grid-cols-[1fr_320px] gap-8 items-start">
+                        {/* LEFT SIDE */}
+                        <div className="space-y-6 order-1 lg:order-2">
+                            <h1 className="text-xl sm:text-4xl font-semibold">Rédiger le bon prompt : La Méthode R.O.L.E.</h1>
+                            <p className="text-muted-foreground text-sm sm:text-base">
+                                Dans ce module, vous apprendrez à  formuler un prompt professionnel pour générer des ressources pédagogiques pour l'enseignement primaire.
+                            </p>
+                            <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
+                                <span style={{ fontWeight: 'bold' }}>Contenu théorique (lecture légère) : </span>
+                                Pour obtenir une fiche de préparation ou une séquence de qualité, un bon prompt doit contenir nécessairement 4 éléments clés :
+                                <span style={{ fontWeight: 'bold', fontSize: '1.25rem' }}> R.O.L.E</span>
+                            </p>
 
-                        <div className="grid gap-4">
-                            {badgeColors.map((badge) => (
-                                <div className={`p-4 border rounded-lg border-l-4 ${badge.css.container} bg-muted/50`}>
-                                    <div className="flex gap-4">
-                                        <div className={`shrink-0 w-10 h-10 rounded-md flex items-center justify-center font-semibold ${badge.css.background} ${badge.css.text} ${badge.css.border}`}>
-                                            {badge.title.charAt(0)}
-                                        </div>
-                                        <div>
-                                            <h3 className="font-bold text-lg mb-1">{badge.title}</h3>
-                                            <p className="text-sm text-muted-foreground mb-2">{badge.use}</p>
-                                            <p className="text-sm italic">Exemple : « {badge.example} »</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                    {/* RIGHT SIDE */}
-                    <div className="space-y-6 order-2 lg:order-2">
-                        <Dialog>
-                            <div className="border rounded-xl p-4 bg-background shadow-sm">
-                                <h3 className="font-semibold text-lg">Résultat</h3>
-
-                                <p className="text-sm text-muted-foreground mb-4">
-                                    Voici ce que l'IA a généré avec ce prompt :
-                                </p>
-
-                                <DialogTrigger asChild>
-                                    <button className="w-full text-left">
-                                        <div className="relative overflow-hidden border rounded-lg max-h-[70dvh] bg-white cursor-pointer hover:ring-2 hover:ring-primary transition">
-                                            <img src={`/y-days/images/promptDemo.png`} alt="Preview" className="max-w-full h-auto" />
-                                            <div className="absolute top-3 right-3 bg-white/90 backdrop-blur rounded-md p-1 shadow-sm">
-                                                <MoveDiagonal className="w-4 h-4 text-slate-600" />
+                            <div className="grid gap-4">
+                                {badgeColors.map((badge) => (
+                                    <div className={`p-4 border rounded-lg border-l-4 ${badge.css.container} bg-muted/50`}>
+                                        <div className="flex gap-4">
+                                            <div className={`shrink-0 w-10 h-10 rounded-md flex items-center justify-center font-semibold ${badge.css.background} ${badge.css.text} ${badge.css.border}`}>
+                                                {badge.title.charAt(0)}
+                                            </div>
+                                            <div>
+                                                <h3 className="font-bold text-lg mb-1">{badge.title}</h3>
+                                                <p className="text-sm text-muted-foreground mb-2">{badge.use}</p>
+                                                <p className="text-sm italic">Exemple : « {badge.example} »</p>
                                             </div>
                                         </div>
-                                    </button>
-                                </DialogTrigger>
+                                    </div>
+                                ))}
                             </div>
+                        </div>
+                        {/* RIGHT SIDE */}
+                        <div className="space-y-6 order-2 lg:order-2">
+                            <Dialog>
+                                <div className="border rounded-xl p-4 bg-background shadow-sm">
+                                    <h3 className="font-semibold text-lg">Résultat</h3>
 
-                            <DialogContent className="!max-w-[95vw] max-h-[95vh] overflow-auto">
-                                <img src={`/y-days/images/promptDemo.png`} alt="Preview" className="max-w-full h-auto" />
-                            </DialogContent>
-                        </Dialog>
+                                    <p className="text-sm text-muted-foreground mb-4">
+                                        Voici ce que l'IA a généré avec ce prompt :
+                                    </p>
+
+                                    <DialogTrigger asChild>
+                                        <button className="w-full text-left">
+                                            <div className="relative overflow-hidden border rounded-lg max-h-[70dvh] bg-white cursor-pointer hover:ring-2 hover:ring-primary transition">
+                                                <img src={`/y-days/images/promptDemo.png`} alt="Preview" className="max-w-full h-auto" />
+                                                <div className="absolute top-3 right-3 bg-white/90 backdrop-blur rounded-md p-1 shadow-sm">
+                                                    <MoveDiagonal className="w-4 h-4 text-slate-600" />
+                                                </div>
+                                            </div>
+                                        </button>
+                                    </DialogTrigger>
+                                </div>
+
+                                <DialogContent className="!max-w-[95vw] max-h-[95vh] overflow-auto">
+                                    <img src={`/y-days/images/promptDemo.png`} alt="Preview" className="max-w-full h-auto" />
+                                </DialogContent>
+                            </Dialog>
+
+                        </div>
+                    </div>
+                )}
+
+                {/* Drag n Drop Game */}
+                {step === 1 && (
+                    <div className="space-y-6">
+                        {/* <h2 className="text-2xl font-bold tracking-tight">Mini-Jeu : Drag & Drop R.O.L.E</h2> */}
+                        {/* <p className="block md:hidden text-sm text-muted-foreground">Tapez sur un élément pour le sélectionner depuis le panneau rétractable, puis tapez sur la bonne catégorie                             .</p>
+                    <p className="hidden md:hidden text-sm text-muted-foreground">Glissez les éléments dans la bonne catégorie.</p> */}
+                        {/* <AssignmentGame buckets={BUCKETS} initialCards={gameCards["Game0"]} onComplete={() => alert("Good job!")} onProgress={setIsGragAndDropComplete} /> */}
+                        <AssignmentGame buckets={badgeColors} initialCards={gameCards[`Game1`]} onProgress={setIsGragAndDropComplete} />
 
                     </div>
-                </div>
-            )}
-
-            {/* Drag n Drop Game */}
-            {step === 1 && (
-                <div className="space-y-6">
-                    {/* <h2 className="text-2xl font-bold tracking-tight">Mini-Jeu : Drag & Drop R.O.L.E</h2> */}
-                    {/* <p className="block md:hidden text-sm text-muted-foreground">Tapez sur un élément pour le sélectionner depuis le panneau rétractable, puis tapez sur la bonne catégorie                             .</p>
+                )}
+                {step === 2 && (
+                    <div className="space-y-6">
+                        {/* <h2 className="text-2xl font-bold tracking-tight">Mini-Jeu : Drag & Drop R.O.L.E</h2> */}
+                        {/* <p className="block md:hidden text-sm text-muted-foreground">Tapez sur un élément pour le sélectionner depuis le panneau rétractable, puis tapez sur la bonne catégorie                             .</p>
                     <p className="hidden md:hidden text-sm text-muted-foreground">Glissez les éléments dans la bonne catégorie.</p> */}
-                    {/* <AssignmentGame buckets={BUCKETS} initialCards={gameCards["Game0"]} onComplete={() => alert("Good job!")} onProgress={setIsGragAndDropComplete} /> */}
-                    <AssignmentGame buckets={badgeColors} initialCards={gameCards[`Game1`]} onProgress={setIsGragAndDropComplete} />
+                        {/* <AssignmentGame buckets={BUCKETS} initialCards={gameCards["Game0"]} onComplete={() => alert("Good job!")} onProgress={setIsGragAndDropComplete} /> */}
+                        <AssignmentGame buckets={badgeColors} initialCards={gameCards[`Game2`]} onProgress={setIsGragAndDropComplete} />
 
-                </div>
-            )}
-            {step === 2 && (
-                <div className="space-y-6">
-                    {/* <h2 className="text-2xl font-bold tracking-tight">Mini-Jeu : Drag & Drop R.O.L.E</h2> */}
-                    {/* <p className="block md:hidden text-sm text-muted-foreground">Tapez sur un élément pour le sélectionner depuis le panneau rétractable, puis tapez sur la bonne catégorie                             .</p>
+                    </div>
+                )}
+                {step === 3 && (
+                    <div className="space-y-6">
+                        {/* <p className="block md:hidden text-sm text-muted-foreground">Tapez sur un élément pour le sélectionner depuis le panneau rétractable, puis tapez sur la bonne catégorie                             .</p>
                     <p className="hidden md:hidden text-sm text-muted-foreground">Glissez les éléments dans la bonne catégorie.</p> */}
-                    {/* <AssignmentGame buckets={BUCKETS} initialCards={gameCards["Game0"]} onComplete={() => alert("Good job!")} onProgress={setIsGragAndDropComplete} /> */}
-                    <AssignmentGame buckets={badgeColors} initialCards={gameCards[`Game2`]} onProgress={setIsGragAndDropComplete} />
+                        <AssignmentGame buckets={badgeColors} initialCards={gameCards[`Game3`]} onProgress={setIsGragAndDropComplete} />
 
-                </div>
-            )}
-            {step === 3 && (
-                <div className="space-y-6">
-                    {/* <p className="block md:hidden text-sm text-muted-foreground">Tapez sur un élément pour le sélectionner depuis le panneau rétractable, puis tapez sur la bonne catégorie                             .</p>
-                    <p className="hidden md:hidden text-sm text-muted-foreground">Glissez les éléments dans la bonne catégorie.</p> */}
-                    <AssignmentGame buckets={badgeColors} initialCards={gameCards[`Game3`]} onProgress={setIsGragAndDropComplete} />
-
-                </div>
-            )}
-            {/* {step  === 3 && (
+                    </div>
+                )}
+                {/* {step  === 3 && (
                 <div className="space-y-6">
                     <p className="block md:hidden text-sm text-muted-foreground">Tapez sur un élément pour le sélectionner depuis le panneau rétractable, puis tapez sur la bonne catégorie                             .</p>
                     <p className="hidden md:hidden text-sm text-muted-foreground">Glissez les éléments dans la bonne catégorie.</p>
@@ -229,8 +230,9 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
                 </div>
             )} */}
 
+            </div>
             {/* Button bar. */}
-            <div className="sticky -bottom-0 mt-auto flex sm:justify-end">
+            <div className="p-3 sm:p-6 border-t sm:border-none bg-card shrink-0 flex gap-3 sm:justify-end">
 
                 <div className="flex gap-3 sm:gap-4 flex-1 sm:flex-none w-full sm:w-auto">
                     {canResume && (
