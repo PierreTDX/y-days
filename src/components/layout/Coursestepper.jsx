@@ -228,8 +228,8 @@ export default function CourseStepper({ initialSteps = [], variant = "both", fin
     const [steps, setSteps] = useState(initialSteps);
     const isAllCompleted = steps.length > 0 && steps.every(s => s.status === "completed");
     const activeIndex = steps.findIndex((s) => s.status === "active");
-    // const [selectedIdx, setSelectedIdx] = useState(activeIndex !== -1 ? activeIndex : (isAllCompleted ? -1 : (steps.length > 0 ? steps.length - 1 : 0)));
-    const [selectedIdx, setSelectedIdx] = useState(-1); // TEMPORAIRE POUR LE DEV
+    const [selectedIdx, setSelectedIdx] = useState(activeIndex !== -1 ? activeIndex : (isAllCompleted ? -1 : (steps.length > 0 ? steps.length - 1 : 0)));
+    // const [selectedIdx, setSelectedIdx] = useState(-1); // TEMPORAIRE POUR LE DEV
 
     const handleProgress = useCallback((progress) => {
         setSteps((prev) => {
