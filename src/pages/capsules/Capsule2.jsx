@@ -7,7 +7,6 @@ import FillInTheGaps from '@/features/dragdrop/DragDropGame copy 2'
 import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
 import ReactMarkdown from 'react-markdown'
 import remarkBreaks from 'remark-breaks';
-import fileContent from "./prompt-result-exemple.md?raw"
 import remarkGfm from 'remark-gfm'
 
 const badgeColors = [
@@ -135,7 +134,7 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
             {step === 0 && (
                 <div className="grid lg:grid-cols-[320px_1fr] gap-8 items-start">
                     {/* RIGHT SIDE */}
-                    <div className="space-y-6">
+                    <div className="space-y-6 order-2 lg:order-1">
                         <Dialog>
                             <div className="border rounded-xl p-4 bg-background shadow-sm">
                                 <h3 className="font-semibold text-lg">Résultat</h3>
@@ -147,28 +146,20 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
                                 <DialogTrigger asChild>
                                     <button className="w-full text-left">
                                         <div className="overflow-hidden border rounded-lg max-h-[70dvh] bg-white cursor-pointer hover:ring-2 hover:ring-primary transition">
-                                            <div
-                                                className="origin-top-left pointer-events-none h-full"
-                                                style={{
-                                                    transform: "scale(0.75)",
-                                                    width: `${100 / 0.75}%`,
-                                                }}
-                                            >
-                                                <PromptDemo />
-                                            </div>
+                                            <img src={`/y-days/images/promptDemo.png`} alt="Preview" className="max-w-full h-auto" />
                                         </div>
                                     </button>
                                 </DialogTrigger>
                             </div>
 
                             <DialogContent className="!max-w-[90vw] w-fit h-[90dvh] overflow-auto">
-                                <PromptDemo />
+                                <img src={`/y-days/images/promptDemo.png`} alt="Preview" className="max-w-full h-auto" />
                             </DialogContent>
                         </Dialog>
 
                     </div>
                     {/* LEFT SIDE */}
-                    <div className="space-y-6">
+                    <div className="space-y-6 order-1 lg:order-2">
                         <h1 className="text-xl sm:text-4xl font-semibold">Rédiger le bon prompt : La Méthode R.O.L.E.</h1>
                         <p className="text-muted-foreground text-sm sm:text-base">
                             Dans ce module, vous apprendrez à  formuler un prompt professionnel pour générer des ressources pédagogiques pour l'enseignement primaire.
