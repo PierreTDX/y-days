@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Circle, CircleAlert, GripVertical, MousePointerClick } from "lucide-react";
+import { Circle, CircleAlert, GripVertical, LayoutList, MousePointerClick } from "lucide-react";
 
 function shuffle(array) {
     const arr = [...array]
@@ -263,7 +263,7 @@ export default function DragDropGame({ buckets, initialCards, onComplete, onProg
                         className="w-full flex items-center justify-center gap-2 py-3 bg-black text-white rounded-xl shadow-md active:scale-[0.98] transition"
                         onClick={() => setBurgerOpen(true)}
                     >
-                        ☰ Ouvrir la boîte à phrases
+                        <LayoutList size={20}/> Ouvrir la boîte à phrases
                     </button>
 
                     <p className="text-xs text-slate-500 text-center">
