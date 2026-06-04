@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 
 const BookIcon = ({ className = "" }) => (
     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className} aria-hidden="true">
@@ -225,11 +225,35 @@ export function HorizontalStepper({ selectedIdx, steps, onStepClick, showLogo = 
 }
 
 export default function CourseStepper({ initialSteps = [], variant = "both", finalContent }) {
-    const [steps, setSteps] = useState(initialSteps);
+    // On initialise le state avec le localStorage si disponible
+    const [steps, setSteps] = useState(() => {
+        const saved = localStorage.getItem('y-days-stepper-progress');
+        if (saved) {
+            try {
+                const parsed = JSON.parse(saved);
+                // On fusionne les données sauvées (status, progress) avec les composants React d'origine
+                return initialSteps.map((step, index) => ({
+                    ...step,
+                    status: parsed[index]?.status || step.status,
+                    progress: parsed[index]?.progress || step.progress
+                }));
+            } catch (e) {
+                console.error("Erreur de lecture du localStorage", e);
+            }
+        }
+        return initialSteps;
+    });
+
     const isAllCompleted = steps.length > 0 && steps.every(s => s.status === "completed");
     const activeIndex = steps.findIndex((s) => s.status === "active");
     const [selectedIdx, setSelectedIdx] = useState(activeIndex !== -1 ? activeIndex : (isAllCompleted ? -1 : (steps.length > 0 ? steps.length - 1 : 0)));
     // const [selectedIdx, setSelectedIdx] = useState(-1); // TEMPORAIRE POUR LE DEV
+
+    // À chaque modification de steps, on sauvegarde (uniquement ce qui est serializable)
+    useEffect(() => {
+        const stateToSave = steps.map(s => ({ status: s.status, progress: s.progress }));
+        localStorage.setItem('y-days-stepper-progress', JSON.stringify(stateToSave));
+    }, [steps]);
 
     const handleProgress = useCallback((progress) => {
         setSteps((prev) => {
