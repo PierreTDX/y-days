@@ -155,24 +155,20 @@ export default function DragDropGame({ buckets, initialCards, onComplete, onProg
                         return (
                             <div
                                 key={bucketName}
-                                className="flex items-center gap-3 p-2 rounded-xl bg-[#f8f7fb] border border-[#e5e5e5e"
-                            >
-                                {/* LETTER */}
-                                <div
-                                    className={`
-                                        w-10 h-10
-                                        rounded-md
-                                        flex items-center justify-center
-                                        font-semibold
-                                        text-sm
-                                        ${bucket.css.background} ${bucket.css.text} ${bucket.css.border}
-                                    `}
-                                >
-                                    {bucketName.charAt(0)}
-                                </div>
-
-                                {/* SLOT */}
-                                <div
+                                className="flex items-center gap-3 p-2 rounded-xl bg-[#f8f7fb] border border-[#e5e5e5e]"
+                                    onClick={() =>{
+                                        if (window.innerWidth >= 768 || bucketCard?.correct) return
+                                        selectedCardId &&
+                                        assignCardToBucket(
+                                            selectedCardId,
+                                            bucketName
+                                        )
+                                        if (bucketCard.id !== selectedCardId) {
+                                            setSelectedCardId(bucketCard.id)
+                                            setErrorMessage(null)
+                                            setErrorTimeout(null)
+                                        }
+                                    }}
                                     onDragOver={(e) => {
                                         if (bucketCard) return
                                         e.preventDefault()
@@ -191,13 +187,23 @@ export default function DragDropGame({ buckets, initialCards, onComplete, onProg
 
                                         assignCardToBucket(id, bucketName)
                                     }}
-                                    onClick={() =>
-                                        selectedCardId &&
-                                        assignCardToBucket(
-                                            selectedCardId,
-                                            bucketName
-                                        )
-                                    }
+                            >
+                                {/* LETTER */}
+                                <div
+                                    className={`
+                                        w-10 h-10
+                                        rounded-md
+                                        flex items-center justify-center
+                                        font-semibold
+                                        text-sm
+                                        ${bucket.css.background} ${bucket.css.text} ${bucket.css.border}
+                                    `}
+                                >
+                                    {bucketName.charAt(0)}
+                                </div>
+
+                                {/* SLOT */}
+                                <div
                                     className={`
                                         flex-1
                                         min-h-[52px]
@@ -222,12 +228,6 @@ export default function DragDropGame({ buckets, initialCards, onComplete, onProg
                                             onDragStart={(e) =>{
                                                 if (bucketCard?.correct) return
                                                 onDragStart(e, bucketCard.id)
-                                            }}
-                                            onClick={() => {
-                                                if (window.innerWidth >= 768 || bucketCard?.correct) return
-                                                if (bucketCard.id !== selectedCardId) {
-                                                    setSelectedCardId(bucketCard.id)
-                                                }
                                             }}
                                             onDragEnd={onDragEnd}
                                             className={`
@@ -343,7 +343,7 @@ export default function DragDropGame({ buckets, initialCards, onComplete, onProg
                                             }}
                                         >
                                             {/* <GripVertical className="text-slate-400 mt-0.5 shrink-0" /> */}
-                                            <MousePointerClick className="text-slate-400 shrink-0"/>
+                                            {/* <MousePointerClick className="text-slate-400 shrink-0"/> */}
                                             <span>{card.text}</span>
                                         </div>
                                     ))}
@@ -354,13 +354,13 @@ export default function DragDropGame({ buckets, initialCards, onComplete, onProg
 
                 {/* pinned selected card */}
                 {selectedCardId  && (
-                    <div className="fixed bottom-4 left-4 right-4 md:hidden z-40">
+                    <div className="fixed bottom-4 left-4 right-4 md:hidden z-40 bg-white border shadow-lg rounded-xl p-3">
                         <p className="mb-2 text-xs text-slate-500 text-center">
                             Cliquez sur la zone où tu veux placer cette phrase.
                         </p>
-                        <div className="bg-white border shadow-lg rounded-xl p-3 flex items-center gap-2">
+                        <div className=" flex items-center gap-2">
                             {/* <GripVertical className="text-slate-400 shrink-0"/> */}
-                            <MousePointerClick className="text-slate-400 shrink-0"/>
+                            {/* <MousePointerClick className="text-slate-400 shrink-0"/> */}
                             <span className="text-sm">
                                 {cards.find(c => c.id === selectedCardId )?.text}
                             </span>
