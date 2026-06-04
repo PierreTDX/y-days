@@ -165,13 +165,13 @@ export default function DragDropGame({ buckets, initialCards, onComplete, onProg
                                 {/* LETTER */}
                                 <div
                                     className={`
-                            w-10 h-10
-                            rounded-md
-                            flex items-center justify-center
-                            font-semibold
-                            text-sm
-                            ${badgeColors[index]}
-                        `}
+                                        w-10 h-10
+                                        rounded-md
+                                        flex items-center justify-center
+                                        font-semibold
+                                        text-sm
+                                        ${badgeColors[index]}
+                                    `}
                                 >
                                     {bucket.charAt(0)}
                                 </div>
@@ -203,20 +203,20 @@ export default function DragDropGame({ buckets, initialCards, onComplete, onProg
                                         )
                                     }
                                     className={`
-                            flex-1
-                            min-h-[52px]
-                            rounded-lg
-                            border
-                            border-dashed
-                            px-3
-                            flex items-center
-                            transition-all
-                            cursor-pointer
-                            ${hoverBucket === bucket
+                                        flex-1
+                                        min-h-[52px]
+                                        rounded-lg
+                                        border
+                                        border-dashed
+                                        px-3
+                                        flex items-center
+                                        transition-all
+                                        cursor-pointer
+                                        ${hoverBucket === bucket
                                             ? "border-violet-400 bg-violet-50"
                                             : "border-violet-200 bg-white"
                                         }
-                        `}
+                                    `}
                                 >
                                     {bucketCard ? (
                                         <div
@@ -239,9 +239,9 @@ export default function DragDropGame({ buckets, initialCards, onComplete, onProg
                                 text-sm
                                 bg-white
                                 ${bucketCard.correct
-                                                    ? "border-green-400"
-                                                    : "border-red-400 bg-red-50"
-                                                }
+                                    ? "border-green-400"
+                                    : "border-red-400 bg-red-50"
+                                }
                             `}
                                         >
                                             {bucketCard.text}
@@ -273,9 +273,9 @@ export default function DragDropGame({ buckets, initialCards, onComplete, onProg
 
                 {/* ================= WORD BOX (DESKTOP) ================= */}
                 <div className="hidden md:block">
-                    <div className="font-medium mb-3">Boîte à mots</div>
+                    <div className="font-medium mb-3">Boîte à phrase</div>
 
-                    <div className="flex flex-wrap gap-3 p-4 bg-slate-100 rounded-xl border">
+                    <div className="flex flex-wrap gap-3 p-4 bg-slate-100 rounded-xl border min-h-[120px] content-start">
                         {cards
                             .filter((c) => c.assigned === null)
                             .map((card) => (
@@ -302,7 +302,9 @@ export default function DragDropGame({ buckets, initialCards, onComplete, onProg
                                         }
                                     `}
                                 >
-                                    {card.text}
+                                    
+                                    <span className="text-slate-400 mr-2 select-none cursor-grab">⋮⋮</span>
+                                    <span>{card.text}</span>
                                 </div>
                             ))}
                     </div>
@@ -319,7 +321,7 @@ export default function DragDropGame({ buckets, initialCards, onComplete, onProg
                             
                             <div className="flex justify-between mb-3">
                                 <span className="font-medium">
-                                    Boîte à mots
+                                    Boîte à phrase
                                 </span>
                                 <button onClick={() => setBurgerOpen(false)}>
                                     ✕
