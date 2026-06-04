@@ -10,7 +10,54 @@ import remarkBreaks from 'remark-breaks';
 import fileContent from "./prompt-result-exemple.md?raw"
 import remarkGfm from 'remark-gfm'
 
-const BUCKETS = ['Rôle', 'Objectif', 'Limites', 'Exemple']
+const badgeColors = [
+    {
+        "title": "Rôle",
+        "use": "Assignez un rôle à l'IA, elle doit savoir quelle posture adopter.",
+        "example": "Tu es un professeur expérimenté du CE2",
+        "css": {
+            "background": "bg-[#eae0f9]",
+            "border": "border border-[#dbcbf5]",
+            "container": "border border-l-[#a076e4]", 
+            "text": "text-[#a076e4]"
+        },
+    },
+    {
+        "title": "Objectif",
+        "use": "Dites-lui de façon précise et explicite ce qu'elle doit faire.",
+        "example": "Crée une séance de 45 minutes pour introduire les fractions.",
+        "css": {
+            "background": "bg-[#f7f0d5]",
+            "border": "border border-[#f7eab6]",
+            "container": "border border-l-[#cdaf37]", 
+            "text": "text-[#cdaf37]"
+        },
+    },
+    {
+        "title": "Limites",
+        "use": "Déterminez un cadre précis pour qu'elle génère une réponse exacte et professionnelle.",
+        "example": "Utilise du matériel manipulable, évite les écrans.",
+        "css": {
+            "background": "bg-[#fadad4]", 
+            "border": "border border-[#f6c0b6]", 
+            "container": "border border-l-[#e75a3d]", 
+            "text": "text-[#e75a3d]"
+        },
+    },
+    {
+        "title": "Exemple",
+        "use": "Donnez-lui un exemple concret pour l'aider à se situer et guidez-là au mieux.",
+        "example": "Structure la réponse ainsi : 1. Introduction (2 min), 2. Règles de flaction (15 min), 3. Exemples (10 min), 4. Exercices d'application (15 min). L'enssemble doit tenir sur 5 fiches de cours maximum.",
+        "css": {
+            "background": "bg-[#f8f7fb]",
+            "border": "border border-[#dddceb]",
+            "container": "border border-l-[#56549c]",
+            "text": "text-[#56549c]"
+        },
+    },
+]
+
+
 
 export default function Capsule2({ onComplete, canResume, onResume, onProgress }) {
     const [step, setStep] = useState(0)
@@ -131,28 +178,22 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
                             Pour obtenir une fiche de préparation ou une séquence de qualité, un bon prompt doit contenir nécessairement 4 éléments clés :
                             <span style={{ fontWeight: 'bold', fontSize: '1.25rem' }}>R.O.L.E</span>
                         </p>
-
+                        
                         <div className="grid gap-4">
-                            <div className="p-4 border rounded-lg border-l-4 border-l-primary bg-muted/50">
-                                <h3 className="font-bold text-lg mb-1">R - Rôle</h3>
-                                <p className="text-sm text-muted-foreground mb-2">Assignez un rôle à l'IA, elle doit savoir quelle posture adopter.</p>
-                                <p className="text-sm italic">Exemple : « Tu es un professeur expérimenté du CE2. »</p>
-                            </div>
-                            <div className="p-4 border rounded-lg border-l-4 border-l-primary bg-muted/50">
-                                <h3 className="font-bold text-lg mb-1">O - Objectif</h3>
-                                <p className="text-sm text-muted-foreground mb-2">Dites-lui de façon précise et explicite ce qu'elle doit faire.</p>
-                                <p className="text-sm italic">Exemple : « Crée une séance de 45 minutes pour introduire les fractions. »</p>
-                            </div>
-                            <div className="p-4 border rounded-lg border-l-4 border-l-primary bg-muted/50">
-                                <h3 className="font-bold text-lg mb-1">L - Limites</h3>
-                                <p className="text-sm text-muted-foreground mb-2">Déterminez un cadre précis pour qu'elle génère une réponse exacte et professionnelle.</p>
-                                <p className="text-sm italic">Exemple : « Utilise du matériel manipulable (jetons, bandes de papier) uniquement, évite les écrans. »</p>
-                            </div>
-                            <div className="p-4 border rounded-lg border-l-4 border-l-primary bg-muted/50">
-                                <h3 className="font-bold text-lg mb-1">E - Exemple</h3>
-                                <p className="text-sm text-muted-foreground mb-2">Donnez-lui un exemple concret pour l'aider à se situer et guidez-là au mieux. </p>
-                                <p className="text-sm italic">Exemple : « Structure la réponse ainsi : 1. Introduction (2 min), 2. Règles de flaction (15 min), 3. Exemples (10 min), 4. Exercices d'application (15 min). L'enssemble doit tenir sur 5 fiches de cours maximum »</p>
-                            </div>
+                            {badgeColors.map((badge) => (
+                                <div className={`p-4 border rounded-lg border-l-4 ${badge.css.container} bg-muted/50`}>
+                                    <div className="flex gap-4">
+                                        <div className={`shrink-0 w-10 h-10 rounded-md flex items-center justify-center font-semibold ${badge.css.background} ${badge.css.text} ${badge.css.border}`}>
+                                            {badge.title.charAt(0)}
+                                        </div>
+                                        <div>
+                                            <h3 className="font-bold text-lg mb-1">{badge.title}</h3>
+                                            <p className="text-sm text-muted-foreground mb-2">{badge.use}</p>
+                                            <p className="text-sm italic">Exemple : « {badge.example} »</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                     </div>
                 </div>
@@ -165,7 +206,7 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
                     {/* <p className="block md:hidden text-sm text-muted-foreground">Tapez sur un élément pour le sélectionner depuis le panneau rétractable, puis tapez sur la bonne catégorie                             .</p>
                     <p className="hidden md:hidden text-sm text-muted-foreground">Glissez les éléments dans la bonne catégorie.</p> */}
                     {/* <AssignmentGame buckets={BUCKETS} initialCards={gameCards["Game0"]} onComplete={() => alert("Good job!")} onProgress={setIsGragAndDropComplete} /> */}
-                    <AssignmentGame buckets={BUCKETS} initialCards={gameCards[`Game1`]} onProgress={setIsGragAndDropComplete} />
+                    <AssignmentGame buckets={badgeColors} initialCards={gameCards[`Game1`]} onProgress={setIsGragAndDropComplete} />
 
                 </div>
             )}
@@ -175,7 +216,7 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
                     {/* <p className="block md:hidden text-sm text-muted-foreground">Tapez sur un élément pour le sélectionner depuis le panneau rétractable, puis tapez sur la bonne catégorie                             .</p>
                     <p className="hidden md:hidden text-sm text-muted-foreground">Glissez les éléments dans la bonne catégorie.</p> */}
                     {/* <AssignmentGame buckets={BUCKETS} initialCards={gameCards["Game0"]} onComplete={() => alert("Good job!")} onProgress={setIsGragAndDropComplete} /> */}
-                    <AssignmentGame buckets={BUCKETS} initialCards={gameCards[`Game2`]} onProgress={setIsGragAndDropComplete} />
+                    <AssignmentGame buckets={badgeColors} initialCards={gameCards[`Game2`]} onProgress={setIsGragAndDropComplete} />
 
                 </div>
             )}
@@ -183,7 +224,7 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
                 <div className="space-y-6">
                     {/* <p className="block md:hidden text-sm text-muted-foreground">Tapez sur un élément pour le sélectionner depuis le panneau rétractable, puis tapez sur la bonne catégorie                             .</p>
                     <p className="hidden md:hidden text-sm text-muted-foreground">Glissez les éléments dans la bonne catégorie.</p> */}
-                    <AssignmentGame buckets={BUCKETS} initialCards={gameCards[`Game3`]} onProgress={setIsGragAndDropComplete} />
+                    <AssignmentGame buckets={badgeColors} initialCards={gameCards[`Game3`]} onProgress={setIsGragAndDropComplete} />
 
                 </div>
             )}
