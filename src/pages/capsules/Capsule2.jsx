@@ -16,7 +16,7 @@ const badgeColors = [
         "css": {
             "background": "bg-[#eae0f9]",
             "border": "border border-[#dbcbf5]",
-            "container": "border border-l-[#a076e4]", 
+            "container": "border border-l-[#a076e4]",
             "text": "text-[#a076e4]"
         },
     },
@@ -27,7 +27,7 @@ const badgeColors = [
         "css": {
             "background": "bg-[#f7f0d5]",
             "border": "border border-[#f7eab6]",
-            "container": "border border-l-[#cdaf37]", 
+            "container": "border border-l-[#cdaf37]",
             "text": "text-[#cdaf37]"
         },
     },
@@ -36,9 +36,9 @@ const badgeColors = [
         "use": "Déterminez un cadre précis pour qu'elle génère une réponse exacte et professionnelle.",
         "example": "Utilise du matériel manipulable, évite les écrans.",
         "css": {
-            "background": "bg-[#fadad4]", 
-            "border": "border border-[#f6c0b6]", 
-            "container": "border border-l-[#e75a3d]", 
+            "background": "bg-[#fadad4]",
+            "border": "border border-[#f6c0b6]",
+            "container": "border border-l-[#e75a3d]",
             "text": "text-[#e75a3d]"
         },
     },
@@ -139,11 +139,11 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
                             Dans ce module, vous apprendrez à  formuler un prompt professionnel pour générer des ressources pédagogiques pour l'enseignement primaire.
                         </p>
                         <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
-                            <span style={{ fontWeight: 'bold' }}>Contenu théorique (lecture légère):</span>
+                            <span style={{ fontWeight: 'bold' }}>Contenu théorique (lecture légère) : </span>
                             Pour obtenir une fiche de préparation ou une séquence de qualité, un bon prompt doit contenir nécessairement 4 éléments clés :
-                            <span style={{ fontWeight: 'bold', fontSize: '1.25rem' }}>R.O.L.E</span>
+                            <span style={{ fontWeight: 'bold', fontSize: '1.25rem' }}> R.O.L.E</span>
                         </p>
-                        
+
                         <div className="grid gap-4">
                             {badgeColors.map((badge) => (
                                 <div className={`p-4 border rounded-lg border-l-4 ${badge.css.container} bg-muted/50`}>
