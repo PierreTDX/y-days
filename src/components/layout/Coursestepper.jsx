@@ -103,10 +103,10 @@ export function HorizontalStepper({ selectedIdx, steps, onStepClick, showLogo = 
     const isAllCompleted = steps.every(s => s.status === "completed");
 
     return (
-        <div className="flex items-center gap-2 w-full">
+        <div className="flex items-center gap-2 w-full p-3">
             {/* Logo en dehors du stepper */}
             {showLogo && (
-                <div className="w-[230px] max-[600px]:w-[80px] h-[60px] bg-[url('/y-days/LOGOAcadem.svg')] max-[600px]:bg-[url('/y-days/LOGOAcademcarre.svg')] bg-no-repeat bg-center bg-contain flex-shrink-0 scale-330 max-[600px]:scale-230 origin-center  max-[600px]:-translate-x-3"
+                <div className="w-[230px] max-[600px]:w-[80px] h-[60px] bg-[url('/y-days/LOGOAcadem.svg')] max-[600px]:bg-[url('/y-days/LOGOAcademcarre.svg')] bg-no-repeat bg-center bg-contain flex-shrink-0 scale-330 max-[600px]:scale-230 origin-center max-[600px]:-translate-x-3"
                     role="img"
                     aria-label="Logo AcademIA">
                 </div>
@@ -296,10 +296,10 @@ export default function CourseStepper({ initialSteps = [], variant = "both", fin
     };
 
     return (
-        <div className="flex flex-col gap-4 mx-auto w-full">
+        <div className="flex flex-col mx-auto w-full">
             {/* Vertical */}
             {(variant === "vertical" || variant === "both") && (
-                <div className="sticky top-4 z-50 bg-white p-3 rounded-xl border border-zinc-200 shadow-sm">
+                <div className="sticky top-0 z-50 bg-white p-3 rounded-xl border border-zinc-200 shadow-sm">
                     {variant === "both" && <p className="text-xs uppercase tracking-widest text-zinc-400 mb-3">Vue verticale</p>}
                     <div className="flex flex-col gap-2">
                         {steps.map((step, i) => (
@@ -316,7 +316,7 @@ export default function CourseStepper({ initialSteps = [], variant = "both", fin
 
             {/* Horizontal */}
             {(variant === "horizontal" || variant === "both") && (
-                <div className="sticky top-4 z-50">
+                <div className="sticky top-0 z-50">
                     {variant === "both" && <p className="text-xs uppercase tracking-widest text-zinc-400 mb-3">Vue horizontale</p>}
                     <HorizontalStepper
                         selectedIdx={selectedIdx}
@@ -327,7 +327,7 @@ export default function CourseStepper({ initialSteps = [], variant = "both", fin
             )}
 
             {/* Contenu du module sélectionné */}
-            <div className=" border p-3 md:p-11 border-zinc-200 rounded-xl shadow-sm text-left stepper-container flex flex-col h-[calc(100dvh-102px)]">
+            <div className=" border p-3 md:p-11 border-zinc-200 rounded-t-3xl md:rounded-3xl shadow-sm text-left stepper-container flex flex-col h-[calc(100dvh-84px)]">
                 {/* <h3 className="text-lg font-bold mb-4 text-zinc-800">{steps[selectedIdx]?.title}</h3> */}
                 {selectedIdx === -1 && finalContent
                     ? (typeof finalContent === 'function' ? finalContent(steps, setSelectedIdx) : finalContent)

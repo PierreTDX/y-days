@@ -84,6 +84,7 @@ export default function StepperContainer({
                 variant="horizontal"
                 finalContent={(currentSteps, onStepClick) => (
                     <div className="w-full mx-auto rounded-xl border bg-card text-card-foreground shadow-sm flex flex-1 flex-col h-full overflow-hidden">
+                        <br />
                         <div className="flex-1 overflow-y-auto p-3 sm:p-6 flex flex-col gap-6 items-center">
                             <img src="/y-days/icons/checkok.svg" alt="Bravo" className="w-24 h-24 rounded-full object-cover mt-3" />
 
