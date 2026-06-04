@@ -113,7 +113,7 @@ export function HorizontalStepper({ selectedIdx, steps, onStepClick, showLogo = 
             )}
 
             {/* Conteneur des étapes */}
-            <div className="flex flex-1 items-center ">
+            <div className="flex flex-1 items-center">
                 {/* Étapes (Steps) */}
                 <div className="flex flex-1 items-center min-w-0 gap-2 justify-end">
                     {steps.map((step, i) => {
@@ -126,12 +126,12 @@ export function HorizontalStepper({ selectedIdx, steps, onStepClick, showLogo = 
                                 onClick={step.status !== "locked" ? () => onStepClick?.(i) : undefined}
                                 tabIndex={step.status === "locked" ? 0 : undefined}
                                 className={[
-                                    "relative flex items-center h-[60px] px-4 min-w-0 border border-zinc-200 bg-white shadow-sm rounded-xl",
+                                    "relative flex justify-center items-center h-[60px] px-1 min-w-0 border border-zinc-200 bg-white shadow-sm rounded-xl",
                                     "transition-all duration-500 ease-in-out group",
 
                                     isSelected
-                                        ? "flex-1 min-w-[82px]"
-                                        : "w-[82px] min-w-0",
+                                        ? "flex-1 max-[425px]:flex-none max-[425px]:w-[72px] min-w-[72px] min-[425px]:pr-3 min-[425px]:gap-2"
+                                        : "w-[72px] min-w-0",
 
                                     step.status !== "locked"
                                         ? "cursor-pointer hover:bg-zinc-50"
@@ -141,7 +141,7 @@ export function HorizontalStepper({ selectedIdx, steps, onStepClick, showLogo = 
                                 {/* Icon & Label part */}
                                 <div
                                     className={[
-                                        "flex flex-col items-center gap-0.5 min-w-[48px] flex-shrink-0 transition-colors duration-300",
+                                        "flex flex-col items-center gap-0.5 min-w-[62px] flex-shrink-0 transition-colors duration-300",
                                         step.status === "locked" ? "opacity-70" : ""
                                     ].join(" ")}
                                 >
@@ -165,12 +165,12 @@ export function HorizontalStepper({ selectedIdx, steps, onStepClick, showLogo = 
                                 {/* Active content part (title, progress, etc.) */}
                                 <div
                                     className={[
-                                        "flex-1 flex flex-col gap-2 min-w-0 w-full overflow-hidden [container-type:inline-size]",
+                                        "flex-1 flex flex-col gap-2 max-[425px]:flex-none max-[425px]:w-0 w-full overflow-hidden [container-type:inline-size]",
                                         "transition-all duration-300 ease-in-out pt-3",
                                         isSelected ? "flex opacity-100" : "hidden",
                                     ].join(" ")}
                                 >
-                                    <div className="ml-3 h-[3px] bg-[#E5E7EB] rounded-full w-full overflow-hidden transition-all duration-300 ">
+                                    <div className="h-[4px] bg-[#E5E7EB] rounded-full w-full overflow-hidden transition-all duration-300">
                                         <div
                                             className="h-full rounded-full transition-all duration-500"
                                             style={{
@@ -180,13 +180,13 @@ export function HorizontalStepper({ selectedIdx, steps, onStepClick, showLogo = 
                                         />
                                     </div>
 
-                                    <div className="ml-3 flex items-center gap-3 overflow-hidden w-full transition-all duration-300 [@container_(max-width:150px)]:w-0 [@container_(max-width:150px)]:opacity-0">
+                                    <div className="flex items-center gap-3 overflow-hidden w-full transition-all duration-300 [@container_(max-width:150px)]:w-0 [@container_(max-width:150px)]:opacity-0">
                                         <span className="text-[13px] truncate text-muted-foreground min-w-0 flex-1">
                                             {step.title}
                                         </span>
                                         <div className="flex items-center gap-3 flex-shrink-0">
                                             {step.readTime && (
-                                                <span className="text-xs text-zinc-400 whitespace-nowrap mr-3">
+                                                <span className="text-xs text-zinc-400 whitespace-nowrap">
                                                     Temps de lecture : {step.readTime}
                                                 </span>
                                             )}
@@ -198,12 +198,12 @@ export function HorizontalStepper({ selectedIdx, steps, onStepClick, showLogo = 
                                 {!isSelected && (
                                     <>
                                         {step.status === "locked" && (
-                                            <span className="absolute top-1.5 right-2 w-4 h-4 flex items-center justify-center rounded-full bg-[#E5E7EB] text-muted-foreground opacity-70">
+                                            <span className="absolute -top-1.5 -right-1 w-4 h-4 flex items-center justify-center rounded-full bg-[#E5E7EB] text-muted-foreground opacity-70">
                                                 <LockIcon size={10} />
                                             </span>
                                         )}
                                         {step.status === "completed" && (
-                                            <span className="absolute top-1.5 right-2 w-4 h-4 flex items-center justify-center rounded-full bg-green-500 text-white">
+                                            <span className="absolute -top-1.5 -right-1 w-4 h-4 flex items-center justify-center rounded-full bg-green-500 text-white">
                                                 <CheckIcon size={9} />
                                             </span>
                                         )}
