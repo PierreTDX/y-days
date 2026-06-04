@@ -159,8 +159,6 @@ export default function StepperContainer({
 
                         </div>
                         <Button className="absolute sticky bottom-0" variant="outline" onClick={() => {
-                            // On vide le localStorage pour permettre un vrai recommencement
-                            localStorage.removeItem('y-days-stepper-progress');
                             navigate('/');
                         }}>Recommencer le parcours</Button>
 
