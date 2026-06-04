@@ -108,12 +108,12 @@ export default function StepperContainer({
                                         <div
                                             key={index}
                                             onClick={() => onStepClick(index)}
-                                            className="flex-1 relative flex flex-col items-center justify-start p-4 border border-zinc-200 bg-white shadow-sm rounded-xl cursor-pointer hover:border-violet-300 hover:bg-zinc-50 transition-all"
+                                            className="flex-1 relative flex flex-row sm:flex-col items-center sm:justify-start p-4 gap-4 sm:gap-0 border border-zinc-200 bg-white shadow-sm rounded-xl cursor-pointer hover:border-violet-300 hover:bg-zinc-50 transition-all"
                                         >
-                                            <div className="flex items-center justify-center w-10 h-10 rounded-full bg-violet-50 text-violet-500 mb-3">
+                                            <div className="flex items-center justify-center w-10 h-10 rounded-full bg-violet-50 text-violet-500 sm:mb-3 flex-shrink-0">
                                                 <Icon className="w-5 h-5" />
                                             </div>
-                                            <span className="text-sm font-medium text-center text-zinc-800 leading-tight">
+                                            <span className="text-sm font-medium text-left sm:text-center text-zinc-800 leading-tight">
                                                 {label}
                                             </span>
                                             {step.status === "completed" && (
