@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { Circle, CircleAlert, GripVertical, LayoutList, MousePointerClick } from "lucide-react";
+import { Circle, CircleAlert, GripVertical, LayoutList, Trash2 } from "lucide-react";
 
 function shuffle(array) {
     const arr = [...array]
@@ -358,18 +358,13 @@ export default function DragDropGame({ buckets, initialCards, onComplete, onProg
                         <p className="mb-2 text-xs text-slate-500 text-center">
                             Cliquez sur la zone où tu veux placer cette phrase.
                         </p>
-                        <div className=" flex items-center gap-2">
+                        <div className=" flex items-center gap-2 ">
                             {/* <GripVertical className="text-slate-400 shrink-0"/> */}
                             {/* <MousePointerClick className="text-slate-400 shrink-0"/> */}
-                            <span className="text-sm">
+                            <span className="text-sm flex-1">
                                 {cards.find(c => c.id === selectedCardId )?.text}
                             </span>
-                            <button
-                                onClick={() => setSelectedCardId(null)}
-                                className="text-red-500"
-                            >
-                                ✕
-                            </button>
+                            <Trash2 onClick={() => setSelectedCardId(null)} className=""/>
                         </div>
                     </div>
                 )}
