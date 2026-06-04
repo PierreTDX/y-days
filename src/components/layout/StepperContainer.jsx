@@ -5,7 +5,7 @@ import Capsule2 from '../../pages/capsules/Capsule2.jsx'
 import Capsule3 from '../../pages/capsules/Capsule3.jsx'
 import { Card } from "@/components/ui/card"
 import { Memo } from "@/components/ui/Memo"
-import { Download, Info } from "lucide-react"
+import { Download, Info, Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useNavigate } from "react-router-dom"
 
@@ -82,9 +82,9 @@ export default function StepperContainer({
             <CourseStepper
                 initialSteps={demoSteps}
                 variant="horizontal"
-                finalContent={(currentSteps) => (
+                finalContent={(currentSteps, onStepClick) => (
                     <div className="w-full p-3 sm:p-6 rounded-xl border bg-card text-card-foreground shadow-sm flex flex-1 flex-col gap-6 h-full overflow-y-auto items-center">
-                        <img src="/y-days/icons/checkok.svg" alt="Bravo" className="w-24 h-24 rounded-full object-cover mt-8" />
+                        <img src="/y-days/icons/checkok.svg" alt="Bravo" className="w-24 h-24 rounded-full object-cover mt-3" />
 
                         <div className="space-y-2 text-center flex flex-col items-center">
                             <h1 className="text-xl sm:text-4xl font-semibold">Merci d'avoir suivi ce kit de formation !</h1>
@@ -92,12 +92,36 @@ export default function StepperContainer({
                                 Vous avez maintenant les clés pour intégrer l'IA dans votre pratique pédagogique et créer vos ressources plus rapidement :
                             </p>
                         </div>
-                        <div>
-                            <HorizontalStepper
-                                steps={currentSteps}
-                                selectedIdx={-1}
-                                showLogo={false}
-                            />
+                        <div className="flex flex-col sm:flex-row w-full gap-4 mt-2">
+                            {currentSteps.map((step, index) => {
+                                const customLabels = [
+                                    "Identifier les outils IA utiles à votre classe",
+                                    "Rédiger le bon prompt avec la méthode R.O.L.E",
+                                    "Reconnaitre du contenu généré par IA"
+                                ];
+                                const label = customLabels[index] || step.label;
+                                const Icon = step.icon || BookIcon;
+
+                                return (
+                                    <div
+                                        key={index}
+                                        onClick={() => onStepClick(index)}
+                                        className="flex-1 relative flex flex-col items-center justify-start p-4 border border-zinc-200 bg-white shadow-sm rounded-xl cursor-pointer hover:border-violet-300 hover:bg-zinc-50 transition-all"
+                                    >
+                                        <div className="flex items-center justify-center w-10 h-10 rounded-full bg-violet-50 text-violet-500 mb-3">
+                                            <Icon className="w-5 h-5" />
+                                        </div>
+                                        <span className="text-sm font-medium text-center text-zinc-800 leading-tight">
+                                            {label}
+                                        </span>
+                                        {step.status === "completed" && (
+                                            <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center shadow-sm border-2 border-white">
+                                                <Check className="w-3.5 h-3.5" strokeWidth={3} />
+                                            </div>
+                                        )}
+                                    </div>
+                                );
+                            })}
                         </div>
                         <Memo variant="rocket" className="mt-6">
                             <h3 className="font-bold text-lg">Pour aller plus loin</h3>
@@ -121,7 +145,7 @@ export default function StepperContainer({
                         </Memo>
                         <div className="space-y-4 text-center flex flex-col items-center">
                             <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
-                                Pour revoir un module cliquez directement dessus en haut de l'écran.{" "}
+                                Revoir les modules en cliquant dessus.{" "}
                                 <span tabIndex={0} className="group relative inline-block cursor-pointer focus:outline-none">
                                     <span className='underline hover:text-primary transition-colors'>en savoir plus</span>
                                     <Info className="w-4 h-4 inline-block ml-1 -mt-0.5" />
@@ -133,12 +157,13 @@ export default function StepperContainer({
                                 </span>
                             </p>
 
-                            <Button variant="outline" className="mt-4" onClick={() => {
-                                // On vide le localStorage pour permettre un vrai recommencement
-                                localStorage.removeItem('y-days-stepper-progress');
-                                navigate('/');
-                            }}>Recommencer le parcours</Button>
                         </div>
+                        <Button className="absolute sticky bottom-0" variant="outline" onClick={() => {
+                            // On vide le localStorage pour permettre un vrai recommencement
+                            localStorage.removeItem('y-days-stepper-progress');
+                            navigate('/');
+                        }}>Recommencer le parcours</Button>
+
                     </div>
                 )}
             />
