@@ -131,9 +131,9 @@ export default function StepperContainer({
                                         <img src="/y-days/icons/accDoc.svg" alt="" className="w-4 h-4 object-contain" />
                                     </span>
                                     <div>
-                                        <h4 className="font-semibold">L'IA générative en 5 points clés</h4>
+                                        <h4 className="font-semibold">Fiche mémo de cette formation</h4>
                                         <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
-                                            Un article de synthèse pour comprendre les bases de l'IA générative et son impact.
+                                            Quelles IA?, Méthode R.O.L.E, checklist pour reconnaitre du contenu généré par IA
                                         </p>
                                     </div>
                                     <a href="/y-days/docs/Fiche-mémo_VF.pdf" download="Fiche-mémo_VF.pdf" className="ml-auto flex items-center justify-center pl-2 rounded-md outline-none focus-visible:ring-2 focus-visible:ring-primary">
