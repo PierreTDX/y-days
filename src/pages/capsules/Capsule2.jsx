@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Button } from "@/components/ui/button"
 // import DragDropGame from "@/features/dragdrop/DragDropGame"
 import AssignmentGame from '@/features/dragdrop/DragDropGame copy'
@@ -57,8 +57,9 @@ const badgeColors = [
 
 
 
-export default function Capsule2({ onComplete, canResume, onResume, onProgress }) {
+export default function Capsule2({ onComplete, onProgress }) {
     const [step, setStep] = useState(0)
+    const scrollRef = useRef(null)
     // const enableNext = true
 
     const finalStep = 3
@@ -68,6 +69,12 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
             onProgress(Math.round((step / finalStep) * 100));
         }
     }, [step, finalStep, onProgress]);
+
+    useEffect(() => {
+        if (scrollRef.current && step <= 1) {
+            scrollRef.current.scrollTop = 0;
+        }
+    }, [step]);
 
     const gameCards = {
         "Game0": [
@@ -128,7 +135,7 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
 
     return (<>
         <div className="w-full mx-auto rounded-xl border bg-card text-card-foreground shadow-sm flex flex-1 flex-col h-full overflow-hidden">
-            <div className="flex-1 overflow-y-auto p-3 sm:p-6">
+            <div ref={scrollRef} className="flex-1 overflow-y-auto p-3 sm:p-6">
 
                 {/* ROLE Introduction */}
                 {step === 0 && (
@@ -235,12 +242,6 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
             <div className="p-3 sm:p-6 border-t sm:border-none sm:border-none bg-card shrink-0 flex gap-3 sm:justify-end">
 
                 <div className="flex gap-3 sm:gap-4 flex-1 sm:flex-none w-full sm:w-auto">
-                    {canResume && (
-                        <Button className="flex-1 sm:flex-none" variant="outline" onClick={onResume}>
-                            Reprendre où j'en étais
-                        </Button>
-                    )}
-
                     <span
                         tabIndex={isNextDisabled ? 0 : undefined}
                         className={`group relative flex-1 sm:flex-none flex sm:inline-block ${isNextDisabled ? "cursor-not-allowed focus:outline-none" : ""}`}

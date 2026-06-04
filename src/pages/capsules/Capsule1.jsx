@@ -9,7 +9,7 @@ const claude = '/y-days/images/Claude.png';
 const notebook = '/y-days/images/NotebookLM.png';
 const perplexity = '/y-days/images/Perplexity.png';
 
-export default function Capsule1({ onComplete, canResume, onResume, onProgress }) {
+export default function Capsule1({ onComplete, onProgress }) {
     const [step, setStep] = useState(0)
     const [flippedCards, setFlippedCards] = useState({})
     const [openAccordion, setOpenAccordion] = useState(null)
@@ -234,12 +234,6 @@ export default function Capsule1({ onComplete, canResume, onResume, onProgress }
                 )}
 
                 <div className="flex gap-3 sm:gap-4 flex-1 sm:flex-none sm:w-auto">
-                    {canResume && (
-                        <Button className="flex-1 sm:flex-none" variant="outline" onClick={onResume}>
-                            Reprendre où j'en étais
-                        </Button>
-                    )}
-
                     <span
                         tabIndex={isNextDisabled ? 0 : undefined}
                         className={`group relative flex-1 sm:flex-none flex sm:inline-block ${isNextDisabled ? "cursor-not-allowed focus:outline-none" : ""}`}

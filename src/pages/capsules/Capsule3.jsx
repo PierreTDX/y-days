@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { ArrowRight } from "lucide-react"
@@ -8,12 +8,19 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
     const [step, setStep] = useState(0)
     const [gameResult, setGameResult] = useState(null)
     const [active, setActive] = useState(null)
+    const scrollRef = useRef(null)
 
     useEffect(() => {
         if (onProgress) {
             onProgress(Math.round((step / 7) * 100)); // 7 est le max steps
         }
     }, [step, onProgress]);
+
+    useEffect(() => {
+        if (scrollRef.current && step >= 6 && step <= 7) {
+            scrollRef.current.scrollTop = 0;
+        }
+    }, [step]);
 
     const QUIZ_STEPS = [
         {
@@ -134,7 +141,7 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
 
     return (
         <div className="w-full mx-auto rounded-xl border bg-card text-card-foreground shadow-sm flex flex-1 flex-col h-full overflow-hidden">
-            <div className="flex-1 overflow-y-auto p-3 sm:p-6 space-y-4">
+            <div ref={scrollRef} className="flex-1 overflow-y-auto p-3 sm:p-6 space-y-4">
                 <h1 className="text-xl sm:text-4xl font-semibold">Démêler le vrai du faux : IA ou pas IA ?</h1>
 
                 {isQuizStep && (
