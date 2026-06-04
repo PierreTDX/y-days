@@ -128,20 +128,22 @@ export default function StepperContainer({
                             <Memo variant="rocket" className="mt-6">
                                 <h3 className="font-bold text-lg">Pour aller plus loin</h3>
                                 <Card className="p-4">
-                                    <div className="flex gap-4 items-center">
-                                        <span className="w-8 h-8 rounded-lg bg-yellow-100 flex items-center justify-center flex-shrink-0">
-                                            <img src="/y-days/icons/accDoc.svg" alt="" className="w-4 h-4 object-contain" />
-                                        </span>
-                                        <div>
-                                            <h4 className="font-semibold">Fiche mémo de cette formation</h4>
-                                            <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
-                                                Quelles IA?, Méthode R.O.L.E, checklist pour reconnaitre du contenu généré par IA
-                                            </p>
+                                    <div className="flex flex-col sm:flex-row gap-4 sm:items-center">
+                                        <div className="flex gap-3 sm:gap-4 items-start sm:items-center">
+                                            <span className="w-8 h-8 rounded-lg bg-yellow-100 flex items-center justify-center flex-shrink-0 mt-1 sm:mt-0">
+                                                <img src="/y-days/icons/accDoc.svg" alt="" className="w-4 h-4 object-contain" />
+                                            </span>
+                                            <div className="text-left">
+                                                <h4 className="font-semibold leading-tight mb-1 sm:mb-0">Fiche mémo de cette formation</h4>
+                                                <p className="text-muted-foreground leading-relaxed text-sm">
+                                                    Quelles IA?, Méthode R.O.L.E, checklist pour reconnaitre du contenu généré par IA
+                                                </p>
+                                            </div>
                                         </div>
-                                        <a href="/y-days/docs/Fiche-mémo_VF.pdf" download="Fiche-mémo_VF.pdf" className="ml-auto flex items-center justify-center pl-2 rounded-md outline-none focus-visible:ring-2 focus-visible:ring-primary">
-                                            <Download className="w-6 h-6 text-muted-foreground hover:text-primary transition-colors cursor-pointer" />
+                                        <a href="/y-days/docs/Fiche-mémo_VF.pdf" download="Fiche-mémo_VF.pdf" className="w-full sm:w-auto sm:ml-auto flex items-center justify-center gap-2 py-2.5 sm:py-0 sm:pl-2 rounded-lg bg-violet-50 text-violet-600 sm:bg-transparent sm:text-muted-foreground hover:bg-violet-100 sm:hover:bg-transparent hover:text-violet-700 sm:hover:text-primary transition-colors cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-primary flex-shrink-0">
+                                            <Download className="w-5 h-5 sm:w-6 sm:h-6" />
+                                            <span className="text-sm font-medium sm:hidden">Télécharger la fiche</span>
                                         </a>
-
                                     </div>
                                 </Card>
                             </Memo>
