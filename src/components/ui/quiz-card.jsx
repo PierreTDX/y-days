@@ -12,7 +12,7 @@ export function QuizCard({
     correctAnswer
 }) {
     return (
-        <Card className={`p-0 gap-0 border-2 ${gameResult !== null ? (gameResult ? 'border-green-500' : 'border-red-500') : 'border-border'}`}>
+        <Card className={`p-0 gap-0 border-1 ${gameResult !== null ? (gameResult ? 'border-green-500' : 'border-red-500') : 'border-border'}`}>
             <div className={`relative flex items-center justify-center text-muted-foreground overflow-hidden  ${mediaClassName || 'aspect-video bg-muted max-h-[320px]'}`}>
                 {media}
 
@@ -37,13 +37,13 @@ export function QuizCard({
 
             {gameResult === null ? (
                 customButtons ? customButtons(onGuess, correctAnswer) : (
-                    <div className="flex gap-4 p-3 sm:p-6 h-auto border-t rounded-b-xl bg-card">
+                    <div className="flex flex-col sm:flex-row gap-4 p-3 sm:p-6 h-auto border-t rounded-b-xl bg-card">
                         <Button
                             onClick={() => onGuess('IA', correctAnswer)}
                             size="lg"
                             variant="outline"
-                            className="flex-1 text-green-900 hover:text-green-950 hover:bg-green-200 border-none"
-                            style={{ background: '#DCFCE7', border: '1px solid rgba(34, 197, 94, 0.4)', borderRadius: '8px' }}
+                            className="flex-1 hover:bg-violet-100/50 transition-colors cursor-pointer min-h-[44px] h-auto py-2 whitespace-normal text-violet-700 hover:text-violet-700"
+                            style={{ background: 'rgba(139, 92, 246, 0.2)', border: '1px solid rgba(167, 139, 250, 0.4)', borderRadius: '8px' }}
                         >
                             <Check className="w-4 h-4 mr-2" /> IA
                         </Button>
@@ -51,8 +51,8 @@ export function QuizCard({
                             onClick={() => onGuess('PAS_IA', correctAnswer)}
                             size="lg"
                             variant="outline"
-                            className="flex-1 text-red-600 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-950/50 border-none"
-                            style={{ background: 'rgba(220, 38, 38, 0.1)', border: '1px solid rgba(220, 38, 38, 0.4)', borderRadius: '8px' }}
+                            className="flex-1 hover:bg-violet-100/50 transition-colors cursor-pointer min-h-[44px] h-auto py-2 whitespace-normal text-violet-700 hover:text-violet-700"
+                            style={{ background: 'rgba(139, 92, 246, 0.2)', border: '1px solid rgba(167, 139, 250, 0.4)', borderRadius: '8px' }}
                         >
                             <X className="w-4 h-4 mr-2" /> Pas IA
                         </Button>

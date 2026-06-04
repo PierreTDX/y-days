@@ -136,9 +136,9 @@ export default function StepperContainer({
                                             Un article de synthèse pour comprendre les bases de l'IA générative et son impact.
                                         </p>
                                     </div>
-                                    <div className="ml-auto flex items-center justify-center pl-2">
+                                    <a href="/y-days/docs/Fiche-mémo_VF.pdf" download="Fiche-mémo_VF.pdf" className="ml-auto flex items-center justify-center pl-2 rounded-md outline-none focus-visible:ring-2 focus-visible:ring-primary">
                                         <Download className="w-6 h-6 text-muted-foreground hover:text-primary transition-colors cursor-pointer" />
-                                    </div>
+                                    </a>
 
                                 </div>
                             </Card>

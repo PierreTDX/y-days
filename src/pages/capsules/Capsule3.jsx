@@ -74,12 +74,13 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
             explication: <><strong>L'option B a été générée par IA !</strong> On peut reconnaitre des signes, comme les tirets cadratins, les superlatifs et les nombreuses majuscules dans le titre.</>,
             correctAnswer: 'B',
             customButtons: (onGuess, correctAnswer) => (
-                <div className="flex flex-col sm:flex-row gap-4 p-6 h-21 border-t rounded-b-xl bg-white">
+                <div className="flex flex-col sm:flex-row gap-4 p-3 sm:p-6 h-auto border-t rounded-b-xl bg-white">
                     <Button
                         onClick={() => onGuess('A', correctAnswer)}
                         size="lg"
                         variant="outline"
-                        className="flex-1 hover:bg-muted font-normal"
+                        className="flex-1 hover:bg-violet-100/50 font-normal transition-colors cursor-pointer min-h-[44px] h-auto py-2 whitespace-normal text-violet-700 hover:text-violet-700"
+                        style={{ background: 'rgba(139, 92, 246, 0.2)', border: '1px solid rgba(167, 139, 250, 0.4)', borderRadius: '8px' }}
                     >
                         L'option A a été générée par IA
                     </Button>
@@ -87,7 +88,8 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
                         onClick={() => onGuess('B', correctAnswer)}
                         size="lg"
                         variant="outline"
-                        className="flex-1 hover:bg-muted font-normal"
+                        className="flex-1 hover:bg-violet-100/50 font-normal transition-colors cursor-pointer min-h-[44px] h-auto py-2 whitespace-normal text-violet-700 hover:text-violet-700"
+                        style={{ background: 'rgba(139, 92, 246, 0.2)', border: '1px solid rgba(167, 139, 250, 0.4)', borderRadius: '8px' }}
                     >
                         L'option B a été générée par IA
                     </Button>
