@@ -330,7 +330,7 @@ export default function CourseStepper({ initialSteps = [], variant = "both", fin
             <div className=" border p-3 md:p-11 border-zinc-200 rounded-xl shadow-sm text-left stepper-container flex flex-col h-[calc(100dvh-102px)]">
                 {/* <h3 className="text-lg font-bold mb-4 text-zinc-800">{steps[selectedIdx]?.title}</h3> */}
                 {selectedIdx === -1 && finalContent
-                    ? finalContent
+                    ? (typeof finalContent === 'function' ? finalContent(steps) : finalContent)
                     : steps[selectedIdx]?.content && React.isValidElement(steps[selectedIdx].content)
                         ? React.cloneElement(steps[selectedIdx].content, {
                             onComplete: handleCompleteStep,

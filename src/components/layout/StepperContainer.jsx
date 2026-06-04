@@ -82,7 +82,7 @@ export default function StepperContainer({
             <CourseStepper
                 initialSteps={demoSteps}
                 variant="horizontal"
-                finalContent={
+                finalContent={(currentSteps) => (
                     <div className="w-full p-3 sm:p-6 rounded-xl border bg-card text-card-foreground shadow-sm flex flex-1 flex-col gap-6 h-full overflow-y-auto items-center">
                         <img src="/y-days/icons/checkok.svg" alt="Bravo" className="w-24 h-24 rounded-full object-cover mt-8" />
 
@@ -94,7 +94,7 @@ export default function StepperContainer({
                         </div>
                         <div>
                             <HorizontalStepper
-                                steps={demoSteps}
+                                steps={currentSteps}
                                 selectedIdx={-1}
                                 showLogo={false}
                             />
@@ -140,7 +140,7 @@ export default function StepperContainer({
                             }}>Recommencer le parcours</Button>
                         </div>
                     </div>
-                }
+                )}
             />
         </>
     );
