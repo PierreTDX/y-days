@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
-import { CircleAlert, GripVertical } from "lucide-react";
+import { CircleAlert, GripVertical, MousePointerClick } from "lucide-react";
 
 function shuffle(array) {
     const arr = [...array]
@@ -263,7 +263,7 @@ export default function DragDropGame({ buckets, initialCards, onComplete, onProg
                         className="w-full flex items-center justify-center gap-2 py-3 bg-black text-white rounded-xl shadow-md active:scale-[0.98] transition"
                         onClick={() => setBurgerOpen(true)}
                     >
-                        ☰ Ouvrir la boîte à mots
+                        ☰ Ouvrir la boîte à phrases
                     </button>
 
                     <p className="text-xs text-slate-500 text-center">
@@ -326,6 +326,9 @@ export default function DragDropGame({ buckets, initialCards, onComplete, onProg
                                     ✕
                                 </button>
                             </div>
+                            <div>
+                                <span className="text-sm text-slate-500">Selectionner une phrase à placer en cliquant dessus</span>
+                            </div>
 
                             <div className="flex flex-wrap gap-2">
                                 {cards
@@ -339,7 +342,8 @@ export default function DragDropGame({ buckets, initialCards, onComplete, onProg
                                                 setBurgerOpen(false)
                                             }}
                                         >
-                                            <GripVertical className="text-slate-400 mt-0.5 shrink-0" />
+                                            {/* <GripVertical className="text-slate-400 mt-0.5 shrink-0" /> */}
+                                            <MousePointerClick className="text-slate-400 shrink-0"/>
                                             <span>{card.text}</span>
                                         </div>
                                     ))}
@@ -350,17 +354,23 @@ export default function DragDropGame({ buckets, initialCards, onComplete, onProg
 
                 {/* pinned selected card */}
                 {selectedCardId  && (
-                    <div className="fixed bottom-4 left-4 right-4 bg-white border shadow-lg rounded-xl p-3 md:hidden z-40 flex items-center gap-2">
-                        <GripVertical className="text-slate-400 shrink-0"/>
-                        <span className="text-sm">
-                            {cards.find(c => c.id === selectedCardId )?.text}
-                        </span>
-                        <button
-                            onClick={() => setMobileSelectedCardId(null)}
-                            className="text-red-500"
-                        >
-                            ✕
-                        </button>
+                    <div className="fixed bottom-4 left-4 right-4 md:hidden z-40">
+                        <p className="mb-2 text-xs text-slate-500 text-center">
+                            Cliquez sur la zone où tu veux placer cette phrase.
+                        </p>
+                        <div className="bg-white border shadow-lg rounded-xl p-3 flex items-center gap-2">
+                            {/* <GripVertical className="text-slate-400 shrink-0"/> */}
+                            <MousePointerClick className="text-slate-400 shrink-0"/>
+                            <span className="text-sm">
+                                {cards.find(c => c.id === selectedCardId )?.text}
+                            </span>
+                            <button
+                                onClick={() => setSelectedCardId(null)}
+                                className="text-red-500"
+                            >
+                                ✕
+                            </button>
+                        </div>
                     </div>
                 )}
 

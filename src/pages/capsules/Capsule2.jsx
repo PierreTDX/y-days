@@ -131,7 +131,7 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
 
             {/* ROLE Introduction */}
             {step === 0 && (
-                <div className="grid lg:grid-cols-[320px_1fr] gap-8 items-start">
+                <div className="grid lg:grid-cols-[1fr_320px] gap-8 items-start">
                     {/* LEFT SIDE */}
                     <div className="space-y-6 order-1 lg:order-2">
                         <h1 className="text-xl sm:text-4xl font-semibold">Rédiger le bon prompt : La Méthode R.O.L.E.</h1>
@@ -162,7 +162,7 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
                         </div>
                     </div>
                     {/* RIGHT SIDE */}
-                    <div className="space-y-6 order-2 lg:order-1">
+                    <div className="space-y-6 order-2 lg:order-2">
                         <Dialog>
                             <div className="border rounded-xl p-4 bg-background shadow-sm">
                                 <h3 className="font-semibold text-lg">Résultat</h3>
@@ -183,7 +183,7 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
                                 </DialogTrigger>
                             </div>
 
-                            <DialogContent className="!max-w-[90vw] w-fit h-[90dvh] overflow-auto">
+                            <DialogContent className="!max-w-[95vw] max-h-[95vh] overflow-auto">
                                 <img src={`/y-days/images/promptDemo.png`} alt="Preview" className="max-w-full h-auto" />
                             </DialogContent>
                         </Dialog>
