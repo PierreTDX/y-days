@@ -246,7 +246,7 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
                         className={`group relative flex-1 sm:flex-none flex sm:inline-block ${isNextDisabled ? "cursor-not-allowed focus:outline-none" : ""}`}
                     >
                         {isNextDisabled && (
-                            <div className="absolute bottom-full left-0 -translate-x-1/2 mb-2 hidden group-hover:flex group-focus:flex group-active:flex flex-row justify-center items-center px-[12px] py-[6px] gap-[8px] isolate w-[201px] max-w-[384px] h-[44px] bg-[#171717] rounded-[8px] text-white text-xs text-center z-50 pointer-events-none shadow-lg">
+                            <div className="absolute bottom-full left-1/2 sm:left-0 -translate-eft-0 -translate-x-1/2 mb-2 hidden group-hover:flex group-focus:flex group-active:flex flex-row justify-center items-center px-[12px] py-[6px] gap-[8px] isolate w-[201px] max-w-[384px] h-[44px] bg-[#171717] rounded-[8px] text-white text-xs text-center z-50 pointer-events-none shadow-lg">
                                 Explorez cette étape pour continuer
                             </div>
                         )}
