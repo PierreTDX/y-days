@@ -33,7 +33,7 @@ export function Memo({ variant = "bookmark", className = "", children }) {
             <div className="absolute -top-6 -left-6 z-10 flex-shrink-0 w-[60px] h-[60px] flex items-center justify-center">
                 <img src={Icon} alt={`${variant} icon`} className="" />
             </div>
-            <Card className={`flex items-start gap-1 p-4 pl-9 rounded-[10px] text-muted-foreground ${bg}`}>{children}</Card>
+            <Card className={`flex items-start gap-1 p-4 px-7 rounded-[10px] text-muted-foreground ${bg}`}>{children}</Card>
         </div>
     );
 }
