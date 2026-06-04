@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Memo } from "@/components/ui/Memo"
@@ -14,12 +14,19 @@ export default function Capsule1({ onComplete, canResume, onResume, onProgress }
     const [flippedCards, setFlippedCards] = useState({})
     const [openAccordion, setOpenAccordion] = useState(null)
     const [openedAccordions, setOpenedAccordions] = useState([])
+    const scrollRef = useRef(null)
 
     useEffect(() => {
         if (onProgress) {
             onProgress(Math.round((step / 2) * 100)); // 2 est le max steps
         }
     }, [step, onProgress]);
+
+    useEffect(() => {
+        if (scrollRef.current) {
+            scrollRef.current.scrollTop = 0;
+        }
+    }, [step]);
 
     const toggleCard = (index) => {
         setFlippedCards(prev => ({
@@ -32,7 +39,7 @@ export default function Capsule1({ onComplete, canResume, onResume, onProgress }
 
     return (
         <div className="w-full mx-auto rounded-xl border bg-card text-card-foreground shadow-sm flex flex-1 flex-col h-full overflow-hidden">
-            <div className="flex-1 overflow-y-auto p-3 sm:p-6">
+            <div ref={scrollRef} className="flex-1 overflow-y-auto p-3 sm:p-6">
                 {/* Step 0: Intro */}
                 {step === 0 && (
                     <div className="space-y-4">
