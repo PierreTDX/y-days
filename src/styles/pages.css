@@ -828,7 +828,7 @@
   .image-theme { height: 230px; }
   .card-step-3-body { padding: 8px 10px 10px; gap: 4px; }
   .card-step-3 { width: 355px; }
-  .card-step-3-no-theme { width: 290px; }
+  .card-step-3-no-theme { width: 355px; }
   .card-theme-text { font-size: 14px; }
   .card-step-3-meta { font-size: 10px; }
 
@@ -878,6 +878,9 @@
   .onboarding:has(.onboarding-right--step3) .step-body {
     display: block;
   }
+  .onboarding:has(.onboarding-right--step3) .onboarding-right--step3 {
+    max-height: 420px;
+  }
 }
 
 /* ── Mobile (≤ 425px) ── */
@@ -890,6 +893,9 @@
   .step3-grid::-webkit-scrollbar { display: none; }
   .step3-grid > * {
     min-width: calc(85% - 4px);
+  }
+  .card-step-3-no-theme{
+    width: 250px;
   }
   .card-step-3 { width: 250px; }
   .image-theme { height: 160px; }
