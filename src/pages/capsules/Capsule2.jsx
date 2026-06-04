@@ -230,18 +230,18 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
             )} */}
 
             {/* Button bar. */}
-            <div className="sticky -bottom-0 mt-auto flex justify-end">
+            <div className="sticky -bottom-0 mt-auto flex sm:justify-end">
 
-                <div className="flex gap-4">
+                <div className="flex gap-3 sm:gap-4 flex-1 sm:flex-none w-full sm:w-auto">
                     {canResume && (
-                        <Button variant="outline" onClick={onResume}>
+                        <Button className="flex-1 sm:flex-none" variant="outline" onClick={onResume}>
                             Reprendre où j'en étais
                         </Button>
                     )}
 
                     <span
                         tabIndex={isNextDisabled ? 0 : undefined}
-                        className={`group relative ${isNextDisabled ? "cursor-not-allowed inline-block focus:outline-none" : "inline-block"}`}
+                        className={`group relative flex-1 sm:flex-none flex sm:inline-block ${isNextDisabled ? "cursor-not-allowed focus:outline-none" : ""}`}
                     >
                         {isNextDisabled && (
                             <div className="absolute bottom-full left-0 -translate-x-1/2 mb-2 hidden group-hover:flex group-focus:flex group-active:flex flex-row justify-center items-center px-[12px] py-[6px] gap-[8px] isolate w-[201px] max-w-[384px] h-[44px] bg-[#171717] rounded-[8px] text-white text-xs text-center z-50 pointer-events-none shadow-lg">
@@ -250,7 +250,7 @@ export default function Capsule2({ onComplete, canResume, onResume, onProgress }
                         )}
                         <Button
                             disabled={isNextDisabled}
-                            className={isNextDisabled ? "pointer-events-none" : ""}
+                            className={`w-full sm:w-auto ${isNextDisabled ? "pointer-events-none" : ""}`}
                             onClick={() => step < finalStep ? setStep(step + 1) : onComplete?.()}>
                             {step < finalStep ? (
                                 <>Valider <Check className="w-4 h-4 ml-2" /></>

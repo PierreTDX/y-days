@@ -277,16 +277,17 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
                 )}
             </div>
 
-            <div className="sticky -bottom-0 mt-auto pt-2 flex justify-end z-10">
-                <div className="flex gap-4">
+            <div className="sticky -bottom-0 mt-auto pt-2 flex sm:justify-end z-10">
+                <div className="flex gap-3 sm:gap-4 flex-1 sm:flex-none w-full sm:w-auto">
                     {canResume && (
-                        <Button variant="outline" onClick={onResume}>
+                        <Button className="flex-1 sm:flex-none" variant="outline" onClick={onResume}>
                             Reprendre où j'en étais
                         </Button>
                     )}
 
                     {isQuizStep && gameResult !== null && (
                         <Button
+                            className="flex-1 sm:flex-none w-full sm:w-auto"
                             onClick={() => {
                                 setStep(step + 1)
                                 setGameResult(null)
@@ -301,6 +302,7 @@ export default function Capsule3({ onComplete, canResume, onResume, onProgress }
 
                     {!isQuizStep && (
                         <Button
+                            className="flex-1 sm:flex-none w-full sm:w-auto"
                             onClick={() => {
                                 if (step < 7) {
                                     setStep(step + 1)
