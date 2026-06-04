@@ -1,6 +1,7 @@
 import * as React from "react"
 import { Card } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
+import { ClickHint } from "@/components/ui/ClickHint"
 
 export function FlipCard({
     title,
@@ -8,6 +9,7 @@ export function FlipCard({
     desc,
     isFlipped,
     onClick,
+    showHint,
     className,
     frontGradient = 'linear-gradient(135deg, #f0c0f8 0%, #c8aaee 35%, #a8b8f8 70%, #c0b0f0 100%)',
     backGradient = 'linear-gradient(135deg, #e0a8f4 0%, #b89ce0 40%, #9ab0f0 100%)'
@@ -37,6 +39,11 @@ export function FlipCard({
                     <p className="text-md text-white/90 leading-tight">{desc}</p>
                 </Card>
             </div>
+
+            {/* Animation de la main pour inciter au clic */}
+            {showHint && (
+                <ClickHint className="absolute right-6 bottom-7 z-50" />
+            )}
         </div>
     )
 }

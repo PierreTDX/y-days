@@ -84,10 +84,11 @@ export default function Capsule1({ onComplete, canResume, onResume, onProgress }
                                     desc={ia.desc}
                                     isFlipped={flippedCards[i]}
                                     onClick={() => toggleCard(i)}
+                                    showHint={i === 0 && Object.keys(flippedCards).length === 0}
                                 />
                             ))}
                         </div>
-                        <p className="text-xs text-muted-foreground text-center">Cliquez sur une carte pour la retourner</p>
+                        {/* <p className="text-xs text-muted-foreground text-center">Cliquez sur une carte pour la retourner</p> */}
                     </div>
                 )}
                 {/* Step 2: Accordéons */}
