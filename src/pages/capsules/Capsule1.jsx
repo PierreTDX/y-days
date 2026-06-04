@@ -38,8 +38,8 @@ export default function Capsule1({ onComplete, onProgress }) {
     const isNextDisabled = (step === 1 && Object.keys(flippedCards).length < 3);
 
     return (
-        <div className="w-full mx-auto rounded-xl border bg-card text-card-foreground shadow-sm flex flex-1 flex-col h-full overflow-hidden">
-            <div ref={scrollRef} className="flex-1 overflow-y-auto p-3 sm:p-6">
+        <div className="w-full mx-auto rounded-xl border bg-card text-card-foreground shadow-sm flex flex-1 flex-col h-full overflow-hidden relative">
+            <div ref={scrollRef} className="flex-1 overflow-y-auto p-3 sm:p-6 pb-24 sm:pb-28">
                 {/* Step 0: Intro */}
                 {step === 0 && (
                     <div className="space-y-4">
@@ -224,16 +224,16 @@ export default function Capsule1({ onComplete, onProgress }) {
                 )}
             </div>
 
-            <div className="p-3 sm:p-6 border-t sm:border-none bg-card shrink-0 flex gap-3 sm:justify-between">
+            <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-6 pt-12 sm:pt-16 bg-gradient-to-t from-card via-card to-transparent shrink-0 flex gap-3 sm:justify-between pointer-events-none">
                 {step > 0 ? (
-                    <Button className="flex-1 sm:flex-none sm:w-[170px]" variant="outline" onClick={() => setStep(step - 1)}>
+                    <Button className="flex-1 sm:flex-none sm:w-[170px] pointer-events-auto" variant="outline" onClick={() => setStep(step - 1)}>
                         <ArrowLeft className="w-4 h-4 mr-2" /> Précédent
                     </Button>
                 ) : (
                     <div className="hidden sm:block sm:w-[170px]" />
                 )}
 
-                <div className="flex gap-3 sm:gap-4 flex-1 sm:flex-none sm:w-auto">
+                <div className="flex gap-3 sm:gap-4 flex-1 sm:flex-none sm:w-auto pointer-events-auto">
                     <span
                         tabIndex={isNextDisabled ? 0 : undefined}
                         className={`group relative flex-1 sm:flex-none flex sm:inline-block ${isNextDisabled ? "cursor-not-allowed focus:outline-none" : ""}`}
