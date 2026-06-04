@@ -827,7 +827,8 @@
   }
   .image-theme { height: 230px; }
   .card-step-3-body { padding: 8px 10px 10px; gap: 4px; }
-  .card-step-3 { width: 355px}
+  .card-step-3 { width: 355px; }
+  .card-step-3-no-theme { width: 290px; }
   .card-theme-text { font-size: 14px; }
   .card-step-3-meta { font-size: 10px; }
 
@@ -869,7 +870,7 @@
   .step-quote-label { font-size: 10px; }
 
   /* — Buttons — */
-  .onboarding-nav button { font-size: 15px !important; padding: 8px 20px !important; }
+  .onboarding-nav button { font-size: 15px !important; padding: 8px 20px !important; height: 48px !important; }
 }
 
 /* ── iPad Mini portrait (744–768px) : page 2 garde la checklist ── */
