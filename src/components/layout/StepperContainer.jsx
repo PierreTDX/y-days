@@ -86,7 +86,7 @@ export default function StepperContainer({
                     <div className="w-full mx-auto rounded-xl border bg-card text-card-foreground shadow-sm flex flex-1 flex-col h-full overflow-hidden relative">
 
                         <div className="flex-1 overflow-y-auto p-3 sm:p-6 pb-24 sm:pb-28 flex flex-col gap-6 items-center">
-                            <img src="/y-days/icons/checkok.svg" alt="Bravo" className="w-24 h-24 rounded-full object-cover mt-3" />
+                            <img src="/y-days/icons/checkokbull.svg" alt="Bravo" className="w-18 h-18  object-cover mt-3" />
 
                             <div className="space-y-2 text-center flex flex-col items-center">
                                 <h1 className="text-xl sm:text-4xl font-semibold">Merci d'avoir suivi ce kit de formation !</h1>
