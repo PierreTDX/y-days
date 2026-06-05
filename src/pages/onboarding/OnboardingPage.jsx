@@ -52,10 +52,10 @@ function useCountUp(target, duration = 1600, delay = 0) {
 }
 
 const TESTIMONIES = [
-  { cls: "home-testimony--1", avatar: "/y-days/images/prof1.png", quote: "J'ai mon master MEEF en poche, mais face à 26 élèves, je ne sais par où commencer.", name: "Julie",  role: "Enseignante CM2" },
-  { cls: "home-testimony--2", avatar: "/y-days/images/prof2.png", quote: "Je ne connais pas les programmes et je ne sais pas comment les créer",  name: "Marie", role: "Enseignante CE2" },
+  { cls: "home-testimony--1", avatar: "/y-days/images/prof1.png", quote: "J'ai mon master MEEF en poche, mais face à 26 élèves, je ne sais par où commencer.", name: "Julie", role: "Enseignante CM2" },
+  { cls: "home-testimony--2", avatar: "/y-days/images/prof2.png", quote: "Je ne connais pas les programmes et je ne sais pas comment les créer", name: "Marie", role: "Enseignante CE2" },
   { cls: "home-testimony--3", avatar: "/y-days/images/prof3.png", quote: "Je ne me sens pas prêt à gérer une classe sans supports de cours prêts à l'emploi.", name: "Pierre", role: "Enseignant CP" },
-  { cls: "home-testimony--4", avatar: "/y-days/images/prof4.png", quote: "Je pars de zéro et je ne sais pas ce que je suis censée produire pour le premier jour.",     name: "Maxime",  role: "Enseignant CE1"  },
+  { cls: "home-testimony--4", avatar: "/y-days/images/prof4.png", quote: "Je pars de zéro et je ne sais pas ce que je suis censée produire pour le premier jour.", name: "Maxime", role: "Enseignant CE1" },
 ]
 
 const STEP3_CARDS = [
@@ -86,21 +86,21 @@ function Step1Body() {
 
 function Step2Body({ onNext, onPrev }) {
   const [slide, setSlide] = useState(0)
-  const hours   = useCountUp(9, 1800, 200)
+  const hours = useCountUp(9, 1800, 200)
   const reforms = useCountUp(2, 1400, 700)
 
   const SLIDES = [
     {
-      number:    `${hours}h`,
-      cardText:  "C'est le temps que vous passez en moyenne par semaine à la préparation de vos cours",
+      number: `${hours}h`,
+      cardText: "C'est le temps que vous passez en moyenne par semaine à la préparation de vos cours",
     },
     {
-      number:    `${reforms}`,
-      cardText:  "D'après cette même étude gouvernementale, c’est le nombre de réformes en 5 ans vous obligeants à modifier vos supports de cours.",
+      number: `${reforms}`,
+      cardText: "D'après cette même étude gouvernementale, c’est le nombre de réformes en 5 ans vous obligeant à modifier vos supports de cours.",
     },
   ]
 
-  const handleLeft  = () => slide > 0 ? setSlide(s => s - 1) : onPrev?.()
+  const handleLeft = () => slide > 0 ? setSlide(s => s - 1) : onPrev?.()
   const handleRight = () => slide < SLIDES.length - 1 ? setSlide(s => s + 1) : onNext?.()
 
   const current = SLIDES[slide]
@@ -108,17 +108,17 @@ function Step2Body({ onNext, onPrev }) {
   return (
     <div className="step2-carousel">
       <button className="carousel-arrow" onClick={handleLeft} aria-label="Précédent">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12 4l-6 6 6 6" stroke="#080614" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M12 4l-6 6 6 6" stroke="#080614" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
       </button>
       <div className="carousel-content">
         <div className="carousel-number" key={`n-${slide}`}>{current.number}</div>
-        <div className="carousel-card"   key={`c-${slide}`}>
+        <div className="carousel-card" key={`c-${slide}`}>
           <p className="carousel-card-text">{current.cardText}</p>
           {current.source && <small className="carousel-card-source">{current.source}</small>}
         </div>
       </div>
       <button className="carousel-arrow" onClick={handleRight} aria-label="Suivant">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M8 4l6 6-6 6" stroke="#080614" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M8 4l6 6-6 6" stroke="#080614" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
       </button>
     </div>
   )
@@ -133,7 +133,7 @@ function Step3Body() {
           <li key={i} className="step-list-item">
             <span className="step-list-check" aria-hidden="true">
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-                <path d="M4 11.5l5 5 9-9" stroke="#7c3aed" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M4 11.5l5 5 9-9" stroke="#7c3aed" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </span>
             <p>{item.text}</p>
@@ -159,7 +159,7 @@ function Step4Body() {
           <li key={i} className="step-list-item">
             <span className="step-list-check" aria-hidden="true">
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-                <path d="M4 11.5l5 5 9-9" stroke="#7c3aed" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M4 11.5l5 5 9-9" stroke="#7c3aed" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </span>
             <p>{text}</p>
@@ -177,10 +177,10 @@ function Step4Body() {
 }
 
 const STEPS = [
-  { title: "L'IA dans le monde professionnel",       Body: Step1Body, carousel: false },
-  { title: "Le temps, votre ressource la plus précieuse", Body: Step2Body, carousel: true  },
-  { title: "3 thématiques pour vous accompagner",             Body: Step3Body, carousel: false },
-  { title: "Comment ça fonctionne ?",                  Body: Step4Body, carousel: false },
+  { title: "L'IA dans le monde professionnel", Body: Step1Body, carousel: false },
+  { title: "Le temps, votre ressource la plus précieuse", Body: Step2Body, carousel: true },
+  { title: "3 thématiques pour vous accompagner", Body: Step3Body, carousel: false },
+  { title: "Comment ça fonctionne ?", Body: Step4Body, carousel: false },
 ]
 
 export default function OnboardingPage() {
@@ -190,15 +190,15 @@ export default function OnboardingPage() {
   const [lightboxSrc, setLightboxSrc] = useState(null)
   const navigate = useNavigate()
 
-  const isLast     = step === STEPS.length - 1
+  const isLast = step === STEPS.length - 1
   const isCarousel = STEPS[step].carousel
-  const isStep1    = step === 0
-  const isStep3    = step === 2
+  const isStep1 = step === 0
+  const isStep3 = step === 2
   const { title, Body } = STEPS[step]
 
-  const progressSteps    = STEPS.filter(s => !s.carousel).length
-  const progressDone     = STEPS.slice(0, step + 1).filter(s => !s.carousel).length
-  const progressWidth    = `${(progressDone / progressSteps) * 100}%`
+  const progressSteps = STEPS.filter(s => !s.carousel).length
+  const progressDone = STEPS.slice(0, step + 1).filter(s => !s.carousel).length
+  const progressWidth = `${(progressDone / progressSteps) * 100}%`
 
   const handleNext = () => {
     if (isLast) { playSound("start"); navigate("/stepper") }
@@ -213,60 +213,60 @@ export default function OnboardingPage() {
 
   return (
     <>
-    <div className="onboarding-container">
-      <div className={`onboarding${isCarousel ? ' onboarding--carousel' : ''}`}>
+      <div className="onboarding-container">
+        <div className={`onboarding${isCarousel ? ' onboarding--carousel' : ''}`}>
 
 
-        <div className={`onboarding-left${isCarousel ? ' onboarding-left--full' : ''}`}>
-          {!isCarousel && (
-          <div className="onboarding-progress">
-            <div className="progress-fill" style={{ width: progressWidth }} />
-          </div>
-          )}
+          <div className={`onboarding-left${isCarousel ? ' onboarding-left--full' : ''}`}>
+            {!isCarousel && (
+              <div className="onboarding-progress">
+                <div className="progress-fill" style={{ width: progressWidth }} />
+              </div>
+            )}
 
-          {!isCarousel && (
-            <div className="onboarding-step mt-2 mb-15">
-              <span className="home-dot" />
-              <p className="onboarding-counter">{progressDone} / {progressSteps}</p>
+            {!isCarousel && (
+              <div className="onboarding-step mt-2 mb-15">
+                <span className="home-dot" />
+                <p className="onboarding-counter">{progressDone} / {progressSteps}</p>
+              </div>
+            )}
+
+            <div key={step} className={`flex flex-col justify-center align-middle onboarding-content ${direction === "right" ? "slide-in-right" : "slide-in-left"}`}>
+              {!isCarousel && <h1 className="onboarding-title">{title}</h1>}
+              <Body onNext={handleNext} onPrev={handleBack} />
             </div>
-          )}
 
-          <div key={step} className={`flex flex-col justify-center align-middle onboarding-content ${direction === "right" ? "slide-in-right" : "slide-in-left"}`}>
-            {!isCarousel && <h1 className="onboarding-title">{title}</h1>}
-            <Body onNext={handleNext} onPrev={handleBack} />
+            {!isCarousel && (
+              <nav className="onboarding-nav">
+                {step > 0
+                  ? <Button variant="ghost" style={{ color: '#080614', fontSize: '18px', padding: '10px 28px', height: 'auto' }} onClick={handleBack}>← Précédent</Button>
+                  : <span />}
+                {(!isLast || unlockedCta) && (
+                  <Button
+                    style={{
+                      background: 'linear-gradient(180deg, #B291E9 0%, #8260BA 100%)',
+                      border: 'none',
+                      fontSize: '18px',
+                      padding: '10px 28px',
+                      height: 'auto',
+                    }}
+                    onClick={handleNext}
+                  >
+                    {isLast ? "C'est parti !" : "Suivant →"}
+                  </Button>
+                )}
+              </nav>
+            )}
           </div>
 
           {!isCarousel && (
-            <nav className="onboarding-nav">
-              {step > 0
-                ? <Button variant="ghost" style={{ color: '#080614', fontSize: '18px', padding: '10px 28px', height: 'auto' }} onClick={handleBack}>← Précédent</Button>
-                : <span />}
-              {(!isLast || unlockedCta) && (
-                <Button
-                  style={{
-                    background: 'linear-gradient(180deg, #B291E9 0%, #8260BA 100%)',
-                    border: 'none',
-                    fontSize: '18px',
-                    padding: '10px 28px',
-                    height: 'auto',
-                  }}
-                  onClick={handleNext}
-                >
-                  {isLast ? "C'est parti !" : "Suivant →"}
-                </Button>
-              )}
-            </nav>
-          )}
-        </div>
-
-        {!isCarousel && (
-          <div key={isStep3 ? 'right-step3' : 'right-other'} className={`onboarding-right${isStep3 ? ' onboarding-right--step3' : ''}${isStep1 ? ' onboarding-right--step1' : ''}`}>
-            {!isStep3 && !isLast && <ConcentricCircles />}
-            {isStep3 ? (
+            <div key={isStep3 ? 'right-step3' : 'right-other'} className={`onboarding-right${isStep3 ? ' onboarding-right--step3' : ''}${isStep1 ? ' onboarding-right--step1' : ''}`}>
+              {!isStep3 && !isLast && <ConcentricCircles />}
+              {isStep3 ? (
                 <div className="step3-grid">
                   {STEP3_CARDS.map((card, i) => (
                     <div key={i} className="card-step-3">
-                      <img src={card.image} alt="" className="image-theme"/>
+                      <img src={card.image} alt="" className="image-theme" />
                       <div className="card-step-3-body">
                         <div className="card-step-3-meta">
                           <span>{card.module}</span>
@@ -278,14 +278,14 @@ export default function OnboardingPage() {
                     </div>
                   ))}
                   <div className="card-step-3-no-theme">
-                    <img src="/y-days/svg/Group.svg" alt="" className="image-no-theme"/>
+                    <img src="/y-days/svg/Group.svg" alt="" className="image-no-theme" />
                     <div>
                       <p className="text-card-step-no-theme">Pour aller plus loin</p>
                       <p className="text-bold-step-no-theme">Téléchargez votre fiche mémo et votre checklist prêts à l'emploi !</p>
                     </div>
                   </div>
                 </div>
-            ) : isLast ? (
+              ) : isLast ? (
                 <div className="right-illustration">
                   <div className="illustration-wrapper">
                     <img src="/y-days/svg/Illustration.svg" alt="Illustration" className="illustration-img" onClick={() => setLightboxSrc('/y-days/svg/Illustration.svg')} />
@@ -294,30 +294,30 @@ export default function OnboardingPage() {
                     </button>
                   </div>
                 </div>
-            ) : (
+              ) : (
                 TESTIMONIES.slice(0, 2).map((t, i) => (
-                    <div key={i} className={`onb-testimony ${t.cls}`}>
-                      <Testimony
-                          avatarSrc={t.avatar}
-                          quote={t.quote}
-                          name={t.name}
-                          role={t.role}
-                      />
-                    </div>
+                  <div key={i} className={`onb-testimony ${t.cls}`}>
+                    <Testimony
+                      avatarSrc={t.avatar}
+                      quote={t.quote}
+                      name={t.name}
+                      role={t.role}
+                    />
+                  </div>
                 ))
-            )}
-          </div>
-        )}
+              )}
+            </div>
+          )}
 
+        </div>
       </div>
-    </div>
 
-    {lightboxSrc && (
-      <div className="lightbox-overlay" onClick={() => setLightboxSrc(null)}>
-        <button className="lightbox-close" onClick={() => setLightboxSrc(null)} aria-label="Fermer">✕</button>
-        <img src={lightboxSrc} alt="" className="lightbox-img" onClick={e => e.stopPropagation()} />
-      </div>
-    )}
+      {lightboxSrc && (
+        <div className="lightbox-overlay" onClick={() => setLightboxSrc(null)}>
+          <button className="lightbox-close" onClick={() => setLightboxSrc(null)} aria-label="Fermer">✕</button>
+          <img src={lightboxSrc} alt="" className="lightbox-img" onClick={e => e.stopPropagation()} />
+        </div>
+      )}
     </>
   )
 }
