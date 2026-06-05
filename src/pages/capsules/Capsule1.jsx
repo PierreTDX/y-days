@@ -259,18 +259,19 @@ export default function Capsule1({ onComplete, onProgress }) {
                         </span>
                     </div>
                 </div>
-                {/* Completion Modal */}
-                {showCompletionModal && (
-                    <CompletionModal
-                        title="Le module 1 est complété !"
-                        content="Vous êtes maintenant capable de reconnaître les principales IA qui peuvent vous être utiles."
-                        onNext={() => {
-                            setShowCompletionModal(false)
-                            onComplete?.()
-                        }}
-                    />
-                )}
             </div>
+
+            {/* Completion Modal */}
+            {showCompletionModal && (
+                <CompletionModal
+                    title="Le module 1 est complété !"
+                    content="Vous êtes maintenant capable de reconnaître les principales IA qui peuvent vous être utiles."
+                    onNext={() => {
+                        setShowCompletionModal(false)
+                        onComplete?.()
+                    }}
+                />
+            )}
         </>
     )
 }
