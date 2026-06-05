@@ -64,7 +64,7 @@ export function Testimony({
                 </div>
 
                 {/* Name tag pill — centered below avatar */}
-                <div className="absolute h-8 -bottom-5.5 left-1/2 -translate-x-1/2 rotate-[3.5deg] whitespace-nowrap bg-white rounded-[16px] px-2.5 py-1 text-[11px] shadow-md flex items-center gap-1">
+                <div className="absolute h-8 -bottom-5.5 left-1/2 -translate-x-1/2 rotate-[3.5deg] whitespace-nowrap bg-white rounded-[16px] px-2.5 py-1 text-[11px] shadow-md flex items-center gap-1" style={{ fontFamily: "'Comfortaa', sans-serif" }}>
                     <span className="font-bold text-gray-800">{name}</span>
                     <span className="text-green-500 font-bold">•</span>
                     <span className="text-gray-500 font-normal">{role}</span>
@@ -72,7 +72,7 @@ export function Testimony({
             </div>
 
             {/* ── Speech bubble ── */}
-            <div className="relative -bottom-7 right-10 z-20 -ml-4 -rotate-[1.5deg] mt-1 bg-white rounded-2xl px-4 py-3 shadow-md font-sans text-xs leading-snug tracking-normal text-gray-800 max-w-[180px]">
+            <div className="relative -bottom-7 right-10 z-20 -ml-4 -rotate-[1.5deg] mt-1 bg-white rounded-2xl px-4 py-3 shadow-md text-xs leading-snug tracking-normal text-gray-800 max-w-[180px]" style={{ fontFamily: "'Comfortaa', sans-serif" }}>
                 {/* Left-pointing tail */}
                 <span
                     className="absolute -left-2 top-4 w-0 h-0"

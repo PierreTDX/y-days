@@ -39,6 +39,10 @@
   padding: 0 24px;
 }
 
+.home-content button {
+  font-family: 'Comfortaa', sans-serif !important;
+}
+
 .home-logo {
   width: 280px;
   height: auto;
@@ -48,7 +52,7 @@
 
 .home-label {
   font-family: var(--font-display);
-  font-size: 36px;
+  font-size: 40px;
   font-weight: 600;
   line-height: 44px;
   text-transform: uppercase;
@@ -61,9 +65,9 @@
 }
 
 .home-title {
-  font-family: 'Comfortaa', sans-serif;
-  font-size: 36px;
-  font-weight: 600;
+  font-family: 'Outfit', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
   line-height: 40px;
   letter-spacing: -0.9px;
   color: #080614;
@@ -82,6 +86,7 @@
   background-color: white;
   border-radius: 25px;
   font-weight: 500;
+  font-family: 'Comfortaa', sans-serif;
 }
 
 .home-dot {
@@ -301,7 +306,7 @@
 .onboarding-content { flex: 1; }
 
 .onboarding-title {
-  font-family: 'Comfortaa', sans-serif;
+  font-family: 'Outfit', sans-serif;
   font-size: 42px;
   font-weight: 700;
   line-height: 48px;
@@ -386,18 +391,21 @@
   align-items: center;
 }
 .carousel-card-title {
+  font-family: 'Comfortaa', sans-serif;
   font-size: 18px;
   font-weight: 700;
   color: #080614;
   margin: 0 0 8px;
 }
 .carousel-card-text {
+  font-family: 'Comfortaa', sans-serif;
   font-size: 15px;
   color: #4b5563;
   line-height: 1.6;
   margin: 0;
 }
 .carousel-card-source {
+  font-family: 'Comfortaa', sans-serif;
   display: block;
   margin-top: 10px;
   font-size: 11px;
@@ -443,6 +451,10 @@
   justify-content: space-between;
   align-items: center;
   margin-top: 40px;
+}
+
+.onboarding-nav button {
+  font-family: 'Comfortaa', sans-serif;
 }
 
 
@@ -574,9 +586,9 @@
 
 .image-theme {
   width: 100%;
-  height: 300px;
+  flex: 1 1 0;
+  min-height: 80px;
   object-fit: cover;
-  flex-shrink: 0;
 }
 
 .card-step-3-body {
@@ -584,7 +596,7 @@
   display: flex;
   flex-direction: column;
   gap: 6px;
-  flex: 1;
+  flex-shrink: 0;
 }
 
 .card-step-3-meta {
@@ -651,20 +663,36 @@
   .onboarding-left { padding: 28px 32px; }
   .onboarding-title { font-size: 34px; line-height: 40px; }
   .step3-grid {
+    display: flex;
+    flex-direction: row;
+    grid-template-columns: unset;
+    grid-template-rows: unset;
     gap: 8px;
     padding: 12px;
-    grid-template-rows: repeat(2, 1fr);
-    align-content: stretch;
+    padding-left: 16px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 16px;
+    -webkit-overflow-scrolling: touch;
+    height: 100%;
     align-items: stretch;
+    box-sizing: border-box;
   }
-  .card-step-3 { height: 100%; }
-  .image-theme { height: 170px; }
+  .step3-grid > * {
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    height: 100%;
+    box-sizing: border-box;
+  }
+  .card-step-3 { width: 300px; height: 100%; }
+  .card-step-3-no-theme { width: 300px; }
+  .image-theme { min-height: 60px; }
   .card-step-3-body { padding: 8px 10px 10px; gap: 4px; }
   .card-theme-text { font-size: 11px; }
   .card-step-3-meta { font-size: 10px; gap: 6px; }
   .onboarding--carousel .onboarding-left--full { align-items: stretch; justify-content: center; }
   .step2-carousel { margin: 0 auto; }
-  .card-step-3 { width: 100%; }
   .right-illustration .image-zoom-btn { display: flex; }
   .carousel-number { font-size: 80px; line-height: 65px; }
   .home-title { font-size: 28px; line-height: 34px; }
@@ -825,7 +853,7 @@
     height: 100%;
     box-sizing: border-box;
   }
-  .image-theme { height: 230px; }
+  .image-theme { min-height: 60px; }
   .card-step-3-body { padding: 8px 10px 10px; gap: 4px; }
   .card-step-3 { width: 355px; }
   .card-step-3-no-theme { width: 355px; }
@@ -898,7 +926,7 @@
     width: 250px;
   }
   .card-step-3 { width: 250px; }
-  .image-theme { height: 160px; }
+  .image-theme { min-height: 60px; }
   .card-theme-text { font-size: 13px; }
   .card-step-3-meta { font-size: 11px; }
 }
