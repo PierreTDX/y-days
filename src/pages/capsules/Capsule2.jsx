@@ -7,6 +7,7 @@ import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog'
 import ReactMarkdown from 'react-markdown'
 import remarkBreaks from 'remark-breaks';
 import remarkGfm from 'remark-gfm'
+import { CompletionModal } from '@/components/ui/CompletionModal'
 
 const badgeColors = [
     {
@@ -60,6 +61,7 @@ const badgeColors = [
 export default function Capsule2({ onComplete, onProgress }) {
     const [step, setStep] = useState(0)
     const scrollRef = useRef(null)
+    const [showCompletionModal, setShowCompletionModal] = useState(false)
     // const enableNext = true
 
     const finalStep = 3
@@ -254,7 +256,13 @@ export default function Capsule2({ onComplete, onProgress }) {
                         <Button
                             disabled={isNextDisabled}
                             className={`w-full sm:w-auto ${isNextDisabled ? "pointer-events-none" : ""}`}
-                            onClick={() => step < finalStep ? setStep(step + 1) : onComplete?.()}>
+                            onClick={() => {
+                                if (step < finalStep) {
+                                    setStep(step + 1)
+                                } else {
+                                    setShowCompletionModal(true)
+                                }
+                            }}>
                             {step < finalStep ? (
                                 <>Valider <Check className="w-4 h-4 ml-2" /></>
                             ) : (
@@ -265,6 +273,18 @@ export default function Capsule2({ onComplete, onProgress }) {
                 </div>
             </div>
         </div>
+
+        {/* Completion Modal */}
+        {showCompletionModal && (
+            <CompletionModal
+                title="Le module 2 est complété !"
+                content="Vous savez maintenant comment construire un prompt efficace avec la méthode R.O.L.E."
+                onNext={() => {
+                    setShowCompletionModal(false)
+                    onComplete?.()
+                }}
+            />
+        )}
     </>)
 }
 
